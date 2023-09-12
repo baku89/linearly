@@ -1,8 +1,8 @@
-import * as Common from './common.js'
-import {Mat4} from './mat4.js'
-import {Quat} from './quat.js'
-import {Vec2} from './vec2.js'
-import {Vec3} from './vec3.js'
+import * as Common from './common'
+import {Mat4} from './mat4'
+import {Quat} from './quat'
+import {Vec2} from './vec2'
+import {Vec3} from './vec3'
 
 // prettier-ignore
 export type Mat3 = readonly [

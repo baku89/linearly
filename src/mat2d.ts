@@ -1,5 +1,5 @@
-import * as Common from './common.js'
-import {Vec2} from './vec2.js'
+import * as Common from './common'
+import {Vec2} from './vec2'
 
 export type Mat2d = readonly [number, number, number, number, number, number]
 
