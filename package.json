@@ -1,0 +1,43 @@
+{
+	"name": "linearly",
+	"version": "0.0.0",
+	"description": "Matrix and vector library with immutable data types",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"lint": "eslint",
+		"prepare": "npm run build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/baku89/linearly.git"
+	},
+	"keywords": [
+		"matrix",
+		"vector",
+		"linear",
+		"algebra",
+		"graphics",
+		"transform"
+	],
+	"author": "Baku Hashimoto <mail@baku89.com>",
+	"files": [
+		"lib"
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/baku89/linearly/issues"
+	},
+	"homepage": "https://github.com/baku89/linearly#readme",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.49.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
+		"eslint-plugin-unused-imports": "^3.0.0",
+		"prettier": "^3.0.3",
+		"typescript": "^5.2.2"
+	}
+}
