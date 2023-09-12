@@ -215,7 +215,7 @@ export function pow(a: Quat, b: number): Quat {
  *
  * @param a the first operand
  * @param b the second operand
- * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
+ * @param t interpolation amount, in the range [0-1], between the two inputs
  */
 export function slerp(a: Quat, b: Quat, t: number): Quat {
 	// benchmarks:
@@ -416,11 +416,9 @@ export const dot: (a: Quat, b: Quat) => number = vec4.dot
 /**
  * Performs a linear interpolation between two quat's
  *
- * @param {quat} out the receiving quaternion
  * @param a the first operand
  * @param b the second operand
- * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @function
+ * @param t interpolation amount, in the range [0-1], between the two inputs
  */
 export const lerp: (a: Quat, b: Quat, t: number) => Quat = vec4.lerp
 
@@ -428,7 +426,7 @@ export const lerp: (a: Quat, b: Quat, t: number) => Quat = vec4.lerp
  * Calculates the length of a quat
  *
  * @param a vector to calculate length of
- * @returns {Number} length of a
+ * @returns length of a
  */
 export const length = vec4.length
 
@@ -442,7 +440,7 @@ export const len = length
  * Calculates the squared length of a quat
  *
  * @param a vector to calculate squared length of
- * @returns {Number} squared length of a
+ * @returns squared length of a
  * @function
  */
 export const squaredLength = vec4.squaredLength
@@ -456,18 +454,12 @@ export const sqrLen = squaredLength
 /**
  * Normalize a quat
  *
- * @param {quat} out the receiving quaternion
  * @param a quaternion to normalize
- * @function
  */
 export const normalize = vec4.normalize
 
 /**
  * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with ===)
- *
- * @param a The first quaternion.
- * @param b The second quaternion.
- * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export const exactEquals = vec4.exactEquals
 
@@ -486,9 +478,8 @@ export function equals(a: Quat, b: Quat) {
  *
  * Both vectors are assumed to be unit length.
  *
- * @param {quat} out the receiving quaternion.
- * @param {ReadonlyVec3} a the initial vector
- * @param {ReadonlyVec3} b the destination vector
+ * @param a the initial vector
+ * @param b the destination vector
  */
 export const rotationTo = (function () {
 	const xUnitVec3: Vec3 = [1, 0, 0]
@@ -539,9 +530,9 @@ export function sqlerp(a: Quat, b: Quat, c: Quat, d: Quat, t: number): Quat {
  * axes. Each axis is a vec3 and is expected to be unit length and
  * perpendicular to all other specified axes.
  *
- * @param {ReadonlyVec3} view  the vector representing the viewing direction
- * @param {ReadonlyVec3} right the vector representing the local "right" direction
- * @param {ReadonlyVec3} up    the vector representing the local "up" direction
+ * @param view  the vector representing the viewing direction
+ * @param right the vector representing the local "right" direction
+ * @param up    the vector representing the local "up" direction
  */
 export function setAxes(view: Vec3, right: Vec3, up: Vec3): Quat {
 	const matr: Mat3 = [

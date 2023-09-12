@@ -23,9 +23,7 @@ export type Mat2d = readonly [number, number, number, number, number, number]
  */
 
 /**
- * Set a mat2d to the identity matrix
- *
- * @param out the receiving matrix
+ * The identity matrix of mat2d
  */
 export const identity = Object.freeze([1, 0, 0, 1, 0, 0])
 

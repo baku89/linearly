@@ -68,7 +68,7 @@ export function multiply(a: Mat2, b: Mat2): Mat2 {
 /**
  * Rotates a mat2 by the given angle
  *
- * @param {ReadonlyMat2} a the matrix to rotate
+ * @param a the matrix to rotate
  * @param rad the angle to rotate the matrix by
  */
 export function rotate(a: Mat2, rad: number): Mat2 {
@@ -154,7 +154,7 @@ export function equals(a: Mat2, b: Mat2) {
 /**
  * Multiply each element of the matrix by a scalar.
  *
- * @param {ReadonlyMat2} a the matrix to scale
+ * @param a the matrix to scale
  * @param s amount to scale the matrix's elements by
  */
 export function multiplyScalar(a: Mat2, s: number): Mat2 {

@@ -274,10 +274,8 @@ export function multiply(a: Mat4, b: Mat4): Mat4 {
 /**
  * Translate a mat4 by the given vector
  *
- * @param {mat4} out the receiving matrix
- * @param {ReadonlyMat4} a the matrix to translate
- * @param {ReadonlyVec3} v vector to translate by
- * @returns {mat4} out
+ * @param a the matrix to translate
+ * @param v vector to translate by
  */
 export function translate(a: Mat4, v: Vec3): Mat4 {
 	const [x, y, z] = v
@@ -802,11 +800,9 @@ export function decompose(mat: Mat4): DecomposedTRS {
  *     mat4.multiply(dest, quatMat);
  *     mat4.scale(dest, scale)
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {quat4} rot Rotation quaternion
- * @param {ReadonlyVec3} trans Translation vector
- * @param {ReadonlyVec3} scale Scaling vector
- * @returns {mat4} out
+ * @param rot Rotation quaternion
+ * @param trans Translation vector
+ * @param scale Scaling vector
  */
 export function fromRotationTranslationScale(
 	rot: Quat,
