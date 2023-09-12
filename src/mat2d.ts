@@ -25,7 +25,12 @@ export type Mat2d = readonly [number, number, number, number, number, number]
 /**
  * The identity matrix of mat2d
  */
-export const identity = Object.freeze([1, 0, 0, 1, 0, 0])
+// prettier-ignore
+export const identity = Object.freeze([
+	1, 0,
+	0, 1,
+	0, 0
+])
 
 /**
  * Inverts a mat2d
@@ -41,12 +46,12 @@ export function invert(a: Mat2d): Mat2d | null {
 
 	const detinv = 1.0 / det
 
+	// prettier-ignore
 	return [
-		ad * detinv,
-		-ab * detinv,
-		-ac * detinv,
-		aa * detinv,
-		(ac * aty - ad * atx) * detinv,
+	   ad * detinv, -ab * detinv,
+	  -ac * detinv,  aa * detinv,
+
+	  (ac * aty - ad * atx) * detinv,
 		(ab * atx - aa * aty) * detinv,
 	]
 }
@@ -64,11 +69,12 @@ export function determinant(a: Mat2d) {
 export function multiply(a: Mat2d, b: Mat2d): Mat2d {
 	const [a0, a1, a2, a3, a4, a5] = a
 	const [b0, b1, b2, b3, b4, b5] = b
+
+	// prettier-ignore
 	return [
-		a0 * b0 + a2 * b1,
-		a1 * b0 + a3 * b1,
-		a0 * b2 + a2 * b3,
-		a1 * b2 + a3 * b3,
+		a0 * b0 + a2 * b1, a1 * b0 + a3 * b1,
+		a0 * b2 + a2 * b3, a1 * b2 + a3 * b3,
+		
 		a0 * b4 + a2 * b5 + a4,
 		a1 * b4 + a3 * b5 + a5,
 	]
@@ -78,16 +84,15 @@ export function multiply(a: Mat2d, b: Mat2d): Mat2d {
  * Rotates a mat2d by the given angle
  */
 export function rotate(a: Mat2d, rad: number): Mat2d {
-	const [a0, a1, a2, a3, a4, a5] = a
+	const [a0, a1, a2, a3, tx, ty] = a
 	const s = Math.sin(rad)
 	const c = Math.cos(rad)
+
+	// prettier-ignore
 	return [
-		a0 * c + a2 * s,
-		a1 * c + a3 * s,
-		a0 * -s + a2 * c,
-		a1 * -s + a3 * c,
-		a4,
-		a5,
+		a0 *  c + a2 * s,  a1 *  c + a3 * s,
+		a0 * -s + a2 * c,  a1 * -s + a3 * c,
+		tx, ty
 	]
 }
 
@@ -95,20 +100,30 @@ export function rotate(a: Mat2d, rad: number): Mat2d {
  * Scales the mat2d by the dimensions in the given vec2
  **/
 export function scale(a: Mat2d, v: Vec2): Mat2d {
-	const [a0, a1, a2, a3, a4, a5] = a
-	const v0 = v[0],
-		v1 = v[1]
-	return [a0 * v0, a1 * v0, a2 * v1, a3 * v1, a4, a5]
+	const [a0, a1, a2, a3, tx, ty] = a
+	const [sx, sy] = v
+
+	// prettier-ignore
+	return [
+		a0 * sx, a1 * sy,
+		a2 * sy, a3 * sy,
+		tx,      ty
+	]
 }
 
 /**
  * Translates the mat2d by the dimensions in the given vec2
  **/
-export function translate(a: Mat2d, v: Vec2): Mat2d {
-	const [a0, a1, a2, a3, a4, a5] = a
-	const [v0, v1] = v
+export function translate(m: Mat2d, v: Vec2): Mat2d {
+	const [a, b, c, d, tx, ty] = m
+	const [x, y] = v
 
-	return [a0, a1, a2, a3, a0 * v0 + a2 * v1 + a4, a1 * v0 + a3 * v1 + a5]
+	// prettier-ignore
+	return [
+		a, b,
+		c, d,
+		a * x + c * y + tx,
+		b * x + d * y + ty]
 }
 
 /**
@@ -119,35 +134,54 @@ export function fromRotation(rad: number): Mat2d {
 	const s = Math.sin(rad)
 	const c = Math.cos(rad)
 
-	return [c, s, -s, c, 0, 0]
+	// prettier-ignore
+	return [
+		 c, s,
+		-s, c,
+		 0, 0,
+	]
 }
 
 /**
  * Creates a matrix from a vector scaling
  */
 export function fromScaling(v: Vec2): Mat2d {
-	return [v[0], 0, 0, v[1], 0, 0]
+	const [x, y] = v
+
+	// prettier-ignore
+	return [
+	  x, 0,
+		0, y,
+		0, 0,
+	]
 }
 
 /**
  * Creates a matrix from a vector translation
  */
 export function fromTranslation(v: Vec2): Mat2d {
-	return [1, 0, 0, 1, v[0], v[1]]
+	const [x, y] = v
+
+	// prettier-ignore
+	return [
+		1, 0,
+		0, 1,
+		x, y,
+	]
 }
 
 /**
  * Returns Frobenius norm of a mat2d
  */
 export function frob(a: Mat2d) {
+	// prettier-ignore
 	return Math.sqrt(
-		a[0] * a[0] +
-			a[1] * a[1] +
-			a[2] * a[2] +
-			a[3] * a[3] +
-			a[4] * a[4] +
-			a[5] * a[5] +
-			1
+		a[0] ** 2 +
+		a[1] ** 2 +
+		a[2] ** 2 +
+		a[3] ** 2 +
+		a[4] ** 2 +
+		a[5] ** 2 + 1
 	)
 }
 
@@ -183,7 +217,12 @@ export function subtract(a: Mat2d, b: Mat2d): Mat2d {
  * Multiply each element of the matrix by a scalar.
  */
 export function multiplyScalar(a: Mat2d, s: number): Mat2d {
-	return [a[0] * s, a[1] * s, a[2] * s, a[3] * s, a[4] * s, a[5] * s]
+	// prettier-ignore
+	return [
+		a[0] * s, a[1] * s,
+		a[2] * s, a[3] * s,
+		a[4] * s, a[5] * s,
+	]
 }
 
 /**

@@ -2,23 +2,12 @@ import * as Common from './common.js'
 import {Quat} from './quat.js'
 import {Vec3} from './vec3.js'
 
+// prettier-ignore
 export type Mat4 = readonly [
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
+	number, number, number, number,
+	number, number, number, number,
+	number, number, number, number,
+	number, number, number, number,
 ]
 
 /**
@@ -28,31 +17,24 @@ export type Mat4 = readonly [
 /**
  * The identity matrix of mat4
  */
+// prettier-ignore
 export const identity: Mat4 = Object.freeze([
-	1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1,
+	1, 0, 0, 0,
+	0, 1, 0, 0,
+	0, 0, 1, 0,
+	0, 0, 0, 1,
 ])
 
 /**
  * Transpose the values of a mat4
  */
 export function transpose(a: Mat4): Mat4 {
+	// prettier-ignore
 	return [
-		a[0],
-		a[4],
-		a[8],
-		a[12],
-		a[1],
-		a[5],
-		a[9],
-		a[13],
-		a[2],
-		a[6],
-		a[10],
-		a[14],
-		a[3],
-		a[7],
-		a[11],
-		a[15],
+		a[0], a[4], a[8],  a[12],
+		a[1], a[5], a[9],  a[13],
+		a[2], a[6], a[10], a[14],
+		a[3], a[7], a[11], a[15],
 	]
 }
 
@@ -279,32 +261,18 @@ export function multiply(a: Mat4, b: Mat4): Mat4 {
  */
 export function translate(a: Mat4, v: Vec3): Mat4 {
 	const [x, y, z] = v
-	const a00 = a[0]
-	const a01 = a[1]
-	const a02 = a[2]
-	const a03 = a[3]
-	const a10 = a[4]
-	const a11 = a[5]
-	const a12 = a[6]
-	const a13 = a[7]
-	const a20 = a[8]
-	const a21 = a[9]
-	const a22 = a[10]
-	const a23 = a[11]
 
+	// prettier-ignore
+	const [a00, a01, a02, a03,
+		     a10, a11, a12, a13,
+				 a20, a21, a22, a23] = a
+
+	// prettier-ignore
 	return [
-		a00,
-		a01,
-		a02,
-		a03,
-		a10,
-		a11,
-		a12,
-		a13,
-		a20,
-		a21,
-		a22,
-		a23,
+		a00, a01, a02, a03,
+		a10, a11, a12, a13,
+		a20, a21, a22, a23,
+
 		a00 * x + a10 * y + a20 * z + a[12],
 		a01 * x + a11 * y + a21 * z + a[13],
 		a02 * x + a12 * y + a22 * z + a[14],
@@ -318,23 +286,12 @@ export function translate(a: Mat4, v: Vec3): Mat4 {
 export function scale(a: Mat4, v: Vec3): Mat4 {
 	const [x, y, z] = v
 
+	// prettier-ignore
 	return [
-		a[0] * x,
-		a[1] * x,
-		a[2] * x,
-		a[3] * x,
-		a[4] * y,
-		a[5] * y,
-		a[6] * y,
-		a[7] * y,
-		a[8] * z,
-		a[9] * z,
-		a[10] * z,
-		a[11] * z,
-		a[12],
-		a[13],
-		a[14],
-		a[15],
+		a[0] * x, a[1] * x, a[2]  * x, a[3]  * x,
+		a[4] * y, a[5] * y, a[6]  * y, a[7]  * y,
+		a[8] * z, a[9] * z, a[10] * z, a[11] * z,
+		a[12],    a[13],    a[14],     a[15],
 	]
 }
 
@@ -389,7 +346,7 @@ export function rotate(a: Mat4, rad: number, axis: Vec3): Mat4 | null {
 	b21 = y * z * t - x * s
 	b22 = z * z * t + c
 
-	// Perform rotation-specific matrix multiplication
+	// prettier-ignore
 	return [
 		a00 * b00 + a10 * b01 + a20 * b02,
 		a01 * b00 + a11 * b01 + a21 * b02,
@@ -403,10 +360,7 @@ export function rotate(a: Mat4, rad: number, axis: Vec3): Mat4 | null {
 		a01 * b20 + a11 * b21 + a21 * b22,
 		a02 * b20 + a12 * b21 + a22 * b22,
 		a03 * b20 + a13 * b21 + a23 * b22,
-		a[12],
-		a[13],
-		a[14],
-		a[15],
+		a[12], a[13], a[14], a[15],
 	]
 }
 
@@ -425,23 +379,12 @@ export function rotateX(a: Mat4, rad: number): Mat4 {
 	const a22 = a[10]
 	const a23 = a[11]
 
+	// prettier-ignore
 	return [
-		a[0],
-		a[1],
-		a[2],
-		a[3],
-		a10 * c + a20 * s,
-		a11 * c + a21 * s,
-		a12 * c + a22 * s,
-		a13 * c + a23 * s,
-		a20 * c - a10 * s,
-		a21 * c - a11 * s,
-		a22 * c - a12 * s,
-		a23 * c - a13 * s,
-		a[12],
-		a[13],
-		a[14],
-		a[15],
+		a[0], a[1], a[2], a[3],
+		a10 * c + a20 * s, a11 * c + a21 * s, a12 * c + a22 * s, a13 * c + a23 * s,
+		a20 * c - a10 * s, a21 * c - a11 * s, a22 * c - a12 * s, a23 * c - a13 * s,
+		a[12], a[13], a[14], a[15],
 	]
 }
 
@@ -460,23 +403,18 @@ export function rotateY(a: Mat4, rad: number): Mat4 {
 	const a22 = a[10]
 	const a23 = a[11]
 
+	// prettier-ignore
 	return [
 		a00 * c - a20 * s,
 		a01 * c - a21 * s,
 		a02 * c - a22 * s,
 		a03 * c - a23 * s,
-		a[4],
-		a[5],
-		a[6],
-		a[7],
+		a[4], a[5], a[6], a[7],
 		a00 * s + a20 * c,
 		a01 * s + a21 * c,
 		a02 * s + a22 * c,
 		a03 * s + a23 * c,
-		a[12],
-		a[13],
-		a[14],
-		a[15],
+		a[12], a[13], a[14], a[15],
 	]
 }
 
@@ -495,6 +433,7 @@ export function rotateZ(a: Mat4, rad: number): Mat4 {
 	const a12 = a[6]
 	const a13 = a[7]
 
+	// prettier-ignore
 	return [
 		a00 * c + a10 * s,
 		a01 * c + a11 * s,
@@ -504,14 +443,8 @@ export function rotateZ(a: Mat4, rad: number): Mat4 {
 		a11 * c - a01 * s,
 		a12 * c - a02 * s,
 		a13 * c - a03 * s,
-		a[8],
-		a[9],
-		a[10],
-		a[11],
-		a[12],
-		a[13],
-		a[14],
-		a[15],
+		a[8],  a[9],  a[10], a[11],
+		a[12], a[13], a[14], a[15],
 	]
 }
 
@@ -519,14 +452,30 @@ export function rotateZ(a: Mat4, rad: number): Mat4 {
  * Creates a matrix from a vector translation
  */
 export function fromTranslation(v: Vec3): Mat4 {
-	return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, v[0], v[1], v[2], 1]
+	const [x, y, z] = v
+
+	// prettier-ignore
+	return [
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		x, y, z, 1,
+	]
 }
 
 /**
  * Creates a matrix from a vector scaling
  */
 export function fromScaling(v: Vec3): Mat4 {
-	return [v[0], 0, 0, 0, 0, v[1], 0, 0, 0, 0, v[2], 0, 0, 0, 0, 1]
+	const [x, y, z] = v
+
+	// prettier-ignore
+	return [
+		x, 0, 0, 0,
+		0, y, 0, 0,
+		0, 0, z, 0,
+		0, 0, 0, 1
+	]
 }
 
 /**
@@ -550,6 +499,7 @@ export function fromRotation(rad: number, axis: Vec3): Mat4 | null {
 	c = Math.cos(rad)
 	t = 1 - c
 
+	// prettier-ignore
 	return [
 		x * x * t + c,
 		y * x * t + z * s,
@@ -563,10 +513,7 @@ export function fromRotation(rad: number, axis: Vec3): Mat4 | null {
 		y * z * t - x * s,
 		z * z * t + c,
 		0,
-		0,
-		0,
-		0,
-		1,
+		0, 0, 0, 1,
 	]
 }
 
@@ -577,7 +524,13 @@ export function fromXRotation(rad: number): Mat4 {
 	const s = Math.sin(rad)
 	const c = Math.cos(rad)
 
-	return [1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1]
+	// prettier-ignore
+	return [
+		1,  0,  0,  0,
+		0,  c,  s,  0,
+		0, -s,  c,  0,
+		0,  0,  0,  1
+	]
 }
 
 /**
@@ -587,7 +540,13 @@ export function fromYRotation(rad: number): Mat4 {
 	const s = Math.sin(rad)
 	const c = Math.cos(rad)
 
-	return [c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1]
+	// prettier-ignore
+	return [
+		c,  0, -s,  0,
+		0,  1,  0,  0,
+		s,  0,  c,  0,
+		0,  0,  0,  1
+	]
 }
 
 /**
@@ -597,7 +556,13 @@ export function fromZRotation(rad: number): Mat4 {
 	const s = Math.sin(rad)
 	const c = Math.cos(rad)
 
-	return [c, s, 0, 0, -s, c, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+	// prettier-ignore
+	return [
+		 c,  s,  0,  0,
+		-s,  c,  0,  0,
+		 0,  0,  1,  0,
+		 0,  0,  0,  1
+	]
 }
 
 /**
@@ -661,15 +626,10 @@ export function getTranslation(mat: Mat4): Vec3 {
  *  originally supplied.
  */
 export function getScaling(mat: Mat4): Vec3 {
-	const m11 = mat[0]
-	const m12 = mat[1]
-	const m13 = mat[2]
-	const m21 = mat[4]
-	const m22 = mat[5]
-	const m23 = mat[6]
-	const m31 = mat[8]
-	const m32 = mat[9]
-	const m33 = mat[10]
+	// prettier-ignore
+	const [m11, m12, m13, ,
+	       m21, m22, m23, ,
+	       m31, m32, m33, ]= mat
 
 	return [
 		Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13),
@@ -733,15 +693,10 @@ interface DecomposedTRS {
 export function decompose(mat: Mat4): DecomposedTRS {
 	const trans: Vec3 = [mat[12], mat[13], mat[14]]
 
-	const m11 = mat[0]
-	const m12 = mat[1]
-	const m13 = mat[2]
-	const m21 = mat[4]
-	const m22 = mat[5]
-	const m23 = mat[6]
-	const m31 = mat[8]
-	const m32 = mat[9]
-	const m33 = mat[10]
+	// prettier-ignore
+	const [m11, m12, m13, ,
+	       m21, m22, m23, ,
+	       m31, m32, m33, ] = mat
 
 	const scale: Vec3 = [
 		Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13),
@@ -764,7 +719,6 @@ export function decompose(mat: Mat4): DecomposedTRS {
 	const sm33 = m33 * is3
 
 	const trace = sm11 + sm22 + sm33
-	const S = 0
 
 	let rot: Quat
 
@@ -906,19 +860,11 @@ export function fromRotationTranslationScaleOrigin(
 	const out9 = (yz - wx) * sz
 	const out10 = (1 - (xx + yy)) * sz
 
+	// prettier-ignore
 	return [
-		out0,
-		out1,
-		out2,
-		0,
-		out4,
-		out5,
-		out6,
-		0,
-		out8,
-		out9,
-		out10,
-		0,
+		out0, out1, out2, 0,
+		out4, out5, out6, 0,
+		out8, out9, out10, 0,
 		trans[0] + ox - (out0 * ox + out4 * oy + out8 * oz),
 		trans[1] + oy - (out1 * ox + out5 * oy + out9 * oz),
 		trans[2] + oz - (out2 * ox + out6 * oy + out10 * oz),
@@ -947,6 +893,7 @@ export function fromQuat(q: Quat): Mat4 {
 	const wy = w * y2
 	const wz = w * z2
 
+	// prettier-ignore
 	return [
 		1 - yy - zz,
 		yx + wz,
@@ -963,10 +910,7 @@ export function fromQuat(q: Quat): Mat4 {
 		1 - xx - yy,
 		0,
 
-		0,
-		0,
-		0,
-		1,
+		0, 0, 0, 1,
 	]
 }
 
@@ -992,23 +936,12 @@ export function frustum(
 	const tb = 1 / (top - bottom)
 	const nf = 1 / (near - far)
 
+	// prettier-ignore
 	return [
-		near * 2 * rl,
-		0,
-		0,
-		0,
-		0,
-		near * 2 * tb,
-		0,
-		0,
-		(right + left) * rl,
-		(top + bottom) * tb,
-		(far + near) * nf,
-		-1,
-		0,
-		0,
-		far * near * 2 * nf,
-		0,
+		near * 2 * rl,       0,                0,                      0,
+		0,                   near * 2 * tb,    0,                      0,
+		(right + left) * rl, (top + bottom) * tb, (far + near) * nf,  -1,
+		0,                   0,                   far * near * 2 * nf, 0,
 	]
 }
 
@@ -1042,7 +975,13 @@ export function perspectiveNO(
 		out14 = -2 * near
 	}
 
-	return [f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, out10, -1, 0, 0, out14, 0]
+	// prettier-ignore
+	return [
+		f / aspect, 0, 0,      0,
+		0,          f, 0,      0,
+		0,          0, out10, -1,
+		0,          0, out14,  0,
+	]
 }
 
 /**
@@ -1105,30 +1044,27 @@ export function perspectiveFromFieldOfView(
 	near: number,
 	far: number
 ): Mat4 {
-	const upTan = Math.tan((fov.upDegrees * Math.PI) / 180.0)
-	const downTan = Math.tan((fov.downDegrees * Math.PI) / 180.0)
-	const leftTan = Math.tan((fov.leftDegrees * Math.PI) / 180.0)
-	const rightTan = Math.tan((fov.rightDegrees * Math.PI) / 180.0)
-	const xScale = 2.0 / (leftTan + rightTan)
-	const yScale = 2.0 / (upTan + downTan)
+	const upTan = Math.tan((fov.upDegrees * Math.PI) / 180)
+	const downTan = Math.tan((fov.downDegrees * Math.PI) / 180)
+	const leftTan = Math.tan((fov.leftDegrees * Math.PI) / 180)
+	const rightTan = Math.tan((fov.rightDegrees * Math.PI) / 180)
+	const xScale = 2 / (leftTan + rightTan)
+	const yScale = 2 / (upTan + downTan)
 
+	// prettier-ignore
 	return [
-		xScale,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		yScale,
-		0.0,
-		0.0,
+		xScale, 0, 0, 0,
+		0, yScale, 0, 0,
+
 		-((leftTan - rightTan) * xScale * 0.5),
 		(upTan - downTan) * yScale * 0.5,
 		far / (near - far),
-		-1.0,
-		0.0,
-		0.0,
+		-1,
+
+		0,
+		0,
 		(far * near) / (near - far),
-		0.0,
+		0,
 	]
 }
 
@@ -1156,19 +1092,12 @@ export function orthoNO(
 	const bt = 1 / (bottom - top)
 	const nf = 1 / (near - far)
 
+	// prettier-ignore
 	return [
-		-2 * lr,
-		0,
-		0,
-		0,
-		0,
-		-2 * bt,
-		0,
-		0,
-		0,
-		0,
-		2 * nf,
-		0,
+		-2 * lr,  0,      0,      0,
+		 0,      -2 * bt, 0,      0,
+		 0,       0,      2 * nf, 0,
+
 		(left + right) * lr,
 		(top + bottom) * bt,
 		(far + near) * nf,
@@ -1206,19 +1135,12 @@ export function orthoZO(
 	const bt = 1 / (bottom - top)
 	const nf = 1 / (near - far)
 
+	// prettier-ignore
 	return [
-		-2 * lr,
-		0,
-		0,
-		0,
-		0,
-		-2 * bt,
-		0,
-		0,
-		0,
-		0,
-		nf,
-		0,
+		-2 * lr,  0,      0,  0,
+		 0,      -2 * bt, 0,  0,
+		 0,       0,      nf, 0,
+
 		(left + right) * lr,
 		(top + bottom) * bt,
 		near * nf,
@@ -1294,19 +1216,11 @@ export function lookAt(eye: Vec3, center: Vec3, up: Vec3): Mat4 {
 		y2 *= len
 	}
 
+	// prettier-ignore
 	return [
-		x0,
-		y0,
-		z0,
-		0,
-		x1,
-		y1,
-		z1,
-		0,
-		x2,
-		y2,
-		z2,
-		0,
+		x0, y0, z0, 0,
+		x1, y1, z1, 0,
+		x2, y2, z2, 0,
 		-(x0 * eyex + x1 * eyey + x2 * eyez),
 		-(y0 * eyex + y1 * eyey + y2 * eyez),
 		-(z0 * eyex + z1 * eyey + z2 * eyez),
@@ -1351,23 +1265,17 @@ export function targetTo(eye: Vec3, target: Vec3, up: Vec3): Mat4 {
 		x2 *= len
 	}
 
+	// prettier-ignore
 	return [
-		x0,
-		x1,
-		x2,
-		0,
+		x0, x1, x2, 0,
+
 		z1 * x2 - z2 * x1,
 		z2 * x0 - z0 * x2,
 		z0 * x1 - z1 * x0,
 		0,
-		z0,
-		z1,
-		z2,
-		0,
-		eyex,
-		eyey,
-		eyez,
-		1,
+
+		z0, z1, z2, 0,
+		eyex, eyey, eyez, 1,
 	]
 }
 
@@ -1519,39 +1427,8 @@ export function exactEquals(a: Mat4, b: Mat4) {
  * Returns whether or not the matrices have approximately the same elements in the same position.
  */
 export function equals(a: Mat4, b: Mat4) {
-	const a0 = a[0],
-		a1 = a[1],
-		a2 = a[2],
-		a3 = a[3]
-	const a4 = a[4],
-		a5 = a[5],
-		a6 = a[6],
-		a7 = a[7]
-	const a8 = a[8],
-		a9 = a[9],
-		a10 = a[10],
-		a11 = a[11]
-	const a12 = a[12],
-		a13 = a[13],
-		a14 = a[14],
-		a15 = a[15]
-
-	const b0 = b[0],
-		b1 = b[1],
-		b2 = b[2],
-		b3 = b[3]
-	const b4 = b[4],
-		b5 = b[5],
-		b6 = b[6],
-		b7 = b[7]
-	const b8 = b[8],
-		b9 = b[9],
-		b10 = b[10],
-		b11 = b[11]
-	const b12 = b[12],
-		b13 = b[13],
-		b14 = b[14],
-		b15 = b[15]
+	const [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, aA, aB, aC, aD, aE, aF] = a
+	const [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bA, bB, bC, bD, bE, bF] = b
 
 	return (
 		Math.abs(a0 - b0) <=
@@ -1574,17 +1451,17 @@ export function equals(a: Mat4, b: Mat4) {
 			Common.EPSILON * Math.max(1.0, Math.abs(a8), Math.abs(b8)) &&
 		Math.abs(a9 - b9) <=
 			Common.EPSILON * Math.max(1.0, Math.abs(a9), Math.abs(b9)) &&
-		Math.abs(a10 - b10) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a10), Math.abs(b10)) &&
-		Math.abs(a11 - b11) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a11), Math.abs(b11)) &&
-		Math.abs(a12 - b12) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a12), Math.abs(b12)) &&
-		Math.abs(a13 - b13) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a13), Math.abs(b13)) &&
-		Math.abs(a14 - b14) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a14), Math.abs(b14)) &&
-		Math.abs(a15 - b15) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a15), Math.abs(b15))
+		Math.abs(aA - bA) <=
+			Common.EPSILON * Math.max(1.0, Math.abs(aA), Math.abs(bA)) &&
+		Math.abs(aB - bB) <=
+			Common.EPSILON * Math.max(1.0, Math.abs(aB), Math.abs(bB)) &&
+		Math.abs(aC - bC) <=
+			Common.EPSILON * Math.max(1.0, Math.abs(aC), Math.abs(bC)) &&
+		Math.abs(aD - bD) <=
+			Common.EPSILON * Math.max(1.0, Math.abs(aD), Math.abs(bD)) &&
+		Math.abs(aE - bE) <=
+			Common.EPSILON * Math.max(1.0, Math.abs(aE), Math.abs(bE)) &&
+		Math.abs(aF - bF) <=
+			Common.EPSILON * Math.max(1.0, Math.abs(aF), Math.abs(bF))
 	)
 }

@@ -4,16 +4,11 @@ import {Quat} from './quat.js'
 import {Vec2} from './vec2.js'
 import {Vec3} from './vec3.js'
 
+// prettier-ignore
 export type Mat3 = readonly [
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
+	number, number, number,
+	number, number, number,
+	number, number, number,
 ]
 
 /**
@@ -138,14 +133,10 @@ export function translate(a: Mat3, v: Vec3): Mat3 {
 	const [a00, a01, a02, a10, a11, a12, a20, a21, a22] = a
 	const [x, y] = v
 
+	// prettier-ignore
 	return [
-		a00,
-		a01,
-		a02,
-
-		a10,
-		a11,
-		a12,
+		a00, a01, a02,
+		a10, a11, a12,
 
 		x * a00 + y * a10 + a20,
 		x * a01 + y * a11 + a21,
@@ -161,6 +152,7 @@ export function rotate(a: Mat3, rad: number): Mat3 {
 		s = Math.sin(rad),
 		c = Math.cos(rad)
 
+	// prettier-ignore
 	return [
 		c * a00 + s * a10,
 		c * a01 + s * a11,
@@ -170,9 +162,7 @@ export function rotate(a: Mat3, rad: number): Mat3 {
 		c * a11 - s * a01,
 		c * a12 - s * a02,
 
-		a20,
-		a21,
-		a22,
+		a20, a21, a22,
 	]
 }
 
@@ -182,18 +172,11 @@ export function rotate(a: Mat3, rad: number): Mat3 {
 export function scale(a: Mat3, v: Vec2): Mat3 {
 	const [x, y] = v
 
+	// prettier-ignore
 	return [
-		x * a[0],
-		x * a[1],
-		x * a[2],
-
-		y * a[3],
-		y * a[4],
-		y * a[5],
-
-		a[6],
-		a[7],
-		a[8],
+		a[0] * x, a[1] * x, a[2] & x,
+		a[3] * y, a[4] * y,	a[5] * y,
+		a[6],     a[7],     a[8],
 	]
 }
 
@@ -201,7 +184,14 @@ export function scale(a: Mat3, v: Vec2): Mat3 {
  * Creates a matrix from a vector translation
  */
 export function fromTranslation(v: Vec2): Mat3 {
-	return [1, 0, 0, 0, 1, 0, v[0], v[1], 1]
+	const [x, y] = v
+
+	// prettier-ignore
+	return [
+		1, 0, 0,
+		0, 1, 0,
+		x, y, 1,
+	]
 }
 
 /**
@@ -211,7 +201,12 @@ export function fromRotation(rad: number): Mat3 {
 	const s = Math.sin(rad)
 	const c = Math.cos(rad)
 
-	return [c, s, 0, -s, c, 0, 0, 0, 1]
+	// prettier-ignore
+	return [
+		c,  s, 0,
+		-s, c, 0,
+		0,  0, 1,
+	]
 }
 
 /**

@@ -13,7 +13,11 @@ export const identity = Object.freeze([1, 0, 0, 1])
  * Transpose the values of a mat2
  */
 export function transpose(a: Mat2): Mat2 {
-	return [a[0], a[2], a[1], a[3]]
+	// prettier-ignore
+	return [
+		a[0], a[2],
+		a[1], a[3],
+	]
 }
 
 /**
@@ -30,7 +34,11 @@ export function invert(a: Mat2): Mat2 | null {
 	}
 	const detinv = 1.0 / det
 
-	return [a3 * detinv, -a1 * detinv, -a2 * detinv, a0 * detinv]
+	// prettier-ignore
+	return [
+	   a3 * detinv, -a1 * detinv,
+	  -a2 * detinv,  a0 * detinv
+	]
 }
 
 /**
