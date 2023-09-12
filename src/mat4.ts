@@ -91,31 +91,32 @@ export function invert(a: Mat4): Mat4 | null {
 	const b11 = a22 * a33 - a23 * a32
 
 	// Calculate the determinant
-	let det =
+	const det =
 		b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06
 
 	if (!det) {
 		return null
 	}
-	det = 1.0 / det
+
+	const detinv = 1.0 / det
 
 	return [
-		(a11 * b11 - a12 * b10 + a13 * b09) * det,
-		(a02 * b10 - a01 * b11 - a03 * b09) * det,
-		(a31 * b05 - a32 * b04 + a33 * b03) * det,
-		(a22 * b04 - a21 * b05 - a23 * b03) * det,
-		(a12 * b08 - a10 * b11 - a13 * b07) * det,
-		(a00 * b11 - a02 * b08 + a03 * b07) * det,
-		(a32 * b02 - a30 * b05 - a33 * b01) * det,
-		(a20 * b05 - a22 * b02 + a23 * b01) * det,
-		(a10 * b10 - a11 * b08 + a13 * b06) * det,
-		(a01 * b08 - a00 * b10 - a03 * b06) * det,
-		(a30 * b04 - a31 * b02 + a33 * b00) * det,
-		(a21 * b02 - a20 * b04 - a23 * b00) * det,
-		(a11 * b07 - a10 * b09 - a12 * b06) * det,
-		(a00 * b09 - a01 * b07 + a02 * b06) * det,
-		(a31 * b01 - a30 * b03 - a32 * b00) * det,
-		(a20 * b03 - a21 * b01 + a22 * b00) * det,
+		(a11 * b11 - a12 * b10 + a13 * b09) * detinv,
+		(a02 * b10 - a01 * b11 - a03 * b09) * detinv,
+		(a31 * b05 - a32 * b04 + a33 * b03) * detinv,
+		(a22 * b04 - a21 * b05 - a23 * b03) * detinv,
+		(a12 * b08 - a10 * b11 - a13 * b07) * detinv,
+		(a00 * b11 - a02 * b08 + a03 * b07) * detinv,
+		(a32 * b02 - a30 * b05 - a33 * b01) * detinv,
+		(a20 * b05 - a22 * b02 + a23 * b01) * detinv,
+		(a10 * b10 - a11 * b08 + a13 * b06) * detinv,
+		(a01 * b08 - a00 * b10 - a03 * b06) * detinv,
+		(a30 * b04 - a31 * b02 + a33 * b00) * detinv,
+		(a21 * b02 - a20 * b04 - a23 * b00) * detinv,
+		(a11 * b07 - a10 * b09 - a12 * b06) * detinv,
+		(a00 * b09 - a01 * b07 + a02 * b06) * detinv,
+		(a31 * b01 - a30 * b03 - a32 * b00) * detinv,
+		(a20 * b03 - a21 * b01 + a22 * b00) * detinv,
 	]
 }
 
@@ -233,10 +234,7 @@ export function multiply(a: Mat4, b: Mat4): Mat4 {
 	const out = Array(16).fill(0)
 
 	// Cache only the current line of the second matrix
-	let b0 = b[0],
-		b1 = b[1],
-		b2 = b[2],
-		b3 = b[3]
+	let [b0, b1, b2, b3] = b
 
 	out[0] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30
 	out[1] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31
@@ -706,7 +704,6 @@ export function getRotation(mat: Mat4): Quat {
 	const sm33 = mat[10] * is3
 
 	const trace = sm11 + sm22 + sm33
-	let out: Quat
 
 	if (trace > 0) {
 		const S = Math.sqrt(trace + 1.0) * 2

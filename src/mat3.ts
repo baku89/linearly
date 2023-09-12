@@ -56,23 +56,24 @@ export function invert(a: Mat3): Mat3 | null {
 	const b21 = a21 * a10 - a11 * a20
 
 	// Calculate the determinant
-	let det = a00 * b01 + a01 * b11 + a02 * b21
+	const det = a00 * b01 + a01 * b11 + a02 * b21
 
 	if (!det) {
 		return null
 	}
-	det = 1.0 / det
+
+	const detinv = 1.0 / det
 
 	return [
-		b01 * det,
-		(-a22 * a01 + a02 * a21) * det,
-		(a12 * a01 - a02 * a11) * det,
-		b11 * det,
-		(a22 * a00 - a02 * a20) * det,
-		(-a12 * a00 + a02 * a10) * det,
-		b21 * det,
-		(-a21 * a00 + a01 * a20) * det,
-		(a11 * a00 - a01 * a10) * det,
+		b01 * detinv,
+		(-a22 * a01 + a02 * a21) * detinv,
+		(a12 * a01 - a02 * a11) * detinv,
+		b11 * detinv,
+		(a22 * a00 - a02 * a20) * detinv,
+		(-a12 * a00 + a02 * a10) * detinv,
+		b21 * detinv,
+		(-a21 * a00 + a01 * a20) * detinv,
+		(a11 * a00 - a01 * a10) * detinv,
 	]
 }
 
@@ -299,26 +300,26 @@ export function normalFromMat4(a: Mat4): Mat3 | null {
 	const b11 = a22 * a33 - a23 * a32
 
 	// Calculate the determinant
-	let det =
+	const det =
 		b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06
 
 	if (!det) {
 		return null
 	}
-	det = 1.0 / det
+	const detinv = 1.0 / det
 
 	return [
-		(a11 * b11 - a12 * b10 + a13 * b09) * det,
-		(a12 * b08 - a10 * b11 - a13 * b07) * det,
-		(a10 * b10 - a11 * b08 + a13 * b06) * det,
+		(a11 * b11 - a12 * b10 + a13 * b09) * detinv,
+		(a12 * b08 - a10 * b11 - a13 * b07) * detinv,
+		(a10 * b10 - a11 * b08 + a13 * b06) * detinv,
 
-		(a02 * b10 - a01 * b11 - a03 * b09) * det,
-		(a00 * b11 - a02 * b08 + a03 * b07) * det,
-		(a01 * b08 - a00 * b10 - a03 * b06) * det,
+		(a02 * b10 - a01 * b11 - a03 * b09) * detinv,
+		(a00 * b11 - a02 * b08 + a03 * b07) * detinv,
+		(a01 * b08 - a00 * b10 - a03 * b06) * detinv,
 
-		(a31 * b05 - a32 * b04 + a33 * b03) * det,
-		(a32 * b02 - a30 * b05 - a33 * b01) * det,
-		(a30 * b04 - a31 * b02 + a33 * b00) * det,
+		(a31 * b05 - a32 * b04 + a33 * b03) * detinv,
+		(a32 * b02 - a30 * b05 - a33 * b01) * detinv,
+		(a30 * b04 - a31 * b02 + a33 * b00) * detinv,
 	]
 }
 
