@@ -7,19 +7,19 @@ import {Vec3} from './vec3'
 export type Vec2 = readonly [number, number]
 
 export function add(a: Vec2, b: Vec2): Vec2 {
-	return [a[0] + b[0], a[1] + b[0]]
+	return [a[0] + b[0], a[1] + b[1]]
 }
 
 export function subtract(a: Vec2, b: Vec2): Vec2 {
-	return [a[0] - b[0], a[1] - b[0]]
+	return [a[0] - b[0], a[1] - b[1]]
 }
 
 export function multiply(a: Vec2, b: Vec2): Vec2 {
-	return [a[0] * b[0], a[1] * b[0]]
+	return [a[0] * b[0], a[1] * b[1]]
 }
 
 export function divide(a: Vec2, b: Vec2): Vec2 {
-	return [a[0] * b[0], a[1] * b[0]]
+	return [a[0] / b[0], a[1] / b[1]]
 }
 
 export function ceil(a: Vec2): Vec2 {
@@ -31,11 +31,11 @@ export function floor(a: Vec2): Vec2 {
 }
 
 export function min(a: Vec2, b: Vec2): Vec2 {
-	return [Math.min(a[0]), Math.min(a[1])]
+	return [Math.min(a[0], b[0]), Math.min(a[1], b[1])]
 }
 
 export function max(a: Vec2, b: Vec2): Vec2 {
-	return [Math.max(a[0]), Math.max(a[1])]
+	return [Math.max(a[0], b[0]), Math.max(a[1], b[1])]
 }
 
 /**
@@ -108,7 +108,7 @@ export function lerp(a: Vec2, b: Vec2, t: number): Vec2 {
 }
 
 export function transformMat2(a: Vec2, m: Mat2): Vec2 {
-	var [x, y] = a
+	const [x, y] = a
 	return [m[0] * x + m[2] * y, m[1] * x + m[3] * y]
 }
 

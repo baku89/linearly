@@ -51,20 +51,20 @@ export function floor(a: Vec3): Vec3 {
  * Returns the minimum of two vec3's
  */
 export function min(a: Vec3, b: Vec3): Vec3 {
-	return [Math.min(a[0]), Math.min(a[1]), Math.min(a[2])]
+	return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.min(a[2], b[2])]
 }
 
 /**
  * Returns the maximum of two vec3's
  */
 export function max(a: Vec3, b: Vec3): Vec3 {
-	return [Math.max(a[0]), Math.max(a[1]), Math.max(a[2])]
+	return [Math.max(a[0], b[0]), Math.max(a[1], b[1]), Math.max(a[2], b[2])]
 }
 
 /**
  * symmetric round the components of a vec3
  */
-export function round(a: Vec3, b: Vec3): Vec3 {
+export function round(a: Vec3): Vec3 {
 	return [Common.round(a[0]), Common.round(a[1]), Common.round(a[2])]
 }
 /**
@@ -264,30 +264,29 @@ export function transformMat3(a: Vec3, m: Mat3): Vec3 {
  * @param a the vector to transform
  * @param q quaternion to transform with
  */
+// https://github.com/stackgl/gl-vec3/blob/master/transformQuat.js
 export function transformQuat(a: Vec3, q: Quat): Vec3 {
-	// benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
-	const [qx, qy, qz, qw] = q
-	const [x, y, z] = a
-	// var qvec = [qx, qy, qz];
-	// var uv = vec3.cross([], qvec, a);
-	let uvx = qy * z - qz * y,
-		uvy = qz * x - qx * z,
-		uvz = qx * y - qy * x
-	// var uuv = vec3.cross([], qvec, uv);
-	let uuvx = qy * uvz - qz * uvy,
-		uuvy = qz * uvx - qx * uvz,
-		uuvz = qx * uvy - qy * uvx
-	// vec3.scale(uv, uv, 2 * w);
-	const w2 = qw * 2
-	uvx *= w2
-	uvy *= w2
-	uvz *= w2
-	// vec3.scale(uuv, uuv, 2);
-	uuvx *= 2
-	uuvy *= 2
-	uuvz *= 2
-	// return vec3.add(a, vec3.add(uv, uuv));
-	return [x + uvx + uuvx, y + uvy + uuvy, z + uvz + uuvz]
+	// benchmarks: http://jsperf.com/quaternion-transform-vec3-implementations
+
+	const x = a[0],
+		y = a[1],
+		z = a[2],
+		qx = q[0],
+		qy = q[1],
+		qz = q[2],
+		qw = q[3],
+		// calculate quat * vec
+		ix = qw * x + qy * z - qz * y,
+		iy = qw * y + qz * x - qx * z,
+		iz = qw * z + qx * y - qy * x,
+		iw = -qx * x - qy * y - qz * z
+
+	// calculate result * inverse quat
+	return [
+		ix * qw + iw * -qx + iy * -qz - iz * -qy,
+		iy * qw + iw * -qy + iz * -qx - ix * -qz,
+		iz * qw + iw * -qz + ix * -qy - iy * -qx,
+	]
 }
 
 /**
