@@ -32,7 +32,7 @@ export function invert(a: Mat2): Mat2 | null {
 	if (!det) {
 		return null
 	}
-	const detinv = 1.0 / det
+	const detinv = 1 / det
 
 	// prettier-ignore
 	return [
@@ -149,13 +149,13 @@ export function equals(a: Mat2, b: Mat2) {
 	const [b0, b1, b2, b3] = b
 	return (
 		Math.abs(a0 - b0) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) &&
 		Math.abs(a1 - b1) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1)) &&
 		Math.abs(a2 - b2) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a2), Math.abs(b2)) &&
 		Math.abs(a3 - b3) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3))
+			Common.EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3))
 	)
 }
 

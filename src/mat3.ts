@@ -67,7 +67,7 @@ export function invert(a: Mat3): Mat3 | null {
 		return null
 	}
 
-	const detinv = 1.0 / det
+	const detinv = 1 / det
 
 	return [
 		b01 * detinv,
@@ -314,7 +314,7 @@ export function normalFromMat4(a: Mat4): Mat3 | null {
 	if (!det) {
 		return null
 	}
-	const detinv = 1.0 / det
+	const detinv = 1 / det
 
 	return [
 		(a11 * b11 - a12 * b10 + a13 * b09) * detinv,
@@ -464,22 +464,22 @@ export function equals(a: Mat3, b: Mat3) {
 		b8 = b[8]
 	return (
 		Math.abs(a0 - b0) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) &&
 		Math.abs(a1 - b1) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1)) &&
 		Math.abs(a2 - b2) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a2), Math.abs(b2)) &&
 		Math.abs(a3 - b3) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3)) &&
 		Math.abs(a4 - b4) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a4), Math.abs(b4)) &&
 		Math.abs(a5 - b5) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a5), Math.abs(b5)) &&
 		Math.abs(a6 - b6) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a6), Math.abs(b6)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a6), Math.abs(b6)) &&
 		Math.abs(a7 - b7) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a7), Math.abs(b7)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a7), Math.abs(b7)) &&
 		Math.abs(a8 - b8) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a8), Math.abs(b8))
+			Common.EPSILON * Math.max(1, Math.abs(a8), Math.abs(b8))
 	)
 }

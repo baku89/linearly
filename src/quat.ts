@@ -48,8 +48,8 @@ interface AxisAngle {
  * @param  q Quaternion to be decomposed
  */
 export function getAxisAngle(q: Quat): AxisAngle {
-	const rad = Math.acos(q[3]) * 2.0
-	const s = Math.sin(rad / 2.0)
+	const rad = Math.acos(q[3]) * 2
+	const s = Math.sin(rad / 2)
 
 	let axis: Vec3
 
@@ -173,7 +173,7 @@ export function rotateZ(a: Quat, rad: number): Quat {
 export function calculateW(a: Quat): Quat {
 	const [x, y, z] = a
 
-	return [x, y, z, Math.sqrt(Math.abs(1.0 - x * x - y * y - z * z))]
+	return [x, y, z, Math.sqrt(Math.abs(1 - x * x - y * y - z * z))]
 }
 
 /**
@@ -205,10 +205,7 @@ export function ln(a: Quat): Quat {
  * Calculate the scalar power of a unit quaternion.
  */
 export function pow(a: Quat, b: number): Quat {
-	const _ln = ln(a)
-	const _scale = scale(_ln, b)
-	const _exp = exp(_scale)
-	return _exp
+	return exp(scale(ln(a), b))
 }
 
 /**
@@ -229,24 +226,24 @@ export function slerp(a: Quat, b: Quat, t: number): Quat {
 	// calc cosine
 	cosom = ax * bx + ay * by + az * bz + aw * bw
 	// adjust signs (if necessary)
-	if (cosom < 0.0) {
-		cosom = -cosom
-		bx = -bx
-		by = -by
-		bz = -bz
-		bw = -bw
+	if (cosom < 0) {
+		cosom *= -1
+		bx *= -1
+		by *= -1
+		bz *= -1
+		bw *= -1
 	}
 	// calculate coefficients
-	if (1.0 - cosom > Common.EPSILON) {
+	if (1 - cosom > Common.EPSILON) {
 		// standard case (slerp)
 		omega = Math.acos(cosom)
 		sinom = Math.sin(omega)
-		scale0 = Math.sin((1.0 - t) * omega) / sinom
+		scale0 = Math.sin((1 - t) * omega) / sinom
 		scale1 = Math.sin(t * omega) / sinom
 	} else {
 		// "from" and "to" quaternions are very close
 		//  ... so we can do a linear interpolation
-		scale0 = 1.0 - t
+		scale0 = 1 - t
 		scale1 = t
 	}
 	// calculate final values
@@ -267,7 +264,7 @@ export function invert(a: Quat): Quat {
 		a2 = a[2],
 		a3 = a[3]
 	const dot = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3
-	const invDot = dot ? 1.0 / dot : 0
+	const invDot = dot ? 1 / dot : 0
 
 	// TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
 	return [-a0 * invDot, -a1 * invDot, -a2 * invDot, a3 * invDot]
@@ -294,9 +291,9 @@ export function fromMat3(m: Mat3): Quat {
 	let fRoot
 	const out = [0, 0, 0, 0]
 
-	if (fTrace > 0.0) {
+	if (fTrace > 0) {
 		// |w| > 1/2, may as well choose w > 1/2
-		fRoot = Math.sqrt(fTrace + 1.0) // 2w
+		fRoot = Math.sqrt(fTrace + 1) // 2w
 		out[3] = 0.5 * fRoot
 		fRoot = 0.5 / fRoot // 1/(4w)
 		out[0] = (m[5] - m[7]) * fRoot
@@ -310,7 +307,7 @@ export function fromMat3(m: Mat3): Quat {
 		const j = (i + 1) % 3
 		const k = (i + 2) % 3
 
-		fRoot = Math.sqrt(m[i * 3 + i] - m[j * 3 + j] - m[k * 3 + k] + 1.0)
+		fRoot = Math.sqrt(m[i * 3 + i] - m[j * 3 + j] - m[k * 3 + k] + 1)
 		out[i] = 0.5 * fRoot
 		fRoot = 0.5 / fRoot
 		out[3] = (m[j * 3 + k] - m[k * 3 + j]) * fRoot

@@ -70,7 +70,7 @@ export function invert(a: Mat4): Mat4 | null {
 		return null
 	}
 
-	const detinv = 1.0 / det
+	const detinv = 1 / det
 
 	return [
 		(a11 * b11 - a12 * b10 + a13 * b09) * detinv,
@@ -604,16 +604,16 @@ export function getRotation(mat: Mat4): Quat {
 	const trace = sm11 + sm22 + sm33
 
 	if (trace > 0) {
-		const S = Math.sqrt(trace + 1.0) * 2
+		const S = Math.sqrt(trace + 1) * 2
 		return [(sm23 - sm32) / S, (sm31 - sm13) / S, (sm12 - sm21) / S, 0.25 * S]
 	} else if (sm11 > sm22 && sm11 > sm33) {
-		const S = Math.sqrt(1.0 + sm11 - sm22 - sm33) * 2
+		const S = Math.sqrt(1 + sm11 - sm22 - sm33) * 2
 		return [0.25 * S, (sm12 + sm21) / S, (sm31 + sm13) / S, (sm23 - sm32) / S]
 	} else if (sm22 > sm33) {
-		const S = Math.sqrt(1.0 + sm22 - sm11 - sm33) * 2
+		const S = Math.sqrt(1 + sm22 - sm11 - sm33) * 2
 		return [(sm12 + sm21) / S, 0.25 * S, (sm23 + sm32) / S, (sm31 - sm13) / S]
 	} else {
-		const S = Math.sqrt(1.0 + sm33 - sm11 - sm22) * 2
+		const S = Math.sqrt(1 + sm33 - sm11 - sm22) * 2
 		return [(sm31 + sm13) / S, (sm23 + sm32) / S, 0.25 * S, (sm12 - sm21) / S]
 	}
 }
@@ -663,16 +663,16 @@ export function decompose(mat: Mat4): DecomposedTRS {
 	let rot: Quat
 
 	if (trace > 0) {
-		const S = Math.sqrt(trace + 1.0) * 2
+		const S = Math.sqrt(trace + 1) * 2
 		rot = [(sm23 - sm32) / S, (sm31 - sm13) / S, (sm12 - sm21) / S, 0.25 * S]
 	} else if (sm11 > sm22 && sm11 > sm33) {
-		const S = Math.sqrt(1.0 + sm11 - sm22 - sm33) * 2
+		const S = Math.sqrt(1 + sm11 - sm22 - sm33) * 2
 		rot = [0.25 * S, (sm12 + sm21) / S, (sm31 + sm13) / S, (sm23 - sm32) / S]
 	} else if (sm22 > sm33) {
-		const S = Math.sqrt(1.0 + sm22 - sm11 - sm33) * 2
+		const S = Math.sqrt(1 + sm22 - sm11 - sm33) * 2
 		rot = [(sm12 + sm21) / S, 0.25 * S, (sm23 + sm32) / S, (sm31 - sm13) / S]
 	} else {
-		const S = Math.sqrt(1.0 + sm33 - sm11 - sm22) * 2
+		const S = Math.sqrt(1 + sm33 - sm11 - sm22) * 2
 		rot = [(sm31 + sm13) / S, (sm23 + sm32) / S, 0.25 * S, (sm12 - sm21) / S]
 	}
 
@@ -902,7 +902,7 @@ export function perspectiveNO(
 	near: number,
 	far: number
 ): Mat4 {
-	const f = 1.0 / Math.tan(fovy / 2)
+	const f = 1 / Math.tan(fovy / 2)
 
 	let out10: number, out14: number
 
@@ -947,7 +947,7 @@ export function perspectiveZO(
 	near: number,
 	far: number | null
 ): Mat4 {
-	const f = 1.0 / Math.tan(fovy / 2)
+	const f = 1 / Math.tan(fovy / 2)
 
 	let out10: number, out14: number
 
@@ -1372,36 +1372,36 @@ export function equals(a: Mat4, b: Mat4) {
 
 	return (
 		Math.abs(a0 - b0) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) &&
 		Math.abs(a1 - b1) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1)) &&
 		Math.abs(a2 - b2) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a2), Math.abs(b2)) &&
 		Math.abs(a3 - b3) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3)) &&
 		Math.abs(a4 - b4) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a4), Math.abs(b4)) &&
 		Math.abs(a5 - b5) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a5), Math.abs(b5)) &&
 		Math.abs(a6 - b6) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a6), Math.abs(b6)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a6), Math.abs(b6)) &&
 		Math.abs(a7 - b7) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a7), Math.abs(b7)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a7), Math.abs(b7)) &&
 		Math.abs(a8 - b8) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a8), Math.abs(b8)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a8), Math.abs(b8)) &&
 		Math.abs(a9 - b9) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a9), Math.abs(b9)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a9), Math.abs(b9)) &&
 		Math.abs(aA - bA) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(aA), Math.abs(bA)) &&
+			Common.EPSILON * Math.max(1, Math.abs(aA), Math.abs(bA)) &&
 		Math.abs(aB - bB) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(aB), Math.abs(bB)) &&
+			Common.EPSILON * Math.max(1, Math.abs(aB), Math.abs(bB)) &&
 		Math.abs(aC - bC) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(aC), Math.abs(bC)) &&
+			Common.EPSILON * Math.max(1, Math.abs(aC), Math.abs(bC)) &&
 		Math.abs(aD - bD) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(aD), Math.abs(bD)) &&
+			Common.EPSILON * Math.max(1, Math.abs(aD), Math.abs(bD)) &&
 		Math.abs(aE - bE) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(aE), Math.abs(bE)) &&
+			Common.EPSILON * Math.max(1, Math.abs(aE), Math.abs(bE)) &&
 		Math.abs(aF - bF) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(aF), Math.abs(bF))
+			Common.EPSILON * Math.max(1, Math.abs(aF), Math.abs(bF))
 	)
 }

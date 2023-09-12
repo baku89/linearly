@@ -130,7 +130,7 @@ export function negate(a: Vec3): Vec3 {
  * Returns the inverse of the components of a vec3
  */
 export function inverse(a: Vec3): Vec3 {
-	return [1.0 / a[0], 1.0 / a[1], 1.0 / a[2]]
+	return [1 / a[0], 1 / a[1], 1 / a[2]]
 }
 
 /**
@@ -385,10 +385,10 @@ export function equals(a: Vec3, b: Vec3) {
 
 	return (
 		Math.abs(a0 - b0) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) &&
 		Math.abs(a1 - b1) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+			Common.EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1)) &&
 		Math.abs(a2 - b2) <=
-			Common.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2))
+			Common.EPSILON * Math.max(1, Math.abs(a2), Math.abs(b2))
 	)
 }
