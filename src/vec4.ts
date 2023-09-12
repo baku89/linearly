@@ -1,6 +1,6 @@
-import * as Common from './common'
-import {Mat4} from './mat4'
-import {Quat} from './quat'
+import * as Common from './common.js'
+import {Mat4} from './mat4.js'
+import {Quat} from './quat.js'
 
 export type Vec4 = readonly [number, number, number, number]
 

@@ -1,7 +1,8 @@
-import {mat3, vec3, vec4} from 'src'
-import * as Common from './common'
-import {Mat3} from './mat3'
-import {Vec3} from './vec3'
+import * as Common from './common.js'
+import * as vec3 from './vec3.js'
+import * as vec4 from './vec4.js'
+import type {Mat3} from './mat3.js'
+import type {Vec3} from './vec3.js'
 
 export type Quat = readonly [number, number, number, number]
 

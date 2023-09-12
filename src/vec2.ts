@@ -1,8 +1,8 @@
-import * as Common from './common'
-import {Mat2} from './mat2'
-import {Mat2d} from './mat2d'
-import {Mat3} from './mat3'
-import {Vec3} from './vec3'
+import * as Common from './common.js'
+import {Mat2} from './mat2.js'
+import {Mat2d} from './mat2d.js'
+import {Mat3} from './mat3.js'
+import {Vec3} from './vec3.js'
 
 export type Vec2 = readonly [number, number]
 
