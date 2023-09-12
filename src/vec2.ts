@@ -59,13 +59,13 @@ export function scaleAndAdd(a: Vec2, b: Vec2, scale: number): Vec2 {
 export function distance(a: Vec2, b: Vec2) {
 	const x = b[0] - a[0],
 		y = b[1] - a[1]
-	return Math.sqrt(x ** 2 + y ** 2)
+	return Math.sqrt(x * x + y * y)
 }
 
 export function squaredDistance(a: Vec2, b: Vec2) {
 	const x = b[0] - a[0],
 		y = b[1] - a[1]
-	return Math.hypot(x, y)
+	return x * x + y * y
 }
 
 export function length(v: Vec2) {
@@ -73,7 +73,7 @@ export function length(v: Vec2) {
 }
 
 export function squaredLength(v: Vec2) {
-	return Math.hypot(v[0], v[1])
+	return v[0] ** 2 + v[1] ** 2
 }
 
 export function negate(v: Vec2): Vec2 {
@@ -85,7 +85,7 @@ export function inverse(v: Vec2): Vec2 {
 }
 
 export function normalize(v: Vec2): Vec2 {
-	const hyp = Math.hypot(v[0], v[1])
+	const hyp = v[0] ** 2 + v[1] ** 2
 	const len = hyp === 0 ? 0 : 1 / Math.sqrt(hyp)
 	return [v[0] * len, v[1] * len]
 }
