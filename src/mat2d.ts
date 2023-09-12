@@ -105,7 +105,7 @@ export function scale(a: Mat2d, v: Vec2): Mat2d {
 
 	// prettier-ignore
 	return [
-		a0 * sx, a1 * sy,
+		a0 * sx, a1 * sx,
 		a2 * sy, a3 * sy,
 		tx,      ty
 	]

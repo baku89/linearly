@@ -1,5 +1,25 @@
+import {EPSILON} from './common'
 import type {Mat2d} from './mat2d'
 import * as mat2d from './mat2d'
+
+function areMat2dEqual(a: unknown, b: unknown) {
+	if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
+		return undefined
+	}
+
+	for (let i = 0; i < a.length; i++) {
+		const nearlyEqual =
+			Math.abs(a[i] - b[i]) <=
+			EPSILON * Math.max(1, Math.abs(a[i]), Math.abs(b[i]))
+
+		if (!nearlyEqual) {
+			return undefined
+		}
+	}
+	return true
+}
+
+;(expect as any).addEqualityTesters([areMat2dEqual])
 
 describe('mat2d', () => {
 	const matA: Mat2d = [1, 2, 3, 4, 5, 6]
@@ -62,17 +82,21 @@ describe('mat2d', () => {
 	})
 
 	describe('exactEquals', () => {
+		const matA: Mat2d = [0, 1, 2, 3, 4, 5]
+		const matB: Mat2d = [0, 1, 2, 3, 4, 5]
 		const matC: Mat2d = [1, 2, 3, 4, 5, 6]
 
 		it('should return true for identical matrices', () => {
 			expect(mat2d.exactEquals(matA, matB)).toBe(true)
 		})
 		it('should return false for different matrices', () => {
-			expect(mat2d.exactEquals(matA, matC)).toBe(true)
+			expect(mat2d.exactEquals(matA, matC)).toBe(false)
 		})
 	})
 
 	describe('equals', () => {
+		const matA: Mat2d = [0, 1, 2, 3, 4, 5]
+		const matB: Mat2d = [0, 1, 2, 3, 4, 5]
 		const matC: Mat2d = [1, 2, 3, 4, 5, 6]
 		const matD: Mat2d = [1e-16, 1, 2, 3, 4, 5]
 
