@@ -23,7 +23,15 @@ export function fromMat4(a: Mat4): Mat3 {
 	return [a[0], a[1], a[2], a[4], a[5], a[6], a[8], a[9], a[10]]
 }
 
-export const identity = Object.freeze([1, 0, 0, 0, 1, 0, 0, 0, 1])
+/**
+ * The identity matrix of mat3
+ */
+// prettier-ignore
+export const identity = Object.freeze([
+	1, 0, 0,
+	0, 1, 0,
+	0, 0, 1,
+])
 
 /**
  * Transpose the values of a mat3

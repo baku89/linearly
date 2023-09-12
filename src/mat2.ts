@@ -4,10 +4,10 @@ import {Vec2} from './vec2.js'
 export type Mat2 = readonly [number, number, number, number]
 
 /**
- * Set a mat2 to the identity matrix
+ * The identity matrix of mat2
  *
  */
-export const identity = Object.freeze([1, 0, 0, 1])
+export const identity: Mat2 = Object.freeze([1, 0, 0, 1])
 
 /**
  * Transpose the values of a mat2
