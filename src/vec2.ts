@@ -43,6 +43,16 @@ export function max(a: Vec2, b: Vec2): Vec2 {
 }
 
 /**
+ *  Constrain a value to lie between two further values
+ */
+export function clamp(a: Vec2, min: Vec2, max: Vec2): Vec2 {
+	return [
+		Math.min(Math.max(a[0], min[0]), max[0]),
+		Math.min(Math.max(a[1], min[1]), max[1]),
+	]
+}
+
+/**
  * symmetric round the components of a vec2
  */
 export function round(a: Vec2): Vec2 {

@@ -82,6 +82,10 @@ test('min', () => {
 	expect(vec2.min([3, 7], [5, 6])).toEqual([3, 6])
 })
 
+test('clamp', () => {
+	expect(vec2.clamp([3, 7], [4, 4], [5, 6])).toEqual([4, 6])
+})
+
 test('multiply', () => {
 	expect(vec2.multiply([3, 4], [5, 6])).toEqual([15, 24])
 })

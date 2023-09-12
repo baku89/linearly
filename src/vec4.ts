@@ -80,6 +80,18 @@ export function max(a: Vec4, b: Vec4): Vec4 {
 }
 
 /**
+ *  Constrain a value to lie between two further values
+ */
+export function clamp(a: Vec4, min: Vec4, max: Vec4): Vec4 {
+	return [
+		Math.min(Math.max(a[0], min[0]), max[0]),
+		Math.min(Math.max(a[1], min[1]), max[1]),
+		Math.min(Math.max(a[2], min[2]), max[2]),
+		Math.min(Math.max(a[3], min[3]), max[3]),
+	]
+}
+
+/**
  * symmetric round the components of a vec4
  */
 export function round(a: Vec4): Vec4 {
