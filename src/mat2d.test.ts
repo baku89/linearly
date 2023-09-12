@@ -26,7 +26,7 @@ const matB: Mat2d = [7, 8, 9, 10, 11, 12]
 
 describe('invert', () => {
 	expect(mat2d.invert(matA)).toEqual([-2, 1, 1.5, -0.5, 1, -2])
-	expect(mat2d.invert([1, 0, 2, 0, 0, 0])).toEqual(0)
+	expect(mat2d.invert([1, 0, 2, 0, 0, 0])).toEqual(null)
 })
 
 describe('determinant', () => {
