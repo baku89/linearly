@@ -42,22 +42,12 @@ export function transpose(a: Mat4): Mat4 {
  * Inverts a mat4
  */
 export function invert(a: Mat4): Mat4 | null {
-	const a00 = a[0],
-		a01 = a[1],
-		a02 = a[2],
-		a03 = a[3]
-	const a10 = a[4],
-		a11 = a[5],
-		a12 = a[6],
-		a13 = a[7]
-	const a20 = a[8],
-		a21 = a[9],
-		a22 = a[10],
-		a23 = a[11]
-	const a30 = a[12],
-		a31 = a[13],
-		a32 = a[14],
-		a33 = a[15]
+	// prettier-ignore
+	const [
+		a00, a01, a02, a03,
+		a10, a11, a12, a13,
+		a20, a21, a22, a23,
+		a30, a31, a32, a33] = a
 
 	const b00 = a00 * a11 - a01 * a10
 	const b01 = a00 * a12 - a02 * a10
@@ -106,22 +96,12 @@ export function invert(a: Mat4): Mat4 | null {
  * Calculates the adjugate of a mat4
  */
 export function adjoint(a: Mat4): Mat4 {
-	const a00 = a[0],
-		a01 = a[1],
-		a02 = a[2],
-		a03 = a[3]
-	const a10 = a[4],
-		a11 = a[5],
-		a12 = a[6],
-		a13 = a[7]
-	const a20 = a[8],
-		a21 = a[9],
-		a22 = a[10],
-		a23 = a[11]
-	const a30 = a[12],
-		a31 = a[13],
-		a32 = a[14],
-		a33 = a[15]
+	// prettier-ignore
+	const [
+		a00, a01, a02, a03,
+		a10, a11, a12, a13,
+		a20, a21, a22, a23,
+		a30, a31, a32, a33] = a
 
 	const b00 = a00 * a11 - a01 * a10
 	const b01 = a00 * a12 - a02 * a10
@@ -160,22 +140,12 @@ export function adjoint(a: Mat4): Mat4 {
  * Calculates the determinant of a mat4
  */
 export function determinant(a: Mat4) {
-	const a00 = a[0],
-		a01 = a[1],
-		a02 = a[2],
-		a03 = a[3]
-	const a10 = a[4],
-		a11 = a[5],
-		a12 = a[6],
-		a13 = a[7]
-	const a20 = a[8],
-		a21 = a[9],
-		a22 = a[10],
-		a23 = a[11]
-	const a30 = a[12],
-		a31 = a[13],
-		a32 = a[14],
-		a33 = a[15]
+	// prettier-ignore
+	const [
+		a00, a01, a02, a03,
+		a10, a11, a12, a13,
+		a20, a21, a22, a23,
+		a30, a31, a32, a33] = a
 
 	const b0 = a00 * a11 - a01 * a10
 	const b1 = a00 * a12 - a02 * a10
@@ -543,10 +513,7 @@ export function fromZRotation(rad: number): Mat4 {
  */
 export function fromRotationTranslation(q: Quat, v: Vec3): Mat4 {
 	// Quaternion math
-	const x = q[0],
-		y = q[1],
-		z = q[2],
-		w = q[3]
+	const [x, y, z, w] = q
 	const x2 = x + x
 	const y2 = y + y
 	const z2 = z + z

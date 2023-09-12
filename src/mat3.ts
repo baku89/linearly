@@ -20,7 +20,12 @@ export type Mat3 = readonly [
  * Copies the upper-left 3x3 values into the given mat3.
  */
 export function fromMat4(a: Mat4): Mat3 {
-	return [a[0], a[1], a[2], a[4], a[5], a[6], a[8], a[9], a[10]]
+	// prettier-ignore
+	return [
+		a[0], a[1], a[2],
+		a[4], a[5], a[6],
+		a[8], a[9], a[10]
+	]
 }
 
 /**
@@ -37,22 +42,19 @@ export const identity = Object.freeze([
  * Transpose the values of a mat3
  */
 export function transpose(a: Mat3): Mat3 {
-	return [a[0], a[3], a[6], a[1], a[4], a[7], a[2], a[5], a[8]]
+	// prettier-ignore
+	return [
+		a[0], a[3], a[6],
+		a[1], a[4], a[7],
+		a[2], a[5], a[8]
+	]
 }
 
 /**
  * Inverts a mat3
  */
 export function invert(a: Mat3): Mat3 | null {
-	const a00 = a[0],
-		a01 = a[1],
-		a02 = a[2]
-	const a10 = a[3],
-		a11 = a[4],
-		a12 = a[5]
-	const a20 = a[6],
-		a21 = a[7],
-		a22 = a[8]
+	const [a00, a01, a02, a10, a11, a12, a20, a21, a22] = a
 
 	const b01 = a22 * a11 - a12 * a21
 	const b11 = -a22 * a10 + a12 * a20
@@ -156,9 +158,9 @@ export function translate(a: Mat3, v: Vec3): Mat3 {
  * Rotates a mat3 by the given angle
  */
 export function rotate(a: Mat3, rad: number): Mat3 {
-	const [a00, a01, a02, a10, a11, a12, a20, a21, a22] = a,
-		s = Math.sin(rad),
-		c = Math.cos(rad)
+	const [a00, a01, a02, a10, a11, a12, a20, a21, a22] = a
+	const s = Math.sin(rad)
+	const c = Math.cos(rad)
 
 	// prettier-ignore
 	return [
@@ -221,14 +223,26 @@ export function fromRotation(rad: number): Mat3 {
  * Creates a matrix from a vector scaling
  */
 export function fromScaling(v: Vec2): Mat3 {
-	return [v[0], 0, 0, 0, v[1], 0, 0, 0, 1]
+	const [x, y] = v
+
+	// prettier-ignore
+	return [
+		x, 0, 0,
+		0, y, 0,
+		0, 0, 1
+	]
 }
 
 /**
  * Copies the values from a mat2d into a mat3
  **/
 export function fromMat2d(a: Mat3): Mat3 {
-	return [a[0], a[1], 0, a[2], a[3], 0, a[4], a[5], 1]
+	// prettier-ignore
+	return [
+		a[0], a[1], 0,
+		a[2], a[3], 0,
+		a[4], a[5], 1
+	]
 }
 
 /**
@@ -272,22 +286,13 @@ export function fromQuat(q: Quat): Mat3 {
  *
  */
 export function normalFromMat4(a: Mat4): Mat3 | null {
-	const a00 = a[0],
-		a01 = a[1],
-		a02 = a[2],
-		a03 = a[3]
-	const a10 = a[4],
-		a11 = a[5],
-		a12 = a[6],
-		a13 = a[7]
-	const a20 = a[8],
-		a21 = a[9],
-		a22 = a[10],
-		a23 = a[11]
-	const a30 = a[12],
-		a31 = a[13],
-		a32 = a[14],
-		a33 = a[15]
+	// prettier-ignore
+	const [
+		a00, a01, a02, a03,
+		a10, a11, a12, a13,
+		a20, a21, a22, a23,
+		a30, a31, a32, a33
+	] = a
 
 	const b00 = a00 * a11 - a01 * a10
 	const b01 = a00 * a12 - a02 * a10
