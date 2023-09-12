@@ -9,6 +9,8 @@ export type Mat2 = readonly [number, number, number, number]
  */
 export const identity: Mat2 = Object.freeze([1, 0, 0, 1])
 
+export const zero: Mat2 = Object.freeze([0, 0, 0, 0])
+
 /**
  * Transpose the values of a mat2
  */

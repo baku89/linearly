@@ -4,6 +4,10 @@ import {Quat} from './quat'
 
 export type Vec4 = readonly [number, number, number, number]
 
+export const zero: Vec4 = Object.freeze([0, 0, 0, 0])
+
+export const one: Vec4 = Object.freeze([1, 1, 1, 1])
+
 /**
  * Adds two vec4's
  */

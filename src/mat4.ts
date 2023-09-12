@@ -25,6 +25,10 @@ export const identity: Mat4 = Object.freeze([
 	0, 0, 0, 1,
 ])
 
+export const zero: Mat4 = Object.freeze([
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+])
+
 /**
  * Transpose the values of a mat4
  */

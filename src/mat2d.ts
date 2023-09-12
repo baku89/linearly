@@ -32,6 +32,8 @@ export const identity = Object.freeze([
 	0, 0
 ])
 
+export const zero: Mat2d = Object.freeze([0, 0, 0, 0, 0, 0])
+
 /**
  * Inverts a mat2d
  */

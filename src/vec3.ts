@@ -5,6 +5,10 @@ import {Mat3} from './mat3'
 import {Mat4} from './mat4'
 import {Quat} from './quat'
 
+export const zero: Vec3 = Object.freeze([0, 0, 0])
+
+export const one: Vec3 = Object.freeze([1, 1, 1])
+
 /**
  * Adds two vec3's
  */

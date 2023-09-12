@@ -38,6 +38,8 @@ export const identity = Object.freeze([
 	0, 0, 1,
 ])
 
+export const zero: Mat3 = Object.freeze([0, 0, 0, 0, 0, 0, 0, 0, 0])
+
 /**
  * Transpose the values of a mat3
  */

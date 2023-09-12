@@ -6,6 +6,10 @@ import {Vec3} from './vec3'
 
 export type Vec2 = readonly [number, number]
 
+export const zero: Vec2 = Object.freeze([0, 0])
+
+export const one: Vec2 = Object.freeze([1, 1])
+
 export function add(a: Vec2, b: Vec2): Vec2 {
 	return [a[0] + b[0], a[1] + b[1]]
 }
