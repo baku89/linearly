@@ -129,6 +129,14 @@ export function translate(m: Mat2d, v: Vec2): Mat2d {
 }
 
 /**
+ * Apply skew to the mat2d by the given angles
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+ */
+export function skew(m: Mat2d, ax: number, ay: number): Mat2d {
+	return multiply(m, fromSkew(ax, ay))
+}
+
+/**
  * Creates a matrix from a given angle
  * This is equivalent to (but much faster than):
  */
@@ -169,6 +177,22 @@ export function fromTranslation(v: Vec2): Mat2d {
 		1, 0,
 		0, 1,
 		x, y,
+	]
+}
+
+/**
+ * Creates a matrix from a vector skew
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+ */
+export function fromSkew(ax: number, ay: number): Mat2d {
+	const x = Math.tan(ax)
+	const y = Math.tan(ay)
+
+	// prettier-ignore
+	return [
+		1, y,
+		x, 1,
+		0, 0,
 	]
 }
 

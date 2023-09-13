@@ -100,6 +100,14 @@ export function scale(a: Mat2, v: Vec2): Mat2 {
 }
 
 /**
+ * Apply skew to the mat2d by the given angles
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+ */
+export function skew(m: Mat2, ax: number, ay: number): Mat2 {
+	return multiply(m, fromSkew(ax, ay))
+}
+
+/**
  * Creates a matrix from a given angle
  */
 export function fromRotation(rad: number): Mat2 {
@@ -113,6 +121,21 @@ export function fromRotation(rad: number): Mat2 {
  */
 export function fromScaling(v: Vec2): Mat2 {
 	return [v[0], 0, 0, v[1]]
+}
+
+/**
+ * Creates a matrix from a vector skew
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+ */
+export function fromSkew(ax: number, ay: number): Mat2 {
+	const x = Math.tan(ax)
+	const y = Math.tan(ay)
+
+	// prettier-ignore
+	return [
+		1, y,
+		x, 1,
+	]
 }
 
 /**
