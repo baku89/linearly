@@ -1,11 +1,13 @@
 {
 	"name": "linearly",
-	"version": "0.3.0",
+	"version": "0.4.1",
 	"description": "Matrix and vector library with immutable data types",
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
+	"main": "./lib/cjs/index.js",
+	"module": "./elib/sm/index.js",
+	"types": "./lib/esm/index.d.ts",
+	"sideEffects": false,
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && tsc -p tsconfig.cjs.json",
 		"lint": "eslint",
 		"test": "jest",
 		"prepare": "npm run build"
