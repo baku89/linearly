@@ -6,6 +6,10 @@ import {Vec3} from './vec3'
 
 export type Vec2 = readonly [number, number]
 
+export function of(x: number, y: number = x): Vec2 {
+	return [x, y]
+}
+
 export const zero: Vec2 = Object.freeze([0, 0])
 
 export const one: Vec2 = Object.freeze([1, 1])

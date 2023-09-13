@@ -22,6 +22,11 @@ function areVec2Equal(a: unknown, b: unknown) {
 
 // https://github.com/stackgl/gl-vec2/blob/master/test/index.js
 
+test('of', () => {
+	expect(vec2.of(2, 3)).toStrictEqual([2, 3])
+	expect(vec2.of(2)).toStrictEqual([2, 2])
+})
+
 test('add', () => {
 	expect(vec2.add([0, 1], [2, 3])).toStrictEqual([2, 4])
 })

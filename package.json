@@ -1,6 +1,6 @@
 {
 	"name": "linearly",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Matrix and vector library with immutable data types",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",

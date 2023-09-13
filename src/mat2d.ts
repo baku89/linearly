@@ -1,8 +1,6 @@
 import * as Common from './common'
 import {Vec2} from './vec2'
 
-export type Mat2d = readonly [number, number, number, number, number, number]
-
 /**
  * 2x3 Matrix
  * @module mat2d
@@ -21,6 +19,17 @@ export type Mat2d = readonly [number, number, number, number, number, number]
  * </pre>
  * The last column is ignored so the array is shorter and operations are faster.
  */
+
+export type Mat2d = readonly [number, number, number, number, number, number]
+
+// prettier-ignore
+export function of(
+	a: number,  b: number,
+	c: number,  d: number,
+	tx: number, ty: number
+): Mat2d {
+	return [a, b, c, d, tx, ty]
+}
 
 /**
  * The identity matrix of mat2d

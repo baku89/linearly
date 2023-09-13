@@ -3,6 +3,13 @@ import * as vec3 from './vec3'
 
 // https://github.com/stackgl/gl-vec3/blob/master/test/index.js
 
+test('of', () => {
+	expect(vec3.of(2, 3, 4)).toStrictEqual([2, 3, 4])
+	expect(vec3.of(2)).toStrictEqual([2, 2, 2])
+	expect(vec3.of(2, 3)).toStrictEqual([2, 3, 0])
+	expect(vec3.of(2, undefined, 4)).toStrictEqual([2, 0, 4])
+})
+
 test('add', () => {
 	expect(vec3.add([0, 1, 2], [3, 4, 5])).toEqual([3, 5, 7])
 })

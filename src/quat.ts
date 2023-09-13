@@ -4,12 +4,16 @@ import type {Vec3} from './vec3'
 import * as vec3 from './vec3'
 import * as vec4 from './vec4'
 
-export type Quat = readonly [number, number, number, number]
-
 /**
  * Quaternion in the format XYZW
  * @module quat
  */
+
+export type Quat = readonly [number, number, number, number]
+
+export function of(x: number, y: number, z: number, w: number): Quat {
+	return [x, y, z, w]
+}
 
 /**
  * The identity quaternion

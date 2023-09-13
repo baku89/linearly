@@ -4,6 +4,17 @@ import {Quat} from './quat'
 
 export type Vec4 = readonly [number, number, number, number]
 
+export function of(x: number, y?: number, z?: number, w?: number): Vec4 {
+	if (y === undefined && z === undefined && w === undefined) {
+		y = z = w = x
+	}
+	if (y === undefined) y = 0
+	if (z === undefined) z = 0
+	if (w === undefined) w = 0
+
+	return [x, y, z, w]
+}
+
 export const zero: Vec4 = Object.freeze([0, 0, 0, 0])
 
 export const one: Vec4 = Object.freeze([1, 1, 1, 1])

@@ -11,6 +11,20 @@ export type Mat3 = readonly [
 	number, number, number,
 ]
 
+// prettier-ignore
+export function of(
+	m00: number, m01: number, m02: number,
+	m10: number, m11: number, m12: number,
+	m20: number, m21: number, m22: number,
+): Mat3 {
+	// prettier-ignore
+	return [
+		m00, m01, m02,
+		m10, m11, m12,
+		m20, m21, m22,
+	]
+}
+
 /**
  * 3x3 Matrix
  * @module mat3

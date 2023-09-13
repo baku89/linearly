@@ -1,9 +1,19 @@
-export type Vec3 = readonly [number, number, number]
-
 import * as Common from './common'
 import {Mat3} from './mat3'
 import {Mat4} from './mat4'
 import {Quat} from './quat'
+
+export type Vec3 = readonly [number, number, number]
+
+export function of(x: number, y?: number, z?: number): Vec3 {
+	if (y === undefined && z === undefined) {
+		y = z = x
+	}
+	if (y === undefined) y = 0
+	if (z === undefined) z = 0
+
+	return [x, y, z]
+}
 
 export const zero: Vec3 = Object.freeze([0, 0, 0])
 
