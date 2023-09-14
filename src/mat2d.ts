@@ -77,7 +77,12 @@ export function determinant(a: Mat2d) {
 /**
  * Multiplies two mat2d's
  */
-export function multiply(a: Mat2d, b: Mat2d): Mat2d {
+export function multiply(a: Mat2d, b: Mat2d, ...rest: Mat2d[]): Mat2d {
+	if (rest.length > 0) {
+		const [m2, ...ms] = rest
+		return multiply(multiply(a, b), m2, ...ms)
+	}
+
 	const [a0, a1, a2, a3, a4, a5] = a
 	const [b0, b1, b2, b3, b4, b5] = b
 
