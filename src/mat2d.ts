@@ -35,7 +35,7 @@ export function of(
  * The identity matrix of mat2d
  */
 // prettier-ignore
-export const identity = Object.freeze([
+export const identity: Mat2d = Object.freeze([
 	1, 0,
 	0, 1,
 	0, 0

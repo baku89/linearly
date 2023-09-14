@@ -46,7 +46,7 @@ export function fromMat4(a: Mat4): Mat3 {
  * The identity matrix of mat3
  */
 // prettier-ignore
-export const identity = Object.freeze([
+export const identity: Mat3 = Object.freeze([
 	1, 0, 0,
 	0, 1, 0,
 	0, 0, 1,
