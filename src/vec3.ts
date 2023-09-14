@@ -30,28 +30,72 @@ export const one: Vec3 = Object.freeze([1, 1, 1])
 /**
  * Adds two vec3's
  */
-export function add(a: Vec3, b: Vec3): Vec3 {
+export function add(...vs: Vec3[]): Vec3 {
+	if (vs.length === 0) {
+		return zero
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return subtract(subtract(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] + b[0], a[1] + b[1], a[2] + b[2]]
 }
 
 /**
  * Subtracts vector b from vector a
  */
-export function subtract(a: Vec3, b: Vec3): Vec3 {
+export function subtract(...vs: Vec3[]): Vec3 {
+	if (vs.length === 0) {
+		return zero
+	} else if (vs.length === 1) {
+		return [-vs[0], -vs[1], -vs[2]]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return subtract(subtract(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
 }
 
 /**
  * Multiplies two vec3's
  */
-export function multiply(a: Vec3, b: Vec3): Vec3 {
+export function multiply(...vs: Vec3[]): Vec3 {
+	if (vs.length === 0) {
+		return one
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return multiply(multiply(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] * b[0], a[1] * b[1], a[2] * b[2]]
 }
 
 /**
  * Divides two vec3's
  */
-export function divide(a: Vec3, b: Vec3): Vec3 {
+export function divide(...vs: Vec3[]): Vec3 {
+	if (vs.length === 0) {
+		return one
+	} else if (vs.length === 1) {
+		return divide(one, vs[0])
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return divide(divide(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] / b[0], a[1] / b[1], a[2] / b[2]]
 }
 
@@ -72,14 +116,36 @@ export function floor(a: Vec3): Vec3 {
 /**
  * Returns the minimum of two vec3's
  */
-export function min(a: Vec3, b: Vec3): Vec3 {
+export function min(...vs: Vec3[]): Vec3 {
+	if (vs.length === 0) {
+		return [Infinity, Infinity, Infinity]
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return min(min(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.min(a[2], b[2])]
 }
 
 /**
  * Returns the maximum of two vec3's
  */
-export function max(a: Vec3, b: Vec3): Vec3 {
+export function max(...vs: Vec3[]): Vec3 {
+	if (vs.length === 0) {
+		return [-Infinity, -Infinity, -Infinity]
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return max(max(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [Math.max(a[0], b[0]), Math.max(a[1], b[1]), Math.max(a[2], b[2])]
 }
 

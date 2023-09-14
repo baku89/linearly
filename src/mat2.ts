@@ -75,9 +75,18 @@ export function determinant(a: Mat2) {
 /**
  * Multiplies two mat2's
  */
-export function multiply(a: Mat2, b: Mat2): Mat2 {
-	const [a0, a1, a2, a3] = a
-	const [b0, b1, b2, b3] = b
+export function multiply(...ms: Mat2[]): Mat2 {
+	if (ms.length === 0) {
+		return identity
+	} else if (ms.length === 1) {
+		return ms[0]
+	} else if (ms.length > 2) {
+		const [a, b, ...rest] = ms
+		return multiply(multiply(a, b), ...rest)
+	}
+
+	const [a0, a1, a2, a3] = ms[0]
+	const [b0, b1, b2, b3] = ms[1]
 
 	return [
 		a0 * b0 + a2 * b1,
@@ -160,14 +169,36 @@ export function frob(a: Mat2) {
 /**
  * Adds two mat2's
  */
-export function add(a: Mat2, b: Mat2): Mat2 {
+export function add(...ms: Mat2[]): Mat2 {
+	if (ms.length === 0) {
+		return zero
+	} else if (ms.length === 1) {
+		return ms[0]
+	} else if (ms.length > 2) {
+		const [a, b, ...rest] = ms
+		return add(add(a, b), ...rest)
+	}
+
+	const [a, b] = ms
+
 	return [a[0] + b[0], a[1] + b[1], a[2] + b[2], a[3] + b[3]]
 }
 
 /**
  * Subtracts matrix b from matrix a
  */
-export function subtract(a: Mat2, b: Mat2): Mat2 {
+export function subtract(...ms: Mat2[]): Mat2 {
+	if (ms.length === 0) {
+		return zero
+	} else if (ms.length === 1) {
+		return [-ms[0], -ms[1], -ms[2], -ms[3]]
+	} else if (ms.length > 2) {
+		const [a, b, ...rest] = ms
+		return subtract(subtract(a, b), ...rest)
+	}
+
+	const [a, b] = ms
+
 	return [a[0] - b[0], a[1] - b[1], a[2] - b[2], a[3] - b[3]]
 }
 

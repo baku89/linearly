@@ -9,7 +9,8 @@ import * as vec4 from './vec4'
  * @module quat
  */
 
-export type Quat = [number, number, number, number]
+export type Quat = readonly [number, number, number, number]
+export type MutableQuat = [number, number, number, number]
 
 export function of(x: number, y: number, z: number, w: number): Quat {
 	return [x, y, z, w]
@@ -18,7 +19,9 @@ export function of(x: number, y: number, z: number, w: number): Quat {
 /**
  * The identity quaternion
  */
-export const identity: Readonly<Quat> = Object.freeze([0, 0, 0, 1])
+export const identity: Quat = Object.freeze([0, 0, 0, 1])
+
+export const zero: Quat = Object.freeze([0, 0, 0, 0])
 
 /**
  * Sets a quat from the given angle and rotation axis,
@@ -85,9 +88,18 @@ export function getAngle(a: Quat, b: Quat) {
  * @param a the first operand
  * @param b the second operand
  */
-export function multiply(a: Quat, b: Quat): Quat {
-	const [ax, ay, az, aw] = a
-	const [bx, by, bz, bw] = b
+export function multiply(...qs: Quat[]): Quat {
+	if (qs.length === 0) {
+		return identity
+	} else if (qs.length === 1) {
+		return qs[0]
+	} else if (qs.length > 2) {
+		const [a, b, ...rest] = qs
+		return multiply(multiply(a, b), ...rest)
+	}
+
+	const [ax, ay, az, aw] = qs[0]
+	const [bx, by, bz, bw] = qs[1]
 
 	return [
 		ax * bw + aw * bx + ay * bz - az * by,

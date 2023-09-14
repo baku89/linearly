@@ -28,7 +28,10 @@ test('of', () => {
 })
 
 test('add', () => {
+	expect(vec2.add()).toStrictEqual([0, 0])
+	expect(vec2.add([0, 1])).toStrictEqual([0, 1])
 	expect(vec2.add([0, 1], [2, 3])).toStrictEqual([2, 4])
+	expect(vec2.add([0, 1], [2, 3], [4, 5])).toStrictEqual([6, 9])
 })
 
 test('ceil', () => {

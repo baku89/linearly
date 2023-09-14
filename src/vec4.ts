@@ -30,28 +30,72 @@ export const one: Vec4 = Object.freeze([1, 1, 1, 1])
 /**
  * Adds two vec4's
  */
-export function add(a: Vec4, b: Vec4): Vec4 {
+export function add(...vs: Vec4[]): Vec4 {
+	if (vs.length === 0) {
+		return zero
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return subtract(subtract(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] + b[0], a[1] + b[1], a[2] + b[2], a[3] + b[3]]
 }
 
 /**
  * Subtracts vector b from vector a
  */
-export function subtract(a: Vec4, b: Vec4): Vec4 {
+export function subtract(...vs: Vec4[]): Vec4 {
+	if (vs.length === 0) {
+		return zero
+	} else if (vs.length === 1) {
+		return [-vs[0], -vs[1], -vs[2], -vs[3]]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return subtract(subtract(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] - b[0], a[1] - b[1], a[2] - b[2], a[3] - b[3]]
 }
 
 /**
  * Multiplies two vec4's
  */
-export function multiply(a: Vec4, b: Vec4): Vec4 {
+export function multiply(...vs: Vec4[]): Vec4 {
+	if (vs.length === 0) {
+		return one
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return multiply(multiply(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] * b[0], a[1] * b[1], a[2] * b[2], a[3] * b[3]]
 }
 
 /**
  * Divides two vec4's
  */
-export function divide(a: Vec4, b: Vec4): Vec4 {
+export function divide(...vs: Vec4[]): Vec4 {
+	if (vs.length === 0) {
+		return one
+	} else if (vs.length === 1) {
+		return divide(one, vs[0])
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return divide(divide(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] / b[0], a[1] / b[1], a[2] / b[2], a[3] / b[3]]
 }
 
@@ -77,7 +121,17 @@ export function floor(a: Vec4): Vec4 {
 /**
  * Returns the minimum of two vec4's
  */
-export function min(a: Vec4, b: Vec4): Vec4 {
+export function min(...vs: Vec4[]): Vec4 {
+	if (vs.length === 0) {
+		return [Infinity, Infinity, Infinity, Infinity]
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return min(min(a, b), ...rest)
+	}
+
+	const [a, b] = vs
 	return [
 		Math.min(a[0], b[0]),
 		Math.min(a[1], b[1]),
@@ -89,7 +143,18 @@ export function min(a: Vec4, b: Vec4): Vec4 {
 /**
  * Returns the maximum of two vec4's
  */
-export function max(a: Vec4, b: Vec4): Vec4 {
+export function max(...vs: Vec4[]): Vec4 {
+	if (vs.length === 0) {
+		return [-Infinity, -Infinity, -Infinity, -Infinity]
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return max(max(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [
 		Math.max(a[0], b[0]),
 		Math.max(a[1], b[1]),

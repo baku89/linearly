@@ -22,19 +22,63 @@ export const zero: Vec2 = Object.freeze([0, 0])
 
 export const one: Vec2 = Object.freeze([1, 1])
 
-export function add(a: Vec2, b: Vec2): Vec2 {
+export function add(...vs: Vec2[]): Vec2 {
+	if (vs.length === 0) {
+		return zero
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return add(add(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] + b[0], a[1] + b[1]]
 }
 
-export function subtract(a: Vec2, b: Vec2): Vec2 {
+export function subtract(...vs: Vec2[]): Vec2 {
+	if (vs.length === 0) {
+		return zero
+	} else if (vs.length === 1) {
+		return [-vs[0], -vs[1]]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return subtract(subtract(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] - b[0], a[1] - b[1]]
 }
 
-export function multiply(a: Vec2, b: Vec2): Vec2 {
+export function multiply(...vs: Vec2[]): Vec2 {
+	if (vs.length === 0) {
+		return one
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return multiply(multiply(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] * b[0], a[1] * b[1]]
 }
 
-export function divide(a: Vec2, b: Vec2): Vec2 {
+export function divide(...vs: Vec2[]): Vec2 {
+	if (vs.length === 0) {
+		return one
+	} else if (vs.length === 1) {
+		return divide(one, vs[0])
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return divide(divide(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [a[0] / b[0], a[1] / b[1]]
 }
 
@@ -46,11 +90,33 @@ export function floor(a: Vec2): Vec2 {
 	return [Math.floor(a[0]), Math.floor(a[1])]
 }
 
-export function min(a: Vec2, b: Vec2): Vec2 {
+export function min(...vs: Vec2[]): Vec2 {
+	if (vs.length === 0) {
+		return [Infinity, Infinity]
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return min(min(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [Math.min(a[0], b[0]), Math.min(a[1], b[1])]
 }
 
-export function max(a: Vec2, b: Vec2): Vec2 {
+export function max(...vs: Vec2[]): Vec2 {
+	if (vs.length === 0) {
+		return [-Infinity, -Infinity]
+	} else if (vs.length === 1) {
+		return vs[0]
+	} else if (vs.length > 2) {
+		const [a, b, ...rest] = vs
+		return max(max(a, b), ...rest)
+	}
+
+	const [a, b] = vs
+
 	return [Math.max(a[0], b[0]), Math.max(a[1], b[1])]
 }
 

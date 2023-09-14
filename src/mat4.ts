@@ -187,7 +187,18 @@ export function determinant(a: Mat4) {
 /**
  * Multiplies two mat4's
  */
-export function multiply(a: Mat4, b: Mat4): Mat4 {
+export function multiply(...ms: Mat4[]): Mat4 {
+	if (ms.length === 0) {
+		return identity
+	} else if (ms.length === 1) {
+		return ms[0]
+	} else if (ms.length > 2) {
+		const [a, b, ...rest] = ms
+		return multiply(multiply(a, b), ...rest)
+	}
+
+	const [a, b] = ms
+
 	// prettier-ignore
 	const [
 		a00, a01, a02, a03,
@@ -1268,7 +1279,18 @@ export function frob(a: Mat4) {
 /**
  * Adds two mat4's
  */
-export function add(a: Mat4, b: Mat4) {
+export function add(...ms: Mat4[]): Mat4 {
+	if (ms.length === 0) {
+		return zero
+	} else if (ms.length === 1) {
+		return ms[0]
+	} else if (ms.length > 2) {
+		const [a, b, ...rest] = ms
+		return add(add(a, b), ...rest)
+	}
+
+	const [a, b] = ms
+
 	return [
 		a[0] + b[0],
 		a[1] + b[1],
@@ -1292,7 +1314,35 @@ export function add(a: Mat4, b: Mat4) {
 /**
  * Subtracts matrix b from matrix a
  */
-export function subtract(a: Mat4, b: Mat4): Mat4 {
+export function subtract(...ms: Mat4[]): Mat4 {
+	if (ms.length === 0) {
+		return zero
+	} else if (ms.length === 1) {
+		return [
+			-ms[0],
+			-ms[1],
+			-ms[2],
+			-ms[3],
+			-ms[4],
+			-ms[5],
+			-ms[6],
+			-ms[7],
+			-ms[8],
+			-ms[9],
+			-ms[10],
+			-ms[11],
+			-ms[12],
+			-ms[13],
+			-ms[14],
+			-ms[15],
+		]
+	} else if (ms.length > 2) {
+		const [a, b, ...rest] = ms
+		return subtract(subtract(a, b), ...rest)
+	}
+
+	const [a, b] = ms
+
 	return [
 		a[0] - b[0],
 		a[1] - b[1],
