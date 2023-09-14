@@ -3,7 +3,7 @@ import {Mat3} from './mat3'
 import {Mat4} from './mat4'
 import {Quat} from './quat'
 
-export type Vec3 = readonly [number, number, number]
+export type Vec3 = [number, number, number]
 
 export function of(x: number, y?: number, z?: number): Vec3 {
 	if (y === undefined && z === undefined) {
@@ -15,9 +15,9 @@ export function of(x: number, y?: number, z?: number): Vec3 {
 	return [x, y, z]
 }
 
-export const zero: Vec3 = Object.freeze([0, 0, 0])
+export const zero: Readonly<Vec3> = Object.freeze([0, 0, 0])
 
-export const one: Vec3 = Object.freeze([1, 1, 1])
+export const one: Readonly<Vec3> = Object.freeze([1, 1, 1])
 
 /**
  * Adds two vec3's

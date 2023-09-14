@@ -4,15 +4,15 @@ import {Mat2d} from './mat2d'
 import {Mat3} from './mat3'
 import {Vec3} from './vec3'
 
-export type Vec2 = readonly [number, number]
+export type Vec2 = [number, number]
 
 export function of(x: number, y: number = x): Vec2 {
 	return [x, y]
 }
 
-export const zero: Vec2 = Object.freeze([0, 0])
+export const zero: Readonly<Vec2> = Object.freeze([0, 0])
 
-export const one: Vec2 = Object.freeze([1, 1])
+export const one: Readonly<Vec2> = Object.freeze([1, 1])
 
 export function add(a: Vec2, b: Vec2): Vec2 {
 	return [a[0] + b[0], a[1] + b[1]]

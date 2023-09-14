@@ -1,7 +1,7 @@
 import * as Common from './common'
 import {Vec2} from './vec2'
 
-export type Mat2 = readonly [number, number, number, number]
+export type Mat2 = [number, number, number, number]
 
 export function of(m00: number, m01: number, m10: number, m11: number): Mat2 {
 	return [m00, m01, m10, m11]
@@ -11,9 +11,9 @@ export function of(m00: number, m01: number, m10: number, m11: number): Mat2 {
  * The identity matrix of mat2
  *
  */
-export const identity: Mat2 = Object.freeze([1, 0, 0, 1])
+export const identity: Readonly<Mat2> = Object.freeze([1, 0, 0, 1])
 
-export const zero: Mat2 = Object.freeze([0, 0, 0, 0])
+export const zero: Readonly<Mat2> = Object.freeze([0, 0, 0, 0])
 
 /**
  * Transpose the values of a mat2

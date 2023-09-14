@@ -2,7 +2,7 @@ import * as Common from './common'
 import {Mat4} from './mat4'
 import {Quat} from './quat'
 
-export type Vec4 = readonly [number, number, number, number]
+export type Vec4 = [number, number, number, number]
 
 export function of(x: number, y?: number, z?: number, w?: number): Vec4 {
 	if (y === undefined && z === undefined && w === undefined) {
@@ -15,9 +15,9 @@ export function of(x: number, y?: number, z?: number, w?: number): Vec4 {
 	return [x, y, z, w]
 }
 
-export const zero: Vec4 = Object.freeze([0, 0, 0, 0])
+export const zero: Readonly<Vec4> = Object.freeze([0, 0, 0, 0])
 
-export const one: Vec4 = Object.freeze([1, 1, 1, 1])
+export const one: Readonly<Vec4> = Object.freeze([1, 1, 1, 1])
 
 /**
  * Adds two vec4's

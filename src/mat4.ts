@@ -7,7 +7,7 @@ import {Vec3} from './vec3'
  */
 
 // prettier-ignore
-export type Mat4 = readonly [
+export type Mat4 = [
 	number, number, number, number,
 	number, number, number, number,
 	number, number, number, number,
@@ -34,14 +34,14 @@ export function of(
  * The identity matrix of mat4
  */
 // prettier-ignore
-export const identity: Mat4 = Object.freeze([
+export const identity: Readonly<Mat4> = Object.freeze([
 	1, 0, 0, 0,
 	0, 1, 0, 0,
 	0, 0, 1, 0,
 	0, 0, 0, 1,
 ])
 
-export const zero: Mat4 = Object.freeze([
+export const zero: Readonly<Mat4> = Object.freeze([
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ])
 
@@ -1133,7 +1133,7 @@ export function lookAt(eye: Vec3, center: Vec3, up: Vec3): Mat4 {
 		Math.abs(eyey - centery) < Common.EPSILON &&
 		Math.abs(eyez - centerz) < Common.EPSILON
 	) {
-		return identity
+		return [...identity]
 	}
 
 	z0 = eyex - centerx

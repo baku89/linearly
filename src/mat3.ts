@@ -5,7 +5,7 @@ import {Vec2} from './vec2'
 import {Vec3} from './vec3'
 
 // prettier-ignore
-export type Mat3 = readonly [
+export type Mat3 = [
 	number, number, number,
 	number, number, number,
 	number, number, number,
@@ -46,13 +46,13 @@ export function fromMat4(a: Mat4): Mat3 {
  * The identity matrix of mat3
  */
 // prettier-ignore
-export const identity: Mat3 = Object.freeze([
+export const identity: Readonly<Mat3> = Object.freeze([
 	1, 0, 0,
 	0, 1, 0,
 	0, 0, 1,
 ])
 
-export const zero: Mat3 = Object.freeze([0, 0, 0, 0, 0, 0, 0, 0, 0])
+export const zero: Readonly<Mat3> = Object.freeze([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 /**
  * Transpose the values of a mat3

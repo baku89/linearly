@@ -9,7 +9,7 @@ import * as vec4 from './vec4'
  * @module quat
  */
 
-export type Quat = readonly [number, number, number, number]
+export type Quat = [number, number, number, number]
 
 export function of(x: number, y: number, z: number, w: number): Quat {
 	return [x, y, z, w]
@@ -18,7 +18,7 @@ export function of(x: number, y: number, z: number, w: number): Quat {
 /**
  * The identity quaternion
  */
-export const identity: Quat = Object.freeze([0, 0, 0, 1])
+export const identity: Readonly<Quat> = Object.freeze([0, 0, 0, 1])
 
 /**
  * Sets a quat from the given angle and rotation axis,
@@ -491,7 +491,7 @@ export const rotationTo = (function () {
 		const dot = vec3.dot(a, b)
 
 		if (dot > 1 - Common.EPSILON) {
-			return identity
+			return [...identity]
 		} else if (dot < -1 + Common.EPSILON) {
 			let temp = vec3.cross(xUnitVec3, a)
 
