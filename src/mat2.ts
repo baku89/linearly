@@ -1,19 +1,27 @@
 import * as Common from './common'
 import {Vec2} from './vec2'
 
-export type Mat2 = [number, number, number, number]
+export type Mat2 = Readonly<MutableMat2>
+export type MutableMat2 = [number, number, number, number]
 
 export function of(m00: number, m01: number, m10: number, m11: number): Mat2 {
 	return [m00, m01, m10, m11]
 }
 
 /**
+ * Creates a mutable clone of given mat2
+ */
+export function clone(a: Mat2): MutableMat2 {
+	return [...a]
+}
+
+/**
  * The identity matrix of mat2
  *
  */
-export const identity: Readonly<Mat2> = Object.freeze([1, 0, 0, 1])
+export const identity: Mat2 = Object.freeze([1, 0, 0, 1])
 
-export const zero: Readonly<Mat2> = Object.freeze([0, 0, 0, 0])
+export const zero: Mat2 = Object.freeze([0, 0, 0, 0])
 
 /**
  * Transpose the values of a mat2

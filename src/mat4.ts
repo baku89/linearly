@@ -6,8 +6,10 @@ import {Vec3} from './vec3'
  * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
  */
 
+export type Mat4 = Readonly<MutableMat4>
+
 // prettier-ignore
-export type Mat4 = [
+export type MutableMat4 = [
 	number, number, number, number,
 	number, number, number, number,
 	number, number, number, number,
@@ -34,14 +36,14 @@ export function of(
  * The identity matrix of mat4
  */
 // prettier-ignore
-export const identity: Readonly<Mat4> = Object.freeze([
+export const identity: Mat4 = Object.freeze([
 	1, 0, 0, 0,
 	0, 1, 0, 0,
 	0, 0, 1, 0,
 	0, 0, 0, 1,
 ])
 
-export const zero: Readonly<Mat4> = Object.freeze([
+export const zero: Mat4 = Object.freeze([
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ])
 

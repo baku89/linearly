@@ -4,8 +4,10 @@ import {Quat} from './quat'
 import {Vec2} from './vec2'
 import {Vec3} from './vec3'
 
+export type Mat3 = Readonly<MutableMat3>
+
 // prettier-ignore
-export type Mat3 = [
+export type MutableMat3 = [
 	number, number, number,
 	number, number, number,
 	number, number, number,
@@ -23,6 +25,13 @@ export function of(
 		m10, m11, m12,
 		m20, m21, m22,
 	]
+}
+
+/**
+ * Creates a mutable clone of given mat3
+ */
+export function clone(a: Mat3): MutableMat3 {
+	return [...a]
 }
 
 /**
@@ -46,13 +55,13 @@ export function fromMat4(a: Mat4): Mat3 {
  * The identity matrix of mat3
  */
 // prettier-ignore
-export const identity: Readonly<Mat3> = Object.freeze([
+export const identity: Mat3 = Object.freeze([
 	1, 0, 0,
 	0, 1, 0,
 	0, 0, 1,
 ])
 
-export const zero: Readonly<Mat3> = Object.freeze([0, 0, 0, 0, 0, 0, 0, 0, 0])
+export const zero: Mat3 = Object.freeze([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 /**
  * Transpose the values of a mat3

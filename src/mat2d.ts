@@ -20,7 +20,8 @@ import {Vec2} from './vec2'
  * The last column is ignored so the array is shorter and operations are faster.
  */
 
-export type Mat2d = [number, number, number, number, number, number]
+export type Mat2d = readonly [number, number, number, number, number, number]
+export type MutableMat2d = [number, number, number, number, number, number]
 
 // prettier-ignore
 export function of(
@@ -35,13 +36,13 @@ export function of(
  * The identity matrix of mat2d
  */
 // prettier-ignore
-export const identity: Readonly<Mat2d> = Object.freeze([
+export const identity: Mat2d = Object.freeze([
 	1, 0,
 	0, 1,
 	0, 0
 ])
 
-export const zero: Readonly<Mat2d> = Object.freeze([0, 0, 0, 0, 0, 0])
+export const zero: Mat2d = Object.freeze([0, 0, 0, 0, 0, 0])
 
 /**
  * Inverts a mat2d

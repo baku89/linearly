@@ -3,7 +3,8 @@ import {Mat3} from './mat3'
 import {Mat4} from './mat4'
 import {Quat} from './quat'
 
-export type Vec3 = [number, number, number]
+export type Vec3 = Readonly<MutableVec3>
+export type MutableVec3 = [number, number, number]
 
 export function of(x: number, y?: number, z?: number): Vec3 {
 	if (y === undefined && z === undefined) {
@@ -15,9 +16,16 @@ export function of(x: number, y?: number, z?: number): Vec3 {
 	return [x, y, z]
 }
 
-export const zero: Readonly<Vec3> = Object.freeze([0, 0, 0])
+/**
+ * Creates a mutable clone of given vec3
+ */
+export function clone(a: Vec3): MutableVec3 {
+	return [...a]
+}
 
-export const one: Readonly<Vec3> = Object.freeze([1, 1, 1])
+export const zero: Vec3 = Object.freeze([0, 0, 0])
+
+export const one: Vec3 = Object.freeze([1, 1, 1])
 
 /**
  * Adds two vec3's
