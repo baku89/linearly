@@ -549,3 +549,6 @@ export function equals(a: Mat3, b: Mat3) {
 			Common.EPSILON * Math.max(1, Math.abs(a8), Math.abs(b8))
 	)
 }
+
+export const sub = subtract
+export const mul = multiply

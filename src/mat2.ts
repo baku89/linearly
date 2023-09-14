@@ -248,3 +248,6 @@ export function multiplyScalarAndAdd(a: Mat2, b: Mat2, scale: number): Mat2 {
 		a[3] + b[3] * scale,
 	]
 }
+
+export const sub = subtract
+export const mul = multiply

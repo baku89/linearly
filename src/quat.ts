@@ -563,3 +563,5 @@ export function setAxes(view: Vec3, right: Vec3, up: Vec3): Quat {
 
 	return normalize(fromMat3(matr))
 }
+
+export const mul = multiply

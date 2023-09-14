@@ -266,3 +266,11 @@ export function equals(a: Vec2, b: Vec2) {
 			Common.EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1))
 	)
 }
+
+export const sub = subtract
+export const mul = multiply
+export const div = divide
+export const dist = distance
+export const len = length
+export const sqrDist = squaredDistance
+export const sqrLen = squaredLength
