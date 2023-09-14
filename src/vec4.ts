@@ -28,7 +28,7 @@ export const zero: Vec4 = Object.freeze([0, 0, 0, 0])
 export const one: Vec4 = Object.freeze([1, 1, 1, 1])
 
 /**
- * Adds two vec4's
+ * Adds given vec4's
  */
 export function add(...vs: Vec4[]): Vec4 {
 	if (vs.length === 0) {
@@ -64,7 +64,7 @@ export function subtract(...vs: Vec4[]): Vec4 {
 }
 
 /**
- * Multiplies two vec4's
+ * Multiplies given vec4's
  */
 export function multiply(...vs: Vec4[]): Vec4 {
 	if (vs.length === 0) {
@@ -82,7 +82,7 @@ export function multiply(...vs: Vec4[]): Vec4 {
 }
 
 /**
- * Divides two vec4's
+ * Divides given vec4's
  */
 export function divide(...vs: Vec4[]): Vec4 {
 	if (vs.length === 0) {
@@ -119,7 +119,7 @@ export function floor(a: Vec4): Vec4 {
 }
 
 /**
- * Returns the minimum of two vec4's
+ * Returns the minimum of givenvec4's
  */
 export function min(...vs: Vec4[]): Vec4 {
 	if (vs.length === 0) {
@@ -141,7 +141,7 @@ export function min(...vs: Vec4[]): Vec4 {
 }
 
 /**
- * Returns the maximum of two vec4's
+ * Returns the maximum of givenvec4's
  */
 export function max(...vs: Vec4[]): Vec4 {
 	if (vs.length === 0) {
@@ -198,7 +198,7 @@ export function scale(a: Vec4, s: number): Vec4 {
 }
 
 /**
- * Adds two vec4's after scaling the second operand by a scalar value
+ Adds given vec4's after scaling the second operand by a scalar value
  * @param scale the amount to scale b by before adding
  */
 export function scaleAndAdd(a: Vec4, b: Vec4, scale: number): Vec4 {

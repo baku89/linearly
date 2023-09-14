@@ -83,7 +83,7 @@ export function getAngle(a: Quat, b: Quat) {
 }
 
 /**
- * Multiplies two quat's
+ * Multiplies given quat's
  *
  * @param a the first operand
  * @param b the second operand
@@ -413,7 +413,7 @@ export function fromEuler(
 }
 
 /**
- * Adds two quat's
+ * Adds given quat's
  */
 export const add: (a: Quat, b: Quat) => Quat = vec4.add
 

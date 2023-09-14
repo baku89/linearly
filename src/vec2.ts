@@ -142,7 +142,7 @@ export function scale(a: Vec2, s: number): Vec2 {
 }
 
 /**
- * Adds two vec2's after scaling the second operand by a scalar value
+ Adds given vec2's after scaling the second operand by a scalar value
  */
 export function scaleAndAdd(a: Vec2, b: Vec2, scale: number): Vec2 {
 	return [a[0] + b[0] * scale, a[1] + b[1] * scale]

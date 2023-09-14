@@ -140,7 +140,7 @@ export function determinant(a: Mat3) {
 }
 
 /**
- * Multiplies two mat3's
+ * Multiplies given mat3's
  */
 export function multiply(...ms: Mat3[]): Mat3 {
 	if (ms.length === 0) {
@@ -390,7 +390,7 @@ export function frob(a: Mat3) {
 }
 
 /**
- * Adds two mat3's
+ * Adds given mat3's
  */
 export function add(...ms: Mat3[]): Mat3 {
 	if (ms.length === 0) {
@@ -473,7 +473,7 @@ export function multiplyScalar(a: Mat3, s: number): Mat3 {
 }
 
 /**
- * Adds two mat3's after multiplying each element of the second operand by a scalar value.
+ Adds given mat3's after multiplying each element of the second operand by a scalar value.
  */
 export function multiplyScalarAndAdd(a: Mat3, b: Mat3, scale: number): Mat3 {
 	return [

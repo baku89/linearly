@@ -76,7 +76,7 @@ export function determinant(a: Mat2d) {
 }
 
 /**
- * Multiplies two mat2d's
+ * Multiplies given mat2d's
  */
 export function multiply(...ms: Mat2d[]): Mat2d {
 	if (ms.length === 0) {
@@ -233,7 +233,7 @@ export function frob(a: Mat2d) {
 }
 
 /**
- * Adds two mat2d's
+ * Adds given mat2d's
  */
 export function add(...ms: Mat2d[]): Mat2d {
 	if (ms.length === 0) {
@@ -295,7 +295,7 @@ export function multiplyScalar(a: Mat2d, s: number): Mat2d {
 }
 
 /**
- * Adds two mat2d's after multiplying each element of the second operand by a scalar value.
+ Adds given mat2d's after multiplying each element of the second operand by a scalar value.
  */
 export function multiplyScalarAndAdd(a: Mat2d, b: Mat2d, scale: number): Mat2d {
 	return [

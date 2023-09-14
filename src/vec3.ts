@@ -28,7 +28,7 @@ export const zero: Vec3 = Object.freeze([0, 0, 0])
 export const one: Vec3 = Object.freeze([1, 1, 1])
 
 /**
- * Adds two vec3's
+ * Adds given vec3's
  */
 export function add(...vs: Vec3[]): Vec3 {
 	if (vs.length === 0) {
@@ -64,7 +64,7 @@ export function subtract(...vs: Vec3[]): Vec3 {
 }
 
 /**
- * Multiplies two vec3's
+ * Multiplies given vec3's
  */
 export function multiply(...vs: Vec3[]): Vec3 {
 	if (vs.length === 0) {
@@ -82,7 +82,7 @@ export function multiply(...vs: Vec3[]): Vec3 {
 }
 
 /**
- * Divides two vec3's
+ * Divides given vec3's
  */
 export function divide(...vs: Vec3[]): Vec3 {
 	if (vs.length === 0) {
@@ -114,7 +114,7 @@ export function floor(a: Vec3): Vec3 {
 }
 
 /**
- * Returns the minimum of two vec3's
+ * Returns the minimum of givenvec3's
  */
 export function min(...vs: Vec3[]): Vec3 {
 	if (vs.length === 0) {
@@ -132,7 +132,7 @@ export function min(...vs: Vec3[]): Vec3 {
 }
 
 /**
- * Returns the maximum of two vec3's
+ * Returns the maximum of givenvec3's
  */
 export function max(...vs: Vec3[]): Vec3 {
 	if (vs.length === 0) {
@@ -174,7 +174,7 @@ export function scale(a: Vec3, s: number): Vec3 {
 }
 
 /**
- * Adds two vec3's after scaling the second operand by a scalar value
+ Adds given vec3's after scaling the second operand by a scalar value
  */
 export function scaleAndAdd(a: Vec3, b: Vec3, scale: number): Vec3 {
 	return [a[0] + b[0] * scale, a[1] + b[1] * scale, a[2] + b[2] * scale]

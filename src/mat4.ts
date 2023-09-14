@@ -185,7 +185,7 @@ export function determinant(a: Mat4) {
 }
 
 /**
- * Multiplies two mat4's
+ * Multiplies given mat4's
  */
 export function multiply(...ms: Mat4[]): Mat4 {
 	if (ms.length === 0) {
@@ -1277,7 +1277,7 @@ export function frob(a: Mat4) {
 }
 
 /**
- * Adds two mat4's
+ * Adds given mat4's
  */
 export function add(...ms: Mat4[]): Mat4 {
 	if (ms.length === 0) {
@@ -1388,7 +1388,7 @@ export function multiplyScalar(a: Mat4, s: number): Mat4 {
 }
 
 /**
- * Adds two mat4's after multiplying each element of the second operand by a scalar value.
+ Adds given mat4's after multiplying each element of the second operand by a scalar value.
  */
 export function multiplyScalarAndAdd(a: Mat4, b: Mat4, scale: number): Mat4 {
 	return [

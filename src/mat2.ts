@@ -73,7 +73,7 @@ export function determinant(a: Mat2) {
 }
 
 /**
- * Multiplies two mat2's
+ * Multiplies given mat2's
  */
 export function multiply(...ms: Mat2[]): Mat2 {
 	if (ms.length === 0) {
@@ -167,7 +167,7 @@ export function frob(a: Mat2) {
 }
 
 /**
- * Adds two mat2's
+ * Adds given mat2's
  */
 export function add(...ms: Mat2[]): Mat2 {
 	if (ms.length === 0) {
@@ -238,7 +238,7 @@ export function multiplyScalar(a: Mat2, s: number): Mat2 {
 }
 
 /**
- * Adds two mat2's after multiplying each element of the second operand by a scalar value.
+ Adds given mat2's after multiplying each element of the second operand by a scalar value.
  */
 export function multiplyScalarAndAdd(a: Mat2, b: Mat2, scale: number): Mat2 {
 	return [
