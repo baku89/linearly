@@ -1,5 +1,6 @@
 import * as Common from './common'
-import {Vec2} from './vec2'
+import type {Vec2} from './vec2'
+import * as vec2 from './vec2'
 
 /**
  * 2x3 Matrix
@@ -161,37 +162,53 @@ export function skew(m: Mat2d, ax: number, ay: number): Mat2d {
  * Creates a matrix from a given angle
  * This is equivalent to (but much faster than):
  */
-export function fromRotation(rad: number): Mat2d {
-	const s = Math.sin(rad)
-	const c = Math.cos(rad)
+export function fromRotation(rad: number, origin?: Vec2): Mat2d {
+	if (!origin) {
+		const s = Math.sin(rad)
+		const c = Math.cos(rad)
 
-	// prettier-ignore
-	return [
-		 c, s,
-		-s, c,
-		 0, 0,
-	]
+		// prettier-ignore
+		return [
+			c, s,
+			-s, c,
+			0, 0,
+		]
+	} else {
+		return multiply(
+			fromTranslation(origin),
+			fromRotation(rad),
+			fromTranslation(vec2.negate(origin))
+		)
+	}
 }
 
 /**
  * Creates a matrix from a vector scaling
  */
-export function fromScaling(v: Vec2): Mat2d {
-	const [x, y] = v
+export function fromScaling(v: Vec2 | number, origin?: Vec2): Mat2d {
+	if (!origin) {
+		const [x, y] = typeof v === 'number' ? [v, v] : v
 
-	// prettier-ignore
-	return [
-	  x, 0,
-		0, y,
-		0, 0,
-	]
+		// prettier-ignore
+		return [
+			x, 0,
+			0, y,
+			0, 0,
+		]
+	} else {
+		return multiply(
+			fromTranslation(origin),
+			fromScaling(v),
+			fromTranslation(vec2.negate(origin))
+		)
+	}
 }
 
 /**
  * Creates a matrix from a vector translation
  */
-export function fromTranslation(v: Vec2): Mat2d {
-	const [x, y] = v
+export function fromTranslation(v: Vec2 | number): Mat2d {
+	const [x, y] = typeof v === 'number' ? [v, v] : v
 
 	// prettier-ignore
 	return [
