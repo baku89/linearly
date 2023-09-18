@@ -73,7 +73,7 @@ test('multiply', () => {
 })
 
 test('negate', () => {
-	expect(scalar.negate(0)).toEqual(0)
+	expect(scalar.negate(0)).toEqual(-0)
 	expect(scalar.negate(3)).toEqual(-3)
 })
 

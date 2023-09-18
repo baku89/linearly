@@ -31,6 +31,7 @@ describe('invert', () => {
 
 describe('determinant', () => {
 	expect(mat2d.determinant(matA)).toEqual(-2)
+	expect(mat2d.determinant([1, 0, 2, 0, 0, 0])).toEqual(0)
 })
 
 describe('multiply', () => {
