@@ -10,6 +10,7 @@
 		"build": "tsc && tsc -p tsconfig.cjs.json",
 		"lint": "eslint",
 		"test": "jest",
+		"prepare": "npm run build",
 		"preversion": "npm run test",
 		"postversion": "git push && git push --tags && npm publish"
 	},
