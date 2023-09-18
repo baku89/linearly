@@ -107,8 +107,14 @@ export function multiply(...ms: Mat2d[]): Mat2d {
 /**
  * Rotates a mat2d by the given angle
  */
-export function rotate(a: Mat2d, rad: number): Mat2d {
-	const [a0, a1, a2, a3, tx, ty] = a
+export function rotate(m: Mat2d, rad: number, origin?: Vec2): Mat2d {
+	if (origin) {
+		if (origin) {
+			return pivot(rotate(m, rad), origin)
+		}
+	}
+
+	const [a0, a1, a2, a3, tx, ty] = m
 	const s = Math.sin(rad)
 	const c = Math.cos(rad)
 
@@ -123,9 +129,13 @@ export function rotate(a: Mat2d, rad: number): Mat2d {
 /**
  * Scales the mat2d by the dimensions in the given vec2
  **/
-export function scale(a: Mat2d, v: Vec2): Mat2d {
-	const [a0, a1, a2, a3, tx, ty] = a
-	const [sx, sy] = v
+export function scale(m: Mat2d, s: Vec2, origin?: Vec2): Mat2d {
+	if (origin) {
+		return pivot(scale(m, s), origin)
+	}
+
+	const [a0, a1, a2, a3, tx, ty] = m
+	const [sx, sy] = s
 
 	// prettier-ignore
 	return [
@@ -150,12 +160,20 @@ export function translate(m: Mat2d, v: Vec2): Mat2d {
 		b * x + d * y + ty]
 }
 
+export function pivot(m: Mat2d, origin: Vec2): Mat2d {
+	return multiply(
+		fromTranslation(origin),
+		m,
+		fromTranslation(vec2.negate(origin))
+	)
+}
+
 /**
- * Apply skew to the mat2d by the given angles
+ * Apply skew to the mat2d by the given radians
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
  */
-export function skew(m: Mat2d, ax: number, ay: number): Mat2d {
-	return multiply(m, fromSkew(ax, ay))
+export function skew(m: Mat2d, rads: Vec2, origin: Vec2): Mat2d {
+	return multiply(m, fromSkew(rads, origin))
 }
 
 /**
@@ -163,45 +181,37 @@ export function skew(m: Mat2d, ax: number, ay: number): Mat2d {
  * This is equivalent to (but much faster than):
  */
 export function fromRotation(rad: number, origin?: Vec2): Mat2d {
-	if (!origin) {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
-
-		// prettier-ignore
-		return [
-			c, s,
-			-s, c,
-			0, 0,
-		]
-	} else {
-		return multiply(
-			fromTranslation(origin),
-			fromRotation(rad),
-			fromTranslation(vec2.negate(origin))
-		)
+	if (origin) {
+		return pivot(fromRotation(rad), origin)
 	}
+
+	const s = Math.sin(rad)
+	const c = Math.cos(rad)
+
+	// prettier-ignore
+	return [
+		c, s,
+		-s, c,
+		0, 0,
+	]
 }
 
 /**
  * Creates a matrix from a vector scaling
  */
 export function fromScaling(v: Vec2 | number, origin?: Vec2): Mat2d {
-	if (!origin) {
-		const [x, y] = typeof v === 'number' ? [v, v] : v
-
-		// prettier-ignore
-		return [
-			x, 0,
-			0, y,
-			0, 0,
-		]
-	} else {
-		return multiply(
-			fromTranslation(origin),
-			fromScaling(v),
-			fromTranslation(vec2.negate(origin))
-		)
+	if (origin) {
+		return pivot(fromScaling(v), origin)
 	}
+
+	const [x, y] = typeof v === 'number' ? [v, v] : v
+
+	// prettier-ignore
+	return [
+		x, 0,
+		0, y,
+		0, 0,
+	]
 }
 
 /**
@@ -222,7 +232,12 @@ export function fromTranslation(v: Vec2 | number): Mat2d {
  * Creates a matrix from a vector skew
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
  */
-export function fromSkew(ax: number, ay: number): Mat2d {
+export function fromSkew(angles: Vec2, origin?: Vec2): Mat2d {
+	if (origin) {
+		return pivot(fromSkew(angles), origin)
+	}
+
+	const [ax, ay] = angles
 	const x = Math.tan(ax)
 	const y = Math.tan(ay)
 
