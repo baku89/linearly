@@ -81,6 +81,17 @@ export function lerp(a: number, b: number, t: number): number {
 	return a + (b - a) * t
 }
 
+export function fit(
+	value: number,
+	omin: number,
+	omax: number,
+	nmin: number,
+	nmax: number
+) {
+	const t = (value - omin) / (omax - omin)
+	return lerp(t, nmin, nmax)
+}
+
 export function exactEquals(a: number, b: number): boolean {
 	return a === b
 }
