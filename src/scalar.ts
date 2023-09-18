@@ -90,3 +90,11 @@ export function equals(a: number, b: number): boolean {
 		Math.abs(a - b) <= Common.EPSILON * Math.max(1.0, Math.abs(a), Math.abs(b))
 	)
 }
+
+export const sub = subtract
+export const mul = multiply
+export const div = divide
+export const dist = distance
+export const len = length
+export const sqrDist = squaredDistance
+export const sqrLen = squaredLength
