@@ -39,7 +39,7 @@ export function clamp(s: number, min: number, max: number): number {
 }
 
 /**
- * symmetric round the given number
+ * Symmetric round the given number
  */
 export const round = Common.round
 
