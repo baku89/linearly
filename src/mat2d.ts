@@ -1,4 +1,6 @@
 import * as Common from './common'
+import * as mat2 from './mat2'
+import {Mat2} from './mat2'
 import type {Vec2} from './vec2'
 import * as vec2 from './vec2'
 
@@ -247,6 +249,26 @@ export function fromSkew(angles: Vec2, origin?: Vec2): Mat2d {
 		x, 1,
 		0, 0,
 	]
+}
+
+export function fixedPoint(m: Mat2d): Vec2 | null {
+	const [a, b, c, d, tx, ty] = m
+
+	// Computes (I - A)
+	const iMinusA: Mat2 = [1 - a, -c, -b, 1 - d]
+
+	// Computes an inverse matrix
+	const iMinusAInv = mat2.invert(iMinusA)
+
+	if (!iMinusAInv) {
+		return null
+	}
+
+	// Computes a fixed point
+	const x = iMinusAInv[0] * tx + iMinusAInv[1] * ty
+	const y = iMinusAInv[2] * tx + iMinusAInv[3] * ty
+
+	return [x, y]
 }
 
 /**
