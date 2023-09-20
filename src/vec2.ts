@@ -221,7 +221,7 @@ export function transformMat3(a: Vec2, m: Mat3): Vec2 {
 /**
  * Rotate a 2D vector
  */
-export function rotate(a: Vec2, origin: Vec2, rad: number): Vec2 {
+export function rotate(a: Vec2, rad: number, origin: Vec2 = [0, 0]): Vec2 {
 	// Translate point to the origin
 	const p0 = a[0] - origin[0],
 		p1 = a[1] - origin[1],

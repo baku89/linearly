@@ -108,7 +108,7 @@ test('normalize', () => {
 })
 
 test('rotate', () => {
-	expect(vec2.rotate([1, 2], [0, 0], Math.PI)).toEqual([-1, -2])
+	expect(vec2.rotate([1, 2], Math.PI, [0, 0])).toEqual([-1, -2])
 })
 
 test('round', () => {
