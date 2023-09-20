@@ -60,6 +60,6 @@ yarn install
 yarn test --watch
 ```
 
-## LICENSE
+## License
 
 This repository is published under an MIT License. See the included [LICENSE file](./LICENSE).
