@@ -92,6 +92,17 @@ export function fit(
 	return lerp(t, nmin, nmax)
 }
 
+/**
+ * Returns the position of the value whtin the range [min, max] to the normalized [0, 1] range.
+ * @param value The value to normalize
+ * @param min The lower bound of the range
+ * @param max The upper bound of the range
+ * @returns The normalized position of the value within the range
+ */
+export function fitTo01(value: number, min: number, max: number) {
+	return Math.min(Math.max((value - min) / (max - min), 0), 1)
+}
+
 export function exactEquals(a: number, b: number): boolean {
 	return a === b
 }
