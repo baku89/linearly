@@ -113,9 +113,9 @@ export function rotate(a: Mat2, rad: number): Mat2 {
 /**
  * Scales the mat2 by the dimensions in the given vec2
  **/
-export function scale(a: Mat2, v: Vec2): Mat2 {
+export function scale(a: Mat2, v: Vec2 | number): Mat2 {
 	const [a0, a1, a2, a3] = a
-	const [v0, v1] = v
+	const [v0, v1] = typeof v === 'number' ? [v, v] : v
 
 	return [a0 * v0, a1 * v0, a2 * v1, a3 * v1]
 }
@@ -225,28 +225,6 @@ export function equals(a: Mat2, b: Mat2) {
 		Math.abs(a3 - b3) <=
 			Common.EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3))
 	)
-}
-
-/**
- * Multiply each element of the matrix by a scalar.
- *
- * @param a the matrix to scale
- * @param s amount to scale the matrix's elements by
- */
-export function multiplyScalar(a: Mat2, s: number): Mat2 {
-	return [a[0] * s, a[1] * s, a[2] * s, a[3] * s]
-}
-
-/**
- Adds given mat2's after multiplying each element of the second operand by a scalar value.
- */
-export function multiplyScalarAndAdd(a: Mat2, b: Mat2, scale: number): Mat2 {
-	return [
-		a[0] + b[0] * scale,
-		a[1] + b[1] * scale,
-		a[2] + b[2] * scale,
-		a[3] + b[3] * scale,
-	]
 }
 
 export const sub = subtract

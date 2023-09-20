@@ -26,6 +26,11 @@ export function divide(...ss: number[]): number {
 	return ss.reduce((a, b) => a / b)
 }
 
+/**
+ * Symmetric round the given number
+ */
+export const round = Common.round
+
 export const ceil = Math.ceil
 
 export const floor = Math.floor
@@ -37,11 +42,6 @@ export const max = Math.max
 export function clamp(s: number, min: number, max: number): number {
 	return Math.max(min, Math.min(max, s))
 }
-
-/**
- * Symmetric round the given number
- */
-export const round = Common.round
 
 export function scale(a: number, s: number): number {
 	return a * s

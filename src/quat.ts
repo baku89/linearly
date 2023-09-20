@@ -30,22 +30,17 @@ export const zero: Quat = Object.freeze([0, 0, 0, 0])
  * @param axis the axis around which to rotate
  * @param rad the angle in radians
  **/
-export function setAxisAngle(axis: Vec3, rad: number): Quat {
+export function fromAxisAngle(axis: Vec3, rad: number): Quat {
 	rad = rad * 0.5
 	const s = Math.sin(rad)
 
 	return [s * axis[0], s * axis[1], s * axis[2], Math.cos(rad)]
 }
 
-interface AxisAngle {
-	axis: Vec3
-	rad: number
-}
-
 /**
  * Gets the rotation axis and angle for a given
  *  quaternion. If a quaternion is created with
- *  setAxisAngle, this method will return the same
+ *  fromAxisAngle, this method will return the same
  *  values as providied in the original parameter list
  *  OR functionally equivalent values.
  * Example: The quaternion formed by axis [0, 0, 1] and
@@ -54,7 +49,7 @@ interface AxisAngle {
  *
  * @param  q Quaternion to be decomposed
  */
-export function getAxisAngle(q: Quat): AxisAngle {
+export function axisAngle(q: Quat): {axis: Vec3; rad: number} {
 	const rad = Math.acos(q[3]) * 2
 	const s = Math.sin(rad / 2)
 
@@ -76,7 +71,7 @@ export function getAxisAngle(q: Quat): AxisAngle {
  * @param  b     Destination unit quaternion
  * @return  Angle, in radians, between the two quaternions
  */
-export function getAngle(a: Quat, b: Quat) {
+export function angle(a: Quat, b: Quat): number {
 	const dotproduct = dot(a, b)
 
 	return Math.acos(2 * dotproduct * dotproduct - 1)
@@ -186,8 +181,8 @@ export function rotateZ(a: Quat, rad: number): Quat {
  * Assumes that quaternion is 1 unit in length.
  * Any existing W component will be ignored.
  */
-export function calculateW(a: Quat): Quat {
-	const [x, y, z] = a
+export function calculateW(q: Quat): Quat {
+	const [x, y, z] = q
 
 	return [x, y, z, Math.sqrt(Math.abs(1 - x * x - y * y - z * z))]
 }
@@ -195,8 +190,8 @@ export function calculateW(a: Quat): Quat {
 /**
  * Calculate the exponential of a unit quaternion.
  */
-export function exp(a: Quat): Quat {
-	const [x, y, z, w] = a
+export function exp(q: Quat): Quat {
+	const [x, y, z, w] = q
 
 	const r = Math.sqrt(x * x + y * y + z * z)
 	const et = Math.exp(w)
@@ -274,16 +269,13 @@ export function slerp(a: Quat, b: Quat, t: number): Quat {
 /**
  * Calculates the inverse of a quat
  */
-export function invert(a: Quat): Quat {
-	const a0 = a[0],
-		a1 = a[1],
-		a2 = a[2],
-		a3 = a[3]
-	const dot = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3
+export function invert(q: Quat): Quat {
+	const [q0, q1, q2, q3] = q
+	const dot = q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3
 	const invDot = dot ? 1 / dot : 0
 
 	// TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
-	return [-a0 * invDot, -a1 * invDot, -a2 * invDot, a3 * invDot]
+	return [-q0 * invDot, -q1 * invDot, -q2 * invDot, q3 * invDot]
 }
 
 /**
@@ -337,29 +329,26 @@ export function fromMat3(m: Mat3): Quat {
 /**
  * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
  *
- * @param x Angle to rotate around X axis in degrees.
- * @param y Angle to rotate around Y axis in degrees.
- * @param z Angle to rotate around Z axis in degrees.
+ * @param xDeg Angle to rotate around X axis in degrees.
+ * @param yDeg Angle to rotate around Y axis in degrees.
+ * @param zDeg Angle to rotate around Z axis in degrees.
  * @param order Intrinsic order for conversion, default is zyx.
  * @function
  */
 export function fromEuler(
-	x: number,
-	y: number,
-	z: number,
+	xDeg: number,
+	yDeg: number,
+	zDeg: number,
 	order = Common.DEFAULT_ANGLE_ORDER
 ) {
 	const halfToRad = Math.PI / 360
-	x *= halfToRad
-	z *= halfToRad
-	y *= halfToRad
 
-	const sx = Math.sin(x)
-	const cx = Math.cos(x)
-	const sy = Math.sin(y)
-	const cy = Math.cos(y)
-	const sz = Math.sin(z)
-	const cz = Math.cos(z)
+	const sx = Math.sin(xDeg * halfToRad)
+	const cx = Math.cos(xDeg * halfToRad)
+	const sy = Math.sin(yDeg * halfToRad)
+	const cy = Math.cos(yDeg * halfToRad)
+	const sz = Math.sin(zDeg * halfToRad)
+	const cz = Math.cos(zDeg * halfToRad)
 
 	switch (order) {
 		case 'xyz':
@@ -426,15 +415,6 @@ export const scale: (a: Quat, b: number) => Quat = vec4.scale
  * Calculates the dot product of two quat's
  */
 export const dot: (a: Quat, b: Quat) => number = vec4.dot
-
-/**
- * Performs a linear interpolation between two quat's
- *
- * @param a the first operand
- * @param b the second operand
- * @param t interpolation amount, in the range [0-1], between the two inputs
- */
-export const lerp: (a: Quat, b: Quat, t: number) => Quat = vec4.lerp
 
 /**
  * Calculates the length of a quat
@@ -513,7 +493,7 @@ export const rotationTo = (function () {
 
 			temp = vec3.normalize(temp)
 
-			return setAxisAngle(temp, Math.PI)
+			return fromAxisAngle(temp, Math.PI)
 		} else {
 			const tmp = vec3.cross(a, b)
 
