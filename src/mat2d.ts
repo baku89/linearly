@@ -377,9 +377,11 @@ export function multiplyScalarAndAdd(a: Mat2d, b: Mat2d, scale: number): Mat2d {
 
 /**
  * Creates a matrix that maps from the given points to another. If the third point is not given, the orthogonal matrix is returned.
+ * ```text
  * f-s         f'-s'
  * |/  ---M--> |/
  * t           t'
+ * ```
  * @category Generators
  * @param first a pair of first point
  * @param second a pair of second point
