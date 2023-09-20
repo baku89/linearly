@@ -11,23 +11,32 @@ export type Mat2 = Readonly<MutableMat2>
  */
 export type MutableMat2 = [number, number, number, number]
 
+/**
+ * Creates a new matrix from given elements
+ * @category Generators
+ */
 export function of(m00: number, m01: number, m10: number, m11: number): Mat2 {
 	return [m00, m01, m10, m11]
 }
 
 /**
  * Creates a mutable clone of given mat2
+ * @category Generators
  */
 export function clone(a: Mat2): MutableMat2 {
 	return [...a]
 }
 
 /**
- * The identity matrix of mat2
- *
+ * The identity matrix of mat2.
+ * @category Constants
  */
 export const identity: Mat2 = Object.freeze([1, 0, 0, 1])
 
+/**
+ * The mat2d filled with zeros.
+ * @category Constants
+ */
 export const zero: Mat2 = Object.freeze([0, 0, 0, 0])
 
 /**
@@ -137,6 +146,7 @@ export function skew(m: Mat2, ax: number, ay: number): Mat2 {
 
 /**
  * Creates a matrix from a given angle
+ * @category Generators
  */
 export function fromRotation(rad: number): Mat2 {
 	const s = Math.sin(rad)
@@ -146,6 +156,7 @@ export function fromRotation(rad: number): Mat2 {
 
 /**
  * Creates a matrix from a vector scaling
+ * @category Generators
  */
 export function fromScaling(v: Vec2): Mat2 {
 	return [v[0], 0, 0, v[1]]
@@ -154,6 +165,7 @@ export function fromScaling(v: Vec2): Mat2 {
 /**
  * Creates a matrix from a vector skew
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+ * @category Generators
  */
 export function fromSkew(ax: number, ay: number): Mat2 {
 	const x = Math.tan(ax)
@@ -210,7 +222,7 @@ export function subtract(...ms: Mat2[]): Mat2 {
 }
 
 /**
- * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
+ * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Mat2, b: Mat2) {
 	return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3]

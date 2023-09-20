@@ -4,6 +4,9 @@ import {Quat} from './quat'
 import {Vec2} from './vec2'
 import {Vec3} from './vec3'
 
+/**
+ * Represents 2D affine transformation
+ */
 export type Mat3 = Readonly<MutableMat3>
 
 // prettier-ignore
@@ -13,6 +16,10 @@ export type MutableMat3 = [
 	number, number, number,
 ]
 
+/**
+ * Creates a new matrix from given elements
+ * @category Generators
+ */
 // prettier-ignore
 export function of(
 	m00: number, m01: number, m02: number,
@@ -29,18 +36,15 @@ export function of(
 
 /**
  * Creates a mutable clone of given mat3
+ * @category Generators
  */
 export function clone(a: Mat3): MutableMat3 {
 	return [...a]
 }
 
 /**
- * 3x3 Matrix
- * @module mat3
- */
-
-/**
  * Copies the upper-left 3x3 values into the given mat3.
+ * @category Generators
  */
 export function fromMat4(a: Mat4): Mat3 {
 	// prettier-ignore
@@ -53,6 +57,7 @@ export function fromMat4(a: Mat4): Mat3 {
 
 /**
  * The identity matrix of mat3
+ * @category Constants
  */
 // prettier-ignore
 export const identity: Mat3 = Object.freeze([
@@ -61,6 +66,9 @@ export const identity: Mat3 = Object.freeze([
 	0, 0, 1,
 ])
 
+/**
+ * @category Constants
+ */
 export const zero: Mat3 = Object.freeze([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 /**
@@ -226,6 +234,7 @@ export function scale(a: Mat3, v: Vec2): Mat3 {
 
 /**
  * Creates a matrix from a vector translation
+ * @category Generators
  */
 export function fromTranslation(v: Vec2): Mat3 {
 	const [x, y] = v
@@ -240,6 +249,7 @@ export function fromTranslation(v: Vec2): Mat3 {
 
 /**
  * Creates a matrix from a given angle
+ * @category Generators
  */
 export function fromRotation(rad: number): Mat3 {
 	const s = Math.sin(rad)
@@ -255,6 +265,7 @@ export function fromRotation(rad: number): Mat3 {
 
 /**
  * Creates a matrix from a vector scaling
+ * @category Generators
  */
 export function fromScaling(v: Vec2): Mat3 {
 	const [x, y] = v
@@ -269,6 +280,7 @@ export function fromScaling(v: Vec2): Mat3 {
 
 /**
  * Copies the values from a mat2d into a mat3
+ * @category Generators
  **/
 export function fromMat2d(a: Mat3): Mat3 {
 	// prettier-ignore
@@ -281,6 +293,7 @@ export function fromMat2d(a: Mat3): Mat3 {
 
 /**
  * Calculates a 3x3 matrix from the given quaternion
+ * @category Generators
  *
  */
 export function fromQuat(q: Quat): Mat3 {
@@ -367,6 +380,7 @@ export function normalFromMat4(a: Mat4): Mat3 | null {
 
 /**
  * Generates a 2D projection matrix with the given bounds
+ * @category Generators
  */
 export function projection(width: number, height: number): Mat3 {
 	return [2 / width, 0, 0, 0, -2 / height, 0, -1, 1, 1]
@@ -490,7 +504,7 @@ export function multiplyScalarAndAdd(a: Mat3, b: Mat3, scale: number): Mat3 {
 }
 
 /**
- * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
+ * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Mat3, b: Mat3) {
 	return (

@@ -26,6 +26,10 @@ import * as vec2 from './vec2'
 export type Mat2d = readonly [number, number, number, number, number, number]
 export type MutableMat2d = [number, number, number, number, number, number]
 
+/**
+ * Creates a new matrix from given elements
+ * @category Generators
+ */
 // prettier-ignore
 export function of(
 	a: number,  b: number,
@@ -37,6 +41,7 @@ export function of(
 
 /**
  * The identity matrix of mat2d
+ * @category Constants
  */
 // prettier-ignore
 export const identity: Mat2d = Object.freeze([
@@ -45,6 +50,10 @@ export const identity: Mat2d = Object.freeze([
 	0, 0
 ])
 
+/**
+ * The mat2d matrix filled with zeros.
+ * @category Constants
+ */
 export const zero: Mat2d = Object.freeze([0, 0, 0, 0, 0, 0])
 
 /**
@@ -181,6 +190,7 @@ export function skew(m: Mat2d, rads: Vec2, origin: Vec2): Mat2d {
 /**
  * Creates a matrix from a given angle
  * This is equivalent to (but much faster than):
+ * @category Generators
  */
 export function fromRotation(rad: number, origin?: Vec2): Mat2d {
 	if (origin) {
@@ -200,6 +210,7 @@ export function fromRotation(rad: number, origin?: Vec2): Mat2d {
 
 /**
  * Creates a matrix from a vector scaling
+ * @category Generators
  */
 export function fromScaling(v: Vec2 | number, origin?: Vec2): Mat2d {
 	if (origin) {
@@ -218,6 +229,7 @@ export function fromScaling(v: Vec2 | number, origin?: Vec2): Mat2d {
 
 /**
  * Creates a matrix from a vector translation
+ * @category Generators
  */
 export function fromTranslation(v: Vec2 | number): Mat2d {
 	const [x, y] = typeof v === 'number' ? [v, v] : v
@@ -233,6 +245,7 @@ export function fromTranslation(v: Vec2 | number): Mat2d {
 /**
  * Creates a matrix from a vector skew
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+ * @category Generators
  */
 export function fromSkew(angles: Vec2, origin?: Vec2): Mat2d {
 	if (origin) {
@@ -367,6 +380,7 @@ export function multiplyScalarAndAdd(a: Mat2d, b: Mat2d, scale: number): Mat2d {
  * f-s         f'-s'
  * |/  ---M--> |/
  * t           t'
+ * @category Generators
  * @param first a pair of first point
  * @param second a pair of second point
  * @param third a pair of third point
@@ -416,7 +430,7 @@ export function fromPoints(
 }
 
 /**
- * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
+ * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Mat2d, b: Mat2d) {
 	return (

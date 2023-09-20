@@ -16,6 +16,10 @@ export type MutableMat4 = [
 	number, number, number, number,
 ]
 
+/**
+ * Creates a new matrix from given elements
+ * @category Generators
+ */
 // prettier-ignore
 export function of(
 	m00: number, m01: number, m02: number, m03: number,
@@ -34,6 +38,7 @@ export function of(
 
 /**
  * The identity matrix of mat4
+ * @category Constants
  */
 // prettier-ignore
 export const identity: Mat4 = Object.freeze([
@@ -43,6 +48,9 @@ export const identity: Mat4 = Object.freeze([
 	0, 0, 0, 1,
 ])
 
+/**
+ * @category Constants
+ */
 export const zero: Mat4 = Object.freeze([
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ])
@@ -428,6 +436,7 @@ export function rotateZ(a: Mat4, rad: number): Mat4 {
 
 /**
  * Creates a matrix from a vector translation
+ * @category Generators
  */
 export function fromTranslation(v: Vec3): Mat4 {
 	const [x, y, z] = v
@@ -443,6 +452,7 @@ export function fromTranslation(v: Vec3): Mat4 {
 
 /**
  * Creates a matrix from a vector scaling
+ * @category Generators
  */
 export function fromScaling(v: Vec3): Mat4 {
 	const [x, y, z] = v
@@ -458,6 +468,7 @@ export function fromScaling(v: Vec3): Mat4 {
 
 /**
  * Creates a matrix from a given angle around a given axis
+ * @category Generators
  */
 export function fromRotation(rad: number, axis: Vec3): Mat4 | null {
 	let [x, y, z] = axis
@@ -495,6 +506,7 @@ export function fromRotation(rad: number, axis: Vec3): Mat4 | null {
 
 /**
  * Creates a matrix from the given angle around the X axis
+ * @category Generators
  */
 export function fromXRotation(rad: number): Mat4 {
 	const s = Math.sin(rad)
@@ -511,6 +523,7 @@ export function fromXRotation(rad: number): Mat4 {
 
 /**
  * Creates a matrix from the given angle around the Y axis
+ * @category Generators
  */
 export function fromYRotation(rad: number): Mat4 {
 	const s = Math.sin(rad)
@@ -527,6 +540,7 @@ export function fromYRotation(rad: number): Mat4 {
 
 /**
  * Creates a matrix from the given angle around the Z axis
+ * @category Generators
  */
 export function fromZRotation(rad: number): Mat4 {
 	const s = Math.sin(rad)
@@ -543,6 +557,7 @@ export function fromZRotation(rad: number): Mat4 {
 
 /**
  * Creates a matrix from a quaternion rotation and vector translation
+ * @category Generators
  */
 export function fromRotationTranslation(q: Quat, v: Vec3): Mat4 {
 	// Quaternion math
@@ -727,6 +742,7 @@ export function decompose(mat: Mat4): DecomposedTRS {
  *     mat4.multiply(dest, quatMat);
  *     mat4.scale(dest, scale)
  *
+ * @category Generators
  * @param rot Rotation quaternion
  * @param trans Translation vector
  * @param scale Scaling vector
@@ -788,6 +804,7 @@ export function fromRotationTranslationScale(
  *     mat4.scale(dest, scale)
  *     mat4.translate(dest, negativeOrigin);
  *
+ * @category Generators
  * @param rot Rotation quaternion
  * @param trans Translation vector
  * @param scale Scaling vector
@@ -849,6 +866,7 @@ export function fromRotationTranslationScaleOrigin(
  * Calculates a 4x4 matrix from the given quaternion
  *
  * @param q Quaternion to create matrix from
+ * @category Generators
  */
 export function fromQuat(q: Quat): Mat4 {
 	const [x, y, z, w] = q
@@ -1415,7 +1433,7 @@ export function multiplyScalarAndAdd(a: Mat4, b: Mat4, scale: number): Mat4 {
 }
 
 /**
- * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
+ * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Mat4, b: Mat4) {
 	return (

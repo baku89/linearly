@@ -6,6 +6,10 @@ import * as scalar from './scalar'
 export type Vec4 = Readonly<MutableVec4>
 export type MutableVec4 = [number, number, number, number]
 
+/**
+ * Creates a new vector from given elements
+ * @category Generators
+ */
 export function of(x: number, y?: number, z?: number, w?: number): Vec4 {
 	if (y === undefined && z === undefined && w === undefined) {
 		y = z = w = x
@@ -19,13 +23,20 @@ export function of(x: number, y?: number, z?: number, w?: number): Vec4 {
 
 /**
  * Creates a mutable clone of given vec4
+ * @category Generators
  */
 export function clone(a: Vec4): MutableVec4 {
 	return [...a]
 }
 
+/**
+ * @category Constants
+ */
 export const zero: Vec4 = Object.freeze([0, 0, 0, 0])
 
+/**
+ * @category Constants
+ */
 export const one: Vec4 = Object.freeze([1, 1, 1, 1])
 
 /**
@@ -422,7 +433,7 @@ export function radians(deg: Vec4): Vec4 {
 }
 
 /**
- * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+ * Returns whether or not the vectors have exactly the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Vec4, b: Vec4) {
 	return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3]

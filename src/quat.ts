@@ -17,16 +17,21 @@ export function of(x: number, y: number, z: number, w: number): Quat {
 }
 
 /**
- * The identity quaternion
+ * The identity quaternion.
+ * @category Constants
  */
 export const identity: Quat = Object.freeze([0, 0, 0, 1])
 
+/**
+ * The zero quaternion.
+ * @category Constants
+ */
 export const zero: Quat = Object.freeze([0, 0, 0, 0])
 
 /**
  * Sets a quat from the given angle and rotation axis,
  * then returns it.
- *
+ * @category Generators
  * @param axis the axis around which to rotate
  * @param rad the angle in radians
  **/
@@ -291,6 +296,7 @@ export function conjugate(a: Quat): Quat {
  *
  * NOTE: The resultant quaternion is not normalized, so you should be sure
  * to renormalize the quaternion yourself where necessary.
+ * @category Generators
  */
 export function fromMat3(m: Mat3): Quat {
 	// Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
@@ -333,7 +339,7 @@ export function fromMat3(m: Mat3): Quat {
  * @param yDeg Angle to rotate around Y axis in degrees.
  * @param zDeg Angle to rotate around Z axis in degrees.
  * @param order Intrinsic order for conversion, default is zyx.
- * @function
+ * @category Generators
  */
 export function fromEuler(
 	xDeg: number,
@@ -453,7 +459,7 @@ export const sqrLen = squaredLength
 export const normalize = vec4.normalize
 
 /**
- * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with ===)
+ * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with `===`)
  */
 export const exactEquals = vec4.exactEquals
 
@@ -474,6 +480,7 @@ export function equals(a: Quat, b: Quat) {
  *
  * @param a the initial vector
  * @param b the destination vector
+ * @category Generators
  */
 export const rotationTo = (function () {
 	const xUnitVec3: Vec3 = [1, 0, 0]

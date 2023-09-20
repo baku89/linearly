@@ -47,7 +47,7 @@ The names of modules are derived from glMatrix.
 - `mat4`: 3D affine transformation
 - `quat`: 3D rotation
 
-See the [Full API documentation](./doc/README.md) for further information.
+See the [Full API documentation](https://baku89.github.io/linearly) for further informations.
 
 ## Development
 

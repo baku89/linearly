@@ -5,24 +5,44 @@ import {Mat3} from './mat3'
 import * as scalar from './scalar'
 import {Vec3} from './vec3'
 
+/**
+ * Represents 2D vector
+ */
 export type Vec2 = Readonly<MutableVec2>
+
+/**
+ * Mutable version of {@link Vec2}
+ */
 export type MutableVec2 = [number, number]
 
+/**
+ * Creates a new vector from given elements
+ * @category Generators
+ */
 export function of(x: number, y: number = x): Vec2 {
 	return [x, y]
 }
 
 /**
  * Creates a mutable clone of given vec2
+ * @category Generators
  */
 export function clone(a: Vec2): MutableVec2 {
 	return [...a]
 }
 
+/**
+ * @category Constants
+ */
 export const zero: Vec2 = Object.freeze([0, 0])
 
+/**
+ * @category Constants
+ */
 export const one: Vec2 = Object.freeze([1, 1])
 
+/**
+ */
 export function add(...vs: Vec2[]): Vec2 {
 	if (vs.length === 0) {
 		return zero
@@ -38,6 +58,8 @@ export function add(...vs: Vec2[]): Vec2 {
 	return [a[0] + b[0], a[1] + b[1]]
 }
 
+/**
+ */
 export function subtract(...vs: Vec2[]): Vec2 {
 	if (vs.length === 0) {
 		return zero
@@ -123,6 +145,9 @@ export function max(...vs: Vec2[]): Vec2 {
 
 /**
  *  Constrain a value to lie between two further values
+ * @param a Value to clamp
+ * @param min Minimum value
+ * @param max Maximum value
  */
 export function clamp(a: Vec2, min: Vec2, max: Vec2): Vec2 {
 	return [
@@ -261,7 +286,7 @@ export function angle(a: Vec2, b: Vec2) {
 }
 
 /**
- * Returns whether or not the vectors exactly have the same elements in the same position (when compared with ===)
+ * Returns whether or not the vectors exactly have the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Vec2, b: Vec2) {
 	return a[0] === b[0] && a[1] === b[1]

@@ -28,7 +28,8 @@ export * as mat2 from './mat2'
 export type {Mat2} from './mat2'
 
 /**
- * Represents 2D affine transformation (translation, rotation, scaling, skewing).
+ * Represents 2D affine transformation (translation, rotation, scaling, skewing), omitting reduction thrid row which is always set to `[0, 0, 1]`. The order of six elements is the same as CSS transform matrix.
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
  */
 export * as mat2d from './mat2d'
 export type {Mat2d} from './mat2d'
