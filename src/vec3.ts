@@ -2,6 +2,7 @@ import * as Common from './common'
 import {Mat3} from './mat3'
 import {Mat4} from './mat4'
 import {Quat} from './quat'
+import * as scalar from './scalar'
 
 export type Vec3 = Readonly<MutableVec3>
 export type MutableVec3 = [number, number, number]
@@ -260,12 +261,26 @@ export function cross(a: Vec3, b: Vec3): Vec3 {
 }
 
 /**
- * Performs a linear interpolation between two vec3's
+ * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
  */
 export function lerp(a: Vec3, b: Vec3, t: number): Vec3 {
 	const [ax, ay, az] = a
 
 	return [ax + t * (b[0] - ax), ay + t * (b[1] - ay), az + t * (b[2] - az)]
+}
+
+/**
+ * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
+ * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+ */
+export function inverseLerp(a: Vec3, b: Vec3, t: Vec3): Vec3 {
+	return [
+		a[0] === b[0] ? 0.5 : (t[0] - a[0]) / (b[0] - a[0]),
+		a[1] === b[1] ? 0.5 : (t[1] - a[1]) / (b[1] - a[1]),
+		a[2] === b[2] ? 0.5 : (t[2] - a[2]) / (b[2] - a[2]),
+	]
 }
 
 /**
@@ -469,6 +484,57 @@ export function angle(a: Vec3, b: Vec3) {
 }
 
 /**
+ * Apply a step function by comparing two values
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
+ * @param edge The location of the edge of the step function.
+ * @param x The value to be used to generate the step function.
+ * @returns
+ */
+export function step(edge: Vec3, v: Vec3): Vec3 {
+	return [
+		v[0] < edge[0] ? 0 : 1,
+		v[1] < edge[1] ? 0 : 1,
+		v[2] < edge[2] ? 0 : 1,
+	]
+}
+
+/**
+ * Perform Hermite interpolation between two values.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/smoothstep.xhtml
+ * @param edge0 Lower edge of the Hermite function.
+ * @param edge1 Upper edge of the Hermite function.
+ * @param x  Source value for interpolation.
+ * @returns
+ */
+export function smoothstep(edge0: Vec3, edge1: Vec3, x: Vec3): Vec3 {
+	const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
+	const t1 = scalar.clamp((x[1] - edge1[1]) / (edge1[1] - edge1[1]), 0, 1)
+	const t2 = scalar.clamp((x[2] - edge1[2]) / (edge1[2] - edge1[2]), 0, 1)
+
+	return [
+		t0 * t0 * (3 - 2 * t0),
+		t1 * t1 * (3 - 2 * t1),
+		t2 * t2 * (3 - 2 * t2),
+	]
+}
+
+export function degrees(rad: Vec3): Vec3 {
+	return [
+		(rad[0] * 180) / Math.PI,
+		(rad[1] * 180) / Math.PI,
+		(rad[2] * 180) / Math.PI,
+	]
+}
+
+export function radians(deg: Vec3): Vec3 {
+	return [
+		(deg[0] * Math.PI) / 180,
+		(deg[1] * Math.PI) / 180,
+		(deg[2] * Math.PI) / 180,
+	]
+}
+
+/**
  * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
  */
 export function exactEquals(a: Vec3, b: Vec3) {
@@ -499,3 +565,5 @@ export const dist = distance
 export const len = length
 export const sqrDist = squaredDistance
 export const sqrLen = squaredLength
+export const mix = lerp
+export const invlerp = inverseLerp

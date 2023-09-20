@@ -77,11 +77,56 @@ export function normalize(a: number): number {
 	return a === 0 ? 0 : a / Math.abs(a)
 }
 
+/**
+ * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+ */
 export function lerp(a: number, b: number, t: number): number {
 	return a + (b - a) * t
 }
 
+/**
+ * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
+ * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+ */
+export function inverseLerp(a: number, b: number, t: number): number {
+	if (a === b) return 0.5
+	return (t - a) / (b - a)
+}
+
+/**
+ * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use efit instead.
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
+ * @param value
+ * @param omin
+ * @param omax
+ * @param nmin
+ * @param nmax
+ * @returns
+ */
 export function fit(
+	value: number,
+	omin: number,
+	omax: number,
+	nmin: number,
+	nmax: number
+) {
+	const t = clamp((value - omin) / (omax - omin), 0, 1)
+	return lerp(t, nmin, nmax)
+}
+
+/**
+ * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. Unlike `fit`, this function does not clamp values to the given range.
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
+ * @param value
+ * @param omin
+ * @param omax
+ * @param nmin
+ * @param nmax
+ * @returns
+ */
+export function efit(
 	value: number,
 	omin: number,
 	omax: number,
@@ -93,14 +138,35 @@ export function fit(
 }
 
 /**
- * Returns the position of the value whtin the range [min, max] to the normalized [0, 1] range.
- * @param value The value to normalize
- * @param min The lower bound of the range
- * @param max The upper bound of the range
- * @returns The normalized position of the value within the range
+ * Apply a step function by comparing two values
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
+ * @param edge The location of the edge of the step function.
+ * @param x The value to be used to generate the step function.
+ * @returns
  */
-export function fitTo01(value: number, min: number, max: number) {
-	return Math.min(Math.max((value - min) / (max - min), 0), 1)
+export function step(edge: number, x: number) {
+	return x < edge ? 0 : 1
+}
+
+/**
+ * Perform Hermite interpolation between two values.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/smoothstep.xhtml
+ * @param edge0 Lower edge of the Hermite function.
+ * @param edge1 Upper edge of the Hermite function.
+ * @param x  Source value for interpolation.
+ * @returns
+ */
+export function smoothstep(edge0: number, edge1: number, x: number) {
+	const t = clamp((x - edge0) / (edge1 - edge0), 0, 1)
+	return t * t * (3 - 2 * t)
+}
+
+export function degrees(rad: number): number {
+	return (rad * 180) / Math.PI
+}
+
+export function radians(deg: number): number {
+	return (deg * Math.PI) / 180
 }
 
 export function exactEquals(a: number, b: number): boolean {
@@ -120,3 +186,5 @@ export const dist = distance
 export const len = length
 export const sqrDist = squaredDistance
 export const sqrLen = squaredLength
+export const mix = lerp
+export const invlerp = inverseLerp

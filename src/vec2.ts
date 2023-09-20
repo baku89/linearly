@@ -2,6 +2,7 @@ import * as Common from './common'
 import {Mat2} from './mat2'
 import {Mat2d} from './mat2d'
 import {Mat3} from './mat3'
+import * as scalar from './scalar'
 import {Vec3} from './vec3'
 
 export type Vec2 = Readonly<MutableVec2>
@@ -192,11 +193,24 @@ export function cross(a: Vec2, b: Vec2): Vec3 {
 }
 
 /**
- * Performs a linear interpolation between two Vec2's
+ * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
  */
 export function lerp(a: Vec2, b: Vec2, t: number): Vec2 {
 	const [ax, ay] = a
 	return [ax + t * (b[0] - ax), ay + t * (b[1] - ay)]
+}
+
+/**
+ * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
+ * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+ */
+export function inverseLerp(a: Vec2, b: Vec2, t: Vec2): Vec2 {
+	return [
+		a[0] === b[0] ? 0.5 : (t[0] - a[0]) / (b[0] - a[0]),
+		a[1] === b[1] ? 0.5 : (t[1] - a[1]) / (b[1] - a[1]),
+	]
 }
 
 export function transformMat2(a: Vec2, m: Mat2): Vec2 {
@@ -267,6 +281,40 @@ export function equals(a: Vec2, b: Vec2) {
 	)
 }
 
+/**
+ * Apply a step function by comparing two values
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
+ * @param edge The location of the edge of the step function.
+ * @param x The value to be used to generate the step function.
+ * @returns
+ */
+export function step(edge: Vec2, v: Vec2) {
+	return [v[0] < edge[0] ? 0 : 1, v[1] < edge[1] ? 0 : 1]
+}
+
+/**
+ * Perform Hermite interpolation between two values.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/smoothstep.xhtml
+ * @param edge0 Lower edge of the Hermite function.
+ * @param edge1 Upper edge of the Hermite function.
+ * @param x  Source value for interpolation.
+ * @returns
+ */
+export function smoothstep(edge0: Vec2, edge1: Vec2, x: Vec2) {
+	const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
+	const t1 = scalar.clamp((x[1] - edge1[1]) / (edge1[1] - edge1[1]), 0, 1)
+
+	return [t0 * t0 * (3 - 2 * t0), t1 * t1 * (3 - 2 * t1)]
+}
+
+export function degrees(rad: Vec2): Vec2 {
+	return [(rad[0] * 180) / Math.PI, (rad[1] * 180) / Math.PI]
+}
+
+export function radians(deg: Vec2): Vec2 {
+	return [(deg[0] * Math.PI) / 180, (deg[1] * Math.PI) / 180]
+}
+
 export const sub = subtract
 export const mul = multiply
 export const div = divide
@@ -274,3 +322,5 @@ export const dist = distance
 export const len = length
 export const sqrDist = squaredDistance
 export const sqrLen = squaredLength
+export const mix = lerp
+export const invlerp = inverseLerp

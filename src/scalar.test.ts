@@ -53,6 +53,13 @@ test('lerp', () => {
 	expect(scalar.lerp(3, 5, 0.25)).toEqual(3.5)
 })
 
+test('inverseLerp', () => {
+	expect(scalar.invlerp(0, 1, 0.2)).toEqual(0.2)
+	expect(scalar.invlerp(0, 10, 0.2)).toEqual(0.02)
+	expect(scalar.invlerp(-1, 1, 0.5)).toEqual(0.75)
+	expect(scalar.invlerp(10, -10, 0)).toEqual(0.5)
+})
+
 test('max', () => {
 	expect(scalar.max(3, 7)).toEqual(7)
 })
@@ -111,11 +118,4 @@ test('subtract', () => {
 	expect(scalar.subtract(5)).toEqual(-5)
 	expect(scalar.subtract(5, 2)).toEqual(3)
 	expect(scalar.subtract(5, 2, 1)).toEqual(2)
-})
-
-test('fitTo01', () => {
-	expect(scalar.fitTo01(0.2, 0, 1)).toEqual(0.2)
-	expect(scalar.fitTo01(0.2, 0, 10)).toEqual(0.02)
-	expect(scalar.fitTo01(0.5, -1, 1)).toEqual(0.75)
-	expect(scalar.fitTo01(0, 10, -10)).toEqual(0.5)
 })

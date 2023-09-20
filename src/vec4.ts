@@ -1,6 +1,7 @@
 import * as Common from './common'
 import {Mat4} from './mat4'
 import {Quat} from './quat'
+import * as scalar from './scalar'
 
 export type Vec4 = Readonly<MutableVec4>
 export type MutableVec4 = [number, number, number, number]
@@ -301,8 +302,8 @@ export function cross(u: Vec4, v: Vec4, w: Vec4): Vec4 {
 }
 
 /**
- * Performs a linear interpolation between two vec4's
- * @param t interpolation amount, in the range [0-1], between the two inputs
+ * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
  */
 export function lerp(a: Vec4, b: Vec4, t: number): Vec4 {
 	const [ax, ay, az, aw] = a
@@ -312,6 +313,20 @@ export function lerp(a: Vec4, b: Vec4, t: number): Vec4 {
 		ay + t * (b[1] - ay),
 		az + t * (b[2] - az),
 		aw + t * (b[3] - aw),
+	]
+}
+
+/**
+ * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
+ * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+ */
+export function inverseLerp(a: Vec4, b: Vec4, t: Vec4): Vec4 {
+	return [
+		a[0] === b[0] ? 0.5 : (t[0] - a[0]) / (b[0] - a[0]),
+		a[1] === b[1] ? 0.5 : (t[1] - a[1]) / (b[1] - a[1]),
+		a[2] === b[2] ? 0.5 : (t[2] - a[2]) / (b[2] - a[2]),
+		a[3] === b[3] ? 0.5 : (t[3] - a[3]) / (b[3] - a[3]),
 	]
 }
 
@@ -351,6 +366,62 @@ export function transformQuat(a: Vec4, q: Quat): Vec4 {
 }
 
 /**
+ * Apply a step function by comparing two values
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
+ * @param edge The location of the edge of the step function.
+ * @param x The value to be used to generate the step function.
+ * @returns
+ */
+export function step(edge: Vec4, v: Vec4): Vec4 {
+	return [
+		v[0] < edge[0] ? 0 : 1,
+		v[1] < edge[1] ? 0 : 1,
+		v[2] < edge[2] ? 0 : 1,
+		v[3] < edge[3] ? 0 : 1,
+	]
+}
+
+/**
+ * Perform Hermite interpolation between two values.
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/smoothstep.xhtml
+ * @param edge0 Lower edge of the Hermite function.
+ * @param edge1 Upper edge of the Hermite function.
+ * @param x  Source value for interpolation.
+ * @returns
+ */
+export function smoothstep(edge0: Vec4, edge1: Vec4, x: Vec4): Vec4 {
+	const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
+	const t1 = scalar.clamp((x[1] - edge1[1]) / (edge1[1] - edge1[1]), 0, 1)
+	const t2 = scalar.clamp((x[2] - edge1[2]) / (edge1[2] - edge1[2]), 0, 1)
+	const t3 = scalar.clamp((x[3] - edge1[3]) / (edge1[3] - edge1[3]), 0, 1)
+
+	return [
+		t0 * t0 * (3 - 2 * t0),
+		t1 * t1 * (3 - 2 * t1),
+		t2 * t2 * (3 - 2 * t2),
+		t3 * t3 * (3 - 2 * t3),
+	]
+}
+
+export function degrees(rad: Vec4): Vec4 {
+	return [
+		(rad[0] * 180) / Math.PI,
+		(rad[1] * 180) / Math.PI,
+		(rad[2] * 180) / Math.PI,
+		(rad[3] * 180) / Math.PI,
+	]
+}
+
+export function radians(deg: Vec4): Vec4 {
+	return [
+		(deg[0] * Math.PI) / 180,
+		(deg[1] * Math.PI) / 180,
+		(deg[2] * Math.PI) / 180,
+		(deg[3] * Math.PI) / 180,
+	]
+}
+
+/**
  * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
  */
 export function exactEquals(a: Vec4, b: Vec4) {
@@ -383,3 +454,5 @@ export const dist = distance
 export const len = length
 export const sqrDist = squaredDistance
 export const sqrLen = squaredLength
+export const mix = lerp
+export const invlerp = inverseLerp
