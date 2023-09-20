@@ -996,6 +996,9 @@ export function perspectiveZO(
 	return [f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, out10, -1, 0, 0, out14, 0]
 }
 
+/**
+ * Represents a field of view expressed in degrees.
+ */
 interface FovDegrees {
 	upDegrees: number
 	downDegrees: number

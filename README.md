@@ -35,7 +35,7 @@ m[4] *= 2.0
 m[5] = -4.5
 ```
 
-In addition to functions that can be found on [glMatrix docs](https://glmatrix.net/), the library also provides some useful functions from languages like GLSL (`step`, `mix` `smoothstep`), Vex (`fit`, `efit`, `invlerp`, `degrees`, `radians`), and even Unity C# (`inverseLerp`).
+In addition to functions that can be found on [glMatrix docs](https://glmatrix.net/), the library also provides some useful functions from languages like [GLSL](https://registry.khronos.org/OpenGL-Refpages/gl4/html/indexflat.php) (`step`, `mix` `smoothstep`), Houdini's [VEX](https://www.sidefx.com/docs/houdini/vex/functions/) (`fit`, `efit`, `invlerp`, `degrees`, `radians`), and even Unity C# (`inverseLerp`).
 
 ## Modules
 
@@ -47,7 +47,7 @@ The names of modules are derived from glMatrix.
 - `mat4`: 3D affine transformation
 - `quat`: 3D rotation
 
-represents 2D matrix. `mat2d` and `mat3` is for a 2D affine matrix while `mat2d` omits redundant third rows which is always set to `[0, 0, 1]`. `mat4` represents 3D affine matrix in spite of its name.
+See the [Full API documentation](./doc/README.md) for further information.
 
 ## Development
 

@@ -1,7 +1,14 @@
 import * as Common from './common'
 import {Vec2} from './vec2'
 
+/**
+ * Represents 2D transformation exclude translation
+ */
 export type Mat2 = Readonly<MutableMat2>
+
+/**
+ * Mutable version of {@link Mat2}
+ */
 export type MutableMat2 = [number, number, number, number]
 
 export function of(m00: number, m01: number, m10: number, m11: number): Mat2 {
@@ -227,5 +234,12 @@ export function equals(a: Mat2, b: Mat2) {
 	)
 }
 
+/**
+ * Alias for {@link subtract}
+ */
 export const sub = subtract
+
+/**
+ * Alias for {@link multiply}
+ */
 export const mul = multiply
