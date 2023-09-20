@@ -363,6 +363,59 @@ export function multiplyScalarAndAdd(a: Mat2d, b: Mat2d, scale: number): Mat2d {
 }
 
 /**
+ * Creates a matrix that maps from the given points to another. If the third point is not given, the orthogonal matrix is returned.
+ * f-s         f'-s'
+ * |/  ---M--> |/
+ * t           t'
+ * @param first a pair of first point
+ * @param second a pair of second point
+ * @param third a pair of third point
+ */
+export function fromPoints(
+	first: [Vec2, Vec2],
+	second: [Vec2, Vec2],
+	third?: [Vec2, Vec2]
+): Mat2d | null {
+	if (!third) {
+		// Computes third points by rotating second points 90 degrees
+		const PI_HALF = Math.PI / 2
+		third = [
+			vec2.add(first[0], vec2.rotate(vec2.sub(second[0], first[0]), PI_HALF)),
+			vec2.add(first[1], vec2.rotate(vec2.sub(second[1], first[1]), PI_HALF)),
+		]
+	}
+
+	// Creates an affine matrix whose origin is first,
+	// [1, 0] is second, and [1, 0] is third.
+	// Then computes M = M_dst * M_src^-1
+	const src: Mat2d = [
+		second[0][0] - first[0][0],
+		second[0][1] - first[0][1],
+		third[0][0] - first[0][0],
+		third[0][1] - first[0][1],
+		first[0][0],
+		first[0][1],
+	]
+
+	const srcInv = invert(src)
+
+	if (!srcInv) {
+		return null
+	}
+
+	const dst: Mat2d = [
+		second[1][0] - first[1][0],
+		second[1][1] - first[1][1],
+		third[1][0] - first[1][0],
+		third[1][1] - first[1][1],
+		first[1][0],
+		first[1][1],
+	]
+
+	return multiply(dst, srcInv)
+}
+
+/**
  * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
  */
 export function exactEquals(a: Mat2d, b: Mat2d) {
