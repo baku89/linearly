@@ -350,6 +350,20 @@ export function subtract(...ms: Mat2d[]): Mat2d {
 }
 
 /**
+ * Subtracts b from a
+ */
+export function delta(a: Mat2d, b: Mat2d): Mat2d {
+	return [
+		b[0] - a[0],
+		b[1] - a[1],
+		b[2] - a[2],
+		b[3] - a[3],
+		b[4] - a[4],
+		b[5] - a[5],
+	]
+}
+
+/**
  * Multiply each element of the matrix by a scalar.
  */
 export function multiplyScalar(a: Mat2d, s: number): Mat2d {

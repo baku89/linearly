@@ -222,6 +222,13 @@ export function subtract(...ms: Mat2[]): Mat2 {
 }
 
 /**
+ * Subtracts b from a
+ */
+export function delta(a: Mat2, b: Mat2): Mat2 {
+	return [b[0] - a[0], b[1] - a[1], b[2] - a[2], b[3] - a[3]]
+}
+
+/**
  * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Mat2, b: Mat2) {

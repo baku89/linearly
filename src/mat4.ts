@@ -1385,6 +1385,30 @@ export function subtract(...ms: Mat4[]): Mat4 {
 }
 
 /**
+ * Subtracts b from a
+ */
+export function delta(a: Mat4, b: Mat4): Mat4 {
+	return [
+		b[0] - a[0],
+		b[1] - a[1],
+		b[2] - a[2],
+		b[3] - a[3],
+		b[4] - a[4],
+		b[5] - a[5],
+		b[6] - a[6],
+		b[7] - a[7],
+		b[8] - a[8],
+		b[9] - a[9],
+		b[10] - a[10],
+		b[11] - a[11],
+		b[12] - a[12],
+		b[13] - a[13],
+		b[14] - a[14],
+		b[15] - a[15],
+	]
+}
+
+/**
  * Multiply each element of the matrix by a scalar.
  */
 export function multiplyScalar(a: Mat4, s: number): Mat4 {

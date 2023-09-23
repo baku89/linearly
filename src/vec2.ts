@@ -75,6 +75,13 @@ export function subtract(...vs: Vec2[]): Vec2 {
 	return [a[0] - b[0], a[1] - b[1]]
 }
 
+/**
+ * Subtracts b from a
+ */
+export function delta(a: Vec2, b: Vec2): Vec2 {
+	return [b[0] - a[0], b[1] - a[1]]
+}
+
 export function multiply(...vs: Vec2[]): Vec2 {
 	if (vs.length === 0) {
 		return one

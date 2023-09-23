@@ -76,6 +76,13 @@ export function subtract(...vs: Vec3[]): Vec3 {
 }
 
 /**
+ * Subtracts b from a
+ */
+export function delta(a: Vec3, b: Vec3): Vec3 {
+	return [b[0] - a[0], b[1] - a[1], b[2] - a[2]]
+}
+
+/**
  * Multiplies given vec3's
  */
 export function multiply(...vs: Vec3[]): Vec3 {
