@@ -35,7 +35,7 @@
 	"bugs": {
 		"url": "https://github.com/baku89/linearly/issues"
 	},
-	"homepage": "https://github.com/baku89/linearly#readme",
+	"homepage": "https://baku89.github.io/linearly",
 	"devDependencies": {
 		"@types/jest": "^29.5.4",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
