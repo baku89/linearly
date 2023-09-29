@@ -113,7 +113,7 @@ export function fit(
 	nmax: number
 ) {
 	const t = clamp((value - omin) / (omax - omin), 0, 1)
-	return lerp(t, nmin, nmax)
+	return lerp(nmin, nmax, t)
 }
 
 /**
@@ -134,7 +134,7 @@ export function efit(
 	nmax: number
 ) {
 	const t = (value - omin) / (omax - omin)
-	return lerp(t, nmin, nmax)
+	return lerp(nmin, nmax, t)
 }
 
 /**
