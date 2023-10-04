@@ -35,6 +35,10 @@ export const ceil = Math.ceil
 
 export const floor = Math.floor
 
+export function quantize(s: number, step: number, offset = 0): number {
+	return Math.round((s - offset) / step) * step + offset
+}
+
 export const min = Math.min
 
 export const max = Math.max
