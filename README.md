@@ -3,16 +3,16 @@
 [![NPM Version](https://img.shields.io/npm/v/linearly.svg)](https://www.npmjs.com/package/linearly)
 ![CI Test Result](https://github.com/baku89/linearly/actions/workflows/ci.yml/badge.svg)
 
-A Collection of utility functions that relates to linear algebra and graphics programming.
+A collection of utility functions that relates to linear algebra and graphics programming.
 
-This library is based on [glMatrix](https://github.com/toji/gl-matrix), but adopts immutable data structure.
+This library is based on [glMatrix](https://github.com/toji/gl-matrix) but adopts an immutable data structure.
 
-🍡 I'd be appreciate to receive PRs from anyone willing to help with tedious tasks like writing JSDoc, adding necessary functions, or writing tests.
+🍡 I'd appreciate to receive PRs from anyone willing to help with tedious tasks like writing JSDoc, adding necessary functions, or writing tests.
 
 ### glMatrix
 
 ```js
-// In glMatrix, you have to manually pass an output vector by reference to reuse  vectors in efficient way.
+// In glMatrix, you have to manually pass an output vector by reference to reuse  vectors in an efficient way.
 const dir = vec3.fromValues(2, 1, 3)
 vec3.normalize(dir, dir)
 
@@ -44,12 +44,12 @@ In addition to functions that can be found on [glMatrix docs](https://glmatrix.n
 The names of modules are derived from glMatrix.
 
 - `mat2`: 2D linear transformation (rotation + scale + skew)
-- `mat2d`: 2D affine transformation, omitting redundant third rows which is always set to `[0, 0, 1]` (translation + rotation + scale + skew)
+- `mat2d`: 2D affine transformation, omitting redundant third rows, which is always set to `[0, 0, 1]` (translation + rotation + scale + skew)
 - `mat3`: 2D homogeneous transformation (translation + rotation + scale + skew + perspective)
 - `mat4`: 3D affine transformation
 - `quat`: 3D rotation
 
-See the [Full API documentation](https://baku89.github.io/linearly) for further informations.
+See the [Full API documentation](https://baku89.github.io/linearly) for further information.
 
 ## Development
 
