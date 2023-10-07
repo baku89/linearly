@@ -1,6 +1,6 @@
 {
 	"name": "linearly",
-	"version": "0.14.0",
+	"version": "0.15.0",
 	"description": "Matrix and vector library with immutable data types",
 	"main": "./lib/cjs/index.js",
 	"module": "./lib/esm/index.js",
