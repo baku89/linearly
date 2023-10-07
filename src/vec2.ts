@@ -175,7 +175,10 @@ export function max(...vs: Vec2[]): Vec2 {
  * @param min Minimum value
  * @param max Maximum value
  */
-export function clamp(a: Vec2, min: Vec2, max: Vec2): Vec2 {
+export function clamp(a: Vec2, min: Vec2 | number, max: Vec2 | number): Vec2 {
+	if (typeof min === 'number') min = [min, min]
+	if (typeof max === 'number') max = [max, max]
+
 	return [
 		Math.min(Math.max(a[0], min[0]), max[0]),
 		Math.min(Math.max(a[1], min[1]), max[1]),
@@ -187,6 +190,36 @@ export function clamp(a: Vec2, min: Vec2, max: Vec2): Vec2 {
  */
 export function round(a: Vec2): Vec2 {
 	return [Common.round(a[0]), Common.round(a[1])]
+}
+
+export function ceil(a: Vec2): Vec2 {
+	return [Math.ceil(a[0]), Math.ceil(a[1])]
+}
+
+export function floor(a: Vec2): Vec2 {
+	return [Math.floor(a[0]), Math.floor(a[1])]
+}
+
+/**
+ * Computes the fractional part of the argument
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml
+ */
+export function fract(a: Vec2): Vec2 {
+	return sub(a, floor(a))
+}
+
+export function quantize(
+	v: Vec2,
+	step: Vec2 | number,
+	offset: Vec2 | number = zero
+): Vec2 {
+	if (typeof step === 'number') step = [step, step]
+	if (typeof offset === 'number') offset = [offset, offset]
+
+	return [
+		Math.round((v[0] - offset[0]) / step[0]) * step[0] + offset[0],
+		Math.round((v[1] - offset[1]) / step[1]) * step[1] + offset[1],
+	]
 }
 
 export function scale(a: Vec2, s: number): Vec2 {
@@ -247,9 +280,10 @@ export function cross(a: Vec2, b: Vec2): Vec3 {
  * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
  * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
  */
-export function lerp(a: Vec2, b: Vec2, t: number): Vec2 {
-	const [ax, ay] = a
-	return [ax + t * (b[0] - ax), ay + t * (b[1] - ay)]
+export function lerp(a: Vec2, b: Vec2, t: Vec2 | number): Vec2 {
+	if (typeof t === 'number') t = [t, t]
+
+	return [a[0] + t[0] * (b[0] - a[0]), a[1] + t[1] * (b[1] - a[1])]
 }
 
 /**
@@ -262,6 +296,59 @@ export function inverseLerp(a: Vec2, b: Vec2, t: Vec2): Vec2 {
 		a[0] === b[0] ? 0.5 : (t[0] - a[0]) / (b[0] - a[0]),
 		a[1] === b[1] ? 0.5 : (t[1] - a[1]) / (b[1] - a[1]),
 	]
+}
+
+/**
+ * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use efit instead.
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
+ * @param value
+ * @param omin
+ * @param omax
+ * @param nmin
+ * @param nmax
+ * @returns
+ */
+export function fit(
+	value: Vec2,
+	omin: Vec2,
+	omax: Vec2,
+	nmin: Vec2,
+	nmax: Vec2
+): Vec2 {
+	const t = clamp(
+		[
+			(value[0] - omin[0]) / (omax[0] - omin[0]),
+			(value[0] - omin[0]) / (omax[0] - omin[0]),
+		],
+		0,
+		1
+	)
+
+	return lerp(nmin, nmax, t)
+}
+
+/**
+ * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. Unlike `fit`, this function does not clamp values to the given range.
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
+ * @param value
+ * @param omin
+ * @param omax
+ * @param nmin
+ * @param nmax
+ * @returns
+ */
+export function efit(
+	value: Vec2,
+	omin: Vec2,
+	omax: Vec2,
+	nmin: Vec2,
+	nmax: Vec2
+): Vec2 {
+	const t: Vec2 = [
+		(value[0] - omin[0]) / (omax[0] - omin[0]),
+		(value[0] - omin[0]) / (omax[0] - omin[0]),
+	]
+	return lerp(nmin, nmax, t)
 }
 
 export function transformMat2(a: Vec2, m: Mat2): Vec2 {
@@ -312,6 +399,13 @@ export function angle(a: Vec2, b: Vec2) {
 }
 
 /**
+ * Creates a vector by given direction and length
+ */
+export function direction(rad: number, length = 1): Vec2 {
+	return [Math.cos(rad) * length, Math.sin(rad) * length]
+}
+
+/**
  * Returns whether or not the vectors exactly have the same elements in the same position (when compared with `===`)
  */
 export function exactEquals(a: Vec2, b: Vec2) {
@@ -336,10 +430,12 @@ export function equals(a: Vec2, b: Vec2) {
  * Apply a step function by comparing two values
  * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
  * @param edge The location of the edge of the step function.
- * @param x The value to be used to generate the step function.
+ * @param v The value to be used to generate the step function.
  * @returns
  */
-export function step(edge: Vec2, v: Vec2) {
+export function step(edge: Vec2 | number, v: Vec2): Vec2 {
+	if (typeof edge === 'number') edge = [edge, edge]
+
 	return [v[0] < edge[0] ? 0 : 1, v[1] < edge[1] ? 0 : 1]
 }
 
@@ -420,3 +516,5 @@ export const mix = lerp
  * @category Aliases
  */
 export const invlerp = inverseLerp
+export const rad = radians
+export const deg = degrees

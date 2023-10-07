@@ -35,6 +35,14 @@ export const ceil = Math.ceil
 
 export const floor = Math.floor
 
+/**
+ * Computes the fractional part of the argument
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml
+ */
+export function fract(a: number): number {
+	return a - floor(a)
+}
+
 export function quantize(s: number, step: number, offset = 0): number {
 	return Math.round((s - offset) / step) * step + offset
 }
@@ -77,9 +85,7 @@ export function inverse(a: number): number {
 	return 1 / a
 }
 
-export function normalize(a: number): number {
-	return a === 0 ? 0 : a / Math.abs(a)
-}
+export const normalize = Math.sign
 
 /**
  * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
@@ -237,3 +243,5 @@ export const mix = lerp
  * @category Aliases
  */
 export const invlerp = inverseLerp
+export const rad = radians
+export const deg = degrees
