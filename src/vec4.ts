@@ -229,7 +229,10 @@ export function max(...vs: Vec4[]): Vec4 {
 /**
  *  Constrain a value to lie between two further values
  */
-export function clamp(a: Vec4, min: Vec4, max: Vec4): Vec4 {
+export function clamp(a: Vec4, min: Vec4 | number, max: Vec4 | number): Vec4 {
+	if (typeof min === 'number') min = [min, min, min, min]
+	if (typeof max === 'number') max = [max, max, max, max]
+
 	return [
 		Math.min(Math.max(a[0], min[0]), max[0]),
 		Math.min(Math.max(a[1], min[1]), max[1]),
@@ -434,7 +437,9 @@ export function transformQuat(a: Vec4, q: Quat): Vec4 {
  * @param x The value to be used to generate the step function.
  * @returns
  */
-export function step(edge: Vec4, v: Vec4): Vec4 {
+export function step(edge: Vec4 | number, v: Vec4): Vec4 {
+	if (typeof edge === 'number') edge = [edge, edge, edge, edge]
+
 	return [
 		v[0] < edge[0] ? 0 : 1,
 		v[1] < edge[1] ? 0 : 1,

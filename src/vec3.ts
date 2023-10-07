@@ -209,7 +209,10 @@ export function max(...vs: Vec3[]): Vec3 {
 /**
  *  Constrain a value to lie between two further values
  */
-export function clamp(a: Vec3, min: Vec3, max: Vec3): Vec3 {
+export function clamp(a: Vec3, min: Vec3 | number, max: Vec3 | number): Vec3 {
+	if (typeof min === 'number') min = [min, min, min]
+	if (typeof max === 'number') max = [max, max, max]
+
 	return [
 		Math.min(Math.max(a[0], min[0]), max[0]),
 		Math.min(Math.max(a[1], min[1]), max[1]),
@@ -550,7 +553,9 @@ export function angle(a: Vec3, b: Vec3) {
  * @param x The value to be used to generate the step function.
  * @returns
  */
-export function step(edge: Vec3, v: Vec3): Vec3 {
+export function step(edge: Vec3 | number, v: Vec3): Vec3 {
+	if (typeof edge === 'number') edge = [edge, edge, edge]
+
 	return [
 		v[0] < edge[0] ? 0 : 1,
 		v[1] < edge[1] ? 0 : 1,
