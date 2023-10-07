@@ -1580,6 +1580,12 @@ export function equals(a: Mat4, b: Mat4) {
 }
 
 /**
+ * Alias for {@link identity}
+ * @category Aliases
+ */
+export const ident = identity
+
+/**
  * Alias for {@link mat4.subtract}
  * @category Aliases
  */

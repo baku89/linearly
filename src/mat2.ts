@@ -265,7 +265,13 @@ export function equals(a: Mat2, b: Mat2) {
 }
 
 /**
- * Alias for {@link mat2.subtract}
+ * Alias for {@link identity}
+ * @category Aliases
+ */
+export const ident = identity
+
+/**
+ * Alias for {@link subtract}
  * @category Aliases
  */
 export const sub = subtract

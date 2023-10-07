@@ -603,6 +603,12 @@ export function equals(a: Mat3, b: Mat3) {
 }
 
 /**
+ * Alias for {@link identity}
+ * @category Aliases
+ */
+export const ident = identity
+
+/**
  * Alias for {@link mat3.subtract}
  * @category Aliases
  */
