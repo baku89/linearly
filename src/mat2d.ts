@@ -212,8 +212,8 @@ export function pivot(m: Mat2d, origin: Vec2): Mat2d {
  * Apply skew to the mat2d by the given radians
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
  */
-export function skew(m: Mat2d, rads: Vec2, origin: Vec2): Mat2d {
-	return multiply(m, fromSkew(rads, origin))
+export function skew(m: Mat2d, rad: Vec2, origin: Vec2): Mat2d {
+	return multiply(m, fromSkew(rad, origin))
 }
 
 /**
@@ -276,12 +276,12 @@ export function fromTranslation(v: Vec2 | number): Mat2d {
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
  * @category Generators
  */
-export function fromSkew(angles: Vec2, origin?: Vec2): Mat2d {
+export function fromSkew(rad: Vec2, origin?: Vec2): Mat2d {
 	if (origin) {
-		return pivot(fromSkew(angles), origin)
+		return pivot(fromSkew(rad), origin)
 	}
 
-	const [ax, ay] = angles
+	const [ax, ay] = rad
 	const x = Math.tan(ax)
 	const y = Math.tan(ay)
 

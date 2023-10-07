@@ -151,8 +151,8 @@ export function scale(a: Mat2, b: Vec2 | number): Mat2 {
  * Apply skew to the mat2d by the given angles
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
  */
-export function skew(m: Mat2, ax: number, ay: number): Mat2 {
-	return multiply(m, fromSkew(ax, ay))
+export function skew(m: Mat2, rad: Vec2): Mat2 {
+	return multiply(m, fromSkew(rad))
 }
 
 /**
@@ -178,9 +178,9 @@ export function fromScaling(v: Vec2): Mat2 {
  * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
  * @category Generators
  */
-export function fromSkew(ax: number, ay: number): Mat2 {
-	const x = Math.tan(ax)
-	const y = Math.tan(ay)
+export function fromSkew(rad: Vec2): Mat2 {
+	const x = Math.tan(rad[0])
+	const y = Math.tan(rad[1])
 
 	// prettier-ignore
 	return [
