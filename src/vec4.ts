@@ -158,6 +158,19 @@ export function floor(a: Vec4): Vec4 {
 }
 
 /**
+ * Removes the fractional part
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/trunc.html
+ */
+export function trunc(v: Vec4): Vec4 {
+	return [
+		v[0] < 0 ? Math.ceil(v[0]) : Math.floor(v[0]),
+		v[1] < 0 ? Math.ceil(v[1]) : Math.floor(v[1]),
+		v[2] < 0 ? Math.ceil(v[2]) : Math.floor(v[2]),
+		v[3] < 0 ? Math.ceil(v[3]) : Math.floor(v[3]),
+	]
+}
+
+/**
  * Computes the fractional part of the argument
  * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml
  */
