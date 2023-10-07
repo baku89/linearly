@@ -82,6 +82,19 @@ export function scale(a: number, b: number): number {
 	return a * b
 }
 
+/**
+ * Returns the average value of the input(s)
+ * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+ */
+export function average(...vs: number[]): number {
+	let x = 0
+	const scale = 1 / (vs.length || 1)
+	for (const v of vs) {
+		x += v
+	}
+	return x / scale
+}
+
 export function scaleAndAdd(a: number, b: number, s: number): number {
 	return a + b * s
 }
@@ -279,6 +292,12 @@ export const mul = multiply
  * @category Aliases
  */
 export const div = divide
+
+/**
+ * Alias for {@link scalar.average}
+ * @category Aliases
+ */
+export const avg = average
 
 /**
  * Alias for {@link scalar.distance}

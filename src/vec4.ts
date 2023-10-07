@@ -309,6 +309,25 @@ export function scale(a: Vec4, s: number): Vec4 {
 }
 
 /**
+ * Returns the average value of the input(s)
+ * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+ */
+export function average(...vs: Vec4[]): Vec4 {
+	let x = 0,
+		y = 0,
+		z = 0,
+		w = 0
+	const scale = 1 / (vs.length || 1)
+	for (const v of vs) {
+		x += v[0]
+		y += v[1]
+		z += v[2]
+		w += v[3]
+	}
+	return [x / scale, y / scale, z / scale, w / scale]
+}
+
+/**
  Adds given vec4's after scaling the second operand by a scalar value
  * @param scale the amount to scale b by before adding
  */
@@ -658,6 +677,11 @@ export const mul = multiply
  * Alias for {@link vec4.divide}
  */
 export const div = divide
+
+/**
+ * Alias for {@link vec4.distance}
+ */
+export const avg = average
 
 /**
  * Alias for {@link vec4.distance}
