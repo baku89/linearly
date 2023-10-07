@@ -264,6 +264,23 @@ export function scale(a: Vec3, s: number): Vec3 {
 }
 
 /**
+ * Returns the average value of the input(s)
+ * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+ */
+export function average(...vs: Vec3[]): Vec3 {
+	let x = 0,
+		y = 0,
+		z = 0
+	const scale = 1 / (vs.length || 1)
+	for (const v of vs) {
+		x += v[0]
+		y += v[1]
+		z += v[2]
+	}
+	return [x / scale, y / scale, z / scale]
+}
+
+/**
  Adds given vec3's after scaling the second operand by a scalar value
  */
 export function scaleAndAdd(a: Vec3, b: Vec3, scale: number): Vec3 {
@@ -730,6 +747,7 @@ export function equals(a: Vec3, b: Vec3) {
 export const sub = subtract
 export const mul = multiply
 export const div = divide
+export const avg = average
 export const dist = distance
 export const len = length
 export const sqrDist = squaredDistance

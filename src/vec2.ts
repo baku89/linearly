@@ -235,6 +235,21 @@ export function scale(a: Vec2, s: number): Vec2 {
 }
 
 /**
+ * Returns the average value of the input(s)
+ * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+ */
+export function average(...vs: Vec2[]): Vec2 {
+	let x = 0,
+		y = 0
+	const scale = 1 / (vs.length || 1)
+	for (const v of vs) {
+		x += v[0]
+		y += v[1]
+	}
+	return [x / scale, y / scale]
+}
+
+/**
  Adds given vec2's after scaling the second operand by a scalar value
  */
 export function scaleAndAdd(a: Vec2, b: Vec2, scale: number): Vec2 {
@@ -545,6 +560,7 @@ export function inverseSqrt(v: Vec2): Vec2 {
 export const sub = subtract
 export const mul = multiply
 export const div = divide
+export const avg = average
 export const dist = distance
 export const len = length
 export const sqrDist = squaredDistance
