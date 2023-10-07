@@ -43,6 +43,14 @@ export function fract(a: number): number {
 	return a - floor(a)
 }
 
+/**
+ * Compute value of one parameter module another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
+ * @see https://thebookofshaders.com/glossary/?search=mod
+ */
+export function mod(a: number, b: number): number {
+	return a - b * floor(a / b)
+}
+
 export function quantize(s: number, step: number, offset = 0): number {
 	return Math.round((s - offset) / step) * step + offset
 }
