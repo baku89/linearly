@@ -40,6 +40,26 @@ export const zero: Vec4 = Object.freeze([0, 0, 0, 0])
 export const one: Vec4 = Object.freeze([1, 1, 1, 1])
 
 /**
+ * @category Constants
+ */
+export const xAxis: Vec4 = Object.freeze([1, 0, 0, 0])
+
+/**
+ * @category Constants
+ */
+export const yAxis: Vec4 = Object.freeze([0, 1, 0, 0])
+
+/**
+ * @category Constants
+ */
+export const zAxis: Vec4 = Object.freeze([0, 0, 1, 0])
+
+/**
+ * @category Constants
+ */
+export const wAxis: Vec4 = Object.freeze([0, 0, 0, 1])
+
+/**
  * Adds given vec4's
  */
 export function add(...vs: Vec4[]): Vec4 {
