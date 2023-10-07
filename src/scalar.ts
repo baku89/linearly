@@ -36,11 +36,19 @@ export const ceil = Math.ceil
 export const floor = Math.floor
 
 /**
+ * Removes the fractional part
+ * @see https://www.sidefx.com/docs/houdini/vex/functions/trunc.html
+ */
+export function trunc(v: number): number {
+	return v < 0 ? Math.ceil(v) : Math.floor(v)
+}
+
+/**
  * Computes the fractional part of the argument
  * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml
  */
-export function fract(a: number): number {
-	return a - floor(a)
+export function fract(v: number): number {
+	return v - floor(v)
 }
 
 /**
