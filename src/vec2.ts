@@ -368,9 +368,11 @@ export function rotate(a: Vec2, rad: number, origin: Vec2 = zero): Vec2 {
 }
 
 /**
- * Get the angle between two 2D vectors
+ * Get the angle between two 2D vectors. If the second argument is omitted, it returns a signed angle relative to x axis.
  */
-export function angle(a: Vec2, b: Vec2) {
+export function angle(a: Vec2, b?: Vec2) {
+	if (!b) return Math.atan2(a[1], a[0])
+
 	const [x1, y1] = a
 	const [x2, y2] = b
 	// mag is the product of the magnitudes of a and b
