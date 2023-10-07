@@ -165,6 +165,21 @@ export function fract(a: Vec4): Vec4 {
 	return sub(a, floor(a))
 }
 
+/**
+ * Compute value of one parameter module another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
+ * @see https://thebookofshaders.com/glossary/?search=mod
+ */
+export function mod(a: Vec4, b: Vec4 | number): Vec4 {
+	if (typeof b === 'number') b = [b, b, b, b]
+
+	return [
+		a[0] - b[0] * Math.floor(a[0] / b[0]),
+		a[1] - b[1] * Math.floor(a[1] / b[1]),
+		a[2] - b[2] * Math.floor(a[2] / b[2]),
+		a[3] - b[3] * Math.floor(a[3] / b[3]),
+	]
+}
+
 export function quantize(
 	v: Vec4,
 	step: Vec4 | number,
