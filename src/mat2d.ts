@@ -481,5 +481,10 @@ export function equals(a: Mat2d, b: Mat2d) {
 	)
 }
 
+/**
+ * Alias for {@link identity}
+ */
+export const ident = identity
+
 export const sub = subtract
 export const mul = multiply
