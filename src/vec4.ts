@@ -138,6 +138,30 @@ export function floor(a: Vec4): Vec4 {
 }
 
 /**
+ * Computes the fractional part of the argument
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml
+ */
+export function fract(a: Vec4): Vec4 {
+	return sub(a, floor(a))
+}
+
+export function quantize(
+	v: Vec4,
+	step: Vec4 | number,
+	offset: Vec4 | number = zero
+): Vec4 {
+	if (typeof step === 'number') step = [step, step, step, step]
+	if (typeof offset === 'number') offset = [offset, offset, offset, offset]
+
+	return [
+		Math.round((v[0] - offset[0]) / step[0]) * step[0] + offset[0],
+		Math.round((v[1] - offset[1]) / step[1]) * step[1] + offset[1],
+		Math.round((v[2] - offset[2]) / step[2]) * step[2] + offset[2],
+		Math.round((v[3] - offset[3]) / step[3]) * step[3] + offset[3],
+	]
+}
+
+/**
  * Returns the minimum of givenvec4's
  */
 export function min(...vs: Vec4[]): Vec4 {
@@ -323,14 +347,14 @@ export function cross(u: Vec4, v: Vec4, w: Vec4): Vec4 {
  * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
  * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
  */
-export function lerp(a: Vec4, b: Vec4, t: number): Vec4 {
-	const [ax, ay, az, aw] = a
+export function lerp(a: Vec4, b: Vec4, t: Vec4 | number): Vec4 {
+	if (typeof t === 'number') t = [t, t, t, t]
 
 	return [
-		ax + t * (b[0] - ax),
-		ay + t * (b[1] - ay),
-		az + t * (b[2] - az),
-		aw + t * (b[3] - aw),
+		a[0] + t[0] * (b[0] - a[0]),
+		a[1] + t[1] * (b[1] - a[1]),
+		a[2] + t[2] * (b[2] - a[2]),
+		a[3] + t[3] * (b[3] - a[3]),
 	]
 }
 
@@ -474,3 +498,5 @@ export const sqrDist = squaredDistance
 export const sqrLen = squaredLength
 export const mix = lerp
 export const invlerp = inverseLerp
+export const rad = radians
+export const deg = degrees
