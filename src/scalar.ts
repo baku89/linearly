@@ -1,29 +1,29 @@
 import * as Common from './common'
 
-export function add(...ss: number[]): number {
-	return ss.reduce((a, b) => a + b, 0)
+export function add(...vs: number[]): number {
+	return vs.reduce((a, b) => a + b, 0)
 }
 
-export function subtract(...ss: number[]): number {
-	if (ss.length === 0) {
+export function subtract(...vs: number[]): number {
+	if (vs.length === 0) {
 		return 0
-	} else if (ss.length === 1) {
-		return -ss[0]
+	} else if (vs.length === 1) {
+		return -vs[0]
 	}
-	return ss.reduce((a, b) => a - b)
+	return vs.reduce((a, b) => a - b)
 }
 
-export function multiply(...ss: number[]): number {
-	return ss.reduce((a, b) => a * b, 1)
+export function multiply(...vs: number[]): number {
+	return vs.reduce((a, b) => a * b, 1)
 }
 
-export function divide(...ss: number[]): number {
-	if (ss.length === 0) {
+export function divide(...vs: number[]): number {
+	if (vs.length === 0) {
 		return 1
-	} else if (ss.length === 1) {
-		return 1 / ss[0]
+	} else if (vs.length === 1) {
+		return 1 / vs[0]
 	}
-	return ss.reduce((a, b) => a / b)
+	return vs.reduce((a, b) => a / b)
 }
 
 /**
@@ -51,20 +51,27 @@ export function mod(a: number, b: number): number {
 	return a - b * floor(a / b)
 }
 
-export function quantize(s: number, step: number, offset = 0): number {
-	return Math.round((s - offset) / step) * step + offset
+export function quantize(v: number, step: number, offset = 0): number {
+	return Math.round((v - offset) / step) * step + offset
 }
 
 export const min = Math.min
 
 export const max = Math.max
 
-export function clamp(s: number, min: number, max: number): number {
-	return Math.max(min, Math.min(max, s))
+/**
+ * Constrain a value to lie between two further values
+ * @see https://thebookofshaders.com/glossary/?search=clamp
+ * @param v the value to constrain
+ * @param min the lower end of the range into which to constrain `s`
+ * @param max the upper end of the range into which to constrain `s`
+ */
+export function clamp(v: number, min: number, max: number): number {
+	return Math.max(min, Math.min(max, v))
 }
 
-export function scale(a: number, s: number): number {
-	return a * s
+export function scale(a: number, b: number): number {
+	return a * b
 }
 
 export function scaleAndAdd(a: number, b: number, s: number): number {
@@ -187,6 +194,56 @@ export function radians(deg: number): number {
 	return (deg * Math.PI) / 180
 }
 
+export const sin = Math.sin
+
+export const cos = Math.cos
+
+export const tan = Math.tan
+
+export const asin = Math.asin
+
+export const acos = Math.acos
+
+/**
+ * Returns the arc-tangent of the parameters.
+ * @see https://thebookofshaders.com/glossary/?search=atan
+ */
+export function atan(yOverX: number): number
+export function atan(y: number, x?: number): number {
+	if (x === undefined) {
+		return Math.atan(y)
+	} else {
+		return Math.atan2(y, x)
+	}
+}
+
+export const pow = Math.exp
+
+export const exp = Math.exp
+
+export const log = Math.log
+
+/**
+ * Returns 2 raised to the power of the parameter
+ * @param v the value of the powe to which 2 will be raised
+ */
+export function exp2(v: number): number {
+	return 2 ** v
+}
+
+export const log2 = Math.log2
+
+export const sqrt = Math.sqrt
+
+/**
+ * Returns the inverse of the square root of the parameter
+ * @param v the value of which to take the inverse of the square root
+ * @see https://thebookofshaders.com/glossary/?search=inversesqrt
+ */
+export function inverseSqrt(v: number) {
+	return 1 / Math.sqrt(v)
+}
+
 export function exactEquals(a: number, b: number): boolean {
 	return a === b
 }
@@ -208,3 +265,4 @@ export const mix = lerp
 export const invlerp = inverseLerp
 export const rad = radians
 export const deg = degrees
+export const invsqrt = inverseSqrt

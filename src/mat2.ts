@@ -129,9 +129,9 @@ export function rotate(a: Mat2, rad: number): Mat2 {
 /**
  * Scales the mat2 by the dimensions in the given vec2
  **/
-export function scale(a: Mat2, v: Vec2 | number): Mat2 {
+export function scale(a: Mat2, b: Vec2 | number): Mat2 {
 	const [a0, a1, a2, a3] = a
-	const [v0, v1] = typeof v === 'number' ? [v, v] : v
+	const [v0, v1] = typeof b === 'number' ? [b, b] : b
 
 	return [a0 * v0, a1 * v0, a2 * v1, a3 * v1]
 }
