@@ -233,16 +233,20 @@ export function max(...vs: Vec3[]): Vec3 {
 }
 
 /**
- *  Constrain a value to lie between two further values
+ * Constrain a value to lie between two further values
+ * @see https://thebookofshaders.com/glossary/?search=clamp
+ * @param v the value to constrain
+ * @param min the lower end of the range into which to constrain `v`
+ * @param max the upper end of the range into which to constrain `v`
  */
-export function clamp(a: Vec3, min: Vec3 | number, max: Vec3 | number): Vec3 {
+export function clamp(v: Vec3, min: Vec3 | number, max: Vec3 | number): Vec3 {
 	if (typeof min === 'number') min = [min, min, min]
 	if (typeof max === 'number') max = [max, max, max]
 
 	return [
-		Math.min(Math.max(a[0], min[0]), max[0]),
-		Math.min(Math.max(a[1], min[1]), max[1]),
-		Math.min(Math.max(a[2], min[2]), max[2]),
+		Math.min(Math.max(v[0], min[0]), max[0]),
+		Math.min(Math.max(v[1], min[1]), max[1]),
+		Math.min(Math.max(v[2], min[2]), max[2]),
 	]
 }
 
@@ -625,6 +629,80 @@ export function radians(deg: Vec3): Vec3 {
 	]
 }
 
+export function sin(v: Vec3): Vec3 {
+	return [Math.sin(v[0]), Math.sin(v[1]), Math.sin(v[2])]
+}
+
+export function cos(v: Vec3): Vec3 {
+	return [Math.cos(v[0]), Math.cos(v[1]), Math.cos(v[2])]
+}
+
+export function tan(v: Vec3): Vec3 {
+	return [Math.tan(v[0]), Math.tan(v[1]), Math.tan(v[2])]
+}
+
+export function asin(v: Vec3): Vec3 {
+	return [Math.asin(v[0]), Math.asin(v[1]), Math.asin(v[2])]
+}
+
+export function acos(v: Vec3): Vec3 {
+	return [Math.acos(v[0]), Math.acos(v[1]), Math.acos(v[2])]
+}
+
+/**
+ * Returns the arc-tangent of the parameters.
+ * @see https://thebookofshaders.com/glossary/?search=atan
+ */
+export function atan(yOverX: Vec3): Vec3
+export function atan(y: Vec3, x?: Vec3): Vec3 {
+	if (x === undefined) {
+		return [Math.atan(y[0]), Math.atan(y[1]), Math.atan(y[2])]
+	} else {
+		return [
+			Math.atan2(y[0], x[0]),
+			Math.atan2(y[1], x[1]),
+			Math.atan2(y[2], x[2]),
+		]
+	}
+}
+
+export function pow(a: Vec3, b: Vec3): Vec3 {
+	return [Math.pow(a[0], b[0]), Math.pow(a[1], b[1]), Math.pow(a[2], b[2])]
+}
+
+export function exp(v: Vec3): Vec3 {
+	return [Math.exp(v[0]), Math.exp(v[1]), Math.exp(v[2])]
+}
+
+export function log(v: Vec3): Vec3 {
+	return [Math.log(v[0]), Math.log(v[1]), Math.log(v[2])]
+}
+
+/**
+ * Returns 2 raised to the power of the parameter
+ * @param v the value of the powe to which 2 will be raised
+ */
+export function exp2(v: Vec3): Vec3 {
+	return [2 ** v[0], 2 ** v[1], 2 ** v[2]]
+}
+
+export function log2(v: Vec3): Vec3 {
+	return [Math.log2(v[0]), Math.log2(v[1]), Math.log2(v[2])]
+}
+
+export function sqrt(v: Vec3): Vec3 {
+	return [Math.sqrt(v[0]), Math.sqrt(v[1]), Math.sqrt(v[2])]
+}
+
+/**
+ * Returns the inverse of the square root of the parameter
+ * @param v the value of which to take the inverse of the square root
+ * @see https://thebookofshaders.com/glossary/?search=inversesqrt
+ */
+export function inverseSqrt(v: Vec3): Vec3 {
+	return [1 / Math.sqrt(v[0]), 1 / Math.sqrt(v[1]), 1 / Math.sqrt(v[2])]
+}
+
 /**
  * Returns whether or not the vectors have exactly the same elements in the same position (when compared with `===`)
  */
@@ -696,3 +774,4 @@ export const mix = lerp
 export const invlerp = inverseLerp
 export const rad = radians
 export const deg = degrees
+export const invsqrt = inverseSqrt

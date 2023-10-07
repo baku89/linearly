@@ -124,19 +124,6 @@ export function divide(...vs: Vec2[]): Vec2 {
 	return [a[0] / b[0], a[1] / b[1]]
 }
 
-/**
- * Hey!!
- * @param a Ceil
- * @returns
- */
-export function ceil(a: Vec2): Vec2 {
-	return [Math.ceil(a[0]), Math.ceil(a[1])]
-}
-
-export function floor(a: Vec2): Vec2 {
-	return [Math.floor(a[0]), Math.floor(a[1])]
-}
-
 export function min(...vs: Vec2[]): Vec2 {
 	if (vs.length === 0) {
 		return [Infinity, Infinity]
@@ -168,18 +155,19 @@ export function max(...vs: Vec2[]): Vec2 {
 }
 
 /**
- *  Constrain a value to lie between two further values
- * @param a Value to clamp
- * @param min Minimum value
- * @param max Maximum value
+ * Constrain a value to lie between two further values
+ * @see https://thebookofshaders.com/glossary/?search=clamp
+ * @param v the value to constrain
+ * @param min the lower end of the range into which to constrain `v`
+ * @param max the upper end of the range into which to constrain `v`
  */
-export function clamp(a: Vec2, min: Vec2 | number, max: Vec2 | number): Vec2 {
+export function clamp(v: Vec2, min: Vec2 | number, max: Vec2 | number): Vec2 {
 	if (typeof min === 'number') min = [min, min]
 	if (typeof max === 'number') max = [max, max]
 
 	return [
-		Math.min(Math.max(a[0], min[0]), max[0]),
-		Math.min(Math.max(a[1], min[1]), max[1]),
+		Math.min(Math.max(v[0], min[0]), max[0]),
+		Math.min(Math.max(v[1], min[1]), max[1]),
 	]
 }
 
@@ -475,6 +463,76 @@ export function radians(deg: Vec2): Vec2 {
 	return [(deg[0] * Math.PI) / 180, (deg[1] * Math.PI) / 180]
 }
 
+export function sin(v: Vec2): Vec2 {
+	return [Math.sin(v[0]), Math.sin(v[1])]
+}
+
+export function cos(v: Vec2): Vec2 {
+	return [Math.cos(v[0]), Math.cos(v[1])]
+}
+
+export function tan(v: Vec2): Vec2 {
+	return [Math.tan(v[0]), Math.tan(v[1])]
+}
+
+export function asin(v: Vec2): Vec2 {
+	return [Math.asin(v[0]), Math.asin(v[1])]
+}
+
+export function acos(v: Vec2): Vec2 {
+	return [Math.acos(v[0]), Math.acos(v[1])]
+}
+
+/**
+ * Returns the arc-tangent of the parameters.
+ * @see https://thebookofshaders.com/glossary/?search=atan
+ */
+export function atan(yOverX: Vec2): Vec2
+export function atan(y: Vec2, x?: Vec2): Vec2 {
+	if (x === undefined) {
+		return [Math.atan(y[0]), Math.atan(y[1])]
+	} else {
+		return [Math.atan2(y[0], x[0]), Math.atan2(y[1], x[1])]
+	}
+}
+
+export function pow(a: Vec2, b: Vec2): Vec2 {
+	return [Math.pow(a[0], b[0]), Math.pow(a[1], b[1])]
+}
+
+export function exp(v: Vec2): Vec2 {
+	return [Math.exp(v[0]), Math.exp(v[1])]
+}
+
+export function log(v: Vec2): Vec2 {
+	return [Math.log(v[0]), Math.log(v[1])]
+}
+
+/**
+ * Returns 2 raised to the power of the parameter
+ * @param v the value of the powe to which 2 will be raised
+ */
+export function exp2(v: Vec2): Vec2 {
+	return [2 ** v[0], 2 ** v[1]]
+}
+
+export function log2(v: Vec2): Vec2 {
+	return [Math.log2(v[0]), Math.log2(v[1])]
+}
+
+export function sqrt(v: Vec2): Vec2 {
+	return [Math.sqrt(v[0]), Math.sqrt(v[1])]
+}
+
+/**
+ * Returns the inverse of the square root of the parameter
+ * @param v the value of which to take the inverse of the square root
+ * @see https://thebookofshaders.com/glossary/?search=inversesqrt
+ */
+export function inverseSqrt(v: Vec2): Vec2 {
+	return [1 / Math.sqrt(v[0]), 1 / Math.sqrt(v[1])]
+}
+
 /**
  * Alias for {@link vec2.subtract}
  * @category Aliases
@@ -531,3 +589,4 @@ export const mix = lerp
 export const invlerp = inverseLerp
 export const rad = radians
 export const deg = degrees
+export const invsqrt = inverseSqrt
