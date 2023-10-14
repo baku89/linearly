@@ -1,5 +1,6 @@
 import * as Common from './common'
 import {Quat} from './quat'
+import * as vec3 from './vec3'
 import {Vec3} from './vec3'
 
 /**
@@ -435,6 +436,37 @@ export function rotateZ(a: Mat4, rad: number): Mat4 {
 }
 
 /**
+ * Creates a matrix from given axes and translation vector. If either axis is null, it will be calculated from the remaining axes while assuming the other axis is the cross product of the remaining axes. All of axes will not be normalized.
+ * @category Generators
+ */
+export function fromAxesTranslation(
+	xAxis: Vec3 | null,
+	yAxis: Vec3 | null,
+	zAxis: Vec3 | null = null,
+	trans: Vec3 = vec3.zero
+): Mat4 {
+	const [tx, ty, tz] = trans
+
+	if (!xAxis && yAxis && zAxis) {
+		xAxis = vec3.cross(yAxis, zAxis)
+	} else if (xAxis && !yAxis && zAxis) {
+		yAxis = vec3.cross(zAxis, xAxis)
+	} else if (xAxis && yAxis && !zAxis) {
+		zAxis = vec3.cross(xAxis, yAxis)
+	} else {
+		throw new Error('fromAxesTranslation: you must specify at least two axes')
+	}
+
+	// prettier-ignore
+	return [
+		xAxis[0], yAxis[0], zAxis[0], 0,
+		xAxis[1], yAxis[1], zAxis[1], 0,
+		xAxis[2], yAxis[2], zAxis[2], 0,
+		tx, ty, tz, 1,
+	]
+}
+
+/**
  * Creates a matrix from a vector translation
  * @category Generators
  */
@@ -750,7 +782,7 @@ export function decompose(mat: Mat4): DecomposedTRS {
 export function fromRotationTranslationScale(
 	rot: Quat,
 	trans: Vec3,
-	scale: Vec3
+	scale: Vec3 = vec3.one
 ): Mat4 {
 	// Quaternion math
 	const [x, y, z, w] = rot
@@ -813,8 +845,8 @@ export function fromRotationTranslationScale(
 export function fromRotationTranslationScaleOrigin(
 	rot: Quat,
 	trans: Vec3,
-	scale: Vec3,
-	origin: Vec3
+	scale: Vec3 = vec3.one,
+	origin: Vec3 = vec3.zero
 ) {
 	// Quaternion math
 	const [x, y, z, w] = rot
