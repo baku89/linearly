@@ -2,6 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/linearly.svg)](https://www.npmjs.com/package/linearly)
 ![CI Test Result](https://github.com/baku89/linearly/actions/workflows/ci.yml/badge.svg)
+![MIT License](https://img.shields.io/npm/l/linearly.svg)
 
 A Collection of utility functions that relates to linear algebra and graphics programming.
 
