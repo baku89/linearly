@@ -4,7 +4,7 @@
 ![CI Test Result](https://github.com/baku89/linearly/actions/workflows/ci.yml/badge.svg)
 ![MIT License](https://img.shields.io/npm/l/linearly.svg)
 
-A Collection of utility functions that relates to linear algebra and graphics programming.
+A collection of utility functions that relates to linear algebra and graphics programming.
 
 🍡 I'd be appreciate to receive PRs from anyone willing to help with tedious tasks like writing JSDoc, adding necessary functions, or writing tests.
 
@@ -12,8 +12,8 @@ This library is based on [glMatrix](https://github.com/toji/gl-matrix), but adop
 
 ### glMatrix
 
-```ts
-// In glMatrix, you have to manually pass an output vector by reference to reuse  vectors in efficient way.
+```js
+// In glMatrix, you have to manually pass an output vector by reference to reuse  vectors in an efficient way.
 const dir = vec3.fromValues(2, 1, 3)
 vec3.normalize(dir, dir)
 
@@ -46,12 +46,12 @@ The names of modules are derived from glMatrix.
 
 - `scalar`: A single number.
 - `mat2`: 2D linear transformation (rotation + scale + skew)
-- `mat2d`: 2D affine transformation, omitting redundant third rows which is always set to `[0, 0, 1]` (translation + rotation + scale + skew)
+- `mat2d`: 2D affine transformation, omitting redundant third rows, which is always set to `[0, 0, 1]` (translation + rotation + scale + skew)
 - `mat3`: 2D homogeneous transformation (translation + rotation + scale + skew + perspective)
 - `mat4`: 3D affine transformation
 - `quat`: 3D rotation
 
-See the [Full API documentation](https://baku89.github.io/linearly) for further informations.
+See the [Full API documentation](https://baku89.github.io/linearly) for further information.
 
 ## Development
 
