@@ -1,5 +1,6 @@
 import * as Common from './common'
 import type {Mat3} from './mat3'
+import * as mat4 from './mat4'
 import type {Vec3} from './vec3'
 import * as vec3 from './vec3'
 import * as vec4 from './vec4'
@@ -331,6 +332,11 @@ export function fromMat3(m: Mat3): Quat {
 
 	return out as any as Quat
 }
+
+/**
+ * Creates a quaternion from the given 4x4 affine matrix. The translation portion of the matrix is ignored. Same as mat4. Alias for {@link mat4.getRotation}.
+ */
+export const fromMat4 = mat4.getRotation
 
 /**
  * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
