@@ -357,26 +357,19 @@ export const fromMat4 = mat4.getRotation
 /**
  * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
  *
- * @param xDeg Angle to rotate around X axis in degrees.
- * @param yDeg Angle to rotate around Y axis in degrees.
- * @param zDeg Angle to rotate around Z axis in degrees.
+ * @param rads Angles to rotate around X, Y, Z axes in radians.
  * @param order Intrinsic order for conversion, default is zyx.
  * @category Generators
  */
-export function fromEuler(
-	xDeg: number,
-	yDeg: number,
-	zDeg: number,
-	order = Common.DEFAULT_ANGLE_ORDER
-) {
-	const halfToRad = Math.PI / 360
+export function fromEuler(rads: Vec3, order = Common.DEFAULT_ANGLE_ORDER) {
+	const [xRad, yRad, zRad] = rads
 
-	const sx = Math.sin(xDeg * halfToRad)
-	const cx = Math.cos(xDeg * halfToRad)
-	const sy = Math.sin(yDeg * halfToRad)
-	const cy = Math.cos(yDeg * halfToRad)
-	const sz = Math.sin(zDeg * halfToRad)
-	const cz = Math.cos(zDeg * halfToRad)
+	const sx = Math.sin(xRad)
+	const cx = Math.cos(xRad)
+	const sy = Math.sin(yRad)
+	const cy = Math.cos(yRad)
+	const sz = Math.sin(zRad)
+	const cz = Math.cos(zRad)
 
 	switch (order) {
 		case 'xyz':
