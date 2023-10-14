@@ -49,6 +49,24 @@ export const zero: Vec3 = Object.freeze([0, 0, 0])
 export const one: Vec3 = Object.freeze([1, 1, 1])
 
 /**
+ * An unit vector pointing towards positive Y. Same as `[1, 0, 0]`
+ * @category Constants
+ */
+export const unitX: Vec3 = Object.freeze([1, 0, 0])
+
+/**
+ * An unit vector pointing towards positive Y. Same as `[0, 1, 0]`
+ * @category Constants
+ */
+export const unitY: Vec3 = Object.freeze([0, 1, 0])
+
+/**
+ * An unit vector pointing towards positive Z. Same as `[0, 0, 1]`
+ * @category Constants
+ */
+export const unitZ: Vec3 = Object.freeze([0, 0, 1])
+
+/**
  * Adds given vec3's
  */
 export function add(...vs: Vec3[]): Vec3 {
