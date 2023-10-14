@@ -335,6 +335,21 @@ export const mix = lerp
  * @category Aliases
  */
 export const invlerp = inverseLerp
+
+/**
+ * Alias for {@link scalar.radians}
+ * @category Aliases
+ */
 export const rad = radians
+
+/**
+ * Alias for {@link scalar.degrees}
+ * @category Aliases
+ */
 export const deg = degrees
+
+/**
+ * Alias for {@link scalar.inverseSqrt}
+ * @category Aliases
+ */
 export const invsqrt = inverseSqrt

@@ -758,54 +758,79 @@ export function equals(a: Vec3, b: Vec3) {
 
 /**
  * Alias for {@link vec3.subtract}
+ * @category Aliases
  */
 export const sub = subtract
 
 /**
  * Alias for {@link vec3.multiply}
+ * @category Aliases
  */
 export const mul = multiply
 
 /**
  * Alias for {@link vec3.divide}
+ * @category Aliases
  */
 export const div = divide
 
 /**
  * Alias for {@link vec3.average}
+ * @category Aliases
  */
 export const avg = average
 
 /**
  * Alias for {@link vec3.distance}
+ * @category Aliases
  */
 export const dist = distance
 
 /**
  * Alias for {@link vec3.length}
+ * @category Aliases
  */
 export const len = length
 
 /**
  * Alias for {@link vec3.squaredDistance}
+ * @category Aliases
  */
 export const sqrDist = squaredDistance
 
 /**
  * Alias for {@link vec3.squaredLength}
+ * @category Aliases
  */
 export const sqrLen = squaredLength
 
 /**
  * Alias for {@link vec3.inverse}
  * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+ * @category Aliases
  */
 export const mix = lerp
 
 /**
  * Alias for {@link vec3.transformMat4}
+ * @category Aliases
  */
 export const invlerp = inverseLerp
+
+/**
+ * Alias for {@link vec3.radians}
+ * @category Aliases
+ */
 export const rad = radians
+
+/**
+ * Alias for {@link vec3.degrees}
+ * @category Aliases
+ */
 export const deg = degrees
+
+/**
+ * Alias for {@link vec3.inverseSqrt}
+ * @category Aliases
+ */
 export const invsqrt = inverseSqrt
