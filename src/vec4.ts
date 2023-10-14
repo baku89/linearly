@@ -3,8 +3,17 @@ import {Mat4} from './mat4'
 import {Quat} from './quat'
 import * as scalar from './scalar'
 
-export type Vec4 = Readonly<MutableVec4>
-export type MutableVec4 = [number, number, number, number]
+/**
+ * Represents 4D vector
+ * @category Types
+ */
+export type Vec4 = readonly [x: number, y: number, z: number, w: number]
+
+/**
+ * Mutable version of {@link Vec4}
+ * @category Types
+ */
+export type MutableVec4 = [x: number, y: number, z: number, w: number]
 
 /**
  * Creates a new vector from given elements

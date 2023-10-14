@@ -185,45 +185,55 @@ export function equals(a: number, b: number): boolean {
 
 /**
  * Alias for {@link scalar.subtract}
+ * @category Aliases
  */
 export const sub = subtract
 
 /**
  * Alias for {@link scalar.multiply}
+ * @category Aliases
  */
 export const mul = multiply
 
 /**
  * Alias for {@link scalar.divide}
+ * @category Aliases
  */
 export const div = divide
 
 /**
  * Alias for {@link scalar.distance}
+ * @category Aliases
  */
 export const dist = distance
 
 /**
  * Alias for {@link scalar.length}
+ * @category Aliases
  */
 export const len = length
 
 /**
  * Alias for {@link scalar.squaredDistance}
+ * @category Aliases
  */
 export const sqrDist = squaredDistance
 
 /**
  * Alias for {@link scalar.squaredLength}
+ * @category Aliases
  */
 export const sqrLen = squaredLength
 
 /**
  * Alias for {@link scalar.inverse}
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+ * @category Aliases
  */
 export const mix = lerp
 
 /**
  * Alias for {@link scalar.inverseLerp}
+ * @category Aliases
  */
 export const invlerp = inverseLerp

@@ -6,15 +6,31 @@ import * as vec3 from './vec3'
 import * as vec4 from './vec4'
 
 /**
- * Quaternion in the format XYZW
- * @module quat
+ * Represents rotation in 3D space with the quaternion format XYZW.
+ * @category Types
  */
+export type Quat = readonly [x: number, y: number, z: number, w: number]
 
-export type Quat = readonly [number, number, number, number]
-export type MutableQuat = [number, number, number, number]
+/**
+ * Mutable version of {@link Quat}
+ * @category Types
+ */
+export type MutableQuat = [x: number, y: number, z: number, w: number]
 
+/**
+ * Creates a new quaternion from given elements
+ * @category Generators
+ */
 export function of(x: number, y: number, z: number, w: number): Quat {
 	return [x, y, z, w]
+}
+
+/**
+ * Creates a mutable clone of given quat
+ * @category Generators
+ */
+export function clone(a: Quat): MutableQuat {
+	return [...a]
 }
 
 /**
@@ -437,12 +453,6 @@ export const dot: (a: Quat, b: Quat) => number = vec4.dot
 export const length = vec4.length
 
 /**
- * Alias for {@link quat.length}
- * @function
- */
-export const len = length
-
-/**
  * Calculates the squared length of a quat
  *
  * @param a vector to calculate squared length of
@@ -450,12 +460,6 @@ export const len = length
  * @function
  */
 export const squaredLength = vec4.squaredLength
-
-/**
- * Alias for {@link quat.squaredLength}
- * @function
- */
-export const sqrLen = squaredLength
 
 /**
  * Normalize a quat
@@ -559,5 +563,18 @@ export function setAxes(view: Vec3, right: Vec3, up: Vec3): Quat {
 
 /**
  * Alias for {@link quat.multiply}
+ * @category Aliases
  */
 export const mul = multiply
+
+/**
+ * Alias for {@link quat.squaredLength}
+ * @category Aliases
+ */
+export const sqrLen = squaredLength
+
+/**
+ * Alias for {@link quat.length}
+ * @category Aliases
+ */
+export const len = length

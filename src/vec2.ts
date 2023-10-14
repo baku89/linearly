@@ -7,13 +7,15 @@ import {Vec3} from './vec3'
 
 /**
  * Represents 2D vector
+ * @category Types
  */
-export type Vec2 = Readonly<MutableVec2>
+export type Vec2 = readonly [x: number, y: number]
 
 /**
  * Mutable version of {@link Vec2}
+ * @category Types
  */
-export type MutableVec2 = [number, number]
+export type MutableVec2 = [x: number, y: number]
 
 /**
  * Creates a new vector from given elements
@@ -112,6 +114,11 @@ export function divide(...vs: Vec2[]): Vec2 {
 	return [a[0] / b[0], a[1] / b[1]]
 }
 
+/**
+ * Hey!!
+ * @param a Ceil
+ * @returns
+ */
 export function ceil(a: Vec2): Vec2 {
 	return [Math.ceil(a[0]), Math.ceil(a[1])]
 }
@@ -347,12 +354,57 @@ export function radians(deg: Vec2): Vec2 {
 	return [(deg[0] * Math.PI) / 180, (deg[1] * Math.PI) / 180]
 }
 
+/**
+ * Alias for {@link vec2.subtract}
+ * @category Aliases
+ */
 export const sub = subtract
+
+/**
+ * Alias for {@link vec2.multiply}
+ * @category Aliases
+ */
 export const mul = multiply
+
+/**
+ * Alias for {@link vec2.divide}
+ * @category Aliases
+ */
 export const div = divide
+
+/**
+ * Alias for {@link vec2.distance}
+ * @category Aliases
+ */
 export const dist = distance
+
+/**
+ * Alias for {@link vec2.length}
+ * @category Aliases
+ */
 export const len = length
+
+/**
+ * Alias for {@link vec2.squaredEquals}
+ * @category Aliases
+ */
 export const sqrDist = squaredDistance
+
+/**
+ * Alias for {@link vec2.squaredLength}
+ * @category Aliases
+ */
 export const sqrLen = squaredLength
+
+/**
+ * Alias for {@link vec2.lerp}
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+ * @category Aliases
+ */
 export const mix = lerp
+
+/**
+ * Alias for {@link vec2.inverseLerp}
+ * @category Aliases
+ */
 export const invlerp = inverseLerp

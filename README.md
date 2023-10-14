@@ -5,13 +5,13 @@
 
 A Collection of utility functions that relates to linear algebra and graphics programming.
 
-This library is based on [glMatrix](https://github.com/toji/gl-matrix), but adopts immutable data structure.
-
 🍡 I'd be appreciate to receive PRs from anyone willing to help with tedious tasks like writing JSDoc, adding necessary functions, or writing tests.
+
+This library is based on [glMatrix](https://github.com/toji/gl-matrix), but adopts immutable data structure. So you don't need to specify a receiver matrix as the first argument.
 
 ### glMatrix
 
-```js
+```ts
 // In glMatrix, you have to manually pass an output vector by reference to reuse  vectors in efficient way.
 const dir = vec3.fromValues(2, 1, 3)
 vec3.normalize(dir, dir)
@@ -23,7 +23,7 @@ vec2.scale(out, out, 3)
 
 ### Linearly
 
-```js
+```ts
 // In linearly, you can simply write like this:
 import {mat2d, type Mat2d, vec3} from 'linearly'
 

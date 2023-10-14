@@ -2,14 +2,21 @@ import * as Common from './common'
 import {Vec2} from './vec2'
 
 /**
- * Represents 2D transformation exclude translation
+ * Represents 2D transformation exclude translation.
+ * The format is column-major as in WebGL, so the matrix looks like this:
+ * ```
+ * [xx, xy,
+ *  yx, yy]
+ * ```
+ * @category Types
  */
-export type Mat2 = Readonly<MutableMat2>
+export type Mat2 = readonly [m00: number, m01: number, m10: number, m11: number]
 
 /**
  * Mutable version of {@link Mat2}
+ * @category Types
  */
-export type MutableMat2 = [number, number, number, number]
+export type MutableMat2 = [m00: number, m01: number, m10: number, m11: number]
 
 /**
  * Creates a new matrix from given elements
@@ -29,6 +36,10 @@ export function clone(a: Mat2): MutableMat2 {
 
 /**
  * The identity matrix of mat2.
+ * ```
+ * [1, 0,
+ *  0, 1]
+ * ```
  * @category Constants
  */
 export const identity: Mat2 = Object.freeze([1, 0, 0, 1])
@@ -255,15 +266,18 @@ export function equals(a: Mat2, b: Mat2) {
 
 /**
  * Alias for {@link mat2.subtract}
+ * @category Aliases
  */
 export const sub = subtract
 
 /**
  * Alias for {@link mat2.multiply}
+ * @category Aliases
  */
 export const mul = multiply
 
 /**
  * Alias for {@link mat2.determinant}
+ * @category Aliases
  */
 export const det = determinant

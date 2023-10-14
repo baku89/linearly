@@ -4,8 +4,17 @@ import {Mat4} from './mat4'
 import {Quat} from './quat'
 import * as scalar from './scalar'
 
-export type Vec3 = Readonly<MutableVec3>
-export type MutableVec3 = [number, number, number]
+/**
+ * Represents 3D vector
+ * @category Types
+ */
+export type Vec3 = readonly [x: number, y: number, z: number]
+
+/**
+ * Mutable version of {@link Vec3}
+ * @category Types
+ */
+export type MutableVec3 = [x: number, y: number, z: number]
 
 /**
  * Creates a new vector from given elements
@@ -613,6 +622,7 @@ export const sqrLen = squaredLength
 
 /**
  * Alias for {@link vec3.inverse}
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
  */
 export const mix = lerp
 

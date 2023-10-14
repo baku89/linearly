@@ -5,26 +5,42 @@ import type {Vec2} from './vec2'
 import * as vec2 from './vec2'
 
 /**
- * 2x3 Matrix
- * @module mat2d
- * @description
+ * Represents 2D affine transformation (translation, rotation, scaling, skewing), omitting reduction thrid row which is always set to `[0, 0, 1]`. The order of six elements is the same as CSS transform matrix.
+ *
  * A mat2d contains six elements defined as:
- * <pre>
+ * ```
  * [a, b,
  *  c, d,
  *  tx, ty]
- * </pre>
- * This is a short form for the 3x3 matrix:
- * <pre>
- * [a, b, 0,
- *  c, d, 0,
+ * ```
+ * This is a short form for the {@link Mat3}:
+ * ```
+ * [xx, xy, 0,
+ *  yx, yy, 0,
  *  tx, ty, 1]
- * </pre>
+ * ```
  * The last column is ignored so the array is shorter and operations are faster.
+ *
+ * @category Types
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
  */
+// prettier-ignore
+export type Mat2d = readonly [
+	a: number, b: number,
+	c: number, d: number,
+	tx: number, ty: number
+]
 
-export type Mat2d = readonly [number, number, number, number, number, number]
-export type MutableMat2d = [number, number, number, number, number, number]
+/**
+ * Mutable version of {@link Mat2d}
+ * @category Types
+ */
+// prettier-ignore
+export type MutableMat2d = [
+	a: number, b: number,
+	c: number, d: number,
+	tx: number, ty: number
+]
 
 /**
  * Creates a new matrix from given elements
@@ -40,7 +56,20 @@ export function of(
 }
 
 /**
+ * Creates a mutable clone of given mat2d
+ * @category Generators
+ */
+export function clone(a: Mat2d): MutableMat2d {
+	return [...a]
+}
+
+/**
  * The identity matrix of mat2d
+ * ```
+ * [1, 0,
+ *  0, 1,
+ *  0, 0]
+ * ```
  * @category Constants
  */
 // prettier-ignore
@@ -483,15 +512,18 @@ export function equals(a: Mat2d, b: Mat2d) {
 
 /**
  * Alias for {@link mat2d.subtract}
+ * @category Aliases
  */
 export const sub = subtract
 
 /**
  * Alias for {@link mat2d.multiply}
+ * @category Aliases
  */
 export const mul = multiply
 
 /**
  * Alias for {@link mat2d.determinant}
+ * @category Aliases
  */
 export const det = determinant

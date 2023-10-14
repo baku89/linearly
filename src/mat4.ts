@@ -4,11 +4,21 @@ import * as vec3 from './vec3'
 import {Vec3} from './vec3'
 
 /**
- * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
+ * 4x4 Matrix representing 3D affine transformation. The format is column-major, when typed out it looks like row-major. The matrices are being post multiplied.
+ * ```
+ * [xx, xy, xz, 0,
+ *  yx, yy, yz, 0,
+ *  zx, zy, zz, 0,
+ *  tx, ty, tz, 1]
+ * ```
+ * @category Types
  */
-
 export type Mat4 = Readonly<MutableMat4>
 
+/**
+ * Mutable version of {@link Mat4}
+ * @category Types
+ */
 // prettier-ignore
 export type MutableMat4 = [
 	number, number, number, number,
@@ -38,7 +48,21 @@ export function of(
 }
 
 /**
+ * Creates a mutable clone of given mat4
+ * @category Generators
+ */
+export function clone(a: Mat4): MutableMat4 {
+	return [...a]
+}
+
+/**
  * The identity matrix of mat4
+ * ```
+ * [1, 0, 0, 0,
+ *  0, 1, 0, 0,
+ *  0, 0, 1, 0,
+ *  0, 0, 0, 1]
+ * ```
  * @category Constants
  */
 // prettier-ignore
@@ -1557,15 +1581,18 @@ export function equals(a: Mat4, b: Mat4) {
 
 /**
  * Alias for {@link mat4.subtract}
+ * @category Aliases
  */
 export const sub = subtract
 
 /**
  * Alias for {@link mat4.multiply}
+ * @category Aliases
  */
 export const mul = multiply
 
 /**
  * Alias for {@link mat4.determinant}
+ * @category Aliases
  */
 export const det = determinant

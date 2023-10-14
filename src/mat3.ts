@@ -5,15 +5,31 @@ import {Vec2} from './vec2'
 import {Vec3} from './vec3'
 
 /**
- * Represents 2D affine transformation
+ * Represents 2D affine transformation.
+ * The format is column-major as in WebGL, so the matrix looks like this:
+ * ```
+ * [xx, xy, 0
+ *  yx, yy, 0
+ *  tx, ty, 1]
+ * ```
+ * @category Types
  */
-export type Mat3 = Readonly<MutableMat3>
+// prettier-ignore
+export type Mat3 = readonly [
+	m00: number, m01: number, m02: number,
+	m10: number, m11: number, m12: number,
+	m20: number, m21: number, m22: number,
+]
 
+/**
+ * Mutable version of {@link Mat3}
+ * @category Types
+ */
 // prettier-ignore
 export type MutableMat3 = [
-	number, number, number,
-	number, number, number,
-	number, number, number,
+	m00: number, m01: number, m02: number,
+	m10: number, m11: number, m12: number,
+	m20: number, m21: number, m22: number,
 ]
 
 /**
@@ -57,6 +73,11 @@ export function fromMat4(a: Mat4): Mat3 {
 
 /**
  * The identity matrix of mat3
+ * ```
+ * [1, 0, 0,
+ *  0, 1, 0,
+ *  0, 0, 1]
+ * ```
  * @category Constants
  */
 // prettier-ignore
@@ -583,15 +604,18 @@ export function equals(a: Mat3, b: Mat3) {
 
 /**
  * Alias for {@link mat3.subtract}
+ * @category Aliases
  */
 export const sub = subtract
 
 /**
  * Alias for {@link mat3.multiply}
+ * @category Aliases
  */
 export const mul = multiply
 
 /**
  * Alias for {@link mat3.determinant}
+ * @category Aliases
  */
 export const det = determinant
