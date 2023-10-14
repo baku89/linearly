@@ -44,16 +44,14 @@ export const zero: Vec2 = Object.freeze([0, 0])
 export const one: Vec2 = Object.freeze([1, 1])
 
 /**
- * An unit vector pointing towards positive Y. Same as `[1, 0]`
  * @category Constants
  */
-export const unitX: Vec2 = Object.freeze([1, 0])
+export const xAxis: Vec2 = Object.freeze([1, 0])
 
 /**
- * An unit vector pointing towards positive Y. Same as `[0, 1]`
  * @category Constants
  */
-export const unitY: Vec2 = Object.freeze([0, 1])
+export const yAxis: Vec2 = Object.freeze([0, 1])
 
 /**
  */
@@ -373,7 +371,7 @@ export function transformMat3(a: Vec2, m: Mat3): Vec2 {
 /**
  * Rotate a 2D vector
  */
-export function rotate(a: Vec2, rad: number, origin: Vec2 = [0, 0]): Vec2 {
+export function rotate(a: Vec2, rad: number, origin: Vec2 = zero): Vec2 {
 	// Translate point to the origin
 	const p0 = a[0] - origin[0],
 		p1 = a[1] - origin[1],
