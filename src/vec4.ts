@@ -465,12 +465,48 @@ export function equals(a: Vec4, b: Vec4) {
 	)
 }
 
+/**
+ * Alias for {@link vec4.subtract}
+ */
 export const sub = subtract
+
+/**
+ * Alias for {@link vec4.multiply}
+ */
 export const mul = multiply
+
+/**
+ * Alias for {@link vec4.divide}
+ */
 export const div = divide
+
+/**
+ * Alias for {@link vec4.distance}
+ */
 export const dist = distance
+
+/**
+ * Alias for {@link vec4.length}
+ */
 export const len = length
+
+/**
+ * Alias for {@link vec4.squaredDistance}
+ */
 export const sqrDist = squaredDistance
+
+/**
+ * Alias for {@link vec4.squaredLength}
+ */
 export const sqrLen = squaredLength
+
+/**
+ * Alias for {@link vec4.mix}
+ * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+ */
 export const mix = lerp
+
+/**
+ * Alias for {@link vec4.inverseLerp}
+ */
 export const invlerp = inverseLerp

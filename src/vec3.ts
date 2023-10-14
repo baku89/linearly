@@ -576,12 +576,47 @@ export function equals(a: Vec3, b: Vec3) {
 	)
 }
 
+/**
+ * Alias for {@link vec3.subtract}
+ */
 export const sub = subtract
+
+/**
+ * Alias for {@link vec3.multiply}
+ */
 export const mul = multiply
+
+/**
+ * Alias for {@link vec3.divide}
+ */
 export const div = divide
+
+/**
+ * Alias for {@link vec3.distance}
+ */
 export const dist = distance
+
+/**
+ * Alias for {@link vec3.length}
+ */
 export const len = length
+
+/**
+ * Alias for {@link vec3.squaredDistance}
+ */
 export const sqrDist = squaredDistance
+
+/**
+ * Alias for {@link vec3.squaredLength}
+ */
 export const sqrLen = squaredLength
+
+/**
+ * Alias for {@link vec3.inverse}
+ */
 export const mix = lerp
+
+/**
+ * Alias for {@link vec3.transformMat4}
+ */
 export const invlerp = inverseLerp

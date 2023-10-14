@@ -254,11 +254,16 @@ export function equals(a: Mat2, b: Mat2) {
 }
 
 /**
- * Alias for {@link subtract}
+ * Alias for {@link mat2.subtract}
  */
 export const sub = subtract
 
 /**
- * Alias for {@link multiply}
+ * Alias for {@link mat2.multiply}
  */
 export const mul = multiply
+
+/**
+ * Alias for {@link mat2.determinant}
+ */
+export const det = determinant

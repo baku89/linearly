@@ -1523,5 +1523,17 @@ export function equals(a: Mat4, b: Mat4) {
 	)
 }
 
+/**
+ * Alias for {@link mat4.subtract}
+ */
 export const sub = subtract
+
+/**
+ * Alias for {@link mat4.multiply}
+ */
 export const mul = multiply
+
+/**
+ * Alias for {@link mat4.determinant}
+ */
+export const det = determinant

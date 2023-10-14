@@ -183,12 +183,47 @@ export function equals(a: number, b: number): boolean {
 	)
 }
 
+/**
+ * Alias for {@link scalar.subtract}
+ */
 export const sub = subtract
+
+/**
+ * Alias for {@link scalar.multiply}
+ */
 export const mul = multiply
+
+/**
+ * Alias for {@link scalar.divide}
+ */
 export const div = divide
+
+/**
+ * Alias for {@link scalar.distance}
+ */
 export const dist = distance
+
+/**
+ * Alias for {@link scalar.length}
+ */
 export const len = length
+
+/**
+ * Alias for {@link scalar.squaredDistance}
+ */
 export const sqrDist = squaredDistance
+
+/**
+ * Alias for {@link scalar.squaredLength}
+ */
 export const sqrLen = squaredLength
+
+/**
+ * Alias for {@link scalar.inverse}
+ */
 export const mix = lerp
+
+/**
+ * Alias for {@link scalar.inverseLerp}
+ */
 export const invlerp = inverseLerp
