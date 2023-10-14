@@ -43,6 +43,7 @@ In addition to functions that can be found on [glMatrix docs](https://glmatrix.n
 
 The names of modules are derived from glMatrix.
 
+- `scalar`: A single number.
 - `mat2`: 2D linear transformation (rotation + scale + skew)
 - `mat2d`: 2D affine transformation, omitting redundant third rows which is always set to `[0, 0, 1]` (translation + rotation + scale + skew)
 - `mat3`: 2D homogeneous transformation (translation + rotation + scale + skew + perspective)
