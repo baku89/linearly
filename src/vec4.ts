@@ -704,6 +704,11 @@ export const sqrDist = squaredDistance
 export const sqrLen = squaredLength
 
 /**
+ * Alias for {@link vec4.negate}
+ */
+export const neg = negate
+
+/**
  * Alias for {@link vec4.mix}
  * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
  */
