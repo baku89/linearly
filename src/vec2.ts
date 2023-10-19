@@ -288,6 +288,13 @@ export function inverse(v: Vec2): Vec2 {
 	return [1 / v[0], 1 / v[1]]
 }
 
+/**
+ * Returns the result of `v` subtracted from {@link vec2.one}.
+ */
+export function oneMinus(v: Vec2): Vec2 {
+	return subtract(one, v)
+}
+
 export function normalize(v: Vec2): Vec2 {
 	const hyp = v[0] ** 2 + v[1] ** 2
 	const len = hyp === 0 ? 0 : 1 / Math.sqrt(hyp)

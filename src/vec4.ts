@@ -394,6 +394,13 @@ export function inverse(a: Vec4): Vec4 {
 }
 
 /**
+ * Returns the result of `v` subtracted from {@link vec4.one}.
+ */
+export function oneMinus(v: Vec4): Vec4 {
+	return subtract(one, v)
+}
+
+/**
  * Normalize a vec4
  */
 export function normalize(a: Vec4): Vec4 {

@@ -121,6 +121,13 @@ export function inverse(a: number): number {
 	return 1 / a
 }
 
+/**
+ * Returns the result of `1 - a`.
+ */
+export function oneMinus(a: number): number {
+	return 1 - a
+}
+
 export const normalize = Math.sign
 
 /**
