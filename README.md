@@ -26,14 +26,14 @@ vec2.scale(out, out, 3)
 
 ```ts
 // In linearly, you can simply write like this:
-import {mat2d, type Mat2d, vec3} from 'linearly'
+import {mat2d, vec3} from 'linearly'
 
 const dir = vec3.normalize([2, 1, 3])
 let out = vec3.cross(dir, [0, 1, 0])
 out = vec3.scale(out, 3)
 
 // As the values of Linearly are plain 1D arrays, you can initialize a vector by either way.
-const a: Vec2 = [1, 2]
+const a: vec2 = [1, 2]
 const b = vec2.of(1, 2)
 
 // But since vector and matrix are immutable and annotated with readonly flags, a mutation such as below are handled as an error in TypeScript.
@@ -42,7 +42,7 @@ a[0] = 3
 // Cannot assign to '0' because it is a read-only property.
 
 // Some constants such as mat2.identity are also readonly and defined as frozen array (applied Object.freeze). You can use `clone` to mutate them.
-const m: Mat2d = mat2d.clone(mat2d.ident)
+const m = mat2d.clone(mat2d.ident)
 m[4] *= 2.0
 m[5] = -4.5
 ```
@@ -58,10 +58,10 @@ In addition to functions that can be found on [glMatrix docs](https://glmatrix.n
 The names of modules are derived from glMatrix.
 
 - `scalar`: A single number
-- `mat2`: 2D linear transformation (rotation + scale + skew)
-- `mat2d`: 2D affine transformation, omitting redundant third rows, which is always set to `[0, 0, 1]` (translation + rotation + scale + skew)
-- `mat3`: 2D homogeneous transformation (translation + rotation + scale + skew + perspective)
-- `mat4`: 3D affine transformation
+- `mat2`: 2D linear transformation (rotation, scaling, skewing)
+- `mat2d`: 2D affine transformation, omitting redundant third rows, which is always set to `[0, 0, 1]` (translation, rotation, scaling, skewing)
+- `mat3`: 2D affine transformation (translation, rotation, scaling, skewing)
+- `mat4`: 3D transformation
 - `quat`: 3D rotation
 
 See the [Full API documentation](https://baku89.github.io/linearly) for further information.

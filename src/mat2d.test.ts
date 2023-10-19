@@ -1,6 +1,5 @@
 import {EPSILON} from './common'
-import type {Mat2d} from './mat2d'
-import * as mat2d from './mat2d'
+import {mat2d} from './mat2d'
 
 function areMat2dEqual(a: unknown, b: unknown) {
 	if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
@@ -21,8 +20,8 @@ function areMat2dEqual(a: unknown, b: unknown) {
 
 ;(expect as any).addEqualityTesters([areMat2dEqual])
 
-const matA: Mat2d = [1, 2, 3, 4, 5, 6]
-const matB: Mat2d = [7, 8, 9, 10, 11, 12]
+const matA: mat2d = [1, 2, 3, 4, 5, 6]
+const matB: mat2d = [7, 8, 9, 10, 11, 12]
 
 describe('invert', () => {
 	expect(mat2d.invert(matA)).toEqual([-2, 1, 1.5, -0.5, 1, -2])
@@ -83,9 +82,9 @@ describe('multiplyScalarAndAdd', () => {
 })
 
 describe('exactEquals', () => {
-	const matA: Mat2d = [0, 1, 2, 3, 4, 5]
-	const matB: Mat2d = [0, 1, 2, 3, 4, 5]
-	const matC: Mat2d = [1, 2, 3, 4, 5, 6]
+	const matA: mat2d = [0, 1, 2, 3, 4, 5]
+	const matB: mat2d = [0, 1, 2, 3, 4, 5]
+	const matC: mat2d = [1, 2, 3, 4, 5, 6]
 
 	it('should return true for identical matrices', () => {
 		expect(mat2d.exactEquals(matA, matB)).toBe(true)
@@ -96,10 +95,10 @@ describe('exactEquals', () => {
 })
 
 describe('equals', () => {
-	const matA: Mat2d = [0, 1, 2, 3, 4, 5]
-	const matB: Mat2d = [0, 1, 2, 3, 4, 5]
-	const matC: Mat2d = [1, 2, 3, 4, 5, 6]
-	const matD: Mat2d = [1e-16, 1, 2, 3, 4, 5]
+	const matA: mat2d = [0, 1, 2, 3, 4, 5]
+	const matB: mat2d = [0, 1, 2, 3, 4, 5]
+	const matC: mat2d = [1, 2, 3, 4, 5, 6]
+	const matD: mat2d = [1e-16, 1, 2, 3, 4, 5]
 
 	it('should return true for identical matrices', () => {
 		expect(mat2d.equals(matA, matB)).toBe(true)

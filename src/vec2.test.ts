@@ -1,5 +1,5 @@
 import {EPSILON} from './common'
-import * as vec2 from './vec2'
+import {vec2} from './vec2'
 
 function areVec2Equal(a: unknown, b: unknown) {
 	if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {

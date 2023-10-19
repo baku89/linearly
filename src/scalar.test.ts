@@ -1,5 +1,5 @@
 import {EPSILON} from './common'
-import * as scalar from './scalar'
+import {scalar} from './scalar'
 
 test('add', () => {
 	expect(scalar.add()).toStrictEqual(0)

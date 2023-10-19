@@ -1,5 +1,5 @@
 import {EPSILON} from './common'
-import * as vec3 from './vec3'
+import {vec3} from './vec3'
 
 // https://github.com/stackgl/gl-vec3/blob/master/test/index.js
 

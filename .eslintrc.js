@@ -28,5 +28,6 @@ module.exports = {
 		'@typescript-eslint/no-explicit-any': 'off',
 		'simple-import-sort/imports': 'error',
 		'unused-imports/no-unused-imports-ts': 'error',
+		'@typescript-eslint/no-namespace': 'off',
 	},
 }
