@@ -477,14 +477,18 @@ export namespace mat4 {
 	): mat4 {
 		const [tx, ty, tz] = trans
 
-		if (!xAxis && yAxis && zAxis) {
-			xAxis = vec3.cross(yAxis, zAxis)
-		} else if (xAxis && !yAxis && zAxis) {
-			yAxis = vec3.cross(zAxis, xAxis)
-		} else if (xAxis && yAxis && !zAxis) {
-			zAxis = vec3.cross(xAxis, yAxis)
-		} else {
-			throw new Error('fromAxesTranslation: you must specify at least two axes')
+		if (!xAxis || !yAxis || !zAxis) {
+			if (!xAxis && yAxis && zAxis) {
+				xAxis = vec3.cross(yAxis, zAxis)
+			} else if (xAxis && !yAxis && zAxis) {
+				yAxis = vec3.cross(zAxis, xAxis)
+			} else if (xAxis && yAxis && !zAxis) {
+				zAxis = vec3.cross(xAxis, yAxis)
+			} else {
+				throw new Error(
+					'fromAxesTranslation: you must specify at least two axes'
+				)
+			}
 		}
 
 		// prettier-ignore
