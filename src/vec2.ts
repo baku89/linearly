@@ -44,14 +44,16 @@ export const zero: Vec2 = Object.freeze([0, 0])
 export const one: Vec2 = Object.freeze([1, 1])
 
 /**
+ * An unit vector pointing toward positiove X. Same as `[1, 0]`
  * @category Constants
  */
-export const xAxis: Vec2 = Object.freeze([1, 0])
+export const unitX: Vec2 = Object.freeze([1, 0])
 
 /**
+ * An unit vector pointing toward positiove Y. Same as `[0, 1]`
  * @category Constants
  */
-export const yAxis: Vec2 = Object.freeze([0, 1])
+export const unitY: Vec2 = Object.freeze([0, 1])
 
 /**
  */
