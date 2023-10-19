@@ -320,7 +320,7 @@ export function fromMat3(m: Mat3): Quat {
 	// article "Quaternion Calculus and Fast Animation".
 	const fTrace = m[0] + m[4] + m[8]
 	let fRoot
-	const out = [0, 0, 0, 0]
+	const out: MutableQuat = [0, 0, 0, 0]
 
 	if (fTrace > 0) {
 		// |w| > 1/2, may as well choose w > 1/2
@@ -346,7 +346,7 @@ export function fromMat3(m: Mat3): Quat {
 		out[k] = (m[k * 3 + i] + m[i * 3 + k]) * fRoot
 	}
 
-	return out as any as Quat
+	return out
 }
 
 /**

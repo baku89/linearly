@@ -239,7 +239,7 @@ export function multiply(...ms: Mat4[]): Mat4 {
 		a20, a21, a22, a23,
 		a30, a31, a32, a33] = a
 
-	const out = Array(16)
+	const out = Array(16) as MutableMat4
 
 	// Cache only the current line of the second matrix
 	let [b0, b1, b2, b3] = b
@@ -276,7 +276,7 @@ export function multiply(...ms: Mat4[]): Mat4 {
 	out[14] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32
 	out[15] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33
 
-	return out as any
+	return out
 }
 
 /**
