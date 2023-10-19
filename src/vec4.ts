@@ -152,6 +152,18 @@ export function divide(...vs: Vec4[]): Vec4 {
 }
 
 /**
+ * symmetric round the components of a vec4
+ */
+export function round(a: Vec4): Vec4 {
+	return [
+		Common.round(a[0]),
+		Common.round(a[1]),
+		Common.round(a[2]),
+		Common.round(a[3]),
+	]
+}
+
+/**
  * Math.ceil the components of a vec4
  */
 export function ceil(a: Vec4): Vec4 {
@@ -283,18 +295,6 @@ export function clamp(a: Vec4, min: Vec4 | number, max: Vec4 | number): Vec4 {
 		Math.min(Math.max(a[1], min[1]), max[1]),
 		Math.min(Math.max(a[2], min[2]), max[2]),
 		Math.min(Math.max(a[3], min[3]), max[3]),
-	]
-}
-
-/**
- * symmetric round the components of a vec4
- */
-export function round(a: Vec4): Vec4 {
-	return [
-		Common.round(a[0]),
-		Common.round(a[1]),
-		Common.round(a[2]),
-		Common.round(a[3]),
 	]
 }
 

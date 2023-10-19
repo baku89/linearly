@@ -234,6 +234,12 @@ export function quantize(
 	]
 }
 
+/**
+ * Scales a vec2 by a scalar number
+ *
+ * @param a the vector to scale
+ * @param s amount to scale the vector by
+ */
 export function scale(a: Vec2, s: number): Vec2 {
 	return [a[0] * s, a[1] * s]
 }
@@ -260,30 +266,48 @@ export function scaleAndAdd(a: Vec2, b: Vec2, scale: number): Vec2 {
 	return [a[0] + b[0] * scale, a[1] + b[1] * scale]
 }
 
+/**
+ * Calculates the euclidian distance between two vec2's
+ */
 export function distance(a: Vec2, b: Vec2) {
 	const x = b[0] - a[0],
 		y = b[1] - a[1]
 	return Math.sqrt(x * x + y * y)
 }
 
+/**
+ * Calculates the squared euclidian distance between two vec2's
+ */
 export function squaredDistance(a: Vec2, b: Vec2) {
 	const x = b[0] - a[0],
 		y = b[1] - a[1]
 	return x * x + y * y
 }
 
+/**
+ * Calculates the length of a vec2
+ */
 export function length(v: Vec2) {
 	return Math.sqrt(v[0] ** 2 + v[1] ** 2)
 }
 
+/**
+ * Calculates the squared length of a vec2
+ */
 export function squaredLength(v: Vec2) {
 	return v[0] ** 2 + v[1] ** 2
 }
 
+/**
+ * Negates the components of a vec2
+ */
 export function negate(v: Vec2): Vec2 {
 	return [-v[0], -v[1]]
 }
 
+/**
+ * Returns the inverse of the components of a vec2
+ */
 export function inverse(v: Vec2): Vec2 {
 	return [1 / v[0], 1 / v[1]]
 }
