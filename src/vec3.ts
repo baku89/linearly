@@ -49,7 +49,7 @@ export const zero: Vec3 = Object.freeze([0, 0, 0])
 export const one: Vec3 = Object.freeze([1, 1, 1])
 
 /**
- * An unit vector pointing towards positive Y. Same as `[1, 0, 0]`
+ * An unit vector pointing towards positive X. Same as `[1, 0, 0]`
  * @category Constants
  */
 export const unitX: Vec3 = Object.freeze([1, 0, 0])
