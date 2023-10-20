@@ -255,12 +255,12 @@ export namespace vec2 {
 	export function average(...vs: vec2[]): vec2 {
 		let x = 0,
 			y = 0
-		const scale = 1 / (vs.length || 1)
+		const len = vs.length || 1
 		for (const v of vs) {
 			x += v[0]
 			y += v[1]
 		}
-		return [x / scale, y / scale]
+		return [x / len, y / len]
 	}
 
 	/**

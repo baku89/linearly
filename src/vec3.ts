@@ -287,13 +287,13 @@ export namespace vec3 {
 		let x = 0,
 			y = 0,
 			z = 0
-		const scale = 1 / (vs.length || 1)
+		const len = vs.length || 1
 		for (const v of vs) {
 			x += v[0]
 			y += v[1]
 			z += v[2]
 		}
-		return [x / scale, y / scale, z / scale]
+		return [x / len, y / len, z / len]
 	}
 
 	/**
