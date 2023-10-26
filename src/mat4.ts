@@ -475,8 +475,6 @@ export namespace mat4 {
 		zAxis: vec3 | null = null,
 		trans: vec3 = vec3.zero
 	): mat4 {
-		const [tx, ty, tz] = trans
-
 		if (!xAxis || !yAxis || !zAxis) {
 			if (!xAxis && yAxis && zAxis) {
 				xAxis = vec3.cross(yAxis, zAxis)
@@ -493,10 +491,10 @@ export namespace mat4 {
 
 		// prettier-ignore
 		return [
-			xAxis[0], yAxis[0], zAxis[0], 0,
-			xAxis[1], yAxis[1], zAxis[1], 0,
-			xAxis[2], yAxis[2], zAxis[2], 0,
-			tx, ty, tz, 1,
+			xAxis[0], xAxis[1], xAxis[2], 0,
+			yAxis[0], yAxis[1], yAxis[2], 0,
+			zAxis[0], zAxis[1], zAxis[2], 0,
+			trans[0], trans[1], trans[2], 1,
 		]
 	}
 
