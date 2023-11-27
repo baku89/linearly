@@ -604,7 +604,10 @@ export namespace vec2 {
 	 * @param v vector to represent as a string
 	 * @param fractionDigits number of digits to appear after the decimal point
 	 */
-	export const toString = Common.vecToString
+	export const toString = Common.vecToString as (
+		v: vec2,
+		fractionDigits?: number
+	) => string
 
 	/**
 	 * Alias for {@link vec2.subtract}

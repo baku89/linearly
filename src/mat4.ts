@@ -1588,6 +1588,16 @@ export namespace mat4 {
 	}
 
 	/**
+	 * Returns a string representation of a mat4
+	 * @param m matrix to represent as a string
+	 * @param fractionDigits number of digits to appear after the decimal point
+	 */
+	export const toString = Common.createMatToStringFunction(4, 4) as (
+		m: mat4,
+		fractionDigits?: number
+	) => string
+
+	/**
 	 * Alias for {@link identity}
 	 * @category Aliases
 	 */

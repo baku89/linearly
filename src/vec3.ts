@@ -768,11 +768,14 @@ export namespace vec3 {
 	}
 
 	/**
-	 * Returns the string representation of a vec2
+	 * Returns the string representation of a vec3
 	 * @param v vector to represent as a string
 	 * @param fractionDigits number of digits to appear after the decimal point
 	 */
-	export const toString = Common.vecToString
+	export const toString = Common.vecToString as (
+		v: vec3,
+		fractionDigits?: number
+	) => string
 
 	/**
 	 * Alias for {@link vec3.subtract}

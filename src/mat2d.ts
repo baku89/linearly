@@ -519,6 +519,16 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Returns a string representation of a mat2d
+	 * @param m matrix to represent as a string
+	 * @param fractionDigits number of digits to appear after the decimal point
+	 */
+	export const toString = Common.createMatToStringFunction(2, 3) as (
+		m: mat2d,
+		fractionDigits?: number
+	) => string
+
+	/**
 	 * Alias for {@link identity}
 	 * @category Aliases
 	 */

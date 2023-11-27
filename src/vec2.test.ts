@@ -134,7 +134,7 @@ test('transformMat3', () => {
 test('toString', () => {
 	expect(vec2.toString([3, 4])).toEqual('[3, 4]')
 	expect(vec2.toString([1 / 3, -2])).toEqual('[0.33, -2]')
-	expect(vec2.toString([-0, 0])).toEqual('[-0, 0]')
+	expect(vec2.toString([-0, 0])).toEqual('[0, 0]')
 	expect(vec2.toString([0.0001, 0])).toEqual('[0, 0]')
 	expect(vec2.toString([0.0001, 0], 4)).toEqual('[0.0001, 0]')
 	expect(vec2.toString([0.01, -0.01])).toEqual('[0.01, -0.01]')

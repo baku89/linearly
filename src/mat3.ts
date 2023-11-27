@@ -607,6 +607,16 @@ export namespace mat3 {
 	}
 
 	/**
+	 * Returns a string representation of a mat3
+	 * @param m matrix to represent as a string
+	 * @param fractionDigits number of digits to appear after the decimal point
+	 */
+	export const toString = Common.createMatToStringFunction(3, 3) as (
+		m: mat3,
+		fractionDigits?: number
+	) => string
+
+	/**
 	 * Alias for {@link identity}
 	 * @category Aliases
 	 */

@@ -92,3 +92,16 @@ describe('equals', () => {
 		expect(mat2d.equals(matA, matD)).toBe(true)
 	})
 })
+
+describe('toString', () => {
+	expect(mat2d.toString(matA)).toEqual(
+		`[1, 2,
+ 3, 4,
+ 5, 6]`
+	)
+	expect(mat2d.toString([1 / 3, -2, 0, 2, 0, 0])).toEqual(
+		`[0.33, -2,
+ 0   ,  2,
+ 0   ,  0]`
+	)
+})
