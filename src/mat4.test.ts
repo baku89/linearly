@@ -1,3 +1,5 @@
+import '../jest.setup'
+
 import {mat4} from './mat4'
 
 test('multiply', () => {

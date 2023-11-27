@@ -1,3 +1,5 @@
+import '../jest.setup'
+
 import {vec4} from './vec4'
 
 // https://github.com/stackgl/gl-vec3/blob/master/test/index.js

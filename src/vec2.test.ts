@@ -1,27 +1,9 @@
+import '../jest.setup'
+
 import {EPSILON} from './common'
 import {vec2} from './vec2'
 
-function areVec2Equal(a: unknown, b: unknown) {
-	if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
-		return undefined
-	}
-
-	for (let i = 0; i < a.length; i++) {
-		const nearlyEqual =
-			Math.abs(a[i] - b[i]) <=
-			EPSILON * Math.max(1, Math.abs(a[i]), Math.abs(b[i]))
-
-		if (!nearlyEqual) {
-			return undefined
-		}
-	}
-	return true
-}
-
-;(expect as any).addEqualityTesters([areVec2Equal])
-
 // https://github.com/stackgl/gl-vec2/blob/master/test/index.js
-
 test('of', () => {
 	expect(vec2.of(2, 3)).toStrictEqual([2, 3])
 	expect(vec2.of(2)).toStrictEqual([2, 2])

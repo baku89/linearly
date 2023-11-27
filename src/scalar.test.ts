@@ -1,3 +1,5 @@
+import '../jest.setup'
+
 import {EPSILON} from './common'
 import {scalar} from './scalar'
 
