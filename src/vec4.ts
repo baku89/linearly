@@ -680,6 +680,13 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Returns the string representation of a vec2
+	 * @param v vector to represent as a string
+	 * @param fractionDigits number of digits to appear after the decimal point
+	 */
+	export const toString = Common.vecToString
+
+	/**
 	 * Alias for {@link vec4.subtract}
 	 */
 	export const sub = subtract

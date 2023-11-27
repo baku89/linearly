@@ -130,3 +130,12 @@ test('transformMat3', () => {
 		vec2.transformMat3([3, 4], [5, 6, 0, 8, 9, 0, 11, 12, 0])
 	).toStrictEqual([58, 66])
 })
+
+test('toString', () => {
+	expect(vec2.toString([3, 4])).toEqual('[3, 4]')
+	expect(vec2.toString([1 / 3, -2])).toEqual('[0.33, -2]')
+	expect(vec2.toString([-0, 0])).toEqual('[-0, 0]')
+	expect(vec2.toString([0.0001, 0])).toEqual('[0, 0]')
+	expect(vec2.toString([0.0001, 0], 4)).toEqual('[0.0001, 0]')
+	expect(vec2.toString([0.01, -0.01])).toEqual('[0.01, -0.01]')
+})

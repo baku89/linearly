@@ -17,3 +17,14 @@ export function round(a: number) {
 export type AngleOrder = 'xyz' | 'xzy' | 'yxz' | 'yzx' | 'zxy' | 'zyx'
 
 export const DEFAULT_ANGLE_ORDER: AngleOrder = 'zyx'
+
+export function vecToString(v: number[], fractionDigits = 2): string {
+	const strs = v.map(a =>
+		a
+			.toFixed(fractionDigits)
+			.replace(/\.([\d]*?)(0+)$/g, '.$1')
+			.replace(/\.$/g, '')
+	)
+
+	return '[' + strs.join(', ') + ']'
+}
