@@ -86,7 +86,7 @@ export namespace vec4 {
 			return vs[0]
 		} else if (vs.length > 2) {
 			const [a, b, ...rest] = vs
-			return subtract(subtract(a, b), ...rest)
+			return add(add(a, b), ...rest)
 		}
 
 		const [a, b] = vs
