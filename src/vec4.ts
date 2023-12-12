@@ -80,18 +80,19 @@ export namespace vec4 {
 	 * Adds given vec4's
 	 */
 	export function add(...vs: vec4[]): vec4 {
-		if (vs.length === 0) {
-			return zero
-		} else if (vs.length === 1) {
-			return vs[0]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return add(add(a, b), ...rest)
+		let x = 0,
+			y = 0,
+			z = 0,
+			w = 0
+
+		for (const v of vs) {
+			x += v[0]
+			y += v[1]
+			z += v[2]
+			w += v[3]
 		}
 
-		const [a, b] = vs
-
-		return [a[0] + b[0], a[1] + b[1], a[2] + b[2], a[3] + b[3]]
+		return [x, y, z, w]
 	}
 
 	/**
@@ -100,16 +101,24 @@ export namespace vec4 {
 	export function subtract(...vs: vec4[]): vec4 {
 		if (vs.length === 0) {
 			return zero
-		} else if (vs.length === 1) {
-			return [-vs[0], -vs[1], -vs[2], -vs[3]]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return subtract(subtract(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		if (vs.length === 1) {
+			return [-vs[0], -vs[1], -vs[2], -vs[3]]
+		}
 
-		return [a[0] - b[0], a[1] - b[1], a[2] - b[2], a[3] - b[3]]
+		const [first, ...rest] = vs
+
+		const ret: Mutable = [...first]
+
+		for (const v of rest) {
+			ret[0] -= v[0]
+			ret[1] -= v[1]
+			ret[2] -= v[2]
+			ret[3] -= v[3]
+		}
+
+		return ret
 	}
 
 	/**
@@ -123,18 +132,19 @@ export namespace vec4 {
 	 * Multiplies given vec4's
 	 */
 	export function multiply(...vs: vec4[]): vec4 {
-		if (vs.length === 0) {
-			return one
-		} else if (vs.length === 1) {
-			return vs[0]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return multiply(multiply(a, b), ...rest)
+		let x = 1,
+			y = 1,
+			z = 1,
+			w = 1
+
+		for (const v of vs) {
+			x *= v[0]
+			y *= v[1]
+			z *= v[2]
+			w *= v[3]
 		}
 
-		const [a, b] = vs
-
-		return [a[0] * b[0], a[1] * b[1], a[2] * b[2], a[3] * b[3]]
+		return [x, y, z, w]
 	}
 
 	/**

@@ -74,18 +74,17 @@ export namespace vec3 {
 	 * Adds given vec3's
 	 */
 	export function add(...vs: vec3[]): vec3 {
-		if (vs.length === 0) {
-			return zero
-		} else if (vs.length === 1) {
-			return vs[0]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return add(add(a, b), ...rest)
+		let x = 0,
+			y = 0,
+			z = 0
+
+		for (const v of vs) {
+			x += v[0]
+			y += v[1]
+			z += v[2]
 		}
 
-		const [a, b] = vs
-
-		return [a[0] + b[0], a[1] + b[1], a[2] + b[2]]
+		return [x, y, z]
 	}
 
 	/**
@@ -94,16 +93,23 @@ export namespace vec3 {
 	export function subtract(...vs: vec3[]): vec3 {
 		if (vs.length === 0) {
 			return zero
-		} else if (vs.length === 1) {
-			return [-vs[0], -vs[1], -vs[2]]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return subtract(subtract(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		if (vs.length === 1) {
+			return [-vs[0], -vs[1], -vs[2]]
+		}
 
-		return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
+		const [first, ...rest] = vs
+
+		const ret: Mutable = [...first]
+
+		for (const v of rest) {
+			ret[0] -= v[0]
+			ret[1] -= v[1]
+			ret[2] -= v[2]
+		}
+
+		return ret
 	}
 
 	/**
@@ -117,18 +123,17 @@ export namespace vec3 {
 	 * Multiplies given vec3's
 	 */
 	export function multiply(...vs: vec3[]): vec3 {
-		if (vs.length === 0) {
-			return one
-		} else if (vs.length === 1) {
-			return vs[0]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return multiply(multiply(a, b), ...rest)
+		let x = 1,
+			y = 1,
+			z = 1
+
+		for (const v of vs) {
+			x *= v[0]
+			y *= v[1]
+			z *= v[2]
 		}
 
-		const [a, b] = vs
-
-		return [a[0] * b[0], a[1] * b[1], a[2] * b[2]]
+		return [x, y, z]
 	}
 
 	/**

@@ -63,18 +63,15 @@ export namespace vec2 {
 	 * Add the given vectors
 	 */
 	export function add(...vs: vec2[]): vec2 {
-		if (vs.length === 0) {
-			return zero
-		} else if (vs.length === 1) {
-			return vs[0]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return add(add(a, b), ...rest)
+		let x = 0,
+			y = 0
+
+		for (const v of vs) {
+			x += v[0]
+			y += v[1]
 		}
 
-		const [a, b] = vs
-
-		return [a[0] + b[0], a[1] + b[1]]
+		return [x, y]
 	}
 
 	/**
@@ -83,16 +80,22 @@ export namespace vec2 {
 	export function subtract(...vs: vec2[]): vec2 {
 		if (vs.length === 0) {
 			return zero
-		} else if (vs.length === 1) {
-			return [-vs[0], -vs[1]]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return subtract(subtract(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		if (vs.length === 1) {
+			return [-vs[0], -vs[1]]
+		}
 
-		return [a[0] - b[0], a[1] - b[1]]
+		const [first, ...rest] = vs
+
+		const ret: Mutable = [...first]
+
+		for (const v of rest) {
+			ret[0] -= v[0]
+			ret[1] -= v[1]
+		}
+
+		return ret
 	}
 
 	/**
@@ -103,18 +106,15 @@ export namespace vec2 {
 	}
 
 	export function multiply(...vs: vec2[]): vec2 {
-		if (vs.length === 0) {
-			return one
-		} else if (vs.length === 1) {
-			return vs[0]
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return multiply(multiply(a, b), ...rest)
+		let x = 1,
+			y = 1
+
+		for (const v of vs) {
+			x *= v[0]
+			y *= v[1]
 		}
 
-		const [a, b] = vs
-
-		return [a[0] * b[0], a[1] * b[1]]
+		return [x, y]
 	}
 
 	export function divide(...vs: vec2[]): vec2 {

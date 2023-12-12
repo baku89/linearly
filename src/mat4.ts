@@ -1365,35 +1365,28 @@ export namespace mat4 {
 	 * Adds given mat4's
 	 */
 	export function add(...ms: mat4[]): mat4 {
-		if (ms.length === 0) {
-			return zero
-		} else if (ms.length === 1) {
-			return ms[0]
-		} else if (ms.length > 2) {
-			const [a, b, ...rest] = ms
-			return add(add(a, b), ...rest)
+		const ret: Mutable = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+		for (const m of ms) {
+			ret[0] += m[0]
+			ret[1] += m[1]
+			ret[2] += m[2]
+			ret[3] += m[3]
+			ret[4] += m[4]
+			ret[5] += m[5]
+			ret[6] += m[6]
+			ret[7] += m[7]
+			ret[8] += m[8]
+			ret[9] += m[9]
+			ret[10] += m[10]
+			ret[11] += m[11]
+			ret[12] += m[12]
+			ret[13] += m[13]
+			ret[14] += m[14]
+			ret[15] += m[15]
 		}
 
-		const [a, b] = ms
-
-		return [
-			a[0] + b[0],
-			a[1] + b[1],
-			a[2] + b[2],
-			a[3] + b[3],
-			a[4] + b[4],
-			a[5] + b[5],
-			a[6] + b[6],
-			a[7] + b[7],
-			a[8] + b[8],
-			a[9] + b[9],
-			a[10] + b[10],
-			a[11] + b[11],
-			a[12] + b[12],
-			a[13] + b[13],
-			a[14] + b[14],
-			a[15] + b[15],
-		]
+		return ret
 	}
 
 	/**

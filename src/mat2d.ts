@@ -336,25 +336,18 @@ export namespace mat2d {
 	 * Adds given mat2d's
 	 */
 	export function add(...ms: mat2d[]): mat2d {
-		if (ms.length === 0) {
-			return zero
-		} else if (ms.length === 1) {
-			return ms[0]
-		} else if (ms.length > 2) {
-			const [a, b, ...rest] = ms
-			return add(add(a, b), ...rest)
+		const ret: Mutable = [0, 0, 0, 0, 0, 0]
+
+		for (const m of ms) {
+			ret[0] += m[0]
+			ret[1] += m[1]
+			ret[2] += m[2]
+			ret[3] += m[3]
+			ret[4] += m[4]
+			ret[5] += m[5]
 		}
 
-		const [a, b] = ms
-
-		return [
-			a[0] + b[0],
-			a[1] + b[1],
-			a[2] + b[2],
-			a[3] + b[3],
-			a[4] + b[4],
-			a[5] + b[5],
-		]
+		return ret
 	}
 
 	/**
