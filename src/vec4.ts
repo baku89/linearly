@@ -95,7 +95,7 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Subtracts vector b from vector a
+	 * Subtracts given vec4's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
 	 */
 	export function subtract(...vs: vec4[]): vec4 {
 		if (vs.length === 0) {

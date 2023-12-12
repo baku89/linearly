@@ -89,7 +89,7 @@ export namespace vec3 {
 	}
 
 	/**
-	 * Subtracts vector b from vector a
+	 * Subtracts given vec3's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
 	 */
 	export function subtract(...vs: vec3[]): vec3 {
 		if (vs.length === 0) {

@@ -60,6 +60,7 @@ export namespace vec2 {
 	export const unitY: vec2 = Object.freeze([0, 1])
 
 	/**
+	 * Add the given vectors
 	 */
 	export function add(...vs: vec2[]): vec2 {
 		if (vs.length === 0) {
@@ -77,6 +78,7 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Subtracts the given vec2's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
 	 */
 	export function subtract(...vs: vec2[]): vec2 {
 		if (vs.length === 0) {
