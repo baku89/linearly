@@ -415,17 +415,7 @@ export namespace mat3 {
 	 * Returns Frobenius norm of a mat3
 	 */
 	export function frob(a: mat3) {
-		return Math.sqrt(
-			a[0] * a[0] +
-				a[1] * a[1] +
-				a[2] * a[2] +
-				a[3] * a[3] +
-				a[4] * a[4] +
-				a[5] * a[5] +
-				a[6] * a[6] +
-				a[7] * a[7] +
-				a[8] * a[8]
-		)
+		return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8])
 	}
 
 	/**

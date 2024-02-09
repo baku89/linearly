@@ -278,7 +278,7 @@ export namespace vec2 {
 	export function distance(a: vec2, b: vec2) {
 		const x = b[0] - a[0],
 			y = b[1] - a[1]
-		return Math.sqrt(x * x + y * y)
+		return Math.hypot(x, y)
 	}
 
 	/**
@@ -294,7 +294,7 @@ export namespace vec2 {
 	 * Calculates the length of a vec2
 	 */
 	export function length(v: vec2) {
-		return Math.sqrt(v[0] ** 2 + v[1] ** 2)
+		return Math.hypot(v[0], v[1])
 	}
 
 	/**
@@ -326,8 +326,8 @@ export namespace vec2 {
 	}
 
 	export function normalize(v: vec2): vec2 {
-		const hyp = v[0] ** 2 + v[1] ** 2
-		const len = hyp === 0 ? 0 : 1 / Math.sqrt(hyp)
+		const isZeroLength = v[0] === 0 && v[1] === 0
+		const len = isZeroLength ? 0 : 1 / Math.hypot(v[0], v[1])
 		return [v[0] * len, v[1] * len]
 	}
 
@@ -460,7 +460,7 @@ export namespace vec2 {
 		const [x1, y1] = a
 		const [x2, y2] = b
 		// mag is the product of the magnitudes of a and b
-		const mag = Math.sqrt((x1 * x1 + y1 * y1) * (x2 * x2 + y2 * y2))
+		const mag = Math.hypot(x1, y1) * Math.hypot(x2, y2)
 		// mag &&.. short circuits if mag == 0
 		const cosine = mag && (x1 * x2 + y1 * y2) / mag
 		// Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1

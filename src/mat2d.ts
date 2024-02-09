@@ -321,15 +321,7 @@ export namespace mat2d {
 	 * Returns Frobenius norm of a mat2d
 	 */
 	export function frob(a: mat2d) {
-		// prettier-ignore
-		return Math.sqrt(
-			a[0] ** 2 +
-			a[1] ** 2 +
-			a[2] ** 2 +
-			a[3] ** 2 +
-			a[4] ** 2 +
-			a[5] ** 2 + 1
-		)
+		return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], 1)
 	}
 
 	/**

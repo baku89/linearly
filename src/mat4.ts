@@ -332,7 +332,7 @@ export namespace mat4 {
 	 */
 	export function rotate(a: mat4, rad: number, axis: vec3): mat4 | null {
 		let [x, y, z] = axis
-		const len = Math.sqrt(x * x + y * y + z * z)
+		const len = Math.hypot(x, y, z)
 
 		if (len < Common.EPSILON) {
 			return null
@@ -536,7 +536,7 @@ export namespace mat4 {
 	 */
 	export function fromRotation(rad: number, axis: vec3): mat4 | null {
 		let [x, y, z] = axis
-		const len = Math.sqrt(x * x + y * y + z * z)
+		const len = Math.hypot(x, y, z)
 
 		if (len < Common.EPSILON) {
 			return null
@@ -684,9 +684,9 @@ export namespace mat4 {
 		       m31, m32, m33, ]= mat
 
 		return [
-			Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13),
-			Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23),
-			Math.sqrt(m31 * m31 + m32 * m32 + m33 * m33),
+			Math.hypot(m11, m12, m13),
+			Math.hypot(m21, m22, m23),
+			Math.hypot(m31, m32, m33),
 		]
 	}
 
@@ -751,9 +751,9 @@ export namespace mat4 {
 	       m31, m32, m33, ] = mat
 
 		const scale: vec3 = [
-			Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13),
-			Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23),
-			Math.sqrt(m31 * m31 + m32 * m32 + m33 * m33),
+			Math.hypot(m11, m12, m13),
+			Math.hypot(m21, m22, m23),
+			Math.hypot(m31, m32, m33),
 		]
 
 		const is1 = 1 / scale[0]
@@ -1238,7 +1238,7 @@ export namespace mat4 {
 		z1 = eyey - centery
 		z2 = eyez - centerz
 
-		len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2)
+		len = 1 / Math.hypot(z0, z1, z2)
 		z0 *= len
 		z1 *= len
 		z2 *= len
@@ -1246,7 +1246,7 @@ export namespace mat4 {
 		x0 = upy * z2 - upz * z1
 		x1 = upz * z0 - upx * z2
 		x2 = upx * z1 - upy * z0
-		len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2)
+		len = Math.hypot(x0, x1, x2)
 		if (!len) {
 			x0 = 0
 			x1 = 0
@@ -1262,7 +1262,7 @@ export namespace mat4 {
 		y1 = z2 * x0 - z0 * x2
 		y2 = z0 * x1 - z1 * x0
 
-		len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2)
+		len = Math.hypot(y0, y1, y2)
 		if (!len) {
 			y0 = 0
 			y1 = 0
@@ -1341,23 +1341,23 @@ export namespace mat4 {
 	 * Returns Frobenius norm of a mat4
 	 */
 	export function frob(a: mat4) {
-		return Math.sqrt(
-			a[0] * a[0] +
-				a[1] * a[1] +
-				a[2] * a[2] +
-				a[3] * a[3] +
-				a[4] * a[4] +
-				a[5] * a[5] +
-				a[6] * a[6] +
-				a[7] * a[7] +
-				a[8] * a[8] +
-				a[9] * a[9] +
-				a[10] * a[10] +
-				a[11] * a[11] +
-				a[12] * a[12] +
-				a[13] * a[13] +
-				a[14] * a[14] +
-				a[15] * a[15]
+		return Math.hypot(
+			a[0],
+			a[1],
+			a[2],
+			a[3],
+			a[4],
+			a[5],
+			a[6],
+			a[7],
+			a[8],
+			a[9],
+			a[10],
+			a[11],
+			a[12],
+			a[13],
+			a[14],
+			a[15]
 		)
 	}
 

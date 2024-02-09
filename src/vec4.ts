@@ -362,7 +362,7 @@ export namespace vec4 {
 		const y = b[1] - a[1]
 		const z = b[2] - a[2]
 		const w = b[3] - a[3]
-		return Math.sqrt(x * x + y * y + z * z + w * w)
+		return Math.hypot(x, y, z, w)
 	}
 
 	/**
@@ -382,7 +382,7 @@ export namespace vec4 {
 	 */
 	export function length(a: vec4) {
 		const [x, y, z, w] = a
-		return Math.sqrt(x * x + y * y + z * z + w * w)
+		return Math.hypot(x, y, z, w)
 	}
 
 	/**
@@ -419,8 +419,8 @@ export namespace vec4 {
 	 */
 	export function normalize(a: vec4): vec4 {
 		const [x, y, z, w] = a
-		const hyp = x * x + y * y + z * z + w * w
-		const len = hyp === 0 ? 0 : 1 / Math.sqrt(hyp)
+		const isZeroLength = x === 0 && y === 0 && z === 0 && w === 0
+		const len = isZeroLength ? 0 : 1 / Math.hypot(x, y, z, w)
 		return [x * len, y * len, z * len, w * len]
 	}
 

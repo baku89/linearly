@@ -315,7 +315,7 @@ export namespace vec3 {
 		const x = b[0] - a[0]
 		const y = b[1] - a[1]
 		const z = b[2] - a[2]
-		return Math.sqrt(x * x + y * y + z * z)
+		return Math.hypot(x, y, z)
 	}
 
 	/**
@@ -333,7 +333,7 @@ export namespace vec3 {
 	 */
 	export function length(a: vec3) {
 		const [x, y, z] = a
-		return Math.sqrt(x * x + y * y + z * z)
+		return Math.hypot(x, y, z)
 	}
 
 	/**
@@ -372,8 +372,8 @@ export namespace vec3 {
 	 */
 	export function normalize(a: vec3): vec3 {
 		const [x, y, z] = a
-		const hyp = x * x + y * y + z * z
-		const len = hyp === 0 ? 0 : 1 / Math.sqrt(hyp)
+		const isZeroLength = x === 0 && y === 0 && z === 0
+		const len = isZeroLength ? 0 : 1 / Math.hypot(x, y, z)
 		return [a[0] * len, a[1] * len, a[2] * len]
 	}
 
@@ -613,9 +613,7 @@ export namespace vec3 {
 	export function angle(a: vec3, b: vec3) {
 		const [ax, ay, az] = a
 		const [bx, by, bz] = b
-		const mag = Math.sqrt(
-			(ax * ax + ay * ay + az * az) * (bx * bx + by * by + bz * bz)
-		)
+		const mag = Math.hypot(ax, ay, az) * Math.hypot(bx, by, bz)
 		const cosine = mag && dot(a, b) / mag
 
 		return Math.acos(Math.min(Math.max(cosine, -1), 1))

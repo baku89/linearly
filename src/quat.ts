@@ -218,7 +218,7 @@ export namespace quat {
 	export function exp(q: quat): quat {
 		const [x, y, z, w] = q
 
-		const r = Math.sqrt(x * x + y * y + z * z)
+		const r = Math.hypot(x, y, z)
 		const et = Math.exp(w)
 		const s = r > 0 ? (et * Math.sin(r)) / r : 0
 
@@ -231,7 +231,7 @@ export namespace quat {
 	export function ln(a: quat): quat {
 		const [x, y, z, w] = a
 
-		const r = Math.sqrt(x * x + y * y + z * z)
+		const r = Math.hypot(x, y, z)
 		const t = r > 0 ? Math.atan2(r, w) / r : 0
 
 		return [x * t, y * t, z * t, 0.5 * Math.log(x * x + y * y + z * z + w * w)]

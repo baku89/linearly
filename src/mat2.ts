@@ -202,7 +202,7 @@ export namespace mat2 {
 	 * Returns Frobenius norm of a mat2
 	 */
 	export function frob(a: mat2) {
-		return Math.sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2] + a[3] * a[3])
+		return Math.hypot(a[0], a[1], a[2], a[3])
 	}
 
 	/**
