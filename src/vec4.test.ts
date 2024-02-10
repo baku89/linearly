@@ -1,4 +1,4 @@
-import '../jest.setup'
+import {expect, test} from 'vitest'
 
 import {vec4} from './vec4'
 

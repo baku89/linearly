@@ -1,4 +1,4 @@
-import '../jest.setup'
+import {expect, test} from 'vitest'
 
 import {EPSILON} from './common'
 import {scalar} from './scalar'

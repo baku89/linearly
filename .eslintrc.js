@@ -14,12 +14,7 @@ module.exports = {
 		ecmaVersion: 2022,
 		sourceType: 'module',
 	},
-	plugins: [
-		'@typescript-eslint',
-		'simple-import-sort',
-		'unused-imports',
-		'jest',
-	],
+	plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
 	rules: {
 		'no-console': 'off',
 		'no-debugger': 'warn',

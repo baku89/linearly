@@ -1,37 +1,37 @@
-import '../jest.setup'
+import {describe, expect, it, test} from 'vitest'
 
 import {mat2d} from './mat2d'
 
 const matA: mat2d = [1, 2, 3, 4, 5, 6]
 const matB: mat2d = [7, 8, 9, 10, 11, 12]
 
-describe('invert', () => {
+test('invert', () => {
 	expect(mat2d.invert(matA)).toEqual([-2, 1, 1.5, -0.5, 1, -2])
 	expect(mat2d.invert([1, 0, 2, 0, 0, 0])).toEqual(null)
 })
 
-describe('determinant', () => {
+test('determinant', () => {
 	expect(mat2d.determinant(matA)).toEqual(-2)
 	expect(mat2d.determinant([1, 0, 2, 0, 0, 0])).toEqual(0)
 })
 
-describe('multiply', () => {
+test('multiply', () => {
 	expect(mat2d.multiply(matA, matB)).toEqual([31, 46, 39, 58, 52, 76])
 })
 
-describe('rotate', () => {
+test('rotate', () => {
 	expect(mat2d.rotate(matA, Math.PI * 0.5)).toEqual([3, 4, -1, -2, 5, 6])
 })
 
-describe('scale', () => {
+test('scale', () => {
 	expect(mat2d.scale(matA, [2, 3])).toEqual([2, 4, 9, 12, 5, 6])
 })
 
-describe('translate', () => {
+test('translate', () => {
 	expect(mat2d.translate(matA, [2, 3])).toEqual([1, 2, 3, 4, 16, 22])
 })
 
-describe('frob', () => {
+test('frob', () => {
 	expect(mat2d.frob(matA)).toEqual(
 		Math.sqrt(
 			Math.pow(1, 2) +
@@ -45,19 +45,21 @@ describe('frob', () => {
 	)
 })
 
-describe('add', () => {
+test('add', () => {
 	expect(mat2d.add(matA, matB)).toEqual([8, 10, 12, 14, 16, 18])
 })
 
 describe('subtract', () => {
-	expect(mat2d.subtract(matA, matB)).toEqual([-6, -6, -6, -6, -6, -6])
+	it('should subtract two matrices', () => {
+		expect(mat2d.subtract(matA, matB)).toEqual([-6, -6, -6, -6, -6, -6])
+	})
 })
 
-describe('multiplyScalar', () => {
+test('multiplyScalar', () => {
 	expect(mat2d.multiplyScalar(matA, 2)).toEqual([2, 4, 6, 8, 10, 12])
 })
 
-describe('multiplyScalarAndAdd', () => {
+test('multiplyScalarAndAdd', () => {
 	expect(mat2d.multiplyScalarAndAdd(matA, matB, 0.5)).toEqual([
 		4.5, 6, 7.5, 9, 10.5, 12,
 	])
@@ -93,7 +95,7 @@ describe('equals', () => {
 	})
 })
 
-describe('toString', () => {
+test('toString', () => {
 	expect(mat2d.toString(matA)).toEqual(
 		`[1, 2,
  3, 4,
