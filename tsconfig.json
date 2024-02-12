@@ -12,7 +12,7 @@
 		"isolatedModules": true,
 		"declaration": true,
 		"declarationMap": true,
-		"lib": ["esnext", "DOM"],
+		"lib": ["ESNext", "DOM"],
 		"skipLibCheck": true,
 		"skipDefaultLibCheck": true,
 		"allowJs": true
