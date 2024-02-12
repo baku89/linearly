@@ -459,12 +459,13 @@ export namespace vec2 {
 
 		const [x1, y1] = a
 		const [x2, y2] = b
+
 		// mag is the product of the magnitudes of a and b
 		const mag = Math.hypot(x1, y1) * Math.hypot(x2, y2)
-		// mag &&.. short circuits if mag == 0
-		const cosine = mag && (x1 * x2 + y1 * y2) / mag
-		// Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1
-		return Math.acos(Math.min(Math.max(cosine, -1), 1))
+
+		const sign = x1 * y2 - y1 * x2 >= 0 ? 1 : -1
+
+		return sign * Math.acos(dot(a, b) / mag)
 	}
 
 	/**

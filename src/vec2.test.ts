@@ -1,6 +1,7 @@
-import {expect, test} from 'vitest'
+import {describe, expect, it, test} from 'vitest'
 
 import {EPSILON} from './common'
+import {scalar} from './scalar'
 import {vec2} from './vec2'
 
 // https://github.com/stackgl/gl-vec2/blob/master/test/index.js
@@ -91,6 +92,15 @@ test('normalize', () => {
 
 test('rotate', () => {
 	expect(vec2.rotate([1, 2], Math.PI, [0, 0])).toEqual([-1, -2])
+})
+
+describe('angle', () => {
+	it('should work in the case of [-120°, 120]', () => {
+		const x = 1 / 2
+		const y = Math.sqrt(3) / 2
+
+		expect(vec2.angle([-x, -y], [-x, y])).toEqual(scalar.rad(-120))
+	})
 })
 
 test('round', () => {
