@@ -304,7 +304,7 @@ export namespace mat3 {
 	}
 
 	/**
-	 * Copies the values from a mat2d into a mat3
+	 * Copies the values from a {@link mat2d}
 	 * @category Generators
 	 **/
 	export function fromMat2d(a: mat3): mat3 {

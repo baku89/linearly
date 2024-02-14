@@ -484,6 +484,16 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Copies a the values from {@link mat2}, assuming the translation component is `[0, 0]`
+	 * @param m The matrix to convert
+	 * @returns The newly created matrix
+	 * @category Generators
+	 */
+	export function fromMat2(m: mat2): mat2d {
+		return [...m, 0, 0]
+	}
+
+	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
 	 */
 	export function exactEquals(a: mat2d, b: mat2d) {

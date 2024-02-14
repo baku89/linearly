@@ -1,4 +1,5 @@
 import * as Common from './common'
+import {mat2d} from './mat2d'
 import {vec2} from './vec2'
 
 /**
@@ -246,6 +247,16 @@ export namespace mat2 {
 	 */
 	export function delta(a: mat2, b: mat2): mat2 {
 		return [b[0] - a[0], b[1] - a[1], b[2] - a[2], b[3] - a[3]]
+	}
+
+	/**
+	 * Copies the values from a {@link mat2d}, omitting the translation components
+	 * @param m The matrix to copy from
+	 * @returns A newly created matrix
+	 * @category Generators
+	 */
+	export function fromMat2d(m: mat2d): mat2 {
+		return [m[0], m[1], m[2], m[3]]
 	}
 
 	/**
