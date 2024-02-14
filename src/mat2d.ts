@@ -297,6 +297,11 @@ export namespace mat2d {
 		]
 	}
 
+	/**
+	 * Computes a fixed point of the given matrix.
+	 * @param m The matrix to compute a fixed point of
+	 * @returns The fixed point of the given matrix, or null if the matrix is not invertible
+	 */
 	export function fixedPoint(m: mat2d): vec2 | null {
 		const [a, b, c, d, tx, ty] = m
 
