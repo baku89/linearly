@@ -1,0 +1,60 @@
+import {defineUserConfig} from 'vuepress'
+import {path} from '@vuepress/utils'
+import {defaultTheme} from '@vuepress/theme-default'
+import {viteBundler} from '@vuepress/bundler-vite'
+
+export default defineUserConfig({
+	title: 'Linearly',
+	base: '/linearly/',
+	head: [
+		['link', {rel: 'icon', href: './logo.svg'}],
+		['link', {rel: 'preconnect', href: 'https://fonts.googleapis.com'}],
+		[
+			'link',
+			{rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true},
+		],
+		[
+			'link',
+			{
+				rel: 'stylesheet',
+				href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap',
+			},
+		],
+		['link', {rel: 'icon', href: '/logo.svg'}],
+		[
+			'link',
+			{
+				rel: 'stylesheet',
+				href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+			},
+		],
+	],
+	theme: defaultTheme({
+		navbar: [
+			{
+				text: 'Home',
+				link: '/',
+			},
+			{
+				text: 'API',
+				link: '/api',
+			},
+		],
+		logo: '/logo.svg',
+		repo: 'baku89/linearly',
+	}),
+	locales: {
+		'/': {
+			lang: 'English',
+			title: 'Lineraly',
+			description:
+				'A collection of utility functions that relates to linear algebra and graphics programming',
+		},
+	},
+	bundler: viteBundler({}),
+	markdown: {
+		//@ts-ignore
+		linkify: true,
+		typographer: true,
+	},
+})

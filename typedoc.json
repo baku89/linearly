@@ -1,7 +1,12 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
 	"entryPoints": ["./src/index.ts"],
-	"readme": "README.md",
+	"out": "./docs/api",
+	"readme": "none",
+	"cleanOutputDir": true,
+	"includeVersion": true,
+	"hideInPageTOC": true,
+	"plugin": ["typedoc-plugin-markdown"],
 	"sort": ["alphabetical"],
 	"defaultCategory": "Functions",
 	"categoryOrder": ["Types", "Constants", "Generators", "Functions", "Aliases"]

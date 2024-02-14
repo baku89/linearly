@@ -2,7 +2,6 @@
 node_modules
 
 /lib
-/docs
 
 # local env files
 .env.local
@@ -27,3 +26,9 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# For Vuepress
+.cache
+.temp
+docs/api
+dist
