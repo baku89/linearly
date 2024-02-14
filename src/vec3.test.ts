@@ -61,7 +61,7 @@ test('floor', () => {
 })
 
 test('inverse', () => {
-	expect(vec3.inverse([2, 4, 8])).toEqual([0.5, 0.25, 0.125])
+	expect(vec3.invert([2, 4, 8])).toEqual([0.5, 0.25, 0.125])
 })
 
 test('length', () => {

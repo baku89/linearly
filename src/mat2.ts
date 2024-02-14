@@ -296,4 +296,28 @@ export namespace mat2 {
 	 * @category Aliases
 	 */
 	export const det = determinant
+
+	/**
+	 * Alias for {@link mat2.invert}
+	 * @category Aliases
+	 */
+	export const inv = invert
+
+	/**
+	 * Alias for {@link mat2.fromRotation}
+	 * @category Aliases
+	 */
+	export const rotation = fromRotation
+
+	/**
+	 * Alias for {@link mat2.fromScaling}
+	 * @category Aliases
+	 */
+	export const scaling = fromScaling
+
+	/**
+	 * Alias for {@link mat2.fromSkew}
+	 * @category Aliases
+	 */
+	export const skewing = fromSkew
 }

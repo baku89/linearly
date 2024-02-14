@@ -121,7 +121,7 @@ export namespace scalar {
 		return -a
 	}
 
-	export function inverse(a: number): number {
+	export function invert(a: number): number {
 		return 1 / a
 	}
 
@@ -336,7 +336,7 @@ export namespace scalar {
 	export const sqrLen = squaredLength
 
 	/**
-	 * Alias for {@link scalar.inverse}
+	 * Alias for {@link scalar.invert}
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 * @category Aliases
 	 */

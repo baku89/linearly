@@ -356,7 +356,7 @@ export namespace vec3 {
 	/**
 	 * Returns the inverse of the components of a vec3
 	 */
-	export function inverse(a: vec3): vec3 {
+	export function invert(a: vec3): vec3 {
 		return [1 / a[0], 1 / a[1], 1 / a[2]]
 	}
 
@@ -834,7 +834,7 @@ export namespace vec3 {
 	export const neg = negate
 
 	/**
-	 * Alias for {@link vec3.inverse}
+	 * Alias for {@link vec3.invert}
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 * @category Aliases
 	 */
@@ -863,4 +863,17 @@ export namespace vec3 {
 	 * @category Aliases
 	 */
 	export const invsqrt = inverseSqrt
+
+	/**
+	 * Alias for {@link vec3.invert}
+	 * @category Aliases
+	 */
+	export const inv = invert
+
+	/**
+	 * Alias for {@link vec3.transformQuat}
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/qrotate.html
+	 * @category Aliases
+	 */
+	export const qrotate = transformQuat
 }

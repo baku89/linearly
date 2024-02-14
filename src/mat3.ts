@@ -622,4 +622,28 @@ export namespace mat3 {
 	 * @category Aliases
 	 */
 	export const det = determinant
+
+	/**
+	 * Alias for {@link mat3.invert}
+	 * @category Aliases
+	 */
+	export const inv = invert
+
+	/**
+	 * Alias for {@link mat3.fromTranslation}
+	 * @category Aliases
+	 */
+	export const translation = fromTranslation
+
+	/**
+	 * Alias for {@link mat3.fromRotation}
+	 * @category Aliases
+	 */
+	export const rotation = fromRotation
+
+	/**
+	 * Alias for {@link mat3.fromScaling}
+	 * @category Aliases
+	 */
+	export const scaling = fromScaling
 }

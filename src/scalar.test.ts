@@ -42,7 +42,7 @@ test('floor', () => {
 })
 
 test('inverse', () => {
-	expect(scalar.inverse(2)).toEqual(0.5)
+	expect(scalar.invert(2)).toEqual(0.5)
 })
 
 test('length', () => {

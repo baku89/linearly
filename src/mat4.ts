@@ -1613,4 +1613,28 @@ export namespace mat4 {
 	 * @category Aliases
 	 */
 	export const det = determinant
+
+	/**
+	 * Alias for {@link mat4.invert}
+	 * @category Aliases
+	 */
+	export const inv = invert
+
+	/**
+	 * Alias for {@link mat4.fromTranslation}
+	 * @category Aliases
+	 */
+	export const translation = fromTranslation
+
+	/**
+	 * Alias for {@link mat4.fromRotation}
+	 * @category Aliases
+	 */
+	export const rotation = fromRotation
+
+	/**
+	 * Alias for {@link mat4.fromScaling}
+	 * @category Aliases
+	 */
+	export const scaling = fromScaling
 }

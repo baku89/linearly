@@ -403,7 +403,7 @@ export namespace vec4 {
 	/**
 	 * Returns the inverse of the components of a vec4
 	 */
-	export function inverse(a: vec4): vec4 {
+	export function invert(a: vec4): vec4 {
 		return [1 / a[0], 1 / a[1], 1 / a[2], 1 / a[3]]
 	}
 
@@ -772,4 +772,10 @@ export namespace vec4 {
 	 * @category Aliases
 	 */
 	export const invsqrt = inverseSqrt
+
+	/**
+	 * Alias for {@link vec4.invert}
+	 * @category Aliases
+	 */
+	export const inv = invert
 }
