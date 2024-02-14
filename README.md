@@ -1,14 +1,25 @@
-# Linearly
+<div align="center">
+<h1>Linerly</h1>
 
-[![NPM Version](https://img.shields.io/npm/v/linearly.svg)](https://www.npmjs.com/package/linearly)
-![CI Test Result](https://github.com/baku89/linearly/actions/workflows/ci.yml/badge.svg)
-![MIT License](https://img.shields.io/npm/l/linearly.svg)
+<a href="https://baku89.github.io/linearly/">Documentation</a> ⌇ <a href="https://github.com/sponsors/baku89">Become a Sponsor</a>
+
+<p>
+  <a href="https://www.npmjs.org/package/linearly">
+    <img src="https://img.shields.io/npm/v/linearly.svg?style=flat" alt="npm version">
+  </a>
+  <a href="http://spdx.org/licenses/MIT">
+    <img src="https://img.shields.io/npm/l/linearly?style=flat" alt="npm license">
+  </a>
+  <img src="https://github.com/baku89/linearly/actions/workflows/ci.yml/badge.svg" alt="CI test result" />
+</p>
+
+</div>
 
 A collection of utility functions that relates to linear algebra and graphics programming.
 
-🍡 I'd be appreciate to receive PRs from anyone willing to help with tedious tasks like writing JSDoc, adding necessary functions, or writing tests.
+🍡 I'd appreciate receiving PRs from anyone willing to help with tedious tasks like writing JSDoc, adding necessary functions, or writing tests.
 
-This library is based on [glMatrix](https://github.com/toji/gl-matrix), but adopts immutable data structure. So you don't need to specify a receiver matrix as the first argument.
+This library is based on [glMatrix](https://github.com/toji/gl-matrix), but adopts an immutable data structure. So you don't need to specify a receiver matrix as the first argument.
 
 ### glMatrix
 
@@ -36,12 +47,12 @@ out = vec3.scale(out, 3)
 const a: vec2 = [1, 2]
 const b = vec2.of(1, 2)
 
-// But since vector and matrix are immutable and annotated with readonly flags, a mutation such as below are handled as an error in TypeScript.
+// But since vector and matrix are immutable and annotated with read-only flags, a mutation such as below is handled as an error in TypeScript.
 a[0] = 3
 // ^
 // Cannot assign to '0' because it is a read-only property.
 
-// Some constants such as mat2.identity are also readonly and defined as frozen array (applied Object.freeze). You can use `clone` to mutate them.
+// Some constants such as mat2.identity are also read-only and defined as frozen array (applied Object.freeze). You can use `clone` to mutate them.
 const m = mat2d.clone(mat2d.ident)
 m[4] *= 2.0
 m[5] = -4.5
@@ -52,19 +63,6 @@ In addition to functions that can be found on [glMatrix docs](https://glmatrix.n
 - [GLSL](https://registry.khronos.org/OpenGL-Refpages/gl4/html/indexflat.php) - `step`, `mix`, `smoothstep`
 - [Vex in Houdini](https://www.sidefx.com/docs/houdini/vex/functions/) - `fit`, `efit`, `invlerp`, `degrees`, `radians`
 - [Unity](https://docs.unity3d.com/Manual/index.html) - `inverseLerp`, `oneMinus`
-
-## Modules
-
-The names of modules are derived from glMatrix.
-
-- `scalar`: A single number
-- `mat2`: 2D linear transformation (rotation, scaling, skewing)
-- `mat2d`: 2D affine transformation, omitting redundant third rows, which is always set to `[0, 0, 1]` (translation, rotation, scaling, skewing)
-- `mat3`: 2D affine transformation (translation, rotation, scaling, skewing)
-- `mat4`: 3D transformation
-- `quat`: 3D rotation
-
-See the [Full API documentation](https://baku89.github.io/linearly) for further information.
 
 ## Development
 
