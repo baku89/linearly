@@ -1,6 +1,7 @@
 import {describe, expect, it, test} from 'vitest'
 
 import {mat2d} from './mat2d'
+import {vec2} from './vec2'
 
 const matA: mat2d = [1, 2, 3, 4, 5, 6]
 const matB: mat2d = [7, 8, 9, 10, 11, 12]
@@ -63,6 +64,16 @@ test('multiplyScalarAndAdd', () => {
 	expect(mat2d.multiplyScalarAndAdd(matA, matB, 0.5)).toEqual([
 		4.5, 6, 7.5, 9, 10.5, 12,
 	])
+})
+
+test('fromTRS', () => {
+	const t: vec2 = [2, 3]
+	const r: number = Math.PI / 4
+	const s: vec2 = [4, 2]
+
+	const R2 = Math.sqrt(2)
+
+	expect(mat2d.fromTRS(t, r, s)).toEqual([2 * R2, 2 * R2, -R2, R2, 2, 3])
 })
 
 describe('exactEquals', () => {

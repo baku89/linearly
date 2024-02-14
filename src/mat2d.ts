@@ -468,6 +468,17 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Creates a matrix from given translation, rotation, and scaling. The order of the transformations is translation, rotation, and scaling, like most of the graphics software.
+	 * @param t Translation vector
+	 * @param r Rotation angle in radians
+	 * @param s Scaling vector
+	 * @returns The matrix that represents the transformation
+	 */
+	export function fromTRS(t: vec2, r: number, s: vec2): mat2d {
+		return multiply(fromTranslation(t), fromRotation(r), fromScaling(s))
+	}
+
+	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
 	 */
 	export function exactEquals(a: mat2d, b: mat2d) {
@@ -566,4 +577,10 @@ export namespace mat2d {
 	 * @category Aliases
 	 */
 	export const skewing = fromSkew
+
+	/**
+	 * Alias for {@link mat2d.fromTRS}
+	 * @category Aliases
+	 */
+	export const trs = fromTRS
 }
