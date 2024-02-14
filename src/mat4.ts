@@ -1040,7 +1040,7 @@ export namespace mat4 {
 	}
 
 	/**
-	 * Alias for {@link mat4.perspectiveNO}
+	 * Alias for {@link perspectiveNO}
 	 * @function
 	 */
 	export const perspective = perspectiveNO
@@ -1164,7 +1164,7 @@ export namespace mat4 {
 	}
 
 	/**
-	 * Alias for {@link mat4.orthoNO}
+	 * Alias for {@link orthoNO}
 	 * @function
 	 */
 	export const ortho = orthoNO
@@ -1603,43 +1603,43 @@ export namespace mat4 {
 	export const ident = identity
 
 	/**
-	 * Alias for {@link mat4.subtract}
+	 * Alias for {@link subtract}
 	 * @category Aliases
 	 */
 	export const sub = subtract
 
 	/**
-	 * Alias for {@link mat4.multiply}
+	 * Alias for {@link multiply}
 	 * @category Aliases
 	 */
 	export const mul = multiply
 
 	/**
-	 * Alias for {@link mat4.determinant}
+	 * Alias for {@link determinant}
 	 * @category Aliases
 	 */
 	export const det = determinant
 
 	/**
-	 * Alias for {@link mat4.invert}
+	 * Alias for {@link invert}
 	 * @category Aliases
 	 */
 	export const inv = invert
 
 	/**
-	 * Alias for {@link mat4.fromTranslation}
+	 * Alias for {@link fromTranslation}
 	 * @category Aliases
 	 */
 	export const translation = fromTranslation
 
 	/**
-	 * Alias for {@link mat4.fromRotation}
+	 * Alias for {@link fromRotation}
 	 * @category Aliases
 	 */
 	export const rotation = fromRotation
 
 	/**
-	 * Alias for {@link mat4.fromScaling}
+	 * Alias for {@link fromScaling}
 	 * @category Aliases
 	 */
 	export const scaling = fromScaling

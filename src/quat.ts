@@ -555,19 +555,31 @@ export namespace quat {
 	}
 
 	/**
-	 * Alias for {@link quat.multiply}
+	 * Alias for {@link identity}
+	 * @category Aliases
+	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Aliases
+	 */
+	export const ident = identity
+
+	/**
+	 * Alias for {@link multiply}
 	 * @category Aliases
 	 */
 	export const mul = multiply
 
 	/**
-	 * Alias for {@link quat.squaredLength}
+	 * Alias for {@link squaredLength}
 	 * @category Aliases
 	 */
 	export const sqrLen = squaredLength
 
 	/**
-	 * Alias for {@link quat.length}
+	 * Alias for {@link length}
 	 * @category Aliases
 	 */
 	export const len = length

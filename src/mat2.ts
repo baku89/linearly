@@ -292,37 +292,37 @@ export namespace mat2 {
 	export const sub = subtract
 
 	/**
-	 * Alias for {@link mat2.multiply}
+	 * Alias for {@link multiply}
 	 * @category Aliases
 	 */
 	export const mul = multiply
 
 	/**
-	 * Alias for {@link mat2.determinant}
+	 * Alias for {@link determinant}
 	 * @category Aliases
 	 */
 	export const det = determinant
 
 	/**
-	 * Alias for {@link mat2.invert}
+	 * Alias for {@link invert}
 	 * @category Aliases
 	 */
 	export const inv = invert
 
 	/**
-	 * Alias for {@link mat2.fromRotation}
+	 * Alias for {@link fromRotation}
 	 * @category Aliases
 	 */
 	export const rotation = fromRotation
 
 	/**
-	 * Alias for {@link mat2.fromScaling}
+	 * Alias for {@link fromScaling}
 	 * @category Aliases
 	 */
 	export const scaling = fromScaling
 
 	/**
-	 * Alias for {@link mat2.fromSkew}
+	 * Alias for {@link fromSkew}
 	 * @category Aliases
 	 */
 	export const skewing = fromSkew

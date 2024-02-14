@@ -542,55 +542,55 @@ export namespace mat2d {
 	export const ident = identity
 
 	/**
-	 * Alias for {@link mat2d.subtract}
+	 * Alias for {@link subtract}
 	 * @category Aliases
 	 */
 	export const sub = subtract
 
 	/**
-	 * Alias for {@link mat2d.multiply}
+	 * Alias for {@link multiply}
 	 * @category Aliases
 	 */
 	export const mul = multiply
 
 	/**
-	 * Alias for {@link mat2d.determinant}
+	 * Alias for {@link determinant}
 	 * @category Aliases
 	 */
 	export const det = determinant
 
 	/**
-	 * Alias for {@link mat2d.invert}
+	 * Alias for {@link invert}
 	 * @category Aliases
 	 */
 	export const inv = invert
 
 	/**
-	 * Alias for {@link mat2d.fromTranslation}
+	 * Alias for {@link fromTranslation}
 	 * @category Aliases
 	 */
 	export const translation = fromTranslation
 
 	/**
-	 * Alias for {@link mat2d.fromRotation}
+	 * Alias for {@link fromRotation}
 	 * @category Aliases
 	 */
 	export const rotation = fromRotation
 
 	/**
-	 * Alias for {@link mat2d.fromScaling}
+	 * Alias for {@link fromScaling}
 	 * @category Aliases
 	 */
 	export const scaling = fromScaling
 
 	/**
-	 * Alias for {@link mat2d.fromSkew}
+	 * Alias for {@link fromSkew}
 	 * @category Aliases
 	 */
 	export const skewing = fromSkew
 
 	/**
-	 * Alias for {@link mat2d.fromTRS}
+	 * Alias for {@link fromTRS}
 	 * @category Aliases
 	 */
 	export const trs = fromTRS
