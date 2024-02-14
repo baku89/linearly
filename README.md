@@ -23,7 +23,7 @@ This library is based on [glMatrix](https://github.com/toji/gl-matrix), but adop
 
 ### glMatrix
 
-```js
+```ts
 // In glMatrix, you have to manually pass an output vector by reference to reuse allocated memory space efficiently.
 const dir = vec3.fromValues(2, 1, 3)
 vec3.normalize(dir, dir)
@@ -66,7 +66,7 @@ In addition to functions that can be found on [glMatrix docs](https://glmatrix.n
 
 ## Development
 
-```
+```sh
 git clone https://github.com/baku89/lnearly
 cd linearly
 yarn install

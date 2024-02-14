@@ -4,7 +4,7 @@ import {vec2} from './vec2'
 /**
  * Represents 2D transformation exclude translation.
  * The format is column-major as in WebGL, so the matrix looks like this:
- * ```
+ * ```ts
  * [xx, xy,
  *  yx, yy]
  * ```
@@ -40,7 +40,7 @@ export namespace mat2 {
 
 	/**
 	 * The identity matrix of mat2.
-	 * ```
+	 * ```ts
 	 * [1, 0,
 	 *  0, 1]
 	 * ```

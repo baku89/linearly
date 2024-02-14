@@ -7,7 +7,7 @@ import {vec3} from './vec3'
 /**
  * Represents 2D affine transformation (translation, rotation, scaling, and skewing).
  * The format is column-major as in WebGL, so the matrix looks like this:
- * ```
+ * ```ts
  * [xx, xy, 0
  *  yx, yy, 0
  *  tx, ty, 1]
@@ -77,7 +77,7 @@ export namespace mat3 {
 
 	/**
 	 * The identity matrix of mat3
-	 * ```
+	 * ```ts
 	 * [1, 0, 0,
 	 *  0, 1, 0,
 	 *  0, 0, 1]

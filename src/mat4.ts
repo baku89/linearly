@@ -4,7 +4,7 @@ import {vec3} from './vec3'
 
 /**
  * 4x4 Matrix representing 3D affine transformation. The format is column-major, when typed out it looks like row-major. The matrices are being post multiplied.
- * ```
+ * ```ts
  * [xx, xy, xz, 0,
  *  yx, yy, yz, 0,
  *  zx, zy, zz, 0,
@@ -63,7 +63,7 @@ export namespace mat4 {
 
 	/**
 	 * The identity matrix of mat4
-	 * ```
+	 * ```ts
 	 * [1, 0, 0, 0,
 	 *  0, 1, 0, 0,
 	 *  0, 0, 1, 0,

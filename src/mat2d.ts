@@ -6,13 +6,13 @@ import {vec2} from './vec2'
  * Represents 2D affine transformation (translation, rotation, scaling, skewing), omitting reduction thrid row which is always set to `[0, 0, 1]`. The order of six elements is the same as CSS transform matrix.
  *
  * A mat2d contains six elements defined as:
- * ```
+ * ```ts
  * [a, b,
  *  c, d,
  *  tx, ty]
  * ```
  * This is a short form for the {@link mat3}:
- * ```
+ * ```ts
  * [xx, xy, 0,
  *  yx, yy, 0,
  *  tx, ty, 1]
@@ -68,7 +68,7 @@ export namespace mat2d {
 
 	/**
 	 * The identity matrix of mat2d
-	 * ```
+	 * ```ts
 	 * [1, 0,
 	 *  0, 1,
 	 *  0, 0]
