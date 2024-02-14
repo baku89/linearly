@@ -533,6 +533,12 @@ export namespace mat2d {
 	 * Alias for {@link identity}
 	 * @category Aliases
 	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Aliases
+	 */
 	export const ident = identity
 
 	/**

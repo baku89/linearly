@@ -1594,6 +1594,12 @@ export namespace mat4 {
 	 * Alias for {@link identity}
 	 * @category Aliases
 	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Aliases
+	 */
 	export const ident = identity
 
 	/**

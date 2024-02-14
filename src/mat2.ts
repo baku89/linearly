@@ -277,6 +277,12 @@ export namespace mat2 {
 	 * Alias for {@link identity}
 	 * @category Aliases
 	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Aliases
+	 */
 	export const ident = identity
 
 	/**
