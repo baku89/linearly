@@ -56,5 +56,8 @@ export default defineUserConfig({
 		//@ts-ignore
 		linkify: true,
 		typographer: true,
+		code: {
+			lineNumbers: false,
+		},
 	},
 })
