@@ -202,6 +202,28 @@ export namespace mat2 {
 	}
 
 	/**
+	 * Creates a matrix from given rotation, and scaling. The order of the transformations is rotation, and scaling.
+	 * @param r Rotation angle in degrees
+	 * @param s Scaling vector
+	 * @returns The matrix that represents the transformation
+	 */
+	export function fromRotScale(r: number | null = null, s: vec2 | null = null) {
+		r ??= 0
+		s ??= vec2.one
+
+		const C = Math.cos(r * Common.DEG2RAD)
+		const S = Math.sin(r * Common.DEG2RAD)
+
+		return [s[0] * C, s[0] * S, s[1] * -S, s[1] * C]
+	}
+
+	/**
+	 * Alias for {@link fromRotScale}
+	 * @category Aliases
+	 */
+	export const rs = fromRotScale
+
+	/**
 	 * Returns Frobenius norm of a mat2
 	 */
 	export function frob(a: mat2) {
