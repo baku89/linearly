@@ -573,24 +573,49 @@ export namespace vec4 {
 		]
 	}
 
-	export function sin(v: vec4): vec4 {
-		return [Math.sin(v[0]), Math.sin(v[1]), Math.sin(v[2]), Math.sin(v[3])]
+	export function sin(deg: vec4): vec4 {
+		return [
+			Math.sin(deg[0] * Common.DEG2RAD),
+			Math.sin(deg[1] * Common.DEG2RAD),
+			Math.sin(deg[2] * Common.DEG2RAD),
+			Math.sin(deg[3] * Common.DEG2RAD),
+		]
 	}
 
-	export function cos(v: vec4): vec4 {
-		return [Math.cos(v[0]), Math.cos(v[1]), Math.cos(v[2]), Math.cos(v[3])]
+	export function cos(deg: vec4): vec4 {
+		return [
+			Math.cos(deg[0] * Common.DEG2RAD),
+			Math.cos(deg[1] * Common.DEG2RAD),
+			Math.cos(deg[2] * Common.DEG2RAD),
+			Math.cos(deg[3] * Common.DEG2RAD),
+		]
 	}
 
-	export function tan(v: vec4): vec4 {
-		return [Math.tan(v[0]), Math.tan(v[1]), Math.tan(v[2]), Math.tan(v[3])]
+	export function tan(deg: vec4): vec4 {
+		return [
+			Math.tan(deg[0] * Common.DEG2RAD),
+			Math.tan(deg[1] * Common.DEG2RAD),
+			Math.tan(deg[2] * Common.DEG2RAD),
+			Math.tan(deg[3] * Common.DEG2RAD),
+		]
 	}
 
 	export function asin(v: vec4): vec4 {
-		return [Math.asin(v[0]), Math.asin(v[1]), Math.asin(v[2]), Math.asin(v[3])]
+		return [
+			Math.asin(v[0]) * Common.RAD2DEG,
+			Math.asin(v[1]) * Common.RAD2DEG,
+			Math.asin(v[2]) * Common.RAD2DEG,
+			Math.asin(v[3]) * Common.RAD2DEG,
+		]
 	}
 
 	export function acos(v: vec4): vec4 {
-		return [Math.acos(v[0]), Math.acos(v[1]), Math.acos(v[2]), Math.acos(v[3])]
+		return [
+			Math.acos(v[0]) * Common.RAD2DEG,
+			Math.acos(v[1]) * Common.RAD2DEG,
+			Math.acos(v[2]) * Common.RAD2DEG,
+			Math.acos(v[3]) * Common.RAD2DEG,
+		]
 	}
 
 	/**
@@ -601,17 +626,17 @@ export namespace vec4 {
 	export function atan(y: vec4, x?: vec4): vec4 {
 		if (x === undefined) {
 			return [
-				Math.atan(y[0]),
-				Math.atan(y[1]),
-				Math.atan(y[2]),
-				Math.atan(y[3]),
+				Math.atan(y[0]) * Common.RAD2DEG,
+				Math.atan(y[1]) * Common.RAD2DEG,
+				Math.atan(y[2]) * Common.RAD2DEG,
+				Math.atan(y[3]) * Common.RAD2DEG,
 			]
 		} else {
 			return [
-				Math.atan2(y[0], x[0]),
-				Math.atan2(y[1], x[1]),
-				Math.atan2(y[2], x[2]),
-				Math.atan2(y[3], x[3]),
+				Math.atan2(y[0], x[0]) * Common.RAD2DEG,
+				Math.atan2(y[1], x[1]) * Common.RAD2DEG,
+				Math.atan2(y[2], x[2]) * Common.RAD2DEG,
+				Math.atan2(y[3], x[3]) * Common.RAD2DEG,
 			]
 		}
 	}
