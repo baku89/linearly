@@ -37,6 +37,13 @@ test('dot', () => {
 	expect(vec2.dot([3, 4], [5, 6])).toEqual(39)
 })
 
+test('direction', () => {
+	expect(vec2.direction(0)).toEqual([1, 0])
+	expect(vec2.direction(Math.PI / 2)).toEqual([0, 1])
+	expect(vec2.direction(Math.PI)).toEqual([-1, 0])
+	expect(vec2.direction(Math.PI / 4, 2)).toEqual([Math.sqrt(2), Math.sqrt(2)])
+})
+
 test('equals', () => {
 	expect(vec2.equals([3 + EPSILON, 5 - EPSILON], [3, 5])).toBe(true)
 	expect(vec2.equals([3 + EPSILON * 10, 5 - EPSILON], [3, 5])).toBe(false)
@@ -100,6 +107,20 @@ describe('angle', () => {
 		const y = Math.sqrt(3) / 2
 
 		expect(vec2.angle([-x, -y], [-x, y])).toEqual(scalar.rad(-120))
+	})
+	it('should work in the case of [0°, 0°]', () => {
+		expect(vec2.angle([1, 0], [1, 0])).toEqual(0)
+	})
+	it('should work in the case of [180°, 180°]', () => {
+		expect(vec2.angle([-1, 0], [-1, 0])).toEqual(0)
+	})
+	it('should work in the case of [135°, -135°]', () => {
+		const x = 1 / Math.sqrt(2)
+		expect(vec2.angle([-x, x], [-x, -x])).toEqual(Math.PI / 2)
+	})
+	it('should work in the case of [-135°, 135°]', () => {
+		const x = 1 / Math.sqrt(2)
+		expect(vec2.angle([-x, -x], [-x, x])).toEqual(-Math.PI / 2)
 	})
 })
 
