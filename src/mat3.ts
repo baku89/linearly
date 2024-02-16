@@ -224,10 +224,10 @@ export namespace mat3 {
 	/**
 	 * Rotates a mat3 by the given angle
 	 */
-	export function rotate(a: mat3, rad: number): mat3 {
+	export function rotate(a: mat3, deg: number): mat3 {
 		const [a00, a01, a02, a10, a11, a12, a20, a21, a22] = a
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [
@@ -276,9 +276,9 @@ export namespace mat3 {
 	 * Creates a matrix from a given angle
 	 * @category Generators
 	 */
-	export function fromRotation(rad: number): mat3 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function fromRotation(deg: number): mat3 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [

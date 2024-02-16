@@ -132,12 +132,12 @@ export namespace mat2 {
 	 * Rotates a mat2 by the given angle
 	 *
 	 * @param a the matrix to rotate
-	 * @param rad the angle to rotate the matrix by
+	 * @param deg the angle to rotate the matrix by, in degrees
 	 */
-	export function rotate(a: mat2, rad: number): mat2 {
+	export function rotate(a: mat2, deg: number): mat2 {
 		const [a0, a1, a2, a3] = a
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		return [
 			a0 * c + a2 * s,
@@ -160,18 +160,20 @@ export namespace mat2 {
 	/**
 	 * Apply skew to the mat2d by the given angles
 	 * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+	 * @param m the matrix to skew
+	 * @param deg the angles to skew the matrix by, in degrees
 	 */
-	export function skew(m: mat2, rad: vec2): mat2 {
-		return multiply(m, fromSkew(rad))
+	export function skew(m: mat2, deg: vec2): mat2 {
+		return multiply(m, fromSkew(deg))
 	}
 
 	/**
 	 * Creates a matrix from a given angle
 	 * @category Generators
 	 */
-	export function fromRotation(rad: number): mat2 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function fromRotation(deg: number): mat2 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 		return [c, s, -s, c]
 	}
 
@@ -188,9 +190,9 @@ export namespace mat2 {
 	 * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
 	 * @category Generators
 	 */
-	export function fromSkew(rad: vec2): mat2 {
-		const x = Math.tan(rad[0])
-		const y = Math.tan(rad[1])
+	export function fromSkew(deg: vec2): mat2 {
+		const x = Math.tan(deg[0] * Common.DEG2RAD)
+		const y = Math.tan(deg[1] * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [

@@ -417,12 +417,18 @@ export namespace vec2 {
 
 	export function transformMat2(a: vec2, m: mat2): vec2 {
 		const [x, y] = a
-		return [m[0] * x + m[2] * y, m[1] * x + m[3] * y]
+		return [
+			m[0] * x + m[2] * y, //
+			m[1] * x + m[3] * y,
+		]
 	}
 
 	export function transformMat2d(a: vec2, m: mat2d): vec2 {
 		const [x, y] = a
-		return [m[0] * x + m[2] * y + m[4], m[1] * x + m[3] * y + m[5]]
+		return [
+			m[0] * x + m[2] * y + m[4], //
+			m[1] * x + m[3] * y + m[5],
+		]
 	}
 
 	/**
@@ -431,23 +437,26 @@ export namespace vec2 {
 	 */
 	export function transformMat3(a: vec2, m: mat3): vec2 {
 		const [x, y] = a
-		return [m[0] * x + m[3] * y + m[6], m[1] * x + m[4] * y + m[7]]
+		return [
+			m[0] * x + m[3] * y + m[6], //
+			m[1] * x + m[4] * y + m[7],
+		]
 	}
 
 	/**
 	 * Rotate a 2D vector
 	 */
-	export function rotate(a: vec2, rad: number, origin: vec2 = zero): vec2 {
+	export function rotate(a: vec2, deg: number, origin: vec2 = zero): vec2 {
 		// Translate point to the origin
-		const p0 = a[0] - origin[0],
-			p1 = a[1] - origin[1],
-			sinC = Math.sin(rad),
-			cosC = Math.cos(rad)
+		const p0 = a[0] - origin[0]
+		const p1 = a[1] - origin[1]
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// Perform rotation and translate to correct position
 		return [
-			p0 * cosC - p1 * sinC + origin[0],
-			p0 * sinC + p1 * cosC + origin[1],
+			p0 * c - p1 * s + origin[0], //
+			p0 * s + p1 * c + origin[1], //
 		]
 	}
 
@@ -465,14 +474,17 @@ export namespace vec2 {
 
 		const sign = x1 * y2 - y1 * x2 >= 0 ? 1 : -1
 
-		return sign * Math.acos(dot(a, b) / mag)
+		return sign * Math.acos(dot(a, b) / mag) * Common.RAD2DEG
 	}
 
 	/**
 	 * Creates a vector by given direction and length
 	 */
-	export function direction(rad: number, length = 1): vec2 {
-		return [Math.cos(rad) * length, Math.sin(rad) * length]
+	export function direction(deg: number, length = 1): vec2 {
+		return [
+			Math.cos(deg * Common.DEG2RAD) * length, //
+			Math.sin(deg * Common.DEG2RAD) * length,
+		]
 	}
 
 	/**
@@ -521,35 +533,71 @@ export namespace vec2 {
 		const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
 		const t1 = scalar.clamp((x[1] - edge1[1]) / (edge1[1] - edge1[1]), 0, 1)
 
-		return [t0 * t0 * (3 - 2 * t0), t1 * t1 * (3 - 2 * t1)]
+		return [
+			t0 * t0 * (3 - 2 * t0), //
+			t1 * t1 * (3 - 2 * t1),
+		]
 	}
 
 	export function degrees(rad: vec2): vec2 {
-		return [(rad[0] * 180) / Math.PI, (rad[1] * 180) / Math.PI]
+		return [
+			rad[0] * Common.RAD2DEG, //
+			rad[1] * Common.RAD2DEG,
+		]
 	}
+
+	/**
+	 * Alias for {@link vec2.degrees}
+	 * @category Aliases
+	 */
+	export const deg = degrees
 
 	export function radians(deg: vec2): vec2 {
-		return [(deg[0] * Math.PI) / 180, (deg[1] * Math.PI) / 180]
+		return [
+			deg[0] * Common.DEG2RAD, //
+			deg[1] * Common.DEG2RAD,
+		]
 	}
 
-	export function sin(v: vec2): vec2 {
-		return [Math.sin(v[0]), Math.sin(v[1])]
+	/**
+	 * Alias for {@link vec2.radians}
+	 * @category Aliases
+	 */
+	export const rad = radians
+
+	export function sin(deg: vec2): vec2 {
+		return [
+			Math.sin(deg[0] * Common.DEG2RAD), //
+			Math.sin(deg[1] * Common.DEG2RAD),
+		]
 	}
 
-	export function cos(v: vec2): vec2 {
-		return [Math.cos(v[0]), Math.cos(v[1])]
+	export function cos(deg: vec2): vec2 {
+		return [
+			Math.cos(deg[0] * Common.DEG2RAD), //
+			Math.cos(deg[1] * Common.DEG2RAD),
+		]
 	}
 
-	export function tan(v: vec2): vec2 {
-		return [Math.tan(v[0]), Math.tan(v[1])]
+	export function tan(deg: vec2): vec2 {
+		return [
+			Math.tan(deg[0] * Common.DEG2RAD), //
+			Math.tan(deg[1] * Common.DEG2RAD),
+		]
 	}
 
 	export function asin(v: vec2): vec2 {
-		return [Math.asin(v[0]), Math.asin(v[1])]
+		return [
+			Math.asin(v[0]) * Common.RAD2DEG, //
+			Math.asin(v[1]) * Common.RAD2DEG,
+		]
 	}
 
 	export function acos(v: vec2): vec2 {
-		return [Math.acos(v[0]), Math.acos(v[1])]
+		return [
+			Math.acos(v[0] * Common.RAD2DEG), //
+			Math.acos(v[1] * Common.RAD2DEG),
+		]
 	}
 
 	/**
@@ -559,9 +607,15 @@ export namespace vec2 {
 	export function atan(yOverX: vec2): vec2
 	export function atan(y: vec2, x?: vec2): vec2 {
 		if (x === undefined) {
-			return [Math.atan(y[0]), Math.atan(y[1])]
+			return [
+				Math.atan(y[0]) * Common.RAD2DEG, //
+				Math.atan(y[1]) * Common.RAD2DEG,
+			]
 		} else {
-			return [Math.atan2(y[0], x[0]), Math.atan2(y[1], x[1])]
+			return [
+				Math.atan2(y[0], x[0]) * Common.RAD2DEG, //
+				Math.atan2(y[1], x[1]) * Common.RAD2DEG,
+			]
 		}
 	}
 
@@ -677,18 +731,6 @@ export namespace vec2 {
 	 * @category Aliases
 	 */
 	export const invlerp = inverseLerp
-
-	/**
-	 * Alias for {@link vec2.radians}
-	 * @category Aliases
-	 */
-	export const rad = radians
-
-	/**
-	 * Alias for {@link vec2.degrees}
-	 * @category Aliases
-	 */
-	export const deg = degrees
 
 	/**
 	 * Alias for {@link vec2.direction}

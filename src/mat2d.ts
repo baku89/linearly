@@ -150,16 +150,16 @@ export namespace mat2d {
 	/**
 	 * Rotates a mat2d by the given angle
 	 */
-	export function rotate(m: mat2d, rad: number, origin?: vec2): mat2d {
+	export function rotate(m: mat2d, deg: number, origin?: vec2): mat2d {
 		if (origin) {
 			if (origin) {
-				return pivot(rotate(m, rad), origin)
+				return pivot(rotate(m, deg), origin)
 			}
 		}
 
 		const [a0, a1, a2, a3, tx, ty] = m
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [
@@ -216,8 +216,8 @@ export namespace mat2d {
 	 * Apply skew to the mat2d by the given radians
 	 * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
 	 */
-	export function skew(m: mat2d, rad: vec2, origin: vec2): mat2d {
-		return multiply(m, fromSkew(rad, origin))
+	export function skew(m: mat2d, deg: vec2, origin: vec2): mat2d {
+		return multiply(m, fromSkew(deg, origin))
 	}
 
 	/**
@@ -225,13 +225,13 @@ export namespace mat2d {
 	 * This is equivalent to (but much faster than):
 	 * @category Generators
 	 */
-	export function fromRotation(rad: number, origin?: vec2): mat2d {
+	export function fromRotation(deg: number, origin?: vec2): mat2d {
 		if (origin) {
-			return pivot(fromRotation(rad), origin)
+			return pivot(fromRotation(deg), origin)
 		}
 
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [
@@ -280,14 +280,14 @@ export namespace mat2d {
 	 * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
 	 * @category Generators
 	 */
-	export function fromSkew(rad: vec2, origin?: vec2): mat2d {
+	export function fromSkew(deg: vec2, origin?: vec2): mat2d {
 		if (origin) {
-			return pivot(fromSkew(rad), origin)
+			return pivot(fromSkew(deg), origin)
 		}
 
-		const [ax, ay] = rad
-		const x = Math.tan(ax)
-		const y = Math.tan(ay)
+		const [ax, ay] = deg
+		const x = Math.tan(ax * Common.DEG2RAD)
+		const y = Math.tan(ay * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [
@@ -475,7 +475,7 @@ export namespace mat2d {
 	/**
 	 * Creates a matrix from given translation, rotation, and scaling. The order of the transformations is translation, rotation, and scaling, like most of the graphics software.
 	 * @param t Translation vector
-	 * @param r Rotation angle in radians
+	 * @param r Rotation angle in degrees
 	 * @param s Scaling vector
 	 * @returns The matrix that represents the transformation
 	 */

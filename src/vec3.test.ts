@@ -1,6 +1,7 @@
 import {expect, test} from 'vitest'
 
 import {EPSILON} from './common'
+import {scalar} from './scalar'
 import {vec3} from './vec3'
 
 // https://github.com/stackgl/gl-vec3/blob/master/test/index.js
@@ -17,7 +18,9 @@ test('add', () => {
 })
 
 test('angle', () => {
-	expect(vec3.angle([3, 4, 5], [6, 7, 8])).toEqual(0.0852402656588635)
+	expect(vec3.angle([3, 4, 5], [6, 7, 8])).toEqual(
+		scalar.deg(0.0852402656588635)
+	)
 })
 
 test('ceil', () => {
@@ -99,15 +102,15 @@ test('normalize', () => {
 })
 
 test('rotateX', () => {
-	expect(vec3.rotateX([3, 4, 5], [6, 7, 8], Math.PI)).toEqual([3, 10, 11])
+	expect(vec3.rotateX([3, 4, 5], [6, 7, 8], 90)).toEqual([3, 10, 5])
 })
 
 test('rotateY', () => {
-	expect(vec3.rotateY([3, 4, 5], [6, 7, 8], Math.PI)).toEqual([9, 4, 11])
+	expect(vec3.rotateY([3, 4, 5], [6, 7, 8], 90)).toEqual([3, 4, 11])
 })
 
 test('rotateZ', () => {
-	expect(vec3.rotateZ([3, 4, 5], [6, 7, 8], Math.PI)).toEqual([9, 10, 5])
+	expect(vec3.rotateZ([3, 4, 5], [6, 7, 8], 90)).toEqual([9, 4, 5])
 })
 
 test('scale', () => {

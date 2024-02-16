@@ -226,15 +226,25 @@ export namespace scalar {
 		return (deg * Math.PI) / 180
 	}
 
-	export const sin = Math.sin
+	export function sin(deg: number): number {
+		return Math.sin(deg * Common.DEG2RAD)
+	}
 
-	export const cos = Math.cos
+	export function cos(deg: number): number {
+		return Math.cos(deg * Common.DEG2RAD)
+	}
 
-	export const tan = Math.tan
+	export function tan(deg: number): number {
+		return Math.tan(deg * Common.DEG2RAD)
+	}
 
-	export const asin = Math.asin
+	export function asin(x: number): number {
+		return Math.asin(x) * Common.RAD2DEG
+	}
 
-	export const acos = Math.acos
+	export function acos(x: number): number {
+		return Math.acos(x) * Common.RAD2DEG
+	}
 
 	/**
 	 * Returns the arc-tangent of the parameters.
@@ -243,9 +253,9 @@ export namespace scalar {
 	export function atan(yOverX: number): number
 	export function atan(y: number, x?: number): number {
 		if (x === undefined) {
-			return Math.atan(y)
+			return Math.atan(y) * Common.RAD2DEG
 		} else {
-			return Math.atan2(y, x)
+			return Math.atan2(y, x) * Common.RAD2DEG
 		}
 	}
 

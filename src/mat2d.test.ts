@@ -1,7 +1,6 @@
 import {describe, expect, it, test} from 'vitest'
 
 import {mat2d} from './mat2d'
-import {scalar} from './scalar'
 import {vec2} from './vec2'
 
 const matA: mat2d = [1, 2, 3, 4, 5, 6]
@@ -22,7 +21,7 @@ test('multiply', () => {
 })
 
 test('rotate', () => {
-	expect(mat2d.rotate(matA, Math.PI * 0.5)).toEqual([3, 4, -1, -2, 5, 6])
+	expect(mat2d.rotate(matA, 90)).toEqual([3, 4, -1, -2, 5, 6])
 })
 
 test('scale', () => {
@@ -69,17 +68,17 @@ test('multiplyScalarAndAdd', () => {
 
 describe('fromSkew', () => {
 	it('should skew [45°, 0°] correctly', () => {
-		expect(mat2d.fromSkew([scalar.rad(45), 0])).toEqual([1, 0, 1, 1, 0, 0])
+		expect(mat2d.fromSkew([45, 0])).toEqual([1, 0, 1, 1, 0, 0])
 	})
 
 	it('should skew [0°, 45°] correctly', () => {
-		expect(mat2d.fromSkew([0, scalar.rad(45)])).toEqual([1, 1, 0, 1, 0, 0])
+		expect(mat2d.fromSkew([0, 45])).toEqual([1, 1, 0, 1, 0, 0])
 	})
 })
 
 test('fromTRS', () => {
 	const t: vec2 = [2, 3]
-	const r: number = Math.PI / 4
+	const r: number = 45
 	const s: vec2 = [4, 2]
 
 	const R2 = Math.sqrt(2)

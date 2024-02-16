@@ -330,7 +330,7 @@ export namespace mat4 {
 	/**
 	 * Rotates a mat4 by the given angle around the given axis
 	 */
-	export function rotate(a: mat4, rad: number, axis: vec3): mat4 | null {
+	export function rotate(a: mat4, deg: number, axis: vec3): mat4 | null {
 		let [x, y, z] = axis
 		const len = Math.hypot(x, y, z)
 
@@ -342,8 +342,8 @@ export namespace mat4 {
 		y /= len
 		z /= len
 
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 		const t = 1 - c
 
 		// prettier-ignore
@@ -384,9 +384,9 @@ export namespace mat4 {
 	/**
 	 * Rotates a matrix by the given angle around the X axis
 	 */
-	export function rotateX(a: mat4, rad: number): mat4 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function rotateX(a: mat4, deg: number): mat4 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 		const a10 = a[4]
 		const a11 = a[5]
 		const a12 = a[6]
@@ -408,9 +408,9 @@ export namespace mat4 {
 	/**
 	 * Rotates a matrix by the given angle around the Y axis
 	 */
-	export function rotateY(a: mat4, rad: number): mat4 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function rotateY(a: mat4, deg: number): mat4 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 		const a00 = a[0]
 		const a01 = a[1]
 		const a02 = a[2]
@@ -438,9 +438,9 @@ export namespace mat4 {
 	/**
 	 * Rotates a matrix by the given angle around the Z axis
 	 */
-	export function rotateZ(a: mat4, rad: number): mat4 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function rotateZ(a: mat4, deg: number): mat4 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 		const a00 = a[0]
 		const a01 = a[1]
 		const a02 = a[2]
@@ -534,7 +534,7 @@ export namespace mat4 {
 	 * Creates a matrix from a given angle around a given axis
 	 * @category Generators
 	 */
-	export function fromRotation(rad: number, axis: vec3): mat4 | null {
+	export function fromRotation(deg: number, axis: vec3): mat4 | null {
 		let [x, y, z] = axis
 		const len = Math.hypot(x, y, z)
 
@@ -546,8 +546,8 @@ export namespace mat4 {
 		y /= len
 		z /= len
 
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 		const t = 1 - c
 
 		// prettier-ignore
@@ -572,9 +572,9 @@ export namespace mat4 {
 	 * Creates a matrix from the given angle around the X axis
 	 * @category Generators
 	 */
-	export function fromXRotation(rad: number): mat4 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function fromXRotation(deg: number): mat4 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [
@@ -589,9 +589,9 @@ export namespace mat4 {
 	 * Creates a matrix from the given angle around the Y axis
 	 * @category Generators
 	 */
-	export function fromYRotation(rad: number): mat4 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function fromYRotation(deg: number): mat4 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [
@@ -606,9 +606,9 @@ export namespace mat4 {
 	 * Creates a matrix from the given angle around the Z axis
 	 * @category Generators
 	 */
-	export function fromZRotation(rad: number): mat4 {
-		const s = Math.sin(rad)
-		const c = Math.cos(rad)
+	export function fromZRotation(deg: number): mat4 {
+		const s = Math.sin(deg * Common.DEG2RAD)
+		const c = Math.cos(deg * Common.DEG2RAD)
 
 		// prettier-ignore
 		return [
@@ -1006,7 +1006,7 @@ export namespace mat4 {
 	 * which matches WebGL/OpenGL's clip volume.
 	 * Passing null/undefined/no value for far will generate infinite projection matrix.
 	 *
-	 * @param fovy Vertical field of view in radians
+	 * @param fovy Vertical field of view in degrees
 	 * @param aspect Aspect ratio. typically viewport width/height
 	 * @param near Near bound of the frustum
 	 * @param far Far bound of the frustum, can be null or Infinity
@@ -1017,7 +1017,7 @@ export namespace mat4 {
 		near: number,
 		far: number
 	): mat4 {
-		const f = 1 / Math.tan(fovy / 2)
+		const f = 1 / Math.tan((fovy * Common.DEG2RAD) / 2)
 
 		let out10: number, out14: number
 
@@ -1051,7 +1051,7 @@ export namespace mat4 {
 	 * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
 	 * Passing null/undefined/no value for far will generate infinite projection matrix.
 	 *
-	 * @param fovy Vertical field of view in radians
+	 * @param fovy Vertical field of view in degrees
 	 * @param aspect Aspect ratio. typically viewport width/height
 	 * @param near Near bound of the frustum
 	 * @param far Far bound of the frustum, can be null or Infinity
@@ -1062,7 +1062,7 @@ export namespace mat4 {
 		near: number,
 		far: number | null
 	): mat4 {
-		const f = 1 / Math.tan(fovy / 2)
+		const f = 1 / Math.tan((fovy * Common.DEG2RAD) / 2)
 
 		let out10: number, out14: number
 

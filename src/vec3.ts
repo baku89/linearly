@@ -543,72 +543,75 @@ export namespace vec3 {
 
 	/**
 	 * Rotate a 3D vector around the x-axis
-	 * @param a The vec3 point to rotate
-	 * @param b The origin of the rotation
-	 * @param rad The angle of rotation in radians
+	 * @param v The vec3 point to rotate
+	 * @param origin The origin of the rotation
+	 * @param deg The angle of rotation in degrees
 	 */
-	export function rotateX(a: vec3, b: vec3, rad: number): vec3 {
+	export function rotateX(v: vec3, origin: vec3, deg: number): vec3 {
 		//Translate point to the origin
-		const p = [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
-
-		//perform rotation
-		const r = [
-			p[0],
-			p[1] * Math.cos(rad) - p[2] * Math.sin(rad),
-			p[1] * Math.sin(rad) + p[2] * Math.cos(rad),
-		]
+		const py = v[1] - origin[1]
+		const pz = v[2] - origin[2]
+		const rad = deg * Common.DEG2RAD
+		const s = Math.sin(rad)
+		const c = Math.cos(rad)
 
 		//translate to correct position
-		return [r[0] + b[0], r[1] + b[1], r[2] + b[2]]
+		return [
+			v[0], //
+			origin[1] + py * c - pz * s,
+			origin[2] + py * s + pz * c,
+		]
 	}
 
 	/**
 	 * Rotate a 3D vector around the y-axis
-	 * @param a The vec3 point to rotate
+	 * @param v The vec3 point to rotate
 	 * @param origin The origin of the rotation
-	 * @param rad The angle of rotation in radians
+	 * @param deg The angle of rotation in degrees
 	 */
-	export function rotateY(a: vec3, origin: vec3, rad: number): vec3 {
+	export function rotateY(v: vec3, origin: vec3, deg: number): vec3 {
 		//Translate point to the origin
-		const p = [a[0] - origin[0], a[1] - origin[1], a[2] - origin[2]]
+		const px = v[0] - origin[0]
+		const pz = v[2] - origin[2]
+		const rad = deg * Common.DEG2RAD
+		const s = Math.sin(rad)
+		const c = Math.cos(rad)
 
-		//perform rotation
-		const r = [
-			p[2] * Math.sin(rad) + p[0] * Math.cos(rad),
-			p[1],
-			p[2] * Math.cos(rad) - p[0] * Math.sin(rad),
+		// Perform rotation then translate to correct position
+		return [
+			origin[0] + pz * s + px * c, //
+			v[1], //
+			origin[2] + pz * c - px * s,
 		]
-
-		//translate to correct position
-		return [r[0] + origin[0], r[1] + origin[1], r[2] + origin[2]]
 	}
 
 	/**
 	 * Rotate a 3D vector around the z-axis
-	 * @param a The vec3 point to rotate
-	 * @param b The origin of the rotation
-	 * @param rad The angle of rotation in radians
+	 * @param v The vec3 point to rotate
+	 * @param origin The origin of the rotation
+	 * @param deg The angle of rotation in degrees
 	 */
-	export function rotateZ(a: vec3, b: vec3, rad: number): vec3 {
+	export function rotateZ(v: vec3, origin: vec3, deg: number): vec3 {
 		//Translate point to the origin
-		const p = [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
-
-		//perform rotation
-		const r = [
-			p[0] * Math.cos(rad) - p[1] * Math.sin(rad),
-			p[0] * Math.sin(rad) + p[1] * Math.cos(rad),
-			p[2],
-		]
+		const px = v[0] - origin[0]
+		const py = v[1] - origin[1]
+		const rad = deg * Common.DEG2RAD
+		const s = Math.sin(rad)
+		const c = Math.cos(rad)
 
 		//translate to correct position
-		return [r[0] + b[0], r[1] + b[1], r[2] + b[2]]
+		return [
+			origin[0] + px * c - py * s, //
+			origin[1] + px * s + py * c,
+			v[2],
+		]
 	}
 
 	/**
 	 * Get the angle between two 3D vectors
 	 * @param a The first operand
 	 * @param b The second operand
-	 * @returns The angle in radians
+	 * @returns The angle in degrees
 	 */
 	export function angle(a: vec3, b: vec3) {
 		const [ax, ay, az] = a
@@ -616,7 +619,7 @@ export namespace vec3 {
 		const mag = Math.hypot(ax, ay, az) * Math.hypot(bx, by, bz)
 		const cosine = mag && dot(a, b) / mag
 
-		return Math.acos(Math.min(Math.max(cosine, -1), 1))
+		return Math.acos(Math.min(Math.max(cosine, -1), 1)) * Common.RAD2DEG
 	}
 
 	/**
@@ -658,38 +661,58 @@ export namespace vec3 {
 
 	export function degrees(rad: vec3): vec3 {
 		return [
-			(rad[0] * 180) / Math.PI,
-			(rad[1] * 180) / Math.PI,
-			(rad[2] * 180) / Math.PI,
+			rad[0] * Common.RAD2DEG,
+			rad[1] * Common.RAD2DEG,
+			rad[2] * Common.RAD2DEG,
 		]
 	}
 
 	export function radians(deg: vec3): vec3 {
 		return [
-			(deg[0] * Math.PI) / 180,
-			(deg[1] * Math.PI) / 180,
-			(deg[2] * Math.PI) / 180,
+			deg[0] * Common.RAD2DEG,
+			deg[1] * Common.RAD2DEG,
+			deg[2] * Common.RAD2DEG,
 		]
 	}
 
-	export function sin(v: vec3): vec3 {
-		return [Math.sin(v[0]), Math.sin(v[1]), Math.sin(v[2])]
+	export function sin(deg: vec3): vec3 {
+		return [
+			Math.sin(deg[0] * Common.DEG2RAD),
+			Math.sin(deg[1] * Common.DEG2RAD),
+			Math.sin(deg[2] * Common.DEG2RAD),
+		]
 	}
 
-	export function cos(v: vec3): vec3 {
-		return [Math.cos(v[0]), Math.cos(v[1]), Math.cos(v[2])]
+	export function cos(deg: vec3): vec3 {
+		return [
+			Math.cos(deg[0] * Common.DEG2RAD),
+			Math.cos(deg[1] * Common.DEG2RAD),
+			Math.cos(deg[2] * Common.DEG2RAD),
+		]
 	}
 
-	export function tan(v: vec3): vec3 {
-		return [Math.tan(v[0]), Math.tan(v[1]), Math.tan(v[2])]
+	export function tan(deg: vec3): vec3 {
+		return [
+			Math.tan(deg[0] * Common.DEG2RAD),
+			Math.tan(deg[1] * Common.DEG2RAD),
+			Math.tan(deg[2] * Common.DEG2RAD),
+		]
 	}
 
 	export function asin(v: vec3): vec3 {
-		return [Math.asin(v[0]), Math.asin(v[1]), Math.asin(v[2])]
+		return [
+			Math.asin(v[0]) * Common.RAD2DEG,
+			Math.asin(v[1]) * Common.RAD2DEG,
+			Math.asin(v[2]) * Common.RAD2DEG,
+		]
 	}
 
 	export function acos(v: vec3): vec3 {
-		return [Math.acos(v[0]), Math.acos(v[1]), Math.acos(v[2])]
+		return [
+			Math.acos(v[0]) * Common.RAD2DEG,
+			Math.acos(v[1]) * Common.RAD2DEG,
+			Math.acos(v[2]) * Common.RAD2DEG,
+		]
 	}
 
 	/**
@@ -699,12 +722,16 @@ export namespace vec3 {
 	export function atan(yOverX: vec3): vec3
 	export function atan(y: vec3, x?: vec3): vec3 {
 		if (x === undefined) {
-			return [Math.atan(y[0]), Math.atan(y[1]), Math.atan(y[2])]
+			return [
+				Math.atan(y[0]) * Common.RAD2DEG,
+				Math.atan(y[1]) * Common.RAD2DEG,
+				Math.atan(y[2]) * Common.RAD2DEG,
+			]
 		} else {
 			return [
-				Math.atan2(y[0], x[0]),
-				Math.atan2(y[1], x[1]),
-				Math.atan2(y[2], x[2]),
+				Math.atan2(y[0], x[0]) * Common.RAD2DEG,
+				Math.atan2(y[1], x[1]) * Common.RAD2DEG,
+				Math.atan2(y[2], x[2]) * Common.RAD2DEG,
 			]
 		}
 	}

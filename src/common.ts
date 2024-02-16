@@ -5,6 +5,10 @@
 // Configuration Constants
 export const EPSILON = 0.000001
 
+export const DEG2RAD = Math.PI / 180
+
+export const RAD2DEG = 180 / Math.PI
+
 /**
  * Symmetric round
  * see https://www.npmjs.com/package/round-half-up-symmetric#user-content-detailed-background

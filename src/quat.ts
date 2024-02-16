@@ -53,13 +53,18 @@ export namespace quat {
 	 * then returns it.
 	 * @category Generators
 	 * @param axis the axis around which to rotate
-	 * @param rad the angle in radians
+	 * @param deg the angle in degrees
 	 **/
-	export function fromAxisAngle(axis: vec3, rad: number): quat {
-		rad = rad * 0.5
+	export function fromAxisAngle(axis: vec3, deg: number): quat {
+		const rad = deg * Common.DEG2RAD * 0.5
 		const s = Math.sin(rad)
 
-		return [s * axis[0], s * axis[1], s * axis[2], Math.cos(rad)]
+		return [
+			s * axis[0], //
+			s * axis[1],
+			s * axis[2],
+			Math.cos(rad),
+		]
 	}
 
 	/**
@@ -74,7 +79,7 @@ export namespace quat {
 	 *
 	 * @param  q Quaternion to be decomposed
 	 */
-	export function axisAngle(q: quat): {axis: vec3; rad: number} {
+	export function axisAngle(q: quat): {axis: vec3; deg: number} {
 		const rad = Math.acos(q[3]) * 2
 		const s = Math.sin(rad / 2)
 
@@ -86,7 +91,7 @@ export namespace quat {
 			// If s is zero, return any axis (no rotation - axis does not matter)
 			axis = [1, 0, 0]
 		}
-		return {axis, rad}
+		return {axis, deg: rad * Common.RAD2DEG}
 	}
 
 	/**
@@ -94,7 +99,7 @@ export namespace quat {
 	 *
 	 * @param  a     Origin unit quaternion
 	 * @param  b     Destination unit quaternion
-	 * @return  Angle, in radians, between the two quaternions
+	 * @return  Angle, in degrees, between the two quaternions
 	 */
 	export function angle(a: quat, b: quat): number {
 		const dotproduct = dot(a, b)
@@ -133,17 +138,17 @@ export namespace quat {
 	 * Rotates a quaternion by the given angle about the X axis
 	 *
 	 * @param a quat to rotate
-	 * @param rad angle (in radians) to rotate
+	 * @param deg angle to rotate, in degrees
 	 */
-	export function rotateX(a: quat, rad: number): quat {
-		rad *= 0.5
+	export function rotateX(a: quat, deg: number): quat {
+		deg *= 0.5
 
 		const ax = a[0],
 			ay = a[1],
 			az = a[2],
 			aw = a[3]
-		const bx = Math.sin(rad),
-			bw = Math.cos(rad)
+		const bx = Math.sin(deg * Common.DEG2RAD),
+			bw = Math.cos(deg * Common.DEG2RAD)
 
 		return [
 			ax * bw + aw * bx,
@@ -157,10 +162,10 @@ export namespace quat {
 	 * Rotates a quaternion by the given angle about the Y axis
 	 *
 	 * @param a quat to rotate
-	 * @param rad angle (in radians) to rotate
+	 * @param deg angle to rotate, in degrees
 	 */
-	export function rotateY(a: quat, rad: number): quat {
-		rad *= 0.5
+	export function rotateY(a: quat, deg: number): quat {
+		const rad = deg * Common.DEG2RAD * 0.5
 
 		const ax = a[0],
 			ay = a[1],
@@ -181,17 +186,18 @@ export namespace quat {
 	 * Rotates a quaternion by the given angle about the Z axis
 	 *
 	 * @param a quat to rotate
-	 * @param rad angle (in radians) to rotate
+	 * @param deg angle (in degrees) to rotate
 	 */
-	export function rotateZ(a: quat, rad: number): quat {
-		rad *= 0.5
+	export function rotateZ(a: quat, deg: number): quat {
+		const rad = deg * Common.DEG2RAD * 0.5
 
-		const ax = a[0],
-			ay = a[1],
-			az = a[2],
-			aw = a[3]
-		const bz = Math.sin(rad),
-			bw = Math.cos(rad)
+		const ax = a[0]
+		const ay = a[1]
+		const az = a[2]
+		const aw = a[3]
+
+		const bz = Math.sin(rad)
+		const bw = Math.cos(rad)
 
 		return [
 			ax * bw + ay * bz,
@@ -360,12 +366,16 @@ export namespace quat {
 	/**
 	 * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
 	 *
-	 * @param rads Angles to rotate around X, Y, Z axes in radians.
+	 * @param deg Angles to rotate around X, Y, Z axes in degree.
 	 * @param order Intrinsic order for conversion, default is zyx.
 	 * @category Generators
 	 */
-	export function fromEuler(rads: vec3, order = Common.DEFAULT_ANGLE_ORDER) {
-		const [xRad, yRad, zRad] = rads
+	export function fromEuler(deg: vec3, order = Common.DEFAULT_ANGLE_ORDER) {
+		const [xDeg, yDeg, zDeg] = deg
+
+		const xRad = xDeg * Common.DEG2RAD
+		const yRad = yDeg * Common.DEG2RAD
+		const zRad = zDeg * Common.DEG2RAD
 
 		const sx = Math.sin(xRad)
 		const cx = Math.cos(xRad)

@@ -1,7 +1,6 @@
 import {describe, expect, it, test} from 'vitest'
 
 import {EPSILON} from './common'
-import {scalar} from './scalar'
 import {vec2} from './vec2'
 
 // https://github.com/stackgl/gl-vec2/blob/master/test/index.js
@@ -39,9 +38,9 @@ test('dot', () => {
 
 test('direction', () => {
 	expect(vec2.direction(0)).toEqual([1, 0])
-	expect(vec2.direction(Math.PI / 2)).toEqual([0, 1])
-	expect(vec2.direction(Math.PI)).toEqual([-1, 0])
-	expect(vec2.direction(Math.PI / 4, 2)).toEqual([Math.sqrt(2), Math.sqrt(2)])
+	expect(vec2.direction(90)).toEqual([0, 1])
+	expect(vec2.direction(180)).toEqual([-1, 0])
+	expect(vec2.direction(45, 2)).toEqual([Math.sqrt(2), Math.sqrt(2)])
 })
 
 test('equals', () => {
@@ -98,7 +97,7 @@ test('normalize', () => {
 })
 
 test('rotate', () => {
-	expect(vec2.rotate([1, 2], Math.PI, [0, 0])).toEqual([-1, -2])
+	expect(vec2.rotate([1, 2], 180, [0, 0])).toEqual([-1, -2])
 })
 
 describe('angle', () => {
@@ -106,7 +105,7 @@ describe('angle', () => {
 		const x = 1 / 2
 		const y = Math.sqrt(3) / 2
 
-		expect(vec2.angle([-x, -y], [-x, y])).toEqual(scalar.rad(-120))
+		expect(vec2.angle([-x, -y], [-x, y])).toEqual(-120)
 	})
 	it('should work in the case of [0°, 0°]', () => {
 		expect(vec2.angle([1, 0], [1, 0])).toEqual(0)
@@ -116,11 +115,11 @@ describe('angle', () => {
 	})
 	it('should work in the case of [135°, -135°]', () => {
 		const x = 1 / Math.sqrt(2)
-		expect(vec2.angle([-x, x], [-x, -x])).toEqual(Math.PI / 2)
+		expect(vec2.angle([-x, x], [-x, -x])).toEqual(90)
 	})
 	it('should work in the case of [-135°, 135°]', () => {
 		const x = 1 / Math.sqrt(2)
-		expect(vec2.angle([-x, -x], [-x, x])).toEqual(-Math.PI / 2)
+		expect(vec2.angle([-x, -x], [-x, x])).toEqual(-90)
 	})
 })
 
