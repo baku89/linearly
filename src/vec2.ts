@@ -464,7 +464,7 @@ export namespace vec2 {
 	 * Get the angle between two 2D vectors. If the second argument is omitted, it returns a signed angle relative to x axis.
 	 */
 	export function angle(a: vec2, b?: vec2) {
-		if (!b) return Math.atan2(a[1], a[0])
+		if (!b) return Math.atan2(a[1], a[0]) * Common.RAD2DEG
 
 		const [x1, y1] = a
 		const [x2, y2] = b

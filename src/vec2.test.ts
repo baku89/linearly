@@ -101,6 +101,14 @@ test('rotate', () => {
 })
 
 describe('angle', () => {
+	it('shoud work in the case of 0°', () => {
+		expect(vec2.angle([1, 0])).toEqual(0)
+	})
+
+	it('shoud work in the case of 90°', () => {
+		expect(vec2.angle([0, 1])).toEqual(90)
+	})
+
 	it('should work in the case of [-120°, 120]', () => {
 		const x = 1 / 2
 		const y = Math.sqrt(3) / 2
