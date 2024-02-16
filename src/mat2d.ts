@@ -479,8 +479,19 @@ export namespace mat2d {
 	 * @param s Scaling vector
 	 * @returns The matrix that represents the transformation
 	 */
-	export function fromTRS(t: vec2, r: number, s: vec2): mat2d {
-		return multiply(fromTranslation(t), fromRotation(r), fromScaling(s))
+	export function fromTRS(
+		t: vec2 | null = null,
+		r: number | null = null,
+		s: vec2 | null = null
+	): mat2d {
+		t ??= vec2.zero
+		r ??= 0
+		s ??= vec2.one
+
+		const C = Math.cos(r * Common.DEG2RAD)
+		const S = Math.sin(r * Common.DEG2RAD)
+
+		return [s[0] * C, s[0] * S, s[1] * -S, s[1] * C, ...t]
 	}
 
 	/**
