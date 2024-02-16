@@ -619,10 +619,9 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Returns the arc-tangent of the parameters.
+	 * Returns the arc-tangent of the parameters. If `x` is not provided, `y` is regarded as a value of `y/x`.
 	 * @see https://thebookofshaders.com/glossary/?search=atan
 	 */
-	export function atan(yOverX: vec4): vec4
 	export function atan(y: vec4, x?: vec4): vec4 {
 		if (x === undefined) {
 			return [

@@ -247,10 +247,9 @@ export namespace scalar {
 	}
 
 	/**
-	 * Returns the arc-tangent of the parameters.
+	 * Returns the arc-tangent of the parameters.  If `x` is not provided, `y` is regarded as a value of `y/x`.
 	 * @see https://thebookofshaders.com/glossary/?search=atan
 	 */
-	export function atan(yOverX: number): number
 	export function atan(y: number, x?: number): number {
 		if (x === undefined) {
 			return Math.atan(y) * Common.RAD2DEG
