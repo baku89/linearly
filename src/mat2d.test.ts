@@ -1,6 +1,7 @@
 import {describe, expect, it, test} from 'vitest'
 
 import {mat2d} from './mat2d'
+import {scalar} from './scalar'
 import {vec2} from './vec2'
 
 const matA: mat2d = [1, 2, 3, 4, 5, 6]
@@ -64,6 +65,16 @@ test('multiplyScalarAndAdd', () => {
 	expect(mat2d.multiplyScalarAndAdd(matA, matB, 0.5)).toEqual([
 		4.5, 6, 7.5, 9, 10.5, 12,
 	])
+})
+
+describe('fromSkew', () => {
+	it('should skew [45°, 0°] correctly', () => {
+		expect(mat2d.fromSkew([scalar.rad(45), 0])).toEqual([1, 0, 1, 1, 0, 0])
+	})
+
+	it('should skew [0°, 45°] correctly', () => {
+		expect(mat2d.fromSkew([0, scalar.rad(45)])).toEqual([1, 1, 0, 1, 0, 0])
+	})
 })
 
 test('fromTRS', () => {

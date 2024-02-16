@@ -691,6 +691,12 @@ export namespace vec2 {
 	export const deg = degrees
 
 	/**
+	 * Alias for {@link vec2.direction}
+	 * @category Aliases
+	 */
+	export const dir = direction
+
+	/**
 	 * Alias for {@link vec2.inverseSqrt}
 	 * @category Aliases
 	 */
