@@ -831,25 +831,25 @@ export namespace vec4 {
 
 	/**
 	 * Alias for {@link vec4.radians}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const rad = radians
 
 	/**
 	 * Alias for {@link vec4.degrees}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const deg = degrees
 
 	/**
 	 * Alias for {@link vec4.inverseSqrt}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const invsqrt = inverseSqrt
 
 	/**
 	 * Alias for {@link vec4.invert}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const inv = invert
 }

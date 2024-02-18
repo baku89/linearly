@@ -307,80 +307,80 @@ export namespace scalar {
 
 	/**
 	 * Alias for {@link scalar.subtract}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sub = subtract
 
 	/**
 	 * Alias for {@link scalar.multiply}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const mul = multiply
 
 	/**
 	 * Alias for {@link scalar.divide}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const div = divide
 
 	/**
 	 * Alias for {@link scalar.average}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const avg = average
 
 	/**
 	 * Alias for {@link scalar.distance}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const dist = distance
 
 	/**
 	 * Alias for {@link scalar.length}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const len = length
 
 	/**
 	 * Alias for {@link scalar.squaredDistance}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sqrDist = squaredDistance
 
 	/**
 	 * Alias for {@link scalar.squaredLength}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sqrLen = squaredLength
 
 	/**
 	 * Alias for {@link scalar.invert}
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const mix = lerp
 
 	/**
 	 * Alias for {@link scalar.inverseLerp}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const invlerp = inverseLerp
 
 	/**
 	 * Alias for {@link scalar.radians}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const rad = radians
 
 	/**
 	 * Alias for {@link scalar.degrees}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const deg = degrees
 
 	/**
 	 * Alias for {@link scalar.inverseSqrt}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const invsqrt = inverseSqrt
 }

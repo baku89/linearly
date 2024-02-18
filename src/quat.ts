@@ -566,31 +566,31 @@ export namespace quat {
 
 	/**
 	 * Alias for {@link identity}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const id = identity
 
 	/**
 	 * Alias for {@link identity}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const ident = identity
 
 	/**
 	 * Alias for {@link multiply}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const mul = multiply
 
 	/**
 	 * Alias for {@link squaredLength}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sqrLen = squaredLength
 
 	/**
 	 * Alias for {@link length}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const len = length
 }

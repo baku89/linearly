@@ -601,55 +601,55 @@ export namespace mat3 {
 
 	/**
 	 * Alias for {@link identity}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const id = identity
 
 	/**
 	 * Alias for {@link identity}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const ident = identity
 
 	/**
 	 * Alias for {@link subtract}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sub = subtract
 
 	/**
 	 * Alias for {@link multiply}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const mul = multiply
 
 	/**
 	 * Alias for {@link determinant}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const det = determinant
 
 	/**
 	 * Alias for {@link invert}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const inv = invert
 
 	/**
 	 * Alias for {@link fromTranslation}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const translation = fromTranslation
 
 	/**
 	 * Alias for {@link fromRotation}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const rotation = fromRotation
 
 	/**
 	 * Alias for {@link fromScaling}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const scaling = fromScaling
 }

@@ -219,7 +219,7 @@ export namespace mat2 {
 
 	/**
 	 * Alias for {@link fromRotScale}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const rs = fromRotScale
 
@@ -310,55 +310,55 @@ export namespace mat2 {
 
 	/**
 	 * Alias for {@link identity}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const id = identity
 
 	/**
 	 * Alias for {@link identity}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const ident = identity
 
 	/**
 	 * Alias for {@link subtract}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sub = subtract
 
 	/**
 	 * Alias for {@link multiply}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const mul = multiply
 
 	/**
 	 * Alias for {@link determinant}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const det = determinant
 
 	/**
 	 * Alias for {@link invert}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const inv = invert
 
 	/**
 	 * Alias for {@link fromRotation}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const rotation = fromRotation
 
 	/**
 	 * Alias for {@link fromScaling}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const scaling = fromScaling
 
 	/**
 	 * Alias for {@link fromSkew}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const skewing = fromSkew
 }

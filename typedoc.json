@@ -9,5 +9,12 @@
 	"plugin": ["typedoc-plugin-markdown"],
 	"sort": ["alphabetical"],
 	"defaultCategory": "Functions",
-	"categoryOrder": ["Types", "Constants", "Generators", "Functions", "Aliases"]
+	"categoryOrder": [
+		"Types",
+		"Constants",
+		"Generators",
+		"Functions",
+		"Shorthands"
+	],
+	"blockTags": ["@shorthands"]
 }

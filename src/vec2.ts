@@ -99,6 +99,15 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Alias for {@link vec2.subtract}
+	 * @category Shorthands
+	 *
+	 * @shorthands
+	 * - {@link vec2.sub}
+	 */
+	export const sub = subtract
+
+	/**
 	 * Subtracts b from a
 	 */
 	export function delta(a: vec2, b: vec2): vec2 {
@@ -117,6 +126,15 @@ export namespace vec2 {
 		return [x, y]
 	}
 
+	/**
+	 * Alias for {@link vec2.multiply}
+	 * @category Shorthands
+	 *
+	 * @shorthands
+	 * - {@link vec2.mul}
+	 */
+	export const mul = multiply
+
 	export function divide(...vs: vec2[]): vec2 {
 		if (vs.length === 0) {
 			return one
@@ -131,6 +149,15 @@ export namespace vec2 {
 
 		return [a[0] / b[0], a[1] / b[1]]
 	}
+
+	/**
+	 * Alias for {@link vec2.divide}
+	 * @category Shorthands
+	 *
+	 * @shorthands
+	 * - {@link vec2.div}
+	 */
+	export const div = divide
 
 	export function min(...vs: vec2[]): vec2 {
 		if (vs.length === 0) {
@@ -253,6 +280,9 @@ export namespace vec2 {
 	/**
 	 * Returns the average value of the input(s)
 	 * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+	 *
+	 * @shorthands
+	 * - {@link avg}
 	 */
 	export function average(...vs: vec2[]): vec2 {
 		let x = 0,
@@ -266,6 +296,12 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Alias for {@link vec2.average}
+	 * @category Shorthands
+	 */
+	export const avg = average
+
+	/**
  Adds given vec2's after scaling the second operand by a scalar value
  */
 	export function scaleAndAdd(a: vec2, b: vec2, scale: number): vec2 {
@@ -274,6 +310,9 @@ export namespace vec2 {
 
 	/**
 	 * Calculates the euclidian distance between two vec2's
+	 *
+	 * @shorthands
+	 * - {@link dist}
 	 */
 	export function distance(a: vec2, b: vec2) {
 		const x = b[0] - a[0],
@@ -282,7 +321,16 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Alias for {@link vec2.distance}
+	 * @category Shorthands
+	 */
+	export const dist = distance
+
+	/**
 	 * Calculates the squared euclidian distance between two vec2's
+	 *
+	 * @shorthands
+	 * - {@link sqrDist}
 	 */
 	export function squaredDistance(a: vec2, b: vec2) {
 		const x = b[0] - a[0],
@@ -291,32 +339,74 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Alias for {@link vec2.squaredEquals}
+	 * @category Shorthands
+	 */
+	export const sqrDist = squaredDistance
+
+	/**
 	 * Calculates the length of a vec2
+	 *
+	 * @shorthands
+	 * - {@link len}
 	 */
 	export function length(v: vec2) {
 		return Math.hypot(v[0], v[1])
 	}
 
 	/**
+	 * Alias for {@link vec2.length}
+	 * @category Shorthands
+	 */
+	export const len = length
+
+	/**
 	 * Calculates the squared length of a vec2
+	 *
+	 * @shorthands
+	 * - {@link sqrLen}
 	 */
 	export function squaredLength(v: vec2) {
 		return v[0] ** 2 + v[1] ** 2
 	}
 
 	/**
+	 * Alias for {@link vec2.squaredLength}
+	 * @category Shorthands
+	 */
+	export const sqrLen = squaredLength
+
+	/**
 	 * Negates the components of a vec2
+	 *
+	 * @shorthands
+	 * - {@link neg}
 	 */
 	export function negate(v: vec2): vec2 {
 		return [-v[0], -v[1]]
 	}
 
 	/**
+	 * Alias for {@link vec2.negate}
+	 * @category Shorthands
+	 */
+	export const neg = negate
+
+	/**
 	 * Returns the inverse of the components of a vec2
+	 *
+	 * @shorthands
+	 * - {@link inv}
 	 */
 	export function invert(v: vec2): vec2 {
 		return [1 / v[0], 1 / v[1]]
 	}
+
+	/**
+	 * Alias for {@link vec2.invert}
+	 * @category Shorthands
+	 */
+	export const inv = invert
 
 	/**
 	 * Returns the result of `v` subtracted from {@link vec2.one}.
@@ -343,6 +433,9 @@ export namespace vec2 {
 	/**
 	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 *
+	 * @shorthands
+	 * - {@link mix}
 	 */
 	export function lerp(a: vec2, b: vec2, t: vec2 | number): vec2 {
 		if (typeof t === 'number') t = [t, t]
@@ -351,9 +444,19 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Alias for {@link vec2.lerp}
+	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 * @category Shorthands
+	 */
+	export const mix = lerp
+
+	/**
 	 * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
 	 * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+	 *
+	 * @shorthands
+	 * - {@link invlerp}
 	 */
 	export function inverseLerp(a: vec2, b: vec2, t: vec2): vec2 {
 		return [
@@ -361,6 +464,12 @@ export namespace vec2 {
 			a[1] === b[1] ? 0.5 : (t[1] - a[1]) / (b[1] - a[1]),
 		]
 	}
+
+	/**
+	 * Alias for {@link vec2.inverseLerp}
+	 * @category Shorthands
+	 */
+	export const invlerp = inverseLerp
 
 	/**
 	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use efit instead.
@@ -472,6 +581,9 @@ export namespace vec2 {
 
 	/**
 	 * Creates a vector by given direction and length
+	 *
+	 * @shorthands
+	 * - {@link dir}
 	 */
 	export function direction(deg: number, length = 1): vec2 {
 		return [
@@ -479,6 +591,12 @@ export namespace vec2 {
 			Math.sin(deg * Common.DEG2RAD) * length,
 		]
 	}
+
+	/**
+	 * Alias for {@link vec2.direction}
+	 * @category Shorthands
+	 */
+	export const dir = direction
 
 	/**
 	 * Returns whether or not the vectors exactly have the same elements in the same position (when compared with `===`)
@@ -532,6 +650,15 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Converts the components of a vec2 from radians to degrees
+	 *
+	 * @param rad The input vec2 in radians
+	 * @returns The degrees equivalent of the input
+	 * 	 *
+	 * @shorthands
+	 * - {@link deg}
+	 */
 	export function degrees(rad: vec2): vec2 {
 		return [
 			rad[0] * Common.RAD2DEG, //
@@ -541,10 +668,19 @@ export namespace vec2 {
 
 	/**
 	 * Alias for {@link vec2.degrees}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const deg = degrees
 
+	/**
+	 * Converts the components of a vec2 from degrees to radians
+	 *
+	 * @param deg The input vec2 in degrees
+	 * @returns The radians equivalent of the input
+	 * 	 *
+	 * @shorthands
+	 * - {@link rad}
+	 */
 	export function radians(deg: vec2): vec2 {
 		return [
 			deg[0] * Common.DEG2RAD, //
@@ -554,10 +690,14 @@ export namespace vec2 {
 
 	/**
 	 * Alias for {@link vec2.radians}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const rad = radians
 
+	/**
+	 * Returns the sine of a number.
+	 * @param deg A angle in degrees
+	 * 	 */
 	export function sin(deg: vec2): vec2 {
 		return [
 			Math.sin(deg[0] * Common.DEG2RAD), //
@@ -565,6 +705,10 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Returns the cosine of a number.
+	 * @param deg A angle in degrees
+	 * 	 */
 	export function cos(deg: vec2): vec2 {
 		return [
 			Math.cos(deg[0] * Common.DEG2RAD), //
@@ -572,6 +716,10 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Returns the tangent of a number.
+	 * @param deg A angle in degrees
+	 * 	 */
 	export function tan(deg: vec2): vec2 {
 		return [
 			Math.tan(deg[0] * Common.DEG2RAD), //
@@ -579,6 +727,11 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Returns the arcsine of a number.
+	 * @param v A numeric expression.
+	 * @returns The arcsine in degrees
+	 * 	 */
 	export function asin(v: vec2): vec2 {
 		return [
 			Math.asin(v[0]) * Common.RAD2DEG, //
@@ -586,6 +739,11 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Returns the arc cosine (or inverse cosine) of a number.
+	 * @param v A numeric expression.
+	 * @returns The arc cosine in degrees
+	 * 	 */
 	export function acos(v: vec2): vec2 {
 		return [
 			Math.acos(v[0] * Common.RAD2DEG), //
@@ -596,7 +754,7 @@ export namespace vec2 {
 	/**
 	 * Returns the arc-tangent of the parameters.  If `x` is not provided, `y` is regarded as a value of `y/x`.
 	 * @see https://thebookofshaders.com/glossary/?search=atan
-	 */
+	 * 	 */
 	export function atan(y: vec2, x?: vec2): vec2 {
 		if (x === undefined) {
 			return [
@@ -643,10 +801,19 @@ export namespace vec2 {
 	 * Returns the inverse of the square root of the parameter
 	 * @param v the value of which to take the inverse of the square root
 	 * @see https://thebookofshaders.com/glossary/?search=inversesqrt
+	 *
+	 * @shorthands
+	 * - {@link invsqrt}
 	 */
 	export function inverseSqrt(v: vec2): vec2 {
 		return [1 / Math.sqrt(v[0]), 1 / Math.sqrt(v[1])]
 	}
+
+	/**
+	 * Alias for {@link vec2.inverseSqrt}
+	 * @category Shorthands
+	 */
+	export const invsqrt = inverseSqrt
 
 	/**
 	 * Returns the string representation of a vec2
@@ -657,88 +824,4 @@ export namespace vec2 {
 		v: vec2,
 		fractionDigits?: number
 	) => string
-
-	/**
-	 * Alias for {@link vec2.subtract}
-	 * @category Aliases
-	 */
-	export const sub = subtract
-
-	/**
-	 * Alias for {@link vec2.multiply}
-	 * @category Aliases
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link vec2.divide}
-	 * @category Aliases
-	 */
-	export const div = divide
-
-	/**
-	 * Alias for {@link vec2.average}
-	 * @category Aliases
-	 */
-	export const avg = average
-
-	/**
-	 * Alias for {@link vec2.distance}
-	 * @category Aliases
-	 */
-	export const dist = distance
-
-	/**
-	 * Alias for {@link vec2.length}
-	 * @category Aliases
-	 */
-	export const len = length
-
-	/**
-	 * Alias for {@link vec2.squaredEquals}
-	 * @category Aliases
-	 */
-	export const sqrDist = squaredDistance
-
-	/**
-	 * Alias for {@link vec2.squaredLength}
-	 * @category Aliases
-	 */
-	export const sqrLen = squaredLength
-
-	/**
-	 * Alias for {@link vec2.negate}
-	 */
-	export const neg = negate
-
-	/**
-	 * Alias for {@link vec2.lerp}
-	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
-	 * @category Aliases
-	 */
-	export const mix = lerp
-
-	/**
-	 * Alias for {@link vec2.inverseLerp}
-	 * @category Aliases
-	 */
-	export const invlerp = inverseLerp
-
-	/**
-	 * Alias for {@link vec2.direction}
-	 * @category Aliases
-	 */
-	export const dir = direction
-
-	/**
-	 * Alias for {@link vec2.inverseSqrt}
-	 * @category Aliases
-	 */
-	export const invsqrt = inverseSqrt
-
-	/**
-	 * Alias for {@link vec2.invert}
-	 * @category Aliases
-	 */
-	export const inv = invert
 }

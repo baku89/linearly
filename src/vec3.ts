@@ -856,49 +856,49 @@ export namespace vec3 {
 
 	/**
 	 * Alias for {@link vec3.subtract}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sub = subtract
 
 	/**
 	 * Alias for {@link vec3.multiply}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const mul = multiply
 
 	/**
 	 * Alias for {@link vec3.divide}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const div = divide
 
 	/**
 	 * Alias for {@link vec3.average}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const avg = average
 
 	/**
 	 * Alias for {@link vec3.distance}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const dist = distance
 
 	/**
 	 * Alias for {@link vec3.length}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const len = length
 
 	/**
 	 * Alias for {@link vec3.squaredDistance}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sqrDist = squaredDistance
 
 	/**
 	 * Alias for {@link vec3.squaredLength}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const sqrLen = squaredLength
 
@@ -910,44 +910,44 @@ export namespace vec3 {
 	/**
 	 * Alias for {@link vec3.invert}
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const mix = lerp
 
 	/**
 	 * Alias for {@link vec3.transformMat4}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const invlerp = inverseLerp
 
 	/**
 	 * Alias for {@link vec3.radians}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const rad = radians
 
 	/**
 	 * Alias for {@link vec3.degrees}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const deg = degrees
 
 	/**
 	 * Alias for {@link vec3.inverseSqrt}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const invsqrt = inverseSqrt
 
 	/**
 	 * Alias for {@link vec3.invert}
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const inv = invert
 
 	/**
 	 * Alias for {@link vec3.transformQuat}
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/qrotate.html
-	 * @category Aliases
+	 * @category Shorthands
 	 */
 	export const qrotate = transformQuat
 }
