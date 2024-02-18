@@ -379,20 +379,14 @@ export namespace vec2 {
 		nmin: vec2,
 		nmax: vec2
 	): vec2 {
-		const t = clamp(
-			[
-				(value[0] - omin[0]) / (omax[0] - omin[0]),
-				(value[0] - omin[0]) / (omax[0] - omin[0]),
-			],
-			0,
-			1
-		)
-
-		return lerp(nmin, nmax, t)
+		return [
+			scalar.fit(value[0], omin[0], omax[0], nmin[0], nmax[0]),
+			scalar.fit(value[1], omin[1], omax[1], nmin[1], nmax[1]),
+		]
 	}
 
 	/**
-	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. Unlike `fit`, this function does not clamp values to the given range.
+	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. Unlike `fit`, this function does not clamp values to the given range. If `omin` and `omax` are the same, the function returns the average of `nmin` and `nmax`.
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
 	 * @param value
 	 * @param omin
@@ -408,11 +402,10 @@ export namespace vec2 {
 		nmin: vec2,
 		nmax: vec2
 	): vec2 {
-		const t: vec2 = [
-			(value[0] - omin[0]) / (omax[0] - omin[0]),
-			(value[0] - omin[0]) / (omax[0] - omin[0]),
+		return [
+			scalar.efit(value[0], omin[0], omax[0], nmin[0], nmax[0]),
+			scalar.efit(value[1], omin[1], omax[1], nmin[1], nmax[1]),
 		]
-		return lerp(nmin, nmax, t)
 	}
 
 	export function transformMat2(a: vec2, m: mat2): vec2 {

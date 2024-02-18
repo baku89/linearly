@@ -1,4 +1,4 @@
-import {expect, test} from 'vitest'
+import {describe, expect, it, test} from 'vitest'
 
 import {EPSILON} from './common'
 import {scalar} from './scalar'
@@ -60,6 +60,40 @@ test('inverseLerp', () => {
 	expect(scalar.invlerp(0, 10, 0.2)).toEqual(0.02)
 	expect(scalar.invlerp(-1, 1, 0.5)).toEqual(0.75)
 	expect(scalar.invlerp(10, -10, 0)).toEqual(0.5)
+})
+
+describe('fit', () => {
+	it('should fit the value to the target range', () => {
+		expect(scalar.fit(4, 0, 10, 0, 100)).toEqual(40)
+		expect(scalar.fit(0, 0, 10, 0, 100)).toEqual(0)
+		expect(scalar.fit(10, 0, 10, 0, 100)).toEqual(100)
+	})
+
+	it('should clamp the value to the target range', () => {
+		expect(scalar.fit(5, 0, 4, 0, 100)).toEqual(100)
+		expect(scalar.fit(-1, 0, 10, 0, 100)).toEqual(0)
+	})
+
+	it('should return the average of `nmin` and `nmax` when the `omin` and `omax` are the same`', () => {
+		expect(scalar.fit(5, 5, 5, 0, 7)).toEqual(3.5)
+	})
+})
+
+describe('efit', () => {
+	it('should fit the value to the target range', () => {
+		expect(scalar.efit(4, 0, 10, 0, 100)).toEqual(40)
+		expect(scalar.efit(0, 0, 10, 0, 100)).toEqual(0)
+		expect(scalar.efit(10, 0, 10, 0, 100)).toEqual(100)
+	})
+
+	it('should not clamp the value to the target range', () => {
+		expect(scalar.efit(5, 0, 4, 0, 100)).toEqual(125)
+		expect(scalar.efit(-1, 0, 10, 0, 100)).toEqual(-10)
+	})
+
+	it('should return the average of `nmin` and `nmax` when the `omin` and `omax` are the same`', () => {
+		expect(scalar.fit(5, 5, 5, 0, 7)).toEqual(3.5)
+	})
 })
 
 test('max', () => {

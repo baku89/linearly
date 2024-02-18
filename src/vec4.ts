@@ -415,6 +415,56 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use efit instead.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
+	 * @param value
+	 * @param omin
+	 * @param omax
+	 * @param nmin
+	 * @param nmax
+	 * @returns
+	 */
+	export function fit(
+		value: vec4,
+		omin: vec4,
+		omax: vec4,
+		nmin: vec4,
+		nmax: vec4
+	): vec4 {
+		return [
+			scalar.fit(value[0], omin[0], omax[0], nmin[0], nmax[0]),
+			scalar.fit(value[1], omin[1], omax[1], nmin[1], nmax[1]),
+			scalar.fit(value[2], omin[2], omax[2], nmin[2], nmax[2]),
+			scalar.fit(value[3], omin[3], omax[3], nmin[3], nmax[3]),
+		]
+	}
+
+	/**
+	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. Unlike `fit`, this function does not clamp values to the given range. If `omin` and `omax` are the same, the function returns the average of `nmin` and `nmax`.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
+	 * @param value
+	 * @param omin
+	 * @param omax
+	 * @param nmin
+	 * @param nmax
+	 * @returns
+	 */
+	export function efit(
+		value: vec4,
+		omin: vec4,
+		omax: vec4,
+		nmin: vec4,
+		nmax: vec4
+	): vec4 {
+		return [
+			scalar.efit(value[0], omin[0], omax[0], nmin[0], nmax[0]),
+			scalar.efit(value[1], omin[1], omax[1], nmin[1], nmax[1]),
+			scalar.efit(value[2], omin[2], omax[2], nmin[2], nmax[2]),
+			scalar.efit(value[3], omin[3], omax[3], nmin[3], nmax[3]),
+		]
+	}
+
+	/**
 	 * Normalize a vec4
 	 */
 	export function normalize(a: vec4): vec4 {

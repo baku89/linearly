@@ -153,7 +153,7 @@ export namespace scalar {
 	}
 
 	/**
-	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use efit instead.
+	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use {@link efit} instead. If `omin` and `omax` are the same, the function returns the average of `nmin` and `nmax`.
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
 	 * @param value
 	 * @param omin
@@ -169,12 +169,17 @@ export namespace scalar {
 		nmin: number,
 		nmax: number
 	) {
+		if (omax === omin) {
+			console.log('here')
+			return lerp(nmin, nmax, 0.5)
+		}
+
 		const t = clamp((value - omin) / (omax - omin), 0, 1)
 		return lerp(nmin, nmax, t)
 	}
 
 	/**
-	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. Unlike `fit`, this function does not clamp values to the given range.
+	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. Unlike `fit`, this function does not clamp values to the given range.  If `omin` and `omax` are the same, the function returns the average of `nmin` and `nmax`.
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
 	 * @param value
 	 * @param omin
@@ -190,6 +195,10 @@ export namespace scalar {
 		nmin: number,
 		nmax: number
 	) {
+		if (omax === omin) {
+			return lerp(nmin, nmax, 0.5)
+		}
+
 		const t = (value - omin) / (omax - omin)
 		return lerp(nmin, nmax, t)
 	}
