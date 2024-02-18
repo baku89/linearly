@@ -104,7 +104,7 @@ export namespace vec4 {
 		}
 
 		if (vs.length === 1) {
-			return [-vs[0], -vs[1], -vs[2], -vs[3]]
+			return [-vs[0][0], -vs[0][1], -vs[0][2], -vs[0][3]]
 		}
 
 		const [first, ...rest] = vs
@@ -153,18 +153,25 @@ export namespace vec4 {
 	export function divide(...vs: vec4[]): vec4 {
 		if (vs.length === 0) {
 			return one
-		} else if (vs.length === 1) {
-			return divide(one, vs[0])
-		} else if (vs.length > 2) {
-			const [a, b, ...rest] = vs
-			return divide(divide(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		if (vs.length === 1) {
+			return [1 / vs[0][0], 1 / vs[0][1], 1 / vs[0][2], 1 / vs[0][3]]
+		}
 
-		return [a[0] / b[0], a[1] / b[1], a[2] / b[2], a[3] / b[3]]
+		const [first, ...rest] = vs
+
+		let [x, y, z, w] = first
+
+		for (const v of rest) {
+			x /= v[0]
+			y /= v[1]
+			z /= v[2]
+			w /= v[3]
+		}
+
+		return [x, y, z, w]
 	}
-
 	/**
 	 * symmetric round the components of a vec4
 	 */

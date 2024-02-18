@@ -83,8 +83,7 @@ export namespace vec2 {
 		}
 
 		if (vs.length === 1) {
-			const v = vs[0]
-			return [-v[0], -v[1]]
+			return [-vs[0][0], -vs[0][1]]
 		}
 
 		const [first, ...rest] = vs
@@ -143,7 +142,7 @@ export namespace vec2 {
 		}
 
 		if (vs.length === 1) {
-			return divide(one, vs[0])
+			return [1 / vs[0][0], 1 / vs[0][1]]
 		}
 
 		const [first, ...rest] = vs
