@@ -170,7 +170,6 @@ export namespace scalar {
 		nmax: number
 	) {
 		if (omax === omin) {
-			console.log('here')
 			return lerp(nmin, nmax, 0.5)
 		}
 
