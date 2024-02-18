@@ -14,9 +14,6 @@ test('add', () => {
 	expect(vec2.add([0, 1])).toStrictEqual([0, 1])
 	expect(vec2.add([0, 1], [2, 3])).toStrictEqual([2, 4])
 	expect(vec2.add([0, 1], [2, 3], [4, 5])).toStrictEqual([6, 9])
-
-	expect(vec2.add(1)).toStrictEqual([1, 1])
-	expect(vec2.add(1, 2)).toStrictEqual([3, 3])
 })
 
 test('subtract', () => {
@@ -24,9 +21,6 @@ test('subtract', () => {
 	expect(vec2.subtract([0, 1])).toStrictEqual([0, -1])
 	expect(vec2.subtract([0, 1], [2, 3])).toStrictEqual([-2, -2])
 	expect(vec2.subtract([0, 1], [2, 3], [4, 5])).toStrictEqual([-6, -7])
-
-	expect(vec2.subtract(1)).toStrictEqual([-1, -1])
-	expect(vec2.subtract(1, 2)).toStrictEqual([-1, -1])
 })
 
 test('multiply', () => {
@@ -34,9 +28,6 @@ test('multiply', () => {
 	expect(vec2.multiply([0, 1])).toStrictEqual([0, 1])
 	expect(vec2.multiply([0, 1], [2, 3])).toStrictEqual([0, 3])
 	expect(vec2.multiply([0, 1], [2, 3], [4, 5])).toStrictEqual([0, 15])
-
-	expect(vec2.multiply(1)).toStrictEqual([1, 1])
-	expect(vec2.multiply(2, 3)).toStrictEqual([6, 6])
 })
 
 test('divice', () => {
@@ -47,9 +38,6 @@ test('divice', () => {
 		2 / 4 / 6,
 		3 / 5 / 7,
 	])
-
-	expect(vec2.divide(1)).toStrictEqual([1, 1])
-	expect(vec2.divide(2, 3)).toStrictEqual([2 / 3, 2 / 3])
 })
 
 test('ceil', () => {

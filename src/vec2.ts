@@ -22,12 +22,6 @@ export namespace vec2 {
 	export type Mutable = [x: number, y: number]
 
 	/**
-	 * Vector value used in arguments. If it is a number `x`, it will be regarded as `[x, x]`
-	 * @category Types
-	 */
-	export type OrNumber = vec2 | number
-
-	/**
 	 * Creates a new vector from given elements
 	 * @category Generators
 	 */
@@ -68,18 +62,13 @@ export namespace vec2 {
 	/**
 	 * Add the given vectors
 	 */
-	export function add(...vs: OrNumber[]): vec2 {
+	export function add(...vs: vec2[]): vec2 {
 		let x = 0,
 			y = 0
 
 		for (const v of vs) {
-			if (typeof v === 'number') {
-				x += v
-				y += v
-			} else {
-				x += v[0]
-				y += v[1]
-			}
+			x += v[0]
+			y += v[1]
 		}
 
 		return [x, y]
@@ -88,18 +77,14 @@ export namespace vec2 {
 	/**
 	 * Subtracts the given vec2's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
 	 */
-	export function subtract(...vs: OrNumber[]): vec2 {
+	export function subtract(...vs: vec2[]): vec2 {
 		if (vs.length === 0) {
 			return zero
 		}
 
 		if (vs.length === 1) {
 			const v = vs[0]
-			if (typeof v === 'number') {
-				return [-v, -v]
-			} else {
-				return [-v[0], -v[1]]
-			}
+			return [-v[0], -v[1]]
 		}
 
 		const [first, ...rest] = vs
@@ -108,13 +93,8 @@ export namespace vec2 {
 			typeof first === 'number' ? [first, first] : [...first]
 
 		for (const v of rest) {
-			if (typeof v === 'number') {
-				x -= v
-				y -= v
-			} else {
-				x -= v[0]
-				y -= v[1]
-			}
+			x -= v[0]
+			y -= v[1]
 		}
 
 		return [x, y]
@@ -136,18 +116,13 @@ export namespace vec2 {
 		return [b[0] - a[0], b[1] - a[1]]
 	}
 
-	export function multiply(...vs: OrNumber[]): vec2 {
+	export function multiply(...vs: vec2[]): vec2 {
 		let x = 1,
 			y = 1
 
 		for (const v of vs) {
-			if (typeof v === 'number') {
-				x *= v
-				y *= v
-			} else {
-				x *= v[0]
-				y *= v[1]
-			}
+			x *= v[0]
+			y *= v[1]
 		}
 
 		return [x, y]
@@ -162,7 +137,7 @@ export namespace vec2 {
 	 */
 	export const mul = multiply
 
-	export function divide(...vs: OrNumber[]): vec2 {
+	export function divide(...vs: vec2[]): vec2 {
 		if (vs.length === 0) {
 			return one
 		}
@@ -173,16 +148,11 @@ export namespace vec2 {
 
 		const [first, ...rest] = vs
 
-		let [x, y] = typeof first === 'number' ? [first, first] : [...first]
+		let [x, y] = first
 
 		for (const v of rest) {
-			if (typeof v === 'number') {
-				x /= v
-				y /= v
-			} else {
-				x /= v[0]
-				y /= v[1]
-			}
+			x /= v[0]
+			y /= v[1]
 		}
 
 		return [x, y]
