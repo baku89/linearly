@@ -387,6 +387,9 @@ export namespace scalar {
 	/**
 	 * Returns the arc-tangent of the parameters.  If `x` is not provided, `y` is regarded as a value of `y/x`.
 	 * @see https://thebookofshaders.com/glossary/?search=atan
+	 * @param y the value of the y-coordinate
+	 * @param x the value of the x-coordinate
+	 * @returns the angle in degrees
 	 */
 	export function atan(y: number, x?: number): number {
 		if (x === undefined) {
@@ -394,6 +397,17 @@ export namespace scalar {
 		} else {
 			return Math.atan2(y, x) * Common.RAD2DEG
 		}
+	}
+
+	/**
+	 * Returns the arc-tangent of the parameters.
+	 * @see https://thebookofshaders.com/glossary/?search=atan
+	 * @param y the value of the y-coordinate
+	 * @param x the value of the x-coordinate
+	 * @returns the angle in degrees
+	 */
+	export function atan2(y: number, x: number): number {
+		return Math.atan2(y, x) * Common.RAD2DEG
 	}
 
 	export const pow = Math.exp

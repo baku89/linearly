@@ -737,6 +737,9 @@ export namespace vec2 {
 
 	/**
 	 * Returns the arc-tangent of the parameters.  If `x` is not provided, `y` is regarded as a value of `y/x`.
+	 * @param y the values of the y-coordinate
+	 * @param x the values of the x-coordinate
+	 * @returns the angle in degrees
 	 * @see https://thebookofshaders.com/glossary/?search=atan
 	 * 	 */
 	export function atan(y: vec2, x?: vec2): vec2 {
@@ -751,6 +754,19 @@ export namespace vec2 {
 				Math.atan2(y[1], x[1]) * Common.RAD2DEG,
 			]
 		}
+	}
+	/**
+	 * Returns the arc-tangent of the parameters.
+	 * @param y the values of the y-coordinate
+	 * @param x the values of the x-coordinate
+	 * @returns the angle in degrees
+	 * @see https://thebookofshaders.com/glossary/?search=atan
+	 * 	 */
+	export function atan2(y: vec2, x: vec2): vec2 {
+		return [
+			Math.atan2(y[0], x[0]) * Common.RAD2DEG, //
+			Math.atan2(y[1], x[1]) * Common.RAD2DEG,
+		]
 	}
 
 	export function pow(a: vec2, b: vec2): vec2 {
