@@ -32,11 +32,6 @@ test('equals', () => {
 	expect(scalar.equals(3 + EPSILON * 10, 3)).toBe(false)
 })
 
-test('exactEquals', () => {
-	expect(scalar.exactEquals(3, 3)).toBe(true)
-	expect(scalar.exactEquals(3 + EPSILON, 3)).toBe(false)
-})
-
 test('floor', () => {
 	expect(scalar.floor(5.2)).toEqual(5)
 })
@@ -154,4 +149,35 @@ test('subtract', () => {
 	expect(scalar.subtract(5)).toEqual(-5)
 	expect(scalar.subtract(5, 2)).toEqual(3)
 	expect(scalar.subtract(5, 2, 1)).toEqual(2)
+})
+
+test('ramp', () => {
+	expect(scalar.ramp(0)).toEqual(0)
+	expect(scalar.ramp(-0.1)).toEqual(0.9)
+	expect(scalar.ramp(1)).toEqual(1)
+	expect(scalar.ramp(-1)).toEqual(0)
+	expect(scalar.ramp(-1.2)).toEqual(0.8)
+	expect(scalar.ramp(-2)).toEqual(0)
+	expect(scalar.ramp(-10.9)).toEqual(0.1)
+})
+
+test('triangle', () => {
+	expect(scalar.triangle(0)).toEqual(0)
+	expect(scalar.triangle(0.25)).toEqual(0.5)
+	expect(scalar.triangle(0.5)).toEqual(1)
+	expect(scalar.triangle(0.8)).toEqual(0.4)
+	expect(scalar.triangle(1)).toEqual(0)
+	expect(scalar.triangle(1.4)).toEqual(0.8)
+	expect(scalar.triangle(-0.25)).toEqual(0.5)
+	expect(scalar.triangle(-1.4)).toEqual(0.8)
+})
+
+test('coswave', () => {
+	expect(scalar.coswave(0)).toEqual(0)
+	expect(scalar.coswave(0.25)).toEqual(0.5)
+	expect(scalar.coswave(0.5)).toEqual(1)
+	expect(scalar.coswave(1)).toEqual(0)
+	expect(scalar.coswave(1.5)).toEqual(1)
+	expect(scalar.coswave(-0.25)).toEqual(0.5)
+	expect(scalar.coswave(-1.5)).toEqual(1)
 })
