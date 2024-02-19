@@ -518,18 +518,41 @@ export namespace quat {
 
 	/**
 	 * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with `===`)
+	 *
+	 * @shorthands
+	 * - {@link eq}
 	 */
 	export const exactEquals = vec4.exactEquals
 
 	/**
-	 * Returns whether or not the quaternions point approximately to the same direction.
-	 *
-	 * Both quaternions are assumed to be unit length.
+	 * Alias for {@link exactEquals}
+	 * @category Shorthands
 	 */
-	export function equals(a: quat, b: quat) {
+	export const eq = exactEquals
+
+	/**
+	 * Returns whether or not the quaternions point approximately to the same direction. Both quaternions are assumed to be unit length.
+	 *
+	 * @shorthands
+	 * - {@link approx}
+	 * - {@link equals}
+	 */
+	export function approxEquals(a: quat, b: quat) {
 		return Math.abs(vec4.dot(a, b)) >= 1 - Common.EPSILON
 	}
 
+	/**
+	 * Alias for {@link approxEquals}
+	 * @category Shorthands
+	 */
+	export const approx = approxEquals
+
+	/**
+	 * Alias for {@link approxEquals}. This is provided for compatibility with gl-matrix.
+	 * @category Shorthands
+	 * @deprecated Use {@link approxEquals} instead
+	 */
+	export const equals = approxEquals
 	/**
 	 * Sets a quaternion to represent the shortest rotation from one
 	 * vector to another.

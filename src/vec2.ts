@@ -606,27 +606,6 @@ export namespace vec2 {
 	export const dir = direction
 
 	/**
-	 * Returns whether or not the vectors exactly have the same elements in the same position (when compared with `===`)
-	 */
-	export function exactEquals(a: vec2, b: vec2) {
-		return a[0] === b[0] && a[1] === b[1]
-	}
-
-	/**
-	 * Returns whether or not the vectors have approximately the same elements in the same position.
-	 */
-	export function equals(a: vec2, b: vec2) {
-		const [a0, a1] = a
-		const [b0, b1] = b
-		return (
-			Math.abs(a0 - b0) <=
-				Common.EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) &&
-			Math.abs(a1 - b1) <=
-				Common.EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1))
-		)
-	}
-
-	/**
 	 * Apply a step function by comparing two values
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
 	 * @param edge The location of the edge of the step function.
@@ -819,6 +798,53 @@ export namespace vec2 {
 	 * @category Shorthands
 	 */
 	export const invsqrt = inverseSqrt
+
+	/**
+	 * Returns whether or not the vectors exactly have the same elements in the same position (when compared with `===`)
+	 *
+	 * @shorthands
+	 * - {@link eq}
+	 */
+	export function exactEquals(a: vec2, b: vec2) {
+		return a[0] === b[0] && a[1] === b[1]
+	}
+
+	/**
+	 * Alias for {@link exactEquals}
+	 * @category Shorthands
+	 */
+	export const eq = exactEquals
+
+	/**
+	 * Returns whether or not the vectors have approximately the same elements in the same position.
+	 *
+	 * @shorthands
+	 * - {@link approx}
+	 * - {@link equals}
+	 */
+	export function approxEquals(a: vec2, b: vec2) {
+		const [a0, a1] = a
+		const [b0, b1] = b
+		return (
+			Math.abs(a0 - b0) <=
+				Common.EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) &&
+			Math.abs(a1 - b1) <=
+				Common.EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1))
+		)
+	}
+
+	/**
+	 * Alias for {@link approxEquals}
+	 * @category Shorthands
+	 */
+	export const approx = approxEquals
+
+	/**
+	 * Alias for {@link approxEquals}. This is provided for compatibility with gl-matrix.
+	 * @category Shorthands
+	 * @deprecated Use {@link approxEquals} instead
+	 */
+	export const equals = approxEquals
 
 	/**
 	 * Returns the string representation of a vec2

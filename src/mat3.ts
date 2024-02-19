@@ -609,6 +609,9 @@ export namespace mat3 {
 
 	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
+	 *
+	 * @shorthands
+	 * - {@link eq}
 	 */
 	export function exactEquals(a: mat3, b: mat3) {
 		return (
@@ -625,9 +628,19 @@ export namespace mat3 {
 	}
 
 	/**
-	 * Returns whether or not the matrices have approximately the same elements in the same position.
+	 * Alias for {@link exactEquals}
+	 * @category Shorthands
 	 */
-	export function equals(a: mat3, b: mat3) {
+	export const eq = exactEquals
+
+	/**
+	 * Returns whether or not the matrices have approximately the same elements in the same position.
+	 *
+	 * @shorthands
+	 * - {@link approx}
+	 * - {@link equals}
+	 */
+	export function approxEquals(a: mat3, b: mat3) {
 		const a0 = a[0],
 			a1 = a[1],
 			a2 = a[2],
@@ -667,6 +680,19 @@ export namespace mat3 {
 				Common.EPSILON * Math.max(1, Math.abs(a8), Math.abs(b8))
 		)
 	}
+
+	/**
+	 * Alias for {@link approxEquals}
+	 * @category Shorthands
+	 */
+	export const approx = approxEquals
+
+	/**
+	 * Alias for {@link approxEquals}. This is provided for compatibility with gl-matrix.
+	 * @category Shorthands
+	 * @deprecated Use {@link approxEquals} instead
+	 */
+	export const equals = approxEquals
 
 	/**
 	 * Returns a string representation of a mat3

@@ -429,14 +429,30 @@ export namespace scalar {
 	 */
 	export const invsqrt = inverseSqrt
 
-	export function exactEquals(a: number, b: number): boolean {
-		return a === b
-	}
-
-	export function equals(a: number, b: number): boolean {
+	/**
+	 * Returns whether or not the numbers have approximately the same.
+	 *
+	 * @shorthands
+	 * - {@link approx}
+	 * - {@link equals}
+	 */
+	export function approxEquals(a: number, b: number): boolean {
 		return (
 			Math.abs(a - b) <=
 			Common.EPSILON * Math.max(1.0, Math.abs(a), Math.abs(b))
 		)
 	}
+
+	/**
+	 * Alias for {@link approxEquals}
+	 * @category Shorthands
+	 */
+	export const approx = approxEquals
+
+	/**
+	 * Alias for {@link approxEquals}. This is provided for compatibility with gl-matrix.
+	 * @category Shorthands
+	 * @deprecated Use {@link approxEquals} instead
+	 */
+	export const equals = approxEquals
 }

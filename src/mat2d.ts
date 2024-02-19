@@ -603,6 +603,9 @@ export namespace mat2d {
 
 	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
+	 *
+	 * @shorthands
+	 * - {@link eq}
 	 */
 	export function exactEquals(a: mat2d, b: mat2d) {
 		return (
@@ -616,9 +619,19 @@ export namespace mat2d {
 	}
 
 	/**
-	 * Returns whether or not the matrices have approximately the same elements in the same position.
+	 * Alias for {@link exactEquals}
+	 * @category Shorthands
 	 */
-	export function equals(a: mat2d, b: mat2d) {
+	export const eq = exactEquals
+
+	/**
+	 * Returns whether or not the matrices have approximately the same elements in the same position.
+	 *
+	 * @shorthands
+	 * - {@link approx}
+	 * - {@link equals}
+	 */
+	export function approxEquals(a: mat2d, b: mat2d) {
 		const [a0, a1, a2, a3, a4, a5] = a
 		const [b0, b1, b2, b3, b4, b5] = b
 		return (
@@ -636,6 +649,19 @@ export namespace mat2d {
 				Common.EPSILON * Math.max(1, Math.abs(a5), Math.abs(b5))
 		)
 	}
+
+	/**
+	 * Alias for {@link approxEquals}
+	 * @category Shorthands
+	 */
+	export const approx = approxEquals
+
+	/**
+	 * Alias for {@link approxEquals}. This is provided for compatibility with gl-matrix.
+	 * @category Shorthands
+	 * @deprecated Use {@link approxEquals} instead
+	 */
+	export const equals = approxEquals
 
 	/**
 	 * Returns a string representation of a mat2d

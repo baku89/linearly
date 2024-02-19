@@ -874,15 +874,28 @@ export namespace vec4 {
 
 	/**
 	 * Returns whether or not the vectors have exactly the same elements in the same position (when compared with `===`)
+	 *
+	 * @shorthands
+	 * - {@link eq}
 	 */
 	export function exactEquals(a: vec4, b: vec4) {
 		return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3]
 	}
 
 	/**
-	 * Returns whether or not the vectors have approximately the same elements in the same position.
+	 * Alias for {@link exactEquals}
+	 * @category Shorthands
 	 */
-	export function equals(a: vec4, b: vec4) {
+	export const eq = exactEquals
+
+	/**
+	 * Returns whether or not the vectors have approximately the same elements in the same position.
+	 *
+	 * @shorthands
+	 * - {@link approx}
+	 * - {@link equals}
+	 */
+	export function approxEquals(a: vec4, b: vec4) {
 		const [a0, a1, a2, a3] = a
 		const [b0, b1, b2, b3] = b
 
@@ -897,6 +910,19 @@ export namespace vec4 {
 				Common.EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3))
 		)
 	}
+
+	/**
+	 * Alias for {@link approxEquals}
+	 * @category Shorthands
+	 */
+	export const approx = approxEquals
+
+	/**
+	 * Alias for {@link approxEquals}. This is provided for compatibility with gl-matrix.
+	 * @category Shorthands
+	 * @deprecated Use {@link approxEquals} instead
+	 */
+	export const equals = approxEquals
 
 	/**
 	 * Returns the string representation of a vec4

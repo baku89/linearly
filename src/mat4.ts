@@ -1594,6 +1594,9 @@ export namespace mat4 {
 
 	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
+	 *
+	 * @shorthands
+	 * - {@link eq}
 	 */
 	export function exactEquals(a: mat4, b: mat4) {
 		return (
@@ -1617,9 +1620,19 @@ export namespace mat4 {
 	}
 
 	/**
-	 * Returns whether or not the matrices have approximately the same elements in the same position.
+	 * Alias for {@link exactEquals}
+	 * @category Shorthands
 	 */
-	export function equals(a: mat4, b: mat4) {
+	export const eq = exactEquals
+
+	/**
+	 * Returns whether or not the matrices have approximately the same elements in the same position.
+	 *
+	 * @shorthands
+	 * - {@link approx}
+	 * - {@link equals}
+	 */
+	export function approxEquals(a: mat4, b: mat4) {
 		const [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, aA, aB, aC, aD, aE, aF] = a
 		const [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bA, bB, bC, bD, bE, bF] = b
 
@@ -1658,6 +1671,19 @@ export namespace mat4 {
 				Common.EPSILON * Math.max(1, Math.abs(aF), Math.abs(bF))
 		)
 	}
+
+	/**
+	 * Alias for {@link approxEquals}
+	 * @category Shorthands
+	 */
+	export const approx = approxEquals
+
+	/**
+	 * Alias for {@link approxEquals}. This is provided for compatibility with gl-matrix.
+	 * @category Shorthands
+	 * @deprecated Use {@link approxEquals} instead
+	 */
+	export const equals = approxEquals
 
 	/**
 	 * Returns a string representation of a mat4
