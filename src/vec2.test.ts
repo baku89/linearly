@@ -129,6 +129,26 @@ describe('angle', () => {
 		expect(vec2.angle([1, 0])).toEqual(0)
 	})
 
+	it('shoud returns 0° for same vectors', () => {
+		expect(vec2.angle([1, 2], [1, 2])).toEqual(0)
+	})
+
+	it('shoud returns 0° for collinear vectors', () => {
+		expect(vec2.angle([1, 2], [3, 6])).toEqual(0)
+	})
+
+	it('shoud returns 0° for zero vector', () => {
+		expect(vec2.angle([0, 0])).toEqual(0)
+	})
+
+	it('shoud returns 0° for vectors one of whom is zero', () => {
+		expect(vec2.angle([0, 0], [1, 0])).toEqual(0)
+	})
+
+	it('shoud returns 0° for vectors one of whom is zero', () => {
+		expect(vec2.angle([3, 4], [0, 0])).toEqual(0)
+	})
+
 	it('shoud work in the case of 90°', () => {
 		expect(vec2.angle([0, 1])).toEqual(90)
 	})

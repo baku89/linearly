@@ -575,11 +575,21 @@ export namespace vec2 {
 	export function angle(a: vec2, b?: vec2) {
 		if (!b) return Math.atan2(a[1], a[0]) * Common.RAD2DEG
 
+		if (eq(a, b)) {
+			// Exactly vectors
+			return 0
+		}
+
 		const [x1, y1] = a
 		const [x2, y2] = b
 
 		// mag is the product of the magnitudes of a and b
 		const mag = Math.hypot(x1, y1) * Math.hypot(x2, y2)
+
+		if (mag === 0) {
+			// One of the vectors is zero
+			return 0
+		}
 
 		const sign = x1 * y2 - y1 * x2 >= 0 ? 1 : -1
 
