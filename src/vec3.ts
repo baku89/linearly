@@ -89,6 +89,10 @@ export namespace vec3 {
 
 	/**
 	 * Subtracts given vec3's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
+	 *
+	 * @shorthands
+	 * - {@link sub}
+	 *
 	 */
 	export function subtract(...vs: vec3[]): vec3 {
 		if (vs.length === 0) {
@@ -113,6 +117,12 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Alias for {@link subtract}
+	 * @category Shorthands
+	 */
+	export const sub = subtract
+
+	/**
 	 * Subtracts b from a
 	 */
 	export function delta(a: vec3, b: vec3): vec3 {
@@ -121,6 +131,9 @@ export namespace vec3 {
 
 	/**
 	 * Multiplies given vec3's
+	 *
+	 * @shorthands
+	 * - {@link mul}
 	 */
 	export function multiply(...vs: vec3[]): vec3 {
 		let x = 1,
@@ -137,7 +150,16 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Alias for {@link multiply}
+	 * @category Shorthands
+	 */
+	export const mul = multiply
+
+	/**
 	 * Divides given vec3's
+	 *
+	 * @shorthands
+	 * - {@link div}
 	 */
 	export function divide(...vs: vec3[]): vec3 {
 		if (vs.length === 0) {
@@ -160,6 +182,12 @@ export namespace vec3 {
 
 		return [x, y, z]
 	}
+
+	/**
+	 * Alias for {@link divide}
+	 * @category Shorthands
+	 */
+	export const div = divide
 
 	/**
 	 * Math.ceil the components of a vec3
@@ -294,6 +322,9 @@ export namespace vec3 {
 	/**
 	 * Returns the average value of the input(s)
 	 * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+	 *
+	 * @shorthands
+	 * - {@link avg}
 	 */
 	export function average(...vs: vec3[]): vec3 {
 		let x = 0,
@@ -309,6 +340,12 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Alias for {@link average}
+	 * @category Shorthands
+	 */
+	export const avg = average
+
+	/**
  Adds given vec3's after scaling the second operand by a scalar value
  */
 	export function scaleAndAdd(a: vec3, b: vec3, scale: number): vec3 {
@@ -317,6 +354,9 @@ export namespace vec3 {
 
 	/**
 	 * Calculates the euclidian distance between two vec3's
+	 *
+	 * @shorthands
+	 * - {@link dist}
 	 */
 	export function distance(a: vec3, b: vec3) {
 		const x = b[0] - a[0]
@@ -324,6 +364,12 @@ export namespace vec3 {
 		const z = b[2] - a[2]
 		return Math.hypot(x, y, z)
 	}
+
+	/**
+	 * Alias for {@link distance}
+	 * @category Shorthands
+	 */
+	export const dist = distance
 
 	/**
 	 * Calculates the squared euclidian distance between two vec3's
@@ -336,7 +382,16 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Alias for {@link squaredDistance}
+	 * @category Shorthands
+	 */
+	export const sqrDist = squaredDistance
+
+	/**
 	 * Calculates the length of a vec3
+	 *
+	 * @shorthands
+	 * - {@link len}
 	 */
 	export function length(a: vec3) {
 		const [x, y, z] = a
@@ -344,7 +399,16 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Alias for {@link length}
+	 * @category Shorthands
+	 */
+	export const len = length
+
+	/**
 	 * Calculates the squared length of a vec3
+	 *
+	 * @shortands
+	 * - {@link sqrLen}
 	 */
 	export function squaredLength(a: vec3) {
 		const x = a[0]
@@ -354,21 +418,44 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Alias for {@link squaredLength}
+	 * @category Shorthands
+	 */
+	export const sqrLen = squaredLength
+
+	/**
 	 * Negates the components of a vec3
+	 *
+	 * @shorthands
+	 * - {@link neg}
 	 */
 	export function negate(a: vec3): vec3 {
 		return [-a[0], -a[1], -a[2]]
 	}
 
 	/**
+	 * Alias for {@link negate}
+	 */
+	export const neg = negate
+
+	/**
 	 * Returns the inverse of the components of a vec3
+	 *
+	 * @shorthands
+	 * - {@link inv}
 	 */
 	export function invert(a: vec3): vec3 {
 		return [1 / a[0], 1 / a[1], 1 / a[2]]
 	}
 
 	/**
-	 * Returns the result of `v` subtracted from {@link vec3.one}.
+	 * Alias for {@link invert}
+	 * @category Shorthands
+	 */
+	export const inv = invert
+
+	/**
+	 * Returns the result of `v` subtracted from {@link one}.
 	 */
 	export function oneMinus(v: vec3): vec3 {
 		return subtract(one, v)
@@ -452,6 +539,9 @@ export namespace vec3 {
 	/**
 	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 *
+	 * @shorthands
+	 * - {@link mix}
 	 */
 	export function lerp(a: vec3, b: vec3, t: vec3 | number): vec3 {
 		if (typeof t === 'number') t = [t, t, t]
@@ -464,9 +554,19 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Alias for {@link invert}
+	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 * @category Shorthands
+	 */
+	export const mix = lerp
+
+	/**
 	 * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
 	 * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+	 *
+	 * @shorthands
+	 * - {@link invlerp}
 	 */
 	export function inverseLerp(a: vec3, b: vec3, t: vec3): vec3 {
 		return [
@@ -475,6 +575,12 @@ export namespace vec3 {
 			a[2] === b[2] ? 0.5 : (t[2] - a[2]) / (b[2] - a[2]),
 		]
 	}
+
+	/**
+	 * Alias for {@link inverseLerp}
+	 * @category Shorthands
+	 */
+	export const invlerp = inverseLerp
 
 	/**
 	 * Performs a spherical linear interpolation between two vec3's
@@ -570,6 +676,9 @@ export namespace vec3 {
 	 *
 	 * @param a the vector to transform
 	 * @param q quaternion to transform with
+	 *
+	 * @shorthands
+	 * - {@link qrotate}
 	 */
 	// https://github.com/stackgl/gl-vec3/blob/master/transformQuat.js
 	export function transformQuat(a: vec3, q: quat): vec3 {
@@ -595,6 +704,13 @@ export namespace vec3 {
 			iz * qw + iw * -qz + ix * -qy - iy * -qx,
 		]
 	}
+
+	/**
+	 * Alias for {@link transformQuat}
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/qrotate.html
+	 * @category Shorthands
+	 */
+	export const qrotate = transformQuat
 
 	/**
 	 * Rotate a 3D vector around the x-axis
@@ -714,6 +830,14 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Converts the components of a vec3 from radians to degrees
+	 * @param rad The input vec4 in radians
+	 * @returns The degrees equivalent of the input
+	 *
+	 * @shorthands
+	 * - {@link deg}
+	 */
 	export function degrees(rad: vec3): vec3 {
 		return [
 			rad[0] * Common.RAD2DEG,
@@ -722,6 +846,20 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Alias for {@link degrees}
+	 * @category Shorthands
+	 */
+	export const deg = degrees
+
+	/**
+	 * Converts the components of a vec3 from degrees to radians
+	 * @param deg The input vec3 in degrees
+	 * @returns The radians equivalent of the input
+	 *
+	 * @shorthands
+	 * - {@link rad}
+	 */
 	export function radians(deg: vec3): vec3 {
 		return [
 			deg[0] * Common.RAD2DEG,
@@ -729,6 +867,12 @@ export namespace vec3 {
 			deg[2] * Common.RAD2DEG,
 		]
 	}
+
+	/**
+	 * Alias for {@link radians}
+	 * @category Shorthands
+	 */
+	export const rad = radians
 
 	export function sin(deg: vec3): vec3 {
 		return [
@@ -822,10 +966,19 @@ export namespace vec3 {
 	 * Returns the inverse of the square root of the parameter
 	 * @param v the value of which to take the inverse of the square root
 	 * @see https://thebookofshaders.com/glossary/?search=inversesqrt
+	 *
+	 * @shorthands
+	 * - {@link invsqrt}
 	 */
 	export function inverseSqrt(v: vec3): vec3 {
 		return [1 / Math.sqrt(v[0]), 1 / Math.sqrt(v[1]), 1 / Math.sqrt(v[2])]
 	}
+
+	/**
+	 * Alias for {@link inverseSqrt}
+	 * @category Shorthands
+	 */
+	export const invsqrt = inverseSqrt
 
 	/**
 	 * Returns whether or not the vectors have exactly the same elements in the same position (when compared with `===`)
@@ -860,101 +1013,4 @@ export namespace vec3 {
 		v: vec3,
 		fractionDigits?: number
 	) => string
-
-	/**
-	 * Alias for {@link vec3.subtract}
-	 * @category Shorthands
-	 */
-	export const sub = subtract
-
-	/**
-	 * Alias for {@link vec3.multiply}
-	 * @category Shorthands
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link vec3.divide}
-	 * @category Shorthands
-	 */
-	export const div = divide
-
-	/**
-	 * Alias for {@link vec3.average}
-	 * @category Shorthands
-	 */
-	export const avg = average
-
-	/**
-	 * Alias for {@link vec3.distance}
-	 * @category Shorthands
-	 */
-	export const dist = distance
-
-	/**
-	 * Alias for {@link vec3.length}
-	 * @category Shorthands
-	 */
-	export const len = length
-
-	/**
-	 * Alias for {@link vec3.squaredDistance}
-	 * @category Shorthands
-	 */
-	export const sqrDist = squaredDistance
-
-	/**
-	 * Alias for {@link vec3.squaredLength}
-	 * @category Shorthands
-	 */
-	export const sqrLen = squaredLength
-
-	/**
-	 * Alias for {@link vec3.negate}
-	 */
-	export const neg = negate
-
-	/**
-	 * Alias for {@link vec3.invert}
-	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
-	 * @category Shorthands
-	 */
-	export const mix = lerp
-
-	/**
-	 * Alias for {@link vec3.transformMat4}
-	 * @category Shorthands
-	 */
-	export const invlerp = inverseLerp
-
-	/**
-	 * Alias for {@link vec3.radians}
-	 * @category Shorthands
-	 */
-	export const rad = radians
-
-	/**
-	 * Alias for {@link vec3.degrees}
-	 * @category Shorthands
-	 */
-	export const deg = degrees
-
-	/**
-	 * Alias for {@link vec3.inverseSqrt}
-	 * @category Shorthands
-	 */
-	export const invsqrt = inverseSqrt
-
-	/**
-	 * Alias for {@link vec3.invert}
-	 * @category Shorthands
-	 */
-	export const inv = invert
-
-	/**
-	 * Alias for {@link vec3.transformQuat}
-	 * @see https://www.sidefx.com/docs/houdini/vex/functions/qrotate.html
-	 * @category Shorthands
-	 */
-	export const qrotate = transformQuat
 }

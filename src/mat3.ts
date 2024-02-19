@@ -83,6 +83,10 @@ export namespace mat3 {
 	 *  0, 0, 1]
 	 * ```
 	 * @category Constants
+	 *
+	 * @shorthands
+	 * - {@link id}
+	 * - {@link ident}
 	 */
 	// prettier-ignore
 	export const identity: mat3 = Object.freeze([
@@ -90,6 +94,18 @@ export namespace mat3 {
 		0, 1, 0,
 		0, 0, 1,
 	])
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const ident = identity
 
 	/**
 	 * @category Constants
@@ -110,6 +126,9 @@ export namespace mat3 {
 
 	/**
 	 * Inverts a mat3
+	 *
+	 * @shorthands
+	 * - {@link inv}
 	 */
 	export function invert(a: mat3): mat3 | null {
 		const [a00, a01, a02, a10, a11, a12, a20, a21, a22] = a
@@ -141,6 +160,12 @@ export namespace mat3 {
 	}
 
 	/**
+	 * Alias for {@link invert}
+	 * @category Shorthands
+	 */
+	export const inv = invert
+
+	/**
 	 * Calculates the adjugate of a mat3
 	 */
 	export function adjoint(a: mat3): mat3 {
@@ -161,6 +186,9 @@ export namespace mat3 {
 
 	/**
 	 * Calculates the determinant of a mat3
+	 *
+	 * @shorthands
+	 * - {@link det}
 	 */
 	export function determinant(a: mat3) {
 		const [a00, a01, a02, a10, a11, a12, a20, a21, a22] = a
@@ -173,7 +201,16 @@ export namespace mat3 {
 	}
 
 	/**
+	 * Alias for {@link determinant}
+	 * @category Shorthands
+	 */
+	export const det = determinant
+
+	/**
 	 * Multiplies given mat3's
+	 *
+	 * @shorthands
+	 * - {@link mul}
 	 */
 	export function multiply(...ms: mat3[]): mat3 {
 		if (ms.length === 0) {
@@ -202,6 +239,12 @@ export namespace mat3 {
 			b20 * a02 + b21 * a12 + b22 * a22,
 		]
 	}
+
+	/**
+	 * Alias for {@link multiply}
+	 * @category Shorthands
+	 */
+	export const mul = multiply
 
 	/**
 	 * Translate a mat3 by the given vector
@@ -260,6 +303,9 @@ export namespace mat3 {
 	/**
 	 * Creates a matrix from a vector translation
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link translation}
 	 */
 	export function fromTranslation(v: vec2): mat3 {
 		const [x, y] = v
@@ -273,8 +319,17 @@ export namespace mat3 {
 	}
 
 	/**
+	 * Alias for {@link fromTranslation}
+	 * @category Shorthands
+	 */
+	export const translation = fromTranslation
+
+	/**
 	 * Creates a matrix from a given angle
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link rotation}
 	 */
 	export function fromRotation(deg: number): mat3 {
 		const s = Math.sin(deg * Common.DEG2RAD)
@@ -289,8 +344,17 @@ export namespace mat3 {
 	}
 
 	/**
+	 * Alias for {@link fromRotation}
+	 * @category Shorthands
+	 */
+	export const rotation = fromRotation
+
+	/**
 	 * Creates a matrix from a vector scaling
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link scaling}
 	 */
 	export function fromScaling(v: vec2): mat3 {
 		const [x, y] = v
@@ -302,6 +366,12 @@ export namespace mat3 {
 			0, 0, 1
 		]
 	}
+
+	/**
+	 * Alias for {@link fromScaling}
+	 * @category Shorthands
+	 */
+	export const scaling = fromScaling
 
 	/**
 	 * Copies the values from a {@link mat2d}
@@ -441,6 +511,9 @@ export namespace mat3 {
 
 	/**
 	 * Subtracts matrix b from matrix a
+	 *
+	 * @shorthands
+	 * - {@link sub}
 	 */
 	export function subtract(...ms: mat3[]): mat3 {
 		if (ms.length === 0) {
@@ -476,6 +549,12 @@ export namespace mat3 {
 			a[8] - b[8],
 		]
 	}
+
+	/**
+	 * Alias for {@link subtract}
+	 * @category Shorthands
+	 */
+	export const sub = subtract
 
 	/**
 	 * Subtracts b from a
@@ -598,58 +677,4 @@ export namespace mat3 {
 		m: mat3,
 		fractionDigits?: number
 	) => string
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const id = identity
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const ident = identity
-
-	/**
-	 * Alias for {@link subtract}
-	 * @category Shorthands
-	 */
-	export const sub = subtract
-
-	/**
-	 * Alias for {@link multiply}
-	 * @category Shorthands
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link determinant}
-	 * @category Shorthands
-	 */
-	export const det = determinant
-
-	/**
-	 * Alias for {@link invert}
-	 * @category Shorthands
-	 */
-	export const inv = invert
-
-	/**
-	 * Alias for {@link fromTranslation}
-	 * @category Shorthands
-	 */
-	export const translation = fromTranslation
-
-	/**
-	 * Alias for {@link fromRotation}
-	 * @category Shorthands
-	 */
-	export const rotation = fromRotation
-
-	/**
-	 * Alias for {@link fromScaling}
-	 * @category Shorthands
-	 */
-	export const scaling = fromScaling
 }

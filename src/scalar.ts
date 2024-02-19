@@ -8,6 +8,10 @@ export namespace scalar {
 		return vs.reduce((a, b) => a + b, 0)
 	}
 
+	/**
+	 * @shorthands
+	 * - {@link sub}
+	 */
 	export function subtract(...vs: number[]): number {
 		if (vs.length === 0) {
 			return 0
@@ -17,10 +21,30 @@ export namespace scalar {
 		return vs.reduce((a, b) => a - b)
 	}
 
+	/**
+	 * Alias for {@link subtract}
+	 * @category Shorthands
+	 */
+	export const sub = subtract
+
+	/**
+	 * @shorthands
+	 * - {@link mul}
+	 */
 	export function multiply(...vs: number[]): number {
 		return vs.reduce((a, b) => a * b, 1)
 	}
 
+	/**
+	 * Alias for {@link multiply}
+	 * @category Shorthands
+	 */
+	export const mul = multiply
+
+	/**
+	 * @shorthands
+	 * - {@link div}
+	 */
 	export function divide(...vs: number[]): number {
 		if (vs.length === 0) {
 			return 1
@@ -29,6 +53,12 @@ export namespace scalar {
 		}
 		return vs.reduce((a, b) => a / b)
 	}
+
+	/**
+	 * Alias for {@link divide}
+	 * @category Shorthands
+	 */
+	export const div = divide
 
 	/**
 	 * Symmetric round the given number
@@ -89,6 +119,9 @@ export namespace scalar {
 	/**
 	 * Returns the average value of the input(s)
 	 * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+	 *
+	 * @shorthands
+	 * - {@link avg}
 	 */
 	export function average(...vs: number[]): number {
 		let x = 0
@@ -99,23 +132,73 @@ export namespace scalar {
 		return x / scale
 	}
 
+	/**
+	 * Alias for {@link average}
+	 * @category Shorthands
+	 */
+	export const avg = average
+
 	export function scaleAndAdd(a: number, b: number, s: number): number {
 		return a + b * s
 	}
 
+	/**
+	 * @shortands
+	 * - {@link dist}
+	 */
 	export function distance(a: number, b: number): number {
 		return Math.abs(a - b)
 	}
 
+	/**
+	 * Alias for {@link distance}
+	 * @category Shorthands
+	 */
+	export const dist = distance
+
+	/**
+	 * Returns the squared difference between two numbers
+	 *
+	 * @shorthands
+	 * - {@link sqrDist}
+	 */
 	export function squaredDistance(a: number, b: number): number {
 		return (a - b) ** 2
 	}
 
+	/**
+	 * Alias for {@link squaredDistance}
+	 * @category Shorthands
+	 */
+	export const sqrDist = squaredDistance
+
+	/**
+	 * Returns the absolute difference between two numbers
+	 *
+	 * @shorthands
+	 * - {@link len}
+	 */
 	export const length = Math.abs
 
+	/**
+	 * Alias for {@link length}
+	 * @category Shorthands
+	 */
+	export const len = length
+
+	/**
+	 * @shortands
+	 * - {@link sqrLen}
+	 */
 	export function squaredLength(a: number): number {
 		return a ** 2
 	}
+
+	/**
+	 * Alias for {@link squaredLength}
+	 * @category Shorthands
+	 */
+	export const sqrLen = squaredLength
 
 	export function negate(a: number): number {
 		return -a
@@ -137,20 +220,39 @@ export namespace scalar {
 	/**
 	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 *
+	 * @shorthands
+	 * - {@link mix}
 	 */
 	export function lerp(a: number, b: number, t: number): number {
 		return a + (b - a) * t
 	}
 
 	/**
+	 * Alias for {@link invert}
+	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 * @category Shorthands
+	 */
+	export const mix = lerp
+
+	/**
 	 * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
 	 * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+	 *
+	 * @shorthands
+	 * - {@link invlerp}
 	 */
 	export function inverseLerp(a: number, b: number, t: number): number {
 		if (a === b) return 0.5
 		return (t - a) / (b - a)
 	}
+
+	/**
+	 * Alias for {@link inverseLerp}
+	 * @category Shorthands
+	 */
+	export const invlerp = inverseLerp
 
 	/**
 	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use {@link efit} instead. If `omin` and `omax` are the same, the function returns the average of `nmin` and `nmax`.
@@ -226,13 +328,41 @@ export namespace scalar {
 		return t * t * (3 - 2 * t)
 	}
 
+	/**
+	 * Converts a number from radians to degrees
+	 * @param rad A number in radians
+	 * @returns The degrees equivalent of the input
+	 *
+	 * @shorthands
+	 * - {@link deg}
+	 */
 	export function degrees(rad: number): number {
 		return (rad * 180) / Math.PI
 	}
 
+	/**
+	 * Alias for {@link degrees}
+	 * @category Shorthands
+	 */
+	export const deg = degrees
+
+	/**
+	 * Converts a number from degrees to radians
+	 * @param deg A number in degrees
+	 * @returns The radians equivalent of the input
+	 *
+	 * @shorthands
+	 * - {@link rad}
+	 */
 	export function radians(deg: number): number {
 		return (deg * Math.PI) / 180
 	}
+
+	/**
+	 * Alias for {@link radians}
+	 * @category Shorthands
+	 */
+	export const rad = radians
 
 	export function sin(deg: number): number {
 		return Math.sin(deg * Common.DEG2RAD)
@@ -293,6 +423,12 @@ export namespace scalar {
 		return 1 / Math.sqrt(v)
 	}
 
+	/**
+	 * Alias for {@link inverseSqrt}
+	 * @category Shorthands
+	 */
+	export const invsqrt = inverseSqrt
+
 	export function exactEquals(a: number, b: number): boolean {
 		return a === b
 	}
@@ -303,83 +439,4 @@ export namespace scalar {
 			Common.EPSILON * Math.max(1.0, Math.abs(a), Math.abs(b))
 		)
 	}
-
-	/**
-	 * Alias for {@link scalar.subtract}
-	 * @category Shorthands
-	 */
-	export const sub = subtract
-
-	/**
-	 * Alias for {@link scalar.multiply}
-	 * @category Shorthands
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link scalar.divide}
-	 * @category Shorthands
-	 */
-	export const div = divide
-
-	/**
-	 * Alias for {@link scalar.average}
-	 * @category Shorthands
-	 */
-	export const avg = average
-
-	/**
-	 * Alias for {@link scalar.distance}
-	 * @category Shorthands
-	 */
-	export const dist = distance
-
-	/**
-	 * Alias for {@link scalar.length}
-	 * @category Shorthands
-	 */
-	export const len = length
-
-	/**
-	 * Alias for {@link scalar.squaredDistance}
-	 * @category Shorthands
-	 */
-	export const sqrDist = squaredDistance
-
-	/**
-	 * Alias for {@link scalar.squaredLength}
-	 * @category Shorthands
-	 */
-	export const sqrLen = squaredLength
-
-	/**
-	 * Alias for {@link scalar.invert}
-	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
-	 * @category Shorthands
-	 */
-	export const mix = lerp
-
-	/**
-	 * Alias for {@link scalar.inverseLerp}
-	 * @category Shorthands
-	 */
-	export const invlerp = inverseLerp
-
-	/**
-	 * Alias for {@link scalar.radians}
-	 * @category Shorthands
-	 */
-	export const rad = radians
-
-	/**
-	 * Alias for {@link scalar.degrees}
-	 * @category Shorthands
-	 */
-	export const deg = degrees
-
-	/**
-	 * Alias for {@link scalar.inverseSqrt}
-	 * @category Shorthands
-	 */
-	export const invsqrt = inverseSqrt
 }

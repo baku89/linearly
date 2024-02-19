@@ -74,6 +74,10 @@ export namespace mat2d {
 	 *  0, 0]
 	 * ```
 	 * @category Constants
+	 *
+	 * @shorthands
+	 * - {@link id}
+	 * - {@link ident}
 	 */
 	// prettier-ignore
 	export const identity: mat2d = Object.freeze([
@@ -83,6 +87,18 @@ export namespace mat2d {
 	])
 
 	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const ident = identity
+
+	/**
 	 * The mat2d matrix filled with zeros.
 	 * @category Constants
 	 */
@@ -90,6 +106,9 @@ export namespace mat2d {
 
 	/**
 	 * Inverts a mat2d
+	 *
+	 * @shorthands
+	 * - {@link inv}
 	 */
 	export function invert(a: mat2d): mat2d | null {
 		const [aa, ab, ac, ad, atx, aty] = a
@@ -113,14 +132,32 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Alias for {@link invert}
+	 * @category Shorthands
+	 */
+	export const inv = invert
+
+	/**
 	 * Calculates the determinant of a mat2d
+	 *
+	 * @shorthands
+	 * - {@link det}
 	 */
 	export function determinant(a: mat2d) {
 		return a[0] * a[3] - a[1] * a[2]
 	}
 
 	/**
+	 * Alias for {@link determinant}
+	 * @category Shorthands
+	 */
+	export const det = determinant
+
+	/**
 	 * Multiplies given mat2d's
+	 *
+	 * @shorthands
+	 * - {@link mul}
 	 */
 	export function multiply(...ms: mat2d[]): mat2d {
 		if (ms.length === 0) {
@@ -146,6 +183,12 @@ export namespace mat2d {
 			a1 * b4 + a3 * b5 + a5,
 		]
 	}
+
+	/**
+	 * Alias for {@link multiply}
+	 * @category Shorthands
+	 */
+	export const mul = multiply
 
 	/**
 	 * Rotates a mat2d by the given angle
@@ -224,6 +267,9 @@ export namespace mat2d {
 	 * Creates a matrix from a given angle
 	 * This is equivalent to (but much faster than):
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link rotation}
 	 */
 	export function fromRotation(deg: number, origin?: vec2): mat2d {
 		if (origin) {
@@ -242,8 +288,17 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Alias for {@link fromRotation}
+	 * @category Shorthands
+	 */
+	export const rotation = fromRotation
+
+	/**
 	 * Creates a matrix from a vector scaling
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link scaling}
 	 */
 	export function fromScaling(v: vec2 | number, origin?: vec2): mat2d {
 		if (origin) {
@@ -261,8 +316,17 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Alias for {@link fromScaling}
+	 * @category Shorthands
+	 */
+	export const scaling = fromScaling
+
+	/**
 	 * Creates a matrix from a vector translation
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link translation}
 	 */
 	export function fromTranslation(v: vec2 | number): mat2d {
 		const [x, y] = typeof v === 'number' ? [v, v] : v
@@ -276,9 +340,18 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Alias for {@link fromTranslation}
+	 * @category Shorthands
+	 */
+	export const translation = fromTranslation
+
+	/**
 	 * Creates a matrix from a vector skew
 	 * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link skewing}
 	 */
 	export function fromSkew(deg: vec2, origin?: vec2): mat2d {
 		if (origin) {
@@ -296,6 +369,12 @@ export namespace mat2d {
 			0, 0,
 		]
 	}
+
+	/**
+	 * Alias for {@link fromSkew}
+	 * @category Shorthands
+	 */
+	export const skewing = fromSkew
 
 	/**
 	 * Computes a fixed point of the given matrix.
@@ -349,6 +428,9 @@ export namespace mat2d {
 
 	/**
 	 * Subtracts matrix b from matrix a
+	 *
+	 * @shorthands
+	 * - {@link sub}
 	 */
 	export function subtract(...ms: mat2d[]): mat2d {
 		if (ms.length === 0) {
@@ -371,6 +453,12 @@ export namespace mat2d {
 			a[5] - b[5],
 		]
 	}
+
+	/**
+	 * Alias for {@link subtract}
+	 * @category Shorthands
+	 */
+	export const sub = subtract
 
 	/**
 	 * Subtracts b from a
@@ -478,6 +566,9 @@ export namespace mat2d {
 	 * @param r Rotation angle in degrees
 	 * @param s Scaling vector
 	 * @returns The matrix that represents the transformation
+	 *
+	 * @shorthands
+	 * - {@link trs}
 	 */
 	export function fromTRS(
 		t: vec2 | null = null,
@@ -493,6 +584,12 @@ export namespace mat2d {
 
 		return [s[0] * C, s[0] * S, s[1] * -S, s[1] * C, ...t]
 	}
+
+	/**
+	 * Alias for {@link fromTRS}
+	 * @category Shorthands
+	 */
+	export const trs = fromTRS
 
 	/**
 	 * Copies a the values from {@link mat2}, assuming the translation component is `[0, 0]`
@@ -549,70 +646,4 @@ export namespace mat2d {
 		m: mat2d,
 		fractionDigits?: number
 	) => string
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const id = identity
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const ident = identity
-
-	/**
-	 * Alias for {@link subtract}
-	 * @category Shorthands
-	 */
-	export const sub = subtract
-
-	/**
-	 * Alias for {@link multiply}
-	 * @category Shorthands
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link determinant}
-	 * @category Shorthands
-	 */
-	export const det = determinant
-
-	/**
-	 * Alias for {@link invert}
-	 * @category Shorthands
-	 */
-	export const inv = invert
-
-	/**
-	 * Alias for {@link fromTranslation}
-	 * @category Shorthands
-	 */
-	export const translation = fromTranslation
-
-	/**
-	 * Alias for {@link fromRotation}
-	 * @category Shorthands
-	 */
-	export const rotation = fromRotation
-
-	/**
-	 * Alias for {@link fromScaling}
-	 * @category Shorthands
-	 */
-	export const scaling = fromScaling
-
-	/**
-	 * Alias for {@link fromSkew}
-	 * @category Shorthands
-	 */
-	export const skewing = fromSkew
-
-	/**
-	 * Alias for {@link fromTRS}
-	 * @category Shorthands
-	 */
-	export const trs = fromTRS
 }

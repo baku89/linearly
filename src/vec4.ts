@@ -97,6 +97,9 @@ export namespace vec4 {
 
 	/**
 	 * Subtracts given vec4's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
+	 *
+	 * @shorthands
+	 * - {@link sub}
 	 */
 	export function subtract(...vs: vec4[]): vec4 {
 		if (vs.length === 0) {
@@ -122,6 +125,11 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Alias for {@link subtract}
+	 */
+	export const sub = subtract
+
+	/**
 	 * Subtracts b from a
 	 */
 	export function delta(a: vec4, b: vec4): vec4 {
@@ -130,6 +138,8 @@ export namespace vec4 {
 
 	/**
 	 * Multiplies given vec4's
+	 * @shorthands
+	 * - {@link mul}
 	 */
 	export function multiply(...vs: vec4[]): vec4 {
 		let x = 1,
@@ -148,7 +158,15 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Alias for {@link multiply}
+	 */
+	export const mul = multiply
+
+	/**
 	 * Divides given vec4's
+	 *
+	 * @shorthands
+	 * - {@link div}
 	 */
 	export function divide(...vs: vec4[]): vec4 {
 		if (vs.length === 0) {
@@ -172,6 +190,12 @@ export namespace vec4 {
 
 		return [x, y, z, w]
 	}
+
+	/**
+	 * Alias for {@link divide}
+	 */
+	export const div = divide
+
 	/**
 	 * symmetric round the components of a vec4
 	 */
@@ -332,6 +356,9 @@ export namespace vec4 {
 	/**
 	 * Returns the average value of the input(s)
 	 * @see  https://www.sidefx.com/docs/houdini/vex/functions/avg.html
+	 *
+	 * @shorthands
+	 * - {@link avg}
 	 */
 	export function average(...vs: vec4[]): vec4 {
 		let x = 0,
@@ -347,6 +374,11 @@ export namespace vec4 {
 		}
 		return [x / len, y / len, z / len, w / len]
 	}
+
+	/**
+	 * Alias for {@link distance}
+	 */
+	export const avg = average
 
 	/**
  Adds given vec4's after scaling the second operand by a scalar value
@@ -373,7 +405,15 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Alias for {@link distance}
+	 */
+	export const dist = distance
+
+	/**
 	 * Calculates the squared euclidian distance between two vec4's
+	 *
+	 * @shortands
+	 * - {@link sqrDist}
 	 */
 	export function squaredDistance(a: vec4, b: vec4) {
 		const x = b[0] - a[0]
@@ -385,7 +425,15 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Calculates the length of a vec4
+	 * Alias for {@link squaredDistance}
+	 */
+	export const sqrDist = squaredDistance
+
+	/**
+	 * Calculates the length of a vec4n
+	 *
+	 * @shorthands
+	 * - {@link len}
 	 */
 	export function length(a: vec4) {
 		const [x, y, z, w] = a
@@ -393,7 +441,15 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Alias for {@link length}
+	 */
+	export const len = length
+
+	/**
 	 * Calculates the squared length of a vec4
+	 *
+	 * @shorthands
+	 * - {@link sqrLen}
 	 */
 	export function squaredLength(a: vec4) {
 		const [x, y, z, w] = a
@@ -401,21 +457,42 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Alias for {@link squaredLength}
+	 */
+	export const sqrLen = squaredLength
+
+	/**
 	 * Negates the components of a vec4
+	 * @shorthands
+	 * - {@link neg}
 	 */
 	export function negate(a: vec4): vec4 {
 		return [-a[0], -a[1], -a[2], -a[3]]
 	}
 
 	/**
+	 * Alias for {@link negate}
+	 */
+	export const neg = negate
+
+	/**
 	 * Returns the inverse of the components of a vec4
+	 *
+	 * @shorthands
+	 * - {@link inv}
 	 */
 	export function invert(a: vec4): vec4 {
 		return [1 / a[0], 1 / a[1], 1 / a[2], 1 / a[3]]
 	}
 
 	/**
-	 * Returns the result of `v` subtracted from {@link vec4.one}.
+	 * Alias for {@link invert}
+	 * @category Shorthands
+	 */
+	export const inv = invert
+
+	/**
+	 * Returns the result of `v` subtracted from {@link one}.
 	 */
 	export function oneMinus(v: vec4): vec4 {
 		return subtract(one, v)
@@ -511,6 +588,9 @@ export namespace vec4 {
 	/**
 	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 *
+	 * @shorthands
+	 * - {@link mix}
 	 */
 	export function lerp(a: vec4, b: vec4, t: vec4 | number): vec4 {
 		if (typeof t === 'number') t = [t, t, t, t]
@@ -524,9 +604,18 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Alias for {@link mix}
+	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
+	 */
+	export const mix = lerp
+
+	/**
 	 * Returns the amount to mix `min` and `max` to generate the input value `t`. This is the inverse of the `lerp` function. If `min` and `max` are equal, the mixing value is `0.5`.
 	 * @see https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Inverse-Lerp-Node.html
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/invlerp.html
+	 *
+	 * @shorthands
+	 * - {@link invlerp}
 	 */
 	export function inverseLerp(a: vec4, b: vec4, t: vec4): vec4 {
 		return [
@@ -536,6 +625,17 @@ export namespace vec4 {
 			a[3] === b[3] ? 0.5 : (t[3] - a[3]) / (b[3] - a[3]),
 		]
 	}
+
+	/**
+	 * Alias for {@link inverseSqrt}
+	 * @category Shorthands
+	 */
+	export const invsqrt = inverseSqrt
+
+	/**
+	 * Alias for {@link inverseLerp}
+	 */
+	export const invlerp = inverseLerp
 
 	/**
 	 * Transforms the vec4 with a mat4.
@@ -612,6 +712,14 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Converts the components of a vec4 from radians to degrees
+	 * @param rad The input vec4 in radians
+	 * @returns The degrees equivalent of the input
+	 *
+	 * @shorthands
+	 * - {@link deg}
+	 */
 	export function degrees(rad: vec4): vec4 {
 		return [
 			(rad[0] * 180) / Math.PI,
@@ -621,6 +729,20 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Alias for {@link degrees}
+	 * @category Shorthands
+	 */
+	export const deg = degrees
+
+	/**
+	 * Converts the components of a vec2 from degrees to radians
+	 * @param deg The input vec2 in degrees
+	 * @returns The radians equivalent of the input
+	 *
+	 * @shorthands
+	 * - {@link rad}
+	 */
 	export function radians(deg: vec4): vec4 {
 		return [
 			(deg[0] * Math.PI) / 180,
@@ -629,6 +751,12 @@ export namespace vec4 {
 			(deg[3] * Math.PI) / 180,
 		]
 	}
+
+	/**
+	 * Alias for {@link radians}
+	 * @category Shorthands
+	 */
+	export const rad = radians
 
 	export function sin(deg: vec4): vec4 {
 		return [
@@ -779,84 +907,4 @@ export namespace vec4 {
 		v: vec4,
 		fractionDigits?: number
 	) => string
-
-	/**
-	 * Alias for {@link vec4.subtract}
-	 */
-	export const sub = subtract
-
-	/**
-	 * Alias for {@link vec4.multiply}
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link vec4.divide}
-	 */
-	export const div = divide
-
-	/**
-	 * Alias for {@link vec4.distance}
-	 */
-	export const avg = average
-
-	/**
-	 * Alias for {@link vec4.distance}
-	 */
-	export const dist = distance
-
-	/**
-	 * Alias for {@link vec4.length}
-	 */
-	export const len = length
-
-	/**
-	 * Alias for {@link vec4.squaredDistance}
-	 */
-	export const sqrDist = squaredDistance
-
-	/**
-	 * Alias for {@link vec4.squaredLength}
-	 */
-	export const sqrLen = squaredLength
-
-	/**
-	 * Alias for {@link vec4.negate}
-	 */
-	export const neg = negate
-
-	/**
-	 * Alias for {@link vec4.mix}
-	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
-	 */
-	export const mix = lerp
-
-	/**
-	 * Alias for {@link vec4.inverseLerp}
-	 */
-	export const invlerp = inverseLerp
-
-	/**
-	 * Alias for {@link vec4.radians}
-	 * @category Shorthands
-	 */
-	export const rad = radians
-
-	/**
-	 * Alias for {@link vec4.degrees}
-	 * @category Shorthands
-	 */
-	export const deg = degrees
-
-	/**
-	 * Alias for {@link vec4.inverseSqrt}
-	 * @category Shorthands
-	 */
-	export const invsqrt = inverseSqrt
-
-	/**
-	 * Alias for {@link vec4.invert}
-	 * @category Shorthands
-	 */
-	export const inv = invert
 }

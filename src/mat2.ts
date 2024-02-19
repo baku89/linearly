@@ -46,8 +46,24 @@ export namespace mat2 {
 	 *  0, 1]
 	 * ```
 	 * @category Constants
+	 *
+	 * @shorthands
+	 * - {@link id}
+	 * - {@link ident}
 	 */
 	export const identity: mat2 = Object.freeze([1, 0, 0, 1])
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const ident = identity
 
 	/**
 	 * The mat2d filled with zeros.
@@ -68,6 +84,9 @@ export namespace mat2 {
 
 	/**
 	 * Inverts a mat2
+	 *
+	 * @category Shorthands
+	 * - {@link inv}
 	 */
 	export function invert(a: mat2): mat2 | null {
 		const [a0, a1, a2, a3] = a
@@ -88,6 +107,11 @@ export namespace mat2 {
 	}
 
 	/**
+	 * Alias for {@link invert}
+	 */
+	export const inv = invert
+
+	/**
 	 * Calculates the adjugate of a mat2
 	 */
 	export function adjoint(a: mat2): mat2 {
@@ -99,13 +123,25 @@ export namespace mat2 {
 	/**
 	 * Calculates the determinant of a mat2
 	 * @returns determinant of a
+	 *
+	 * @shorthands
+	 * - {@link det}
 	 */
 	export function determinant(a: mat2) {
 		return a[0] * a[3] - a[2] * a[1]
 	}
 
 	/**
+	 * Alias for {@link determinant}
+	 * @category Shorthands
+	 */
+	export const det = determinant
+
+	/**
 	 * Multiplies given mat2's
+	 *
+	 * @shorthands
+	 * - {@link mul}
 	 */
 	export function multiply(...ms: mat2[]): mat2 {
 		if (ms.length === 0) {
@@ -127,6 +163,12 @@ export namespace mat2 {
 			a1 * b2 + a3 * b3,
 		]
 	}
+
+	/**
+	 * Alias for {@link multiply}
+	 * @category Shorthands
+	 */
+	export const mul = multiply
 
 	/**
 	 * Rotates a mat2 by the given angle
@@ -170,6 +212,9 @@ export namespace mat2 {
 	/**
 	 * Creates a matrix from a given angle
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link rotation}
 	 */
 	export function fromRotation(deg: number): mat2 {
 		const s = Math.sin(deg * Common.DEG2RAD)
@@ -178,17 +223,36 @@ export namespace mat2 {
 	}
 
 	/**
+	 * Alias for {@link fromRotation}
+	 * @category Shorthands
+	 */
+	export const rotation = fromRotation
+
+	/**
 	 * Creates a matrix from a vector scaling
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link scaling}
+	 *
 	 */
 	export function fromScaling(v: vec2): mat2 {
 		return [v[0], 0, 0, v[1]]
 	}
 
 	/**
+	 * Alias for {@link fromScaling}
+	 * @category Shorthands
+	 */
+	export const scaling = fromScaling
+
+	/**
 	 * Creates a matrix from a vector skew
 	 * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
 	 * @category Generators
+	 *
+	 * @shorthands
+	 * - {@link skewing}
 	 */
 	export function fromSkew(deg: vec2): mat2 {
 		const x = Math.tan(deg[0] * Common.DEG2RAD)
@@ -200,6 +264,12 @@ export namespace mat2 {
 			x, 1,
 		]
 	}
+
+	/**
+	 * Alias for {@link fromSkew}
+	 * @category Shorthands
+	 */
+	export const skewing = fromSkew
 
 	/**
 	 * Creates a matrix from given rotation, and scaling. The order of the transformations is rotation, and scaling.
@@ -250,6 +320,9 @@ export namespace mat2 {
 
 	/**
 	 * Subtracts matrix b from matrix a
+	 *
+	 * @shorthands
+	 * - {@link sub}
 	 */
 	export function subtract(...ms: mat2[]): mat2 {
 		if (ms.length === 0) {
@@ -265,6 +338,12 @@ export namespace mat2 {
 
 		return [a[0] - b[0], a[1] - b[1], a[2] - b[2], a[3] - b[3]]
 	}
+
+	/**
+	 * Alias for {@link subtract}
+	 * @category Shorthands
+	 */
+	export const sub = subtract
 
 	/**
 	 * Subtracts b from a
@@ -307,58 +386,4 @@ export namespace mat2 {
 				Common.EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3))
 		)
 	}
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const id = identity
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const ident = identity
-
-	/**
-	 * Alias for {@link subtract}
-	 * @category Shorthands
-	 */
-	export const sub = subtract
-
-	/**
-	 * Alias for {@link multiply}
-	 * @category Shorthands
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link determinant}
-	 * @category Shorthands
-	 */
-	export const det = determinant
-
-	/**
-	 * Alias for {@link invert}
-	 * @category Shorthands
-	 */
-	export const inv = invert
-
-	/**
-	 * Alias for {@link fromRotation}
-	 * @category Shorthands
-	 */
-	export const rotation = fromRotation
-
-	/**
-	 * Alias for {@link fromScaling}
-	 * @category Shorthands
-	 */
-	export const scaling = fromScaling
-
-	/**
-	 * Alias for {@link fromSkew}
-	 * @category Shorthands
-	 */
-	export const skewing = fromSkew
 }

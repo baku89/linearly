@@ -659,10 +659,9 @@ export namespace vec2 {
 
 	/**
 	 * Converts the components of a vec2 from radians to degrees
-	 *
 	 * @param rad The input vec2 in radians
 	 * @returns The degrees equivalent of the input
-	 * 	 *
+	 *
 	 * @shorthands
 	 * - {@link deg}
 	 */
@@ -681,10 +680,9 @@ export namespace vec2 {
 
 	/**
 	 * Converts the components of a vec2 from degrees to radians
-	 *
 	 * @param deg The input vec2 in degrees
 	 * @returns The radians equivalent of the input
-	 * 	 *
+	 *
 	 * @shorthands
 	 * - {@link rad}
 	 */

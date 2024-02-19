@@ -39,8 +39,24 @@ export namespace quat {
 	/**
 	 * The identity quaternion.
 	 * @category Constants
+	 *
+	 * @shorthands
+	 * - {@link id}
+	 * - {@link ident}
 	 */
 	export const identity: quat = Object.freeze([0, 0, 0, 1])
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const id = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
+	export const ident = identity
 
 	/**
 	 * The zero quaternion.
@@ -112,6 +128,9 @@ export namespace quat {
 	 *
 	 * @param a the first operand
 	 * @param b the second operand
+	 *
+	 * @shortands
+	 * - {@link mul}
 	 */
 	export function multiply(...qs: quat[]): quat {
 		if (qs.length === 0) {
@@ -133,6 +152,12 @@ export namespace quat {
 			aw * bw - ax * bx - ay * by - az * bz,
 		]
 	}
+
+	/**
+	 * Alias for {@link multiply}
+	 * @category Shorthands
+	 */
+	export const mul = multiply
 
 	/**
 	 * Rotates a quaternion by the given angle about the X axis
@@ -455,17 +480,34 @@ export namespace quat {
 	 *
 	 * @param a vector to calculate length of
 	 * @returns length of a
+	 *
+	 * @shorthands
+	 * - {@link len}
 	 */
 	export const length = vec4.length
+
+	/**
+	 * Alias for {@link length}
+	 * @category Shorthands
+	 */
+	export const len = length
 
 	/**
 	 * Calculates the squared length of a quat
 	 *
 	 * @param a vector to calculate squared length of
 	 * @returns squared length of a
-	 * @function
+	 *
+	 * @shorthands
+	 * - {@link sqrLen}
 	 */
 	export const squaredLength = vec4.squaredLength
+
+	/**
+	 * Alias for {@link squaredLength}
+	 * @category Shorthands
+	 */
+	export const sqrLen = squaredLength
 
 	/**
 	 * Normalize a quat
@@ -563,34 +605,4 @@ export namespace quat {
 
 		return normalize(fromMat3(matr))
 	}
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const id = identity
-
-	/**
-	 * Alias for {@link identity}
-	 * @category Shorthands
-	 */
-	export const ident = identity
-
-	/**
-	 * Alias for {@link multiply}
-	 * @category Shorthands
-	 */
-	export const mul = multiply
-
-	/**
-	 * Alias for {@link squaredLength}
-	 * @category Shorthands
-	 */
-	export const sqrLen = squaredLength
-
-	/**
-	 * Alias for {@link length}
-	 * @category Shorthands
-	 */
-	export const len = length
 }
