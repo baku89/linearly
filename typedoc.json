@@ -14,6 +14,7 @@
 		"Constants",
 		"Generators",
 		"Functions",
+		"Periodic Functions",
 		"Shorthands"
 	],
 	"blockTags": ["@shorthands"]
