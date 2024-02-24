@@ -493,7 +493,6 @@ export namespace scalar {
 	 */
 	export function coswave(v: number, period = 1): number {
 		v = (v * Math.PI * 2) / period
-		console.log({v})
 		return (-Math.cos(v) + 1) / 2
 	}
 
