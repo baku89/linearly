@@ -157,6 +157,16 @@ describe('angle', () => {
 		expect(vec2.angle([1, 0], [-1, 0])).toEqual(180)
 	})
 
+	it('should return 180° for nearly opposite vectors', () => {
+		const x1 = -0.028270570295122224
+		const y1 = -0.9996003075505673
+
+		const x2 = 0.028270563245424384
+		const y2 = 0.9996003077499459
+
+		expect(vec2.angle([x1, y1], [x2, y2])).toEqual(180)
+	})
+
 	it('should work in the case of [-120°, 120]', () => {
 		const x = 1 / 2
 		const y = Math.sqrt(3) / 2

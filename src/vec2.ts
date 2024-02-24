@@ -595,8 +595,11 @@ export namespace vec2 {
 		}
 
 		const sign = x1 * y2 - y1 * x2 >= 0 ? 1 : -1
+		const acos = Math.acos(scalar.clamp(dot(a, b), -1, 1) / mag)
 
-		return sign * Math.acos(dot(a, b) / mag) * Common.RAD2DEG
+		const angle = sign * acos * Common.RAD2DEG
+
+		return angle <= -180 ? angle + 360 : angle
 	}
 
 	/**
