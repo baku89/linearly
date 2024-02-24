@@ -597,15 +597,18 @@ export namespace vec2 {
 	}
 
 	/**
-	 * Creates a vector by given direction and length
+	 * Creates a vector by given direction, length, and origin
+	 * @param deg The direction in degrees
+	 * @param length The length of the vector to create. Default is 1
+	 * @param origin The origin of the vector. Default is [0, 0]
 	 *
 	 * @shorthands
 	 * - {@link dir}
 	 */
-	export function direction(deg: number, length = 1): vec2 {
+	export function direction(deg: number, length = 1, origin = vec2.zero): vec2 {
 		return [
-			Math.cos(deg * Common.DEG2RAD) * length, //
-			Math.sin(deg * Common.DEG2RAD) * length,
+			Math.cos(deg * Common.DEG2RAD) * length + origin[0],
+			Math.sin(deg * Common.DEG2RAD) * length + origin[1],
 		]
 	}
 
