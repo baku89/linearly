@@ -579,7 +579,7 @@ export namespace vec2 {
 		if (!b) return Math.atan2(a[1], a[0]) * Common.RAD2DEG
 
 		if (eq(a, b)) {
-			// Exactly vectors
+			// Exactly the same vectors
 			return 0
 		}
 
@@ -595,8 +595,8 @@ export namespace vec2 {
 		}
 
 		const sign = x1 * y2 - y1 * x2 >= 0 ? 1 : -1
-		const acos = Math.acos(scalar.clamp(dot(a, b), -1, 1) / mag)
 
+		const acos = Math.acos(scalar.clamp(dot(a, b) / mag, -1, 1))
 		const angle = sign * acos * Common.RAD2DEG
 
 		return angle <= -180 ? angle + 360 : angle
