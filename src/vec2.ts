@@ -571,6 +571,9 @@ export namespace vec2 {
 
 	/**
 	 * Get the angle between two 2D vectors. If the second argument is omitted, it returns a signed angle relative to x axis.
+	 * @param a The first vector
+	 * @param b The second vector
+	 * @returns The angle in degrees. If the angle from a to b is clockwise, the return value is positive. Otherwise, it is negative. The range is (-180, 180].
 	 */
 	export function angle(a: vec2, b?: vec2) {
 		if (!b) return Math.atan2(a[1], a[0]) * Common.RAD2DEG
