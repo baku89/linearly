@@ -153,6 +153,10 @@ describe('angle', () => {
 		expect(vec2.angle([0, 1])).toEqual(90)
 	})
 
+	it('should return 180° for opposite vectors', () => {
+		expect(vec2.angle([1, 0], [-1, 0])).toEqual(180)
+	})
+
 	it('should work in the case of [-120°, 120]', () => {
 		const x = 1 / 2
 		const y = Math.sqrt(3) / 2
