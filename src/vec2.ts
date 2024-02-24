@@ -570,6 +570,23 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Rotates a vector by 90 degrees
+	 * @param a the vector to rotate
+	 * @param sweep If true, the rotation is in positive direction. For example, it means clockwise rotation in a Y-down coordinate system.
+	 * @param origin The origin of the rotation
+	 * @returns The rotated vector
+	 
+	 */
+	export function rotate90(a: vec2, sweep = true, origin?: vec2): vec2 {
+		if (!origin) {
+			return sweep ? [-a[1], a[0]] : [a[1], -a[0]]
+		} else {
+			const [x, y] = subtract(a, origin)
+			return sweep ? add(origin, [-y, x]) : add(origin, [y, -x])
+		}
+	}
+
+	/**
 	 * Get the angle between two 2D vectors. If the second argument is omitted, it returns a signed angle relative to x axis.
 	 * @param a The first vector
 	 * @param b The second vector
