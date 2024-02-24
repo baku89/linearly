@@ -564,7 +564,7 @@ export namespace mat2d {
 	 * Creates a matrix from given translation, rotation, and scaling. The order of the transformations is translation, rotation, and scaling, like most of the graphics software.
 	 * @param t Translation vector
 	 * @param r Rotation angle in degrees
-	 * @param s Scaling vector
+	 * @param s Scaling vector or a number
 	 * @returns The matrix that represents the transformation
 	 *
 	 * @shorthands
@@ -573,11 +573,16 @@ export namespace mat2d {
 	export function fromTRS(
 		t: vec2 | null = null,
 		r: number | null = null,
-		s: vec2 | null = null
+		s: vec2 | number | null = null
 	): mat2d {
 		t ??= vec2.zero
 		r ??= 0
-		s ??= vec2.one
+
+		if (s === null) {
+			s = vec2.one
+		} else if (typeof s === 'number') {
+			s = [s, s]
+		}
 
 		const C = Math.cos(r * Common.DEG2RAD)
 		const S = Math.sin(r * Common.DEG2RAD)
