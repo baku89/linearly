@@ -497,6 +497,19 @@ export namespace scalar {
 	}
 
 	/**
+	 * Returns a sine wave with the given period. The output ranges from 0 to 1, and y = 0 when x = 0.
+	 *
+	 * @see https://www.geogebra.org/calculator/d3grfqqe
+	 * @param v the input value
+	 * @param period the period of the wave
+	 * @category Periodic Functions
+	 */
+	export function sinwave(v: number, period = 1): number {
+		v = (v * Math.PI * 2) / period
+		return (-Math.sin(v) + 1) / 2
+	}
+
+	/**
 	 * Returns whether or not the numbers have approximately the same.
 	 *
 	 * @shorthands
