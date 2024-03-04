@@ -196,6 +196,10 @@ export namespace vec4 {
 	 */
 	export const div = divide
 
+	export function abs(v: vec4): vec4 {
+		return [Math.abs(v[0]), Math.abs(v[1]), Math.abs(v[2]), Math.abs(v[3])]
+	}
+
 	/**
 	 * symmetric round the components of a vec4
 	 */
