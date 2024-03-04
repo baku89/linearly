@@ -306,6 +306,10 @@ export namespace vec3 {
 		]
 	}
 
+	export function abs(v: vec3): vec3 {
+		return [Math.abs(v[0]), Math.abs(v[1]), Math.abs(v[2])]
+	}
+
 	/**
 	 * symmetric round the components of a vec3
 	 */
