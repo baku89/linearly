@@ -233,6 +233,13 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Math.sign the components of a vec2
+	 */
+	export function sign(v: vec2): vec2 {
+		return [Math.sign(v[0]), Math.sign(v[1])]
+	}
+
+	/**
 	 * Removes the fractional part
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/trunc.html
 	 */

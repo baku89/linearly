@@ -69,6 +69,10 @@ export namespace scalar {
 
 	export const floor = Math.floor
 
+	export const sign = Math.sign
+
+	export const abs = Math.abs
+
 	/**
 	 * Removes the fractional part
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/trunc.html

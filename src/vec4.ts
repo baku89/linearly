@@ -230,6 +230,12 @@ export namespace vec4 {
 			Math.floor(a[3]),
 		]
 	}
+	/**
+	 * Math.sign the components of a vec4
+	 */
+	export function sign(v: vec4): vec4 {
+		return [Math.sign(v[0]), Math.sign(v[1]), Math.sign(v[2]), Math.sign(v[3])]
+	}
 
 	/**
 	 * Removes the fractional part

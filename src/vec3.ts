@@ -204,6 +204,13 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Math.sign the components of a vec3
+	 */
+	export function sign(v: vec3): vec3 {
+		return [Math.sign(v[0]), Math.sign(v[1]), Math.sign(v[2])]
+	}
+
+	/**
 	 * Removes the fractional part
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/trunc.html
 	 */
