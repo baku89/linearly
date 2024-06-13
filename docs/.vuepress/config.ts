@@ -13,6 +13,7 @@ export default defineUserConfig({
 			'link',
 			{rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true},
 		],
+		['link', {rel: 'stylesheet', href: 'https://use.typekit.net/xhr6teg.css'}],
 		[
 			'link',
 			{
