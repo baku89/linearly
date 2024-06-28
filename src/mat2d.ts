@@ -90,6 +90,12 @@ export namespace mat2d {
 	 * Alias for {@link identity}
 	 * @category Shorthands
 	 */
+	export const I = identity
+
+	/**
+	 * Alias for {@link identity}
+	 * @category Shorthands
+	 */
 	export const id = identity
 
 	/**
