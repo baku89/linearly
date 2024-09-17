@@ -5,7 +5,6 @@
 	"readme": "none",
 	"cleanOutputDir": true,
 	"includeVersion": true,
-	"hideInPageTOC": true,
 	"plugin": ["typedoc-plugin-markdown"],
 	"sort": ["alphabetical"],
 	"defaultCategory": "Functions",
