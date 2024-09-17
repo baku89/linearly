@@ -60,6 +60,9 @@ In addition to functions that can be found on [glMatrix docs](https://glmatrix.n
 The names of modules are derived from glMatrix.
 
 - [scalar](./api/modules/scalar): A single number
+- [vec2](./api/modules/vec2): 2D vector
+- [vec3](./api/modules/vec3): 3D vector
+- [vec4](./api/modules/vec4): 4D vector
 - [mat2](./api/modules/mat2): 2D linear transformation (rotation, scaling, skewing)
 - [mat2d](./api/modules/mat2d): 2D affine transformation, omitting redundant third rows, which is always set to `[0, 0, 1]` (translation, rotation, scaling, skewing)
 - [mat3](./api/modules/mat3): 2D affine transformation (translation, rotation, scaling, skewing)
