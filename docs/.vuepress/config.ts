@@ -47,7 +47,7 @@ export default defineUserConfig({
 	locales: {
 		'/': {
 			lang: 'English',
-			title: 'Lineraly',
+			title: 'Linearly',
 			description:
 				'A collection of utility functions that relates to linear algebra and graphics programming',
 		},
