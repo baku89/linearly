@@ -270,8 +270,8 @@ export namespace mat2d {
 	}
 
 	/**
-	 * Creates a matrix from a given angle
-	 * This is equivalent to (but much faster than):
+	 * Creates a matrix from a given angle.
+	 * @param deg The angle to rotate the matrix by, in degrees
 	 * @category Generators
 	 *
 	 * @shorthands

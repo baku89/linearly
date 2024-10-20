@@ -332,6 +332,7 @@ export namespace mat3 {
 
 	/**
 	 * Creates a matrix from a given angle
+	 * @param deg The angle to rotate the matrix by, in degrees
 	 * @category Generators
 	 *
 	 * @shorthands

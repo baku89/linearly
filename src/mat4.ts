@@ -599,6 +599,9 @@ export namespace mat4 {
 
 	/**
 	 * Creates a matrix from a given angle around a given axis
+	 * Creates a matrix from a given angle.
+	 * @param deg The angle to rotate the matrix by, in degrees
+	 * @param axis The axis to rotate around
 	 * @category Generators
 	 *
 	 * @shorthands

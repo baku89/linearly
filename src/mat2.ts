@@ -216,7 +216,8 @@ export namespace mat2 {
 	}
 
 	/**
-	 * Creates a matrix from a given angle
+	 * Creates a matrix from a given angle.
+	 * @param deg The angle to rotate the matrix by, in degrees
 	 * @category Generators
 	 *
 	 * @shorthands
