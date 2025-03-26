@@ -1,5 +1,18 @@
 ---
 home: true
+heroImage: /logo.svg
+heroHeight: 160
+actions:
+  - text: API →
+    link: /api/
+
+features:
+  - title: Immutable Data Structure
+    details: All data types are immutable and readonly.
+  - title: TypeScript-friendly
+    details: The library is fully typed and compatible with TypeScript.
+  - title: Compatibility with various environments
+    details: API are supersets of glMatrix, GLSL, Unity, and Vex in Houdini.
 ---
 
 <div class="badges">

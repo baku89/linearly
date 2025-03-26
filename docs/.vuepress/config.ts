@@ -18,15 +18,8 @@ export default defineUserConfig({
 			'link',
 			{
 				rel: 'stylesheet',
-				href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap',
-			},
-		],
-		['link', {rel: 'icon', href: '/logo.svg'}],
-		[
-			'link',
-			{
-				rel: 'stylesheet',
-				href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+				href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+				crossorigin: 'anonymous',
 			},
 		],
 	],
@@ -38,7 +31,7 @@ export default defineUserConfig({
 			},
 			{
 				text: 'API',
-				link: '/api',
+				link: '/api/',
 			},
 		],
 		logo: '/logo.svg',
@@ -57,8 +50,5 @@ export default defineUserConfig({
 		//@ts-ignore
 		linkify: true,
 		typographer: true,
-		code: {
-			lineNumbers: false,
-		},
 	},
 })
