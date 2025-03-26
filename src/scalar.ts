@@ -97,7 +97,15 @@ export namespace scalar {
 		return a - b * floor(a / b)
 	}
 
+	/**
+	 * Quantize a value to a given step and offset. If the step is 0, the value is returned unchanged.
+	 * @param v The value to quantize
+	 * @param step The step size
+	 * @param offset The offset
+	 * @returns The quantized value
+	 */
 	export function quantize(v: number, step: number, offset = 0): number {
+		if (step === 0) return v
 		return Math.round((v - offset) / step) * step + offset
 	}
 

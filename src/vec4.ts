@@ -273,6 +273,13 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Quantize a vec4 to a given step and offset. If the step is 0, the value is returned unchanged.
+	 * @param v The value to quantize
+	 * @param step The step size
+	 * @param offset The offset
+	 * @returns The quantized value
+	 */
 	export function quantize(
 		v: vec4,
 		step: vec4 | number,
@@ -282,10 +289,10 @@ export namespace vec4 {
 		if (typeof offset === 'number') offset = [offset, offset, offset, offset]
 
 		return [
-			Math.round((v[0] - offset[0]) / step[0]) * step[0] + offset[0],
-			Math.round((v[1] - offset[1]) / step[1]) * step[1] + offset[1],
-			Math.round((v[2] - offset[2]) / step[2]) * step[2] + offset[2],
-			Math.round((v[3] - offset[3]) / step[3]) * step[3] + offset[3],
+			scalar.quantize(v[0], step[0], offset[0]),
+			scalar.quantize(v[1], step[1], offset[1]),
+			scalar.quantize(v[2], step[2], offset[2]),
+			scalar.quantize(v[3], step[3], offset[3]),
 		]
 	}
 
