@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="./docs/.vuepress/public/logo.svg" width="200" />
-<h1>Linerly</h1>
+<h1>Linearly</h1>
 
 <a href="https://baku89.github.io/linearly/">Documentation</a> ⌇ <a href="https://github.com/sponsors/baku89">Become a Sponsor</a>
 
