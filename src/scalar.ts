@@ -28,6 +28,13 @@ export namespace scalar {
 	export const sub = subtract
 
 	/**
+	 * Subtracts b from a
+	 */
+	export function delta(a: number, b: number): number {
+		return b - a
+	}
+
+	/**
 	 * @shorthands
 	 * - {@link mul}
 	 */
