@@ -3,6 +3,9 @@ import {expect, test} from 'vitest'
 import {EPSILON} from './common'
 import {scalar} from './scalar'
 import {vec3} from './vec3'
+import {quat} from './quat'
+import {mat3} from './mat3'
+import {mat4} from './mat4'
 
 // https://github.com/stackgl/gl-vec3/blob/master/test/index.js
 
@@ -166,4 +169,27 @@ test('transformMat4', () => {
 
 test('transformQuat', () => {
 	expect(vec3.transformQuat([3, 4, 5], [6, 7, 8, 9])).toEqual([882, 824, 1090])
+})
+
+test('transform', () => {
+	// Test with mat3
+	expect(vec3.transform([3, 4, 5], [5, 6, 7, 8, 9, 10, 11, 12, 13])).toEqual([
+		102, 114, 126,
+	])
+
+	// Test with mat4
+	expect(
+		vec3.transform(
+			[3, 4, 5],
+			[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+		)
+	).toEqual([0.7732558139534884, 0.8488372093023255, 0.9244186046511628])
+
+	// Test with quat
+	expect(vec3.transform([3, 4, 5], [6, 7, 8, 9])).toEqual([882, 824, 1090])
+
+	// Test error case
+	expect(() => vec3.transform([3, 4, 5], [1, 2, 3, 4, 5] as any)).toThrow(
+		'Unsupported matrix size: 5'
+	)
 })

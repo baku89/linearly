@@ -2,6 +2,9 @@ import {describe, expect, it, test} from 'vitest'
 
 import {EPSILON} from './common'
 import {vec2} from './vec2'
+import {mat2} from './mat2'
+import {mat2d} from './mat2d'
+import {mat3} from './mat3'
 
 // https://github.com/stackgl/gl-vec2/blob/master/test/index.js
 test('of', () => {
@@ -233,6 +236,24 @@ test('transformMat3', () => {
 	expect(
 		vec2.transformMat3([3, 4], [5, 6, 0, 8, 9, 0, 11, 12, 0])
 	).toStrictEqual([58, 66])
+})
+
+test('transform', () => {
+	// Test with mat2
+	expect(vec2.transform([3, 4], [5, 6, 7, 8])).toEqual([43, 50])
+
+	// Test with mat2d
+	expect(vec2.transform([3, 4], [5, 6, 7, 8, 9, 10])).toEqual([52, 60])
+
+	// Test with mat3
+	expect(vec2.transform([3, 4], [5, 6, 0, 8, 9, 0, 11, 12, 0])).toEqual([
+		58, 66,
+	])
+
+	// Test error case
+	expect(() => vec2.transform([3, 4], [1, 2, 3] as any)).toThrow(
+		'Unsupported matrix size: 3'
+	)
 })
 
 test('toString', () => {

@@ -587,6 +587,35 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Transforms a vec2 with a matrix, automatically choosing the appropriate transformation function based on matrix size
+	 * @param p The vector to transform
+	 * @param m The transformation matrix (mat2, mat2d, or mat3)
+	 * @returns The transformed vector
+	 *
+	 * @shorthands
+	 * - {@link xform}
+	 */
+	export function transform(p: vec2, m: mat2 | mat2d | mat3): vec2 {
+		const matrixArray = m as readonly number[]
+		switch (matrixArray.length) {
+			case 4: // mat2
+				return transformMat2(p, m as mat2)
+			case 6: // mat2d
+				return transformMat2d(p, m as mat2d)
+			case 9: // mat3
+				return transformMat3(p, m as mat3)
+			default:
+				throw new Error(`Unsupported matrix size: ${matrixArray.length}`)
+		}
+	}
+
+	/**
+	 * Alias for {@link vec2.transform}
+	 * @category Shorthands
+	 */
+	export const xform = transform
+
+	/**
 	 * Rotate a 2D vector
 	 */
 	export function rotate(a: vec2, deg: number, origin: vec2 = zero): vec2 {

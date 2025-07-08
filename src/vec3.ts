@@ -705,6 +705,38 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Transforms a vec3 with a matrix or quaternion, automatically choosing the appropriate transformation function based on input type
+	 * @param p The vector to transform
+	 * @param m The transformation matrix (mat3 or mat4) or quaternion
+	 * @returns The transformed vector
+	 *
+	 * @shorthands
+	 * - {@link xform}
+	 */
+	export function transform(p: vec3, m: mat3 | mat4 | quat): vec3 {
+		if (m.length === 4) {
+			// quat
+			return transformQuat(p, m as quat)
+		} else {
+			const matrixArray = m as readonly number[]
+			switch (matrixArray.length) {
+				case 9: // mat3
+					return transformMat3(p, m as mat3)
+				case 16: // mat4
+					return transformMat4(p, m as mat4)
+				default:
+					throw new Error(`Unsupported matrix size: ${matrixArray.length}`)
+			}
+		}
+	}
+
+	/**
+	 * Alias for {@link vec3.transform}
+	 * @category Shorthands
+	 */
+	export const xform = transform
+
+	/**
 	 * Transforms the vec3 with a quat
 	 * Can also be used for dual quaternions. (Multiply it with the real part)
 	 *
