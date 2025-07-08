@@ -176,6 +176,22 @@ export namespace scalar {
 	export const dist = distance
 
 	/**
+	 * Returns the absolute difference between two numbers
+	 *
+	 * @shorthands
+	 * - {@link diff}
+	 */
+	export function difference(a: number, b: number): number {
+		return Math.abs(b - a)
+	}
+
+	/**
+	 * Alias for {@link difference}
+	 * @category Shorthands
+	 */
+	export const diff = difference
+
+	/**
 	 * Returns the squared difference between two numbers
 	 *
 	 * @shorthands

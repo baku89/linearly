@@ -35,6 +35,14 @@ test('distance', () => {
 	expect(vec3.distance([1, 2, 3], [4, 6, 7])).toEqual(6.4031242374328485)
 })
 
+test('difference', () => {
+	expect(vec3.difference([1, 2, 3], [4, 6, 7])).toEqual([3, 4, 4])
+	expect(vec3.difference([4, 6, 7], [1, 2, 3])).toEqual([3, 4, 4])
+	expect(vec3.difference([-1, -2, -3], [2, 3, 4])).toEqual([3, 5, 7])
+	expect(vec3.difference([2, 3, 4], [-1, -2, -3])).toEqual([3, 5, 7])
+	expect(vec3.difference([0, 0, 0], [0, 0, 0])).toEqual([0, 0, 0])
+})
+
 test('divide', () => {
 	expect(vec3.divide([8, 4, 2], [2, 1, 0.5])).toEqual([4, 4, 4])
 })

@@ -370,6 +370,22 @@ export namespace vec2 {
 	export const sqrDist = squaredDistance
 
 	/**
+	 * Returns the absolute difference between corresponding components of two vec2's
+	 *
+	 * @shorthands
+	 * - {@link diff}
+	 */
+	export function difference(a: vec2, b: vec2): vec2 {
+		return [Math.abs(b[0] - a[0]), Math.abs(b[1] - a[1])]
+	}
+
+	/**
+	 * Alias for {@link vec2.difference}
+	 * @category Shorthands
+	 */
+	export const diff = difference
+
+	/**
 	 * Calculates the length of a vec2
 	 *
 	 * @shorthands

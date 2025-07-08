@@ -447,6 +447,27 @@ export namespace vec4 {
 	export const sqrDist = squaredDistance
 
 	/**
+	 * Returns the absolute difference between corresponding components of two vec4's
+	 *
+	 * @shorthands
+	 * - {@link diff}
+	 */
+	export function difference(a: vec4, b: vec4): vec4 {
+		return [
+			Math.abs(b[0] - a[0]),
+			Math.abs(b[1] - a[1]),
+			Math.abs(b[2] - a[2]),
+			Math.abs(b[3] - a[3]),
+		]
+	}
+
+	/**
+	 * Alias for {@link vec4.difference}
+	 * @category Shorthands
+	 */
+	export const diff = difference
+
+	/**
 	 * Calculates the length of a vec4n
 	 *
 	 * @shorthands

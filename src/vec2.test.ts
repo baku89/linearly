@@ -52,6 +52,14 @@ test('distance', () => {
 	expect(vec2.distance([1, 2], [4, 6])).toEqual(5)
 })
 
+test('difference', () => {
+	expect(vec2.difference([1, 2], [4, 6])).toEqual([3, 4])
+	expect(vec2.difference([4, 6], [1, 2])).toEqual([3, 4])
+	expect(vec2.difference([-1, -2], [2, 3])).toEqual([3, 5])
+	expect(vec2.difference([2, 3], [-1, -2])).toEqual([3, 5])
+	expect(vec2.difference([0, 0], [0, 0])).toEqual([0, 0])
+})
+
 test('divide', () => {
 	expect(vec2.divide([8, 4], [2, 1])).toEqual([4, 4])
 })

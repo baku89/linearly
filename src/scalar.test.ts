@@ -20,6 +20,14 @@ test('distance', () => {
 	expect(scalar.distance(-1, -1)).toEqual(0)
 })
 
+test('difference', () => {
+	expect(scalar.difference(1, 4)).toEqual(3)
+	expect(scalar.difference(4, 1)).toEqual(3)
+	expect(scalar.difference(-1, -1)).toEqual(0)
+	expect(scalar.difference(-2, 3)).toEqual(5)
+	expect(scalar.difference(3, -2)).toEqual(5)
+})
+
 test('divide', () => {
 	expect(scalar.divide()).toEqual(1)
 	expect(scalar.divide(5)).toEqual(1 / 5)
