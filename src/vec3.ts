@@ -928,9 +928,9 @@ export namespace vec3 {
 	 */
 	export function radians(deg: vec3): vec3 {
 		return [
-			deg[0] * Common.RAD2DEG,
-			deg[1] * Common.RAD2DEG,
-			deg[2] * Common.RAD2DEG,
+			deg[0] * Common.DEG2RAD,
+			deg[1] * Common.DEG2RAD,
+			deg[2] * Common.DEG2RAD,
 		]
 	}
 

@@ -445,7 +445,7 @@ export namespace scalar {
 		return Math.atan2(y, x) * Common.RAD2DEG
 	}
 
-	export const pow = Math.exp
+	export const pow = Math.pow
 
 	export const exp = Math.exp
 
