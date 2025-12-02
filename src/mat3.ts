@@ -1,4 +1,5 @@
 import * as Common from './common'
+import {mat2d} from './mat2d'
 import {mat4} from './mat4'
 import {quat} from './quat'
 import {vec2} from './vec2'
@@ -384,7 +385,7 @@ export namespace mat3 {
 	 * Copies the values from a {@link mat2d}
 	 * @category Generators
 	 **/
-	export function fromMat2d(a: mat3): mat3 {
+	export function fromMat2d(a: mat2d): mat3 {
 		// prettier-ignore
 		return [
 			a[0], a[1], 0,
