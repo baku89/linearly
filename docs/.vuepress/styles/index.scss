@@ -26,11 +26,16 @@
 	--vp-c-border-hard: var(--vp-c-border);
 	--vp-c-gutter: var(--vp-c-border);
 
+	--vp-c-accent-text: color-mix(
+		in srgb,
+		var(--vp-c-accent) 10%,
+		var(--vp-c-bg)
+	);
+
 	// font family
-	--font-family: aktiv-grotesk, 'Inter', a-otf-gothic-bbb-pr6n, 游ゴシック体,
-		'Yu Gothic', YuGothic, 'Hiragino Kaku Gothic ProN', Osaka, 'ＭＳ Ｐゴシック',
-		sans-serif;
-	--code-font-family: 'IBM Plex Mono', monospace !important;
+	--font-family: aktiv-grotesk, 游ゴシック体, 'Yu Gothic', YuGothic,
+		'Hiragino Kaku Gothic ProN', Osaka, 'ＭＳ Ｐゴシック', sans-serif;
+	--code-font-family: 'Geist Mono', monospace !important;
 
 	// custom variables
 	--border-radius: 6px;
@@ -44,13 +49,19 @@
 	--vp-c-text: white;
 }
 
+html {
+	font-variant-east-asian: proportional-width;
+	line-break: strict;
+	hanging-punctuation: allow-end;
+	text-rendering: optimizeLegibility;
+}
+
 // Navbar
 .vp-navbar {
 	border-bottom: none;
 
 	.vp-site-name {
-		font-family: var(--code-font-family);
-		letter-spacing: -0.05em;
+		font-weight: 400;
 	}
 }
 
@@ -85,6 +96,17 @@
 				display: none;
 			}
 		}
+	}
+}
+
+.vp-hero-description {
+	text-wrap: balance;
+	line-height: 1.5;
+}
+
+.vp-feature {
+	h2 {
+		font-weight: 600;
 	}
 }
 
