@@ -48,19 +48,19 @@ export namespace vec2 {
 	export const one: vec2 = Object.freeze([1, 1])
 
 	/**
-	 * An unit vector pointing toward positiove X. Same as `[1, 0]`
+	 * A unit vector pointing toward positive X. Same as `[1, 0]`
 	 * @category Constants
 	 */
 	export const unitX: vec2 = Object.freeze([1, 0])
 
 	/**
-	 * An unit vector pointing toward positiove Y. Same as `[0, 1]`
+	 * A unit vector pointing toward positive Y. Same as `[0, 1]`
 	 * @category Constants
 	 */
 	export const unitY: vec2 = Object.freeze([0, 1])
 
 	/**
-	 * Add the given vectors
+	 * Adds the given vectors
 	 */
 	export function add(...vs: (vec2 | number)[]): vec2 {
 		let x = 0,
@@ -81,6 +81,9 @@ export namespace vec2 {
 
 	/**
 	 * Subtracts the given vec2's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
+	 *
+	 * @shorthands
+	 * - {@link sub}
 	 */
 	export function subtract(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
@@ -114,14 +117,11 @@ export namespace vec2 {
 	/**
 	 * Alias for {@link vec2.subtract}
 	 * @category Shorthands
-	 *
-	 * @shorthands
-	 * - {@link vec2.sub}
 	 */
 	export const sub = subtract
 
 	/**
-	 * Subtracts a from b
+	 * Subtracts `a` from `b` component-wise
 	 */
 	export function delta(a: vec2 | number, b: vec2 | number): vec2 {
 		const ax = typeof a === 'number' ? a : a[0]
@@ -131,6 +131,12 @@ export namespace vec2 {
 		return [bx - ax, by - ay]
 	}
 
+	/**
+	 * Multiplies the given vec2's component-wise
+	 *
+	 * @shorthands
+	 * - {@link mul}
+	 */
 	export function multiply(...vs: (vec2 | number)[]): vec2 {
 		let x = 1,
 			y = 1
@@ -151,12 +157,15 @@ export namespace vec2 {
 	/**
 	 * Alias for {@link vec2.multiply}
 	 * @category Shorthands
-	 *
-	 * @shorthands
-	 * - {@link vec2.mul}
 	 */
 	export const mul = multiply
 
+	/**
+	 * Divides the given vec2's component-wise
+	 *
+	 * @shorthands
+	 * - {@link div}
+	 */
 	export function divide(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
 			return one
@@ -189,12 +198,12 @@ export namespace vec2 {
 	/**
 	 * Alias for {@link vec2.divide}
 	 * @category Shorthands
-	 *
-	 * @shorthands
-	 * - {@link vec2.div}
 	 */
 	export const div = divide
 
+	/**
+	 * Returns the component-wise minimum of the given vec2's
+	 */
 	export function min(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
 			return [Infinity, Infinity]
@@ -213,6 +222,9 @@ export namespace vec2 {
 		return [Math.min(a[0], b[0]), Math.min(a[1], b[1])]
 	}
 
+	/**
+	 * Returns the component-wise maximum of the given vec2's
+	 */
 	export function max(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
 			return [-Infinity, -Infinity]
@@ -248,27 +260,36 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Returns the absolute value of each component of a vec2
+	 */
 	export function abs(v: vec2): vec2 {
 		return [Math.abs(v[0]), Math.abs(v[1])]
 	}
 
 	/**
-	 * symmetric round the components of a vec2
+	 * Symmetric round the components of a vec2
 	 */
 	export function round(a: vec2): vec2 {
 		return [Common.round(a[0]), Common.round(a[1])]
 	}
 
+	/**
+	 * Applies Math.ceil to each component of a vec2
+	 */
 	export function ceil(a: vec2): vec2 {
 		return [Math.ceil(a[0]), Math.ceil(a[1])]
 	}
 
+	/**
+	 * Applies Math.floor to each component of a vec2
+	 */
 	export function floor(a: vec2): vec2 {
 		return [Math.floor(a[0]), Math.floor(a[1])]
 	}
 
 	/**
-	 * Math.sign the components of a vec2
+	 * Applies Math.sign to each component of a vec2
 	 */
 	export function sign(v: vec2): vec2 {
 		return [Math.sign(v[0]), Math.sign(v[1])]
@@ -294,7 +315,7 @@ export namespace vec2 {
 	}
 
 	/**
-	 * Compute value of one parameter module another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
+	 * Computes the value of one parameter modulo another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
 	 * @see https://thebookofshaders.com/glossary/?search=mod
 	 */
 	export function mod(a: vec2, b: vec2 | number): vec2 {
@@ -399,7 +420,7 @@ export namespace vec2 {
 	}
 
 	/**
-	 * Alias for {@link vec2.squaredEquals}
+	 * Alias for {@link vec2.squaredDistance}
 	 * @category Shorthands
 	 */
 	export const sqrDist = squaredDistance
@@ -491,16 +512,25 @@ export namespace vec2 {
 		return subtract(one, v)
 	}
 
+	/**
+	 * Normalizes a vec2 to unit length. Returns the zero vector if the input has zero length.
+	 */
 	export function normalize(v: vec2): vec2 {
 		const isZeroLength = v[0] === 0 && v[1] === 0
 		const len = isZeroLength ? 0 : 1 / Math.hypot(v[0], v[1])
 		return [v[0] * len, v[1] * len]
 	}
 
+	/**
+	 * Calculates the dot product of two vec2's
+	 */
 	export function dot(a: vec2, b: vec2) {
 		return a[0] * b[0] + a[1] * b[1]
 	}
 
+	/**
+	 * Computes the cross product of two vec2's. Returns a vec3 with x and y components set to 0.
+	 */
 	export function cross(a: vec2, b: vec2): vec3 {
 		const z = a[0] * b[1] - a[1] * b[0]
 		return [0, 0, z]
@@ -565,7 +595,7 @@ export namespace vec2 {
 	}
 
 	/**
-	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+	 * Linearly interpolates between two vec2's. Same as GLSL's built-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 *
 	 * @shorthands
@@ -730,6 +760,9 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Transforms the vec2 with a mat2
+	 */
 	export function transformMat2(a: vec2, m: mat2): vec2 {
 		const [x, y] = a
 		return [
@@ -738,6 +771,10 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Transforms the vec2 with a mat2d
+	 * 3rd vector component is implicitly '1'
+	 */
 	export function transformMat2d(a: vec2, m: mat2d): vec2 {
 		const [x, y] = a
 		return [
@@ -959,8 +996,8 @@ export namespace vec2 {
 
 	/**
 	 * Returns the sine of a number.
-	 * @param deg A angle in degrees
-	 * 	 */
+	 * @param deg An angle in degrees
+	 */
 	export function sin(deg: vec2): vec2 {
 		return [
 			Math.sin(deg[0] * Common.DEG2RAD), //
@@ -970,8 +1007,8 @@ export namespace vec2 {
 
 	/**
 	 * Returns the cosine of a number.
-	 * @param deg A angle in degrees
-	 * 	 */
+	 * @param deg An angle in degrees
+	 */
 	export function cos(deg: vec2): vec2 {
 		return [
 			Math.cos(deg[0] * Common.DEG2RAD), //
@@ -981,8 +1018,8 @@ export namespace vec2 {
 
 	/**
 	 * Returns the tangent of a number.
-	 * @param deg A angle in degrees
-	 * 	 */
+	 * @param deg An angle in degrees
+	 */
 	export function tan(deg: vec2): vec2 {
 		return [
 			Math.tan(deg[0] * Common.DEG2RAD), //
@@ -1048,31 +1085,46 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Returns the base to the exponent power, component-wise
+	 */
 	export function pow(a: vec2, b: vec2 | number): vec2 {
 		if (typeof b === 'number') b = [b, b]
 		return [Math.pow(a[0], b[0]), Math.pow(a[1], b[1])]
 	}
 
+	/**
+	 * Returns e raised to the power of each component
+	 */
 	export function exp(v: vec2): vec2 {
 		return [Math.exp(v[0]), Math.exp(v[1])]
 	}
 
+	/**
+	 * Returns the natural logarithm of each component
+	 */
 	export function log(v: vec2): vec2 {
 		return [Math.log(v[0]), Math.log(v[1])]
 	}
 
 	/**
 	 * Returns 2 raised to the power of the parameter
-	 * @param v the value of the powe to which 2 will be raised
+	 * @param v the value of the power to which 2 will be raised
 	 */
 	export function exp2(v: vec2): vec2 {
 		return [2 ** v[0], 2 ** v[1]]
 	}
 
+	/**
+	 * Returns the base-2 logarithm of each component
+	 */
 	export function log2(v: vec2): vec2 {
 		return [Math.log2(v[0]), Math.log2(v[1])]
 	}
 
+	/**
+	 * Returns the square root of each component
+	 */
 	export function sqrt(v: vec2): vec2 {
 		return [Math.sqrt(v[0]), Math.sqrt(v[1])]
 	}
@@ -1095,26 +1147,44 @@ export namespace vec2 {
 	 */
 	export const invsqrt = inverseSqrt
 
+	/**
+	 * Returns the hyperbolic sine of each component
+	 */
 	export function sinh(v: vec2): vec2 {
 		return [Math.sinh(v[0]), Math.sinh(v[1])]
 	}
 
+	/**
+	 * Returns the hyperbolic cosine of each component
+	 */
 	export function cosh(v: vec2): vec2 {
 		return [Math.cosh(v[0]), Math.cosh(v[1])]
 	}
 
+	/**
+	 * Returns the hyperbolic tangent of each component
+	 */
 	export function tanh(v: vec2): vec2 {
 		return [Math.tanh(v[0]), Math.tanh(v[1])]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic sine of each component
+	 */
 	export function asinh(v: vec2): vec2 {
 		return [Math.asinh(v[0]), Math.asinh(v[1])]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic cosine of each component
+	 */
 	export function acosh(v: vec2): vec2 {
 		return [Math.acosh(v[0]), Math.acosh(v[1])]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic tangent of each component
+	 */
 	export function atanh(v: vec2): vec2 {
 		return [Math.atanh(v[0]), Math.atanh(v[1])]
 	}
