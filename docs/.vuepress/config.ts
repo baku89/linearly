@@ -23,29 +23,38 @@ export default defineUserConfig({
 		],
 	],
 	theme: defaultTheme({
-		navbar: [
-			{
-				text: 'Home',
-				link: '/',
-			},
-			{
-				text: 'Guide',
-				link: '/guide',
-			},
-			{
-				text: 'API',
-				link: '/api/',
-			},
-		],
 		logo: '/logo.svg',
 		repo: 'baku89/linearly',
+		locales: {
+			'/': {
+				selectLanguageName: 'English',
+				navbar: [
+					{text: 'Home', link: '/'},
+					{text: 'Guide', link: '/guide'},
+					{text: 'API', link: '/api/'},
+				],
+			},
+			'/ja/': {
+				selectLanguageName: '日本語',
+				navbar: [
+					{text: 'ホーム', link: '/ja/'},
+					{text: 'ガイド', link: '/ja/guide'},
+					{text: 'API', link: '/api/'},
+				],
+			},
+		},
 	}),
 	locales: {
 		'/': {
-			lang: 'English',
+			lang: 'en-US',
 			title: 'Linearly',
 			description:
 				'A collection of utility functions related to linear algebra and graphics programming',
+		},
+		'/ja/': {
+			lang: 'ja-JP',
+			title: 'Linearly',
+			description: 'グラフィックスプログラミングのための線形代数関数ライブラリ',
 		},
 	},
 	bundler: viteBundler({}),
