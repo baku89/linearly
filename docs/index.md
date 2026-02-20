@@ -12,7 +12,7 @@ features:
   - title: TypeScript-friendly
     details: The library is fully typed and compatible with TypeScript.
   - title: Compatibility with various environments
-    details: API are supersets of glMatrix, GLSL, Unity, and Vex in Houdini.
+    details: The API is a superset of glMatrix, GLSL, Unity, and Vex in Houdini.
 ---
 
 <div class="badges">
@@ -29,7 +29,7 @@ features:
 	</p>
 </div>
 
-Linearly is a library providing a collection of utility functions that relates to linear algebra and graphics programming. It is deeply inspired by [glMatrix](https://github.com/toji/gl-matrix), but adopts functional programming manner and immutable data structure.
+Linearly is a library providing a collection of utility functions related to linear algebra and graphics programming. It is deeply inspired by [glMatrix](https://github.com/toji/gl-matrix), but adopts a functional programming style and immutable data structures.
 
 ```ts
 import {mat2d, vec3} from 'linearly'
@@ -39,34 +39,35 @@ const p0 = vec2.add([1, 2], [3, 4])
 const p1 = vec2.transformMat2d(p0, mat2d.fromRotation(scalar.rad(45)))
 
 const dir = vec3.normalize([2, 1, 3])
-const b = vec3.cross(dir, [0, 1, 0])
-const c = vec3.scale(out, 3)
+const right = vec3.cross(dir, [0, 1, 0])
+const c = vec3.scale(right, 3)
 
 // As the values of Linearly are plain 1D arrays,
-// you can initialize a vector by either way.
+// you can initialize a vector either way.
 const a: vec2 = [1, 2]
 const b = vec2.of(1, 2)
 
-// But since vector and matrix are immutable
+// But since vectors and matrices are immutable
 // and annotated with readonly flags,
-// a mutation such as below are handled as an error in TypeScript.
+// a mutation such as below is handled as an error in TypeScript.
 a[0] = 3
 // ^
 // Cannot assign to '0' because it is a read-only property.
 
-// Some constants such as mat2.identity are also readonly
-// and defined as frozen array (applied Object.freeze).
+// Some constants such as mat2d.ident are also readonly
+// and defined as frozen arrays (via Object.freeze).
 // You can use `clone` to mutate them.
 const m = mat2d.clone(mat2d.ident)
 m[4] *= 2.0
 m[5] = -4.5
 ```
 
-In addition to functions that can be found on [glMatrix docs](https://glmatrix.net/), the library also provides some useful functions. For example:
+The library provides functions inspired by the following sources:
 
-- [GLSL](https://registry.khronos.org/OpenGL-Refpages/gl4/html/indexflat.php) - `step`, `mix`, `smoothstep`
+- [glMatrix](https://glmatrix.net/) - `add`, `subtract`, `scale`, `normalize`, `dot`, `cross`, `lerp`, `distance`, `transformMat*`
+- [GLSL](https://registry.khronos.org/OpenGL-Refpages/gl4/html/indexflat.php) - `step`, `mix`, `smoothstep`, `reflect`, `refract`, `faceforward`
 - [Vex in Houdini](https://www.sidefx.com/docs/houdini/vex/functions/) - `fit`, `efit`, `invlerp`, `degrees`, `radians`
-- [Unity](https://docs.unity3d.com/Manual/index.html) - `inverseLerp`, `oneMinus`
+- [Unity](https://docs.unity3d.com/Manual/index.html) - `inverseLerp`, `oneMinus`, `saturate`
 
 ## Modules
 
