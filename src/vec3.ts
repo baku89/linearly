@@ -571,6 +571,17 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Reflects incident vector `I` about normal `N`. The normal `N` should be normalized.
+	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/reflect.xhtml
+	 * @param I Incident vector
+	 * @param N Normal vector (should be normalized)
+	 */
+	export function reflect(I: vec3, N: vec3): vec3 {
+		const d = 2 * dot(N, I)
+		return [I[0] - d * N[0], I[1] - d * N[1], I[2] - d * N[2]]
+	}
+
+	/**
 	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 *
