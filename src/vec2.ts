@@ -62,13 +62,18 @@ export namespace vec2 {
 	/**
 	 * Add the given vectors
 	 */
-	export function add(...vs: vec2[]): vec2 {
+	export function add(...vs: (vec2 | number)[]): vec2 {
 		let x = 0,
 			y = 0
 
 		for (const v of vs) {
-			x += v[0]
-			y += v[1]
+			if (typeof v === 'number') {
+				x += v
+				y += v
+			} else {
+				x += v[0]
+				y += v[1]
+			}
 		}
 
 		return [x, y]
@@ -77,13 +82,15 @@ export namespace vec2 {
 	/**
 	 * Subtracts the given vec2's. When the argument is a single vector, it negates it. Otherwise, it subtracts from left to right.
 	 */
-	export function subtract(...vs: vec2[]): vec2 {
+	export function subtract(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
 			return zero
 		}
 
 		if (vs.length === 1) {
-			return [-vs[0][0], -vs[0][1]]
+			const v = vs[0]
+			if (typeof v === 'number') return [-v, -v]
+			return [-v[0], -v[1]]
 		}
 
 		const [first, ...rest] = vs
@@ -92,8 +99,13 @@ export namespace vec2 {
 			typeof first === 'number' ? [first, first] : [...first]
 
 		for (const v of rest) {
-			x -= v[0]
-			y -= v[1]
+			if (typeof v === 'number') {
+				x -= v
+				y -= v
+			} else {
+				x -= v[0]
+				y -= v[1]
+			}
 		}
 
 		return [x, y]
@@ -109,19 +121,28 @@ export namespace vec2 {
 	export const sub = subtract
 
 	/**
-	 * Subtracts b from a
+	 * Subtracts a from b
 	 */
-	export function delta(a: vec2, b: vec2): vec2 {
-		return [b[0] - a[0], b[1] - a[1]]
+	export function delta(a: vec2 | number, b: vec2 | number): vec2 {
+		const ax = typeof a === 'number' ? a : a[0]
+		const ay = typeof a === 'number' ? a : a[1]
+		const bx = typeof b === 'number' ? b : b[0]
+		const by = typeof b === 'number' ? b : b[1]
+		return [bx - ax, by - ay]
 	}
 
-	export function multiply(...vs: vec2[]): vec2 {
+	export function multiply(...vs: (vec2 | number)[]): vec2 {
 		let x = 1,
 			y = 1
 
 		for (const v of vs) {
-			x *= v[0]
-			y *= v[1]
+			if (typeof v === 'number') {
+				x *= v
+				y *= v
+			} else {
+				x *= v[0]
+				y *= v[1]
+			}
 		}
 
 		return [x, y]
@@ -136,22 +157,30 @@ export namespace vec2 {
 	 */
 	export const mul = multiply
 
-	export function divide(...vs: vec2[]): vec2 {
+	export function divide(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
 			return one
 		}
 
 		if (vs.length === 1) {
-			return [1 / vs[0][0], 1 / vs[0][1]]
+			const v = vs[0]
+			if (typeof v === 'number') return [1 / v, 1 / v]
+			return [1 / v[0], 1 / v[1]]
 		}
 
-		const [first, ...rest] = vs
+		const first = vs[0]
+		let x = typeof first === 'number' ? first : first[0]
+		let y = typeof first === 'number' ? first : first[1]
 
-		let [x, y] = first
-
-		for (const v of rest) {
-			x /= v[0]
-			y /= v[1]
+		for (let i = 1; i < vs.length; i++) {
+			const v = vs[i]
+			if (typeof v === 'number') {
+				x /= v
+				y /= v
+			} else {
+				x /= v[0]
+				y /= v[1]
+			}
 		}
 
 		return [x, y]

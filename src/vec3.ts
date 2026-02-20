@@ -73,15 +73,21 @@ export namespace vec3 {
 	/**
 	 * Adds given vec3's
 	 */
-	export function add(...vs: vec3[]): vec3 {
+	export function add(...vs: (vec3 | number)[]): vec3 {
 		let x = 0,
 			y = 0,
 			z = 0
 
 		for (const v of vs) {
-			x += v[0]
-			y += v[1]
-			z += v[2]
+			if (typeof v === 'number') {
+				x += v
+				y += v
+				z += v
+			} else {
+				x += v[0]
+				y += v[1]
+				z += v[2]
+			}
 		}
 
 		return [x, y, z]
@@ -94,26 +100,36 @@ export namespace vec3 {
 	 * - {@link sub}
 	 *
 	 */
-	export function subtract(...vs: vec3[]): vec3 {
+	export function subtract(...vs: (vec3 | number)[]): vec3 {
 		if (vs.length === 0) {
 			return zero
 		}
 
 		if (vs.length === 1) {
-			return [-vs[0][0], -vs[0][1], -vs[0][2]]
+			const v = vs[0]
+			if (typeof v === 'number') return [-v, -v, -v]
+			return [-v[0], -v[1], -v[2]]
 		}
 
-		const [first, ...rest] = vs
+		const first = vs[0]
+		let x = typeof first === 'number' ? first : first[0]
+		let y = typeof first === 'number' ? first : first[1]
+		let z = typeof first === 'number' ? first : first[2]
 
-		const ret: Mutable = [...first]
-
-		for (const v of rest) {
-			ret[0] -= v[0]
-			ret[1] -= v[1]
-			ret[2] -= v[2]
+		for (let i = 1; i < vs.length; i++) {
+			const v = vs[i]
+			if (typeof v === 'number') {
+				x -= v
+				y -= v
+				z -= v
+			} else {
+				x -= v[0]
+				y -= v[1]
+				z -= v[2]
+			}
 		}
 
-		return ret
+		return [x, y, z]
 	}
 
 	/**
@@ -123,10 +139,16 @@ export namespace vec3 {
 	export const sub = subtract
 
 	/**
-	 * Subtracts b from a
+	 * Subtracts a from b
 	 */
-	export function delta(a: vec3, b: vec3): vec3 {
-		return [b[0] - a[0], b[1] - a[1], b[2] - a[2]]
+	export function delta(a: vec3 | number, b: vec3 | number): vec3 {
+		const ax = typeof a === 'number' ? a : a[0]
+		const ay = typeof a === 'number' ? a : a[1]
+		const az = typeof a === 'number' ? a : a[2]
+		const bx = typeof b === 'number' ? b : b[0]
+		const by = typeof b === 'number' ? b : b[1]
+		const bz = typeof b === 'number' ? b : b[2]
+		return [bx - ax, by - ay, bz - az]
 	}
 
 	/**
@@ -135,15 +157,21 @@ export namespace vec3 {
 	 * @shorthands
 	 * - {@link mul}
 	 */
-	export function multiply(...vs: vec3[]): vec3 {
+	export function multiply(...vs: (vec3 | number)[]): vec3 {
 		let x = 1,
 			y = 1,
 			z = 1
 
 		for (const v of vs) {
-			x *= v[0]
-			y *= v[1]
-			z *= v[2]
+			if (typeof v === 'number') {
+				x *= v
+				y *= v
+				z *= v
+			} else {
+				x *= v[0]
+				y *= v[1]
+				z *= v[2]
+			}
 		}
 
 		return [x, y, z]
@@ -161,23 +189,33 @@ export namespace vec3 {
 	 * @shorthands
 	 * - {@link div}
 	 */
-	export function divide(...vs: vec3[]): vec3 {
+	export function divide(...vs: (vec3 | number)[]): vec3 {
 		if (vs.length === 0) {
 			return one
 		}
 
 		if (vs.length === 1) {
-			return [1 / vs[0][0], 1 / vs[0][1], 1 / vs[0][2]]
+			const v = vs[0]
+			if (typeof v === 'number') return [1 / v, 1 / v, 1 / v]
+			return [1 / v[0], 1 / v[1], 1 / v[2]]
 		}
 
-		const [first, ...rest] = vs
+		const first = vs[0]
+		let x = typeof first === 'number' ? first : first[0]
+		let y = typeof first === 'number' ? first : first[1]
+		let z = typeof first === 'number' ? first : first[2]
 
-		let [x, y, z] = first
-
-		for (const v of rest) {
-			x /= v[0]
-			y /= v[1]
-			z /= v[2]
+		for (let i = 1; i < vs.length; i++) {
+			const v = vs[i]
+			if (typeof v === 'number') {
+				x /= v
+				y /= v
+				z /= v
+			} else {
+				x /= v[0]
+				y /= v[1]
+				z /= v[2]
+			}
 		}
 
 		return [x, y, z]
