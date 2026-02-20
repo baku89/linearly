@@ -876,15 +876,16 @@ export namespace mat4 {
 	}
 
 	/**
-	 * Creates a matrix from a quaternion rotation, vector translation and vector scale
+	 * Creates a matrix from a quaternion rotation, vector translation and vector scale.
 	 * This is equivalent to (but much faster than):
 	 *
-	 *     mat4.identity(dest);
-	 *     mat4.translate(dest, vec);
-	 *     const quatMat = mat4.create();
-	 *     quat4.toMat4(quat, quatMat);
-	 *     mat4.multiply(dest, quatMat);
-	 *     mat4.scale(dest, scale)
+	 * ```ts
+	 * mat4.multiply(
+	 *   mat4.fromTranslation(trans),
+	 *   mat4.fromQuat(rot),
+	 *   mat4.fromScaling(scale),
+	 * )
+	 * ```
 	 *
 	 * @category Generators
 	 * @param rot Rotation quaternion
@@ -936,17 +937,18 @@ export namespace mat4 {
 	}
 
 	/**
-	 * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
+	 * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin.
 	 * This is equivalent to (but much faster than):
 	 *
-	 *     mat4.identity(dest);
-	 *     mat4.translate(dest, vec);
-	 *     mat4.translate(dest, origin);
-	 *     const quatMat = mat4.create();
-	 *     quat4.toMat4(quat, quatMat);
-	 *     mat4.multiply(dest, quatMat);
-	 *     mat4.scale(dest, scale)
-	 *     mat4.translate(dest, negativeOrigin);
+	 * ```ts
+	 * mat4.multiply(
+	 *   mat4.fromTranslation(trans),
+	 *   mat4.fromTranslation(origin),
+	 *   mat4.fromQuat(rot),
+	 *   mat4.fromScaling(scale),
+	 *   mat4.fromTranslation(vec3.negate(origin)),
+	 * )
+	 * ```
 	 *
 	 * @category Generators
 	 * @param rot Rotation quaternion
