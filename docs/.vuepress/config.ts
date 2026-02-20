@@ -2,6 +2,7 @@ import {defineUserConfig} from 'vuepress'
 import {path} from '@vuepress/utils'
 import {defaultTheme} from '@vuepress/theme-default'
 import {viteBundler} from '@vuepress/bundler-vite'
+import markdownItCjkFriendly from 'markdown-it-cjk-friendly'
 
 export default defineUserConfig({
 	title: 'Linearly',
@@ -58,6 +59,9 @@ export default defineUserConfig({
 		},
 	},
 	bundler: viteBundler({}),
+	extendsMarkdown: md => {
+		md.use(markdownItCjkFriendly)
+	},
 	markdown: {
 		//@ts-ignore
 		linkify: true,
