@@ -711,6 +711,28 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Transforms a vec4 with a matrix or quaternion, automatically choosing the appropriate transformation function
+	 * @param p The vector to transform
+	 * @param m The transformation (mat4 or quat)
+	 * @returns The transformed vector
+	 *
+	 * @shorthands
+	 * - {@link xform}
+	 */
+	export function transform(p: vec4, m: mat4 | quat): vec4 {
+		if (m.length === 4) {
+			return transformQuat(p, m as quat)
+		}
+		return transformMat4(p, m as mat4)
+	}
+
+	/**
+	 * Alias for {@link vec4.transform}
+	 * @category Shorthands
+	 */
+	export const xform = transform
+
+	/**
 	 * Apply a step function by comparing two values
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
 	 * @param edge The location of the edge of the step function.
