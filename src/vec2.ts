@@ -195,32 +195,38 @@ export namespace vec2 {
 	 */
 	export const div = divide
 
-	export function min(...vs: vec2[]): vec2 {
+	export function min(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
 			return [Infinity, Infinity]
 		} else if (vs.length === 1) {
-			return vs[0]
+			const v = vs[0]
+			return typeof v === 'number' ? [v, v] : v
 		} else if (vs.length > 2) {
 			const [a, b, ...rest] = vs
 			return min(min(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		let [a, b] = vs
+		if (typeof a === 'number') a = [a, a]
+		if (typeof b === 'number') b = [b, b]
 
 		return [Math.min(a[0], b[0]), Math.min(a[1], b[1])]
 	}
 
-	export function max(...vs: vec2[]): vec2 {
+	export function max(...vs: (vec2 | number)[]): vec2 {
 		if (vs.length === 0) {
 			return [-Infinity, -Infinity]
 		} else if (vs.length === 1) {
-			return vs[0]
+			const v = vs[0]
+			return typeof v === 'number' ? [v, v] : v
 		} else if (vs.length > 2) {
 			const [a, b, ...rest] = vs
 			return max(max(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		let [a, b] = vs
+		if (typeof a === 'number') a = [a, a]
+		if (typeof b === 'number') b = [b, b]
 
 		return [Math.max(a[0], b[0]), Math.max(a[1], b[1])]
 	}
@@ -1020,7 +1026,8 @@ export namespace vec2 {
 		]
 	}
 
-	export function pow(a: vec2, b: vec2): vec2 {
+	export function pow(a: vec2, b: vec2 | number): vec2 {
+		if (typeof b === 'number') b = [b, b]
 		return [Math.pow(a[0], b[0]), Math.pow(a[1], b[1])]
 	}
 

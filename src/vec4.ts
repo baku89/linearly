@@ -345,17 +345,21 @@ export namespace vec4 {
 	/**
 	 * Returns the minimum of givenvec4's
 	 */
-	export function min(...vs: vec4[]): vec4 {
+	export function min(...vs: (vec4 | number)[]): vec4 {
 		if (vs.length === 0) {
 			return [Infinity, Infinity, Infinity, Infinity]
 		} else if (vs.length === 1) {
-			return vs[0]
+			const v = vs[0]
+			return typeof v === 'number' ? [v, v, v, v] : v
 		} else if (vs.length > 2) {
 			const [a, b, ...rest] = vs
 			return min(min(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		let [a, b] = vs
+		if (typeof a === 'number') a = [a, a, a, a]
+		if (typeof b === 'number') b = [b, b, b, b]
+
 		return [
 			Math.min(a[0], b[0]),
 			Math.min(a[1], b[1]),
@@ -367,17 +371,20 @@ export namespace vec4 {
 	/**
 	 * Returns the maximum of givenvec4's
 	 */
-	export function max(...vs: vec4[]): vec4 {
+	export function max(...vs: (vec4 | number)[]): vec4 {
 		if (vs.length === 0) {
 			return [-Infinity, -Infinity, -Infinity, -Infinity]
 		} else if (vs.length === 1) {
-			return vs[0]
+			const v = vs[0]
+			return typeof v === 'number' ? [v, v, v, v] : v
 		} else if (vs.length > 2) {
 			const [a, b, ...rest] = vs
 			return max(max(a, b), ...rest)
 		}
 
-		const [a, b] = vs
+		let [a, b] = vs
+		if (typeof a === 'number') a = [a, a, a, a]
+		if (typeof b === 'number') b = [b, b, b, b]
 
 		return [
 			Math.max(a[0], b[0]),
@@ -957,7 +964,8 @@ export namespace vec4 {
 		]
 	}
 
-	export function pow(a: vec4, b: vec4): vec4 {
+	export function pow(a: vec4, b: vec4 | number): vec4 {
+		if (typeof b === 'number') b = [b, b, b, b]
 		return [
 			Math.pow(a[0], b[0]),
 			Math.pow(a[1], b[1]),
