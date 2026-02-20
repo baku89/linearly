@@ -738,9 +738,9 @@ export namespace vec4 {
 	 */
 	export function smoothstep(edge0: vec4, edge1: vec4, x: vec4): vec4 {
 		const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
-		const t1 = scalar.clamp((x[1] - edge1[1]) / (edge1[1] - edge1[1]), 0, 1)
-		const t2 = scalar.clamp((x[2] - edge1[2]) / (edge1[2] - edge1[2]), 0, 1)
-		const t3 = scalar.clamp((x[3] - edge1[3]) / (edge1[3] - edge1[3]), 0, 1)
+		const t1 = scalar.clamp((x[1] - edge0[1]) / (edge1[1] - edge0[1]), 0, 1)
+		const t2 = scalar.clamp((x[2] - edge0[2]) / (edge1[2] - edge0[2]), 0, 1)
+		const t3 = scalar.clamp((x[3] - edge0[3]) / (edge1[3] - edge0[3]), 0, 1)
 
 		return [
 			t0 * t0 * (3 - 2 * t0),

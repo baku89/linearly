@@ -588,7 +588,7 @@ export namespace vec3 {
 	}
 
 	/**
-	 * Alias for {@link invert}
+	 * Alias for {@link lerp}
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 * @category Shorthands
 	 */
@@ -622,6 +622,10 @@ export namespace vec3 {
 	export function slerp(a: vec3, b: vec3, t: number): vec3 {
 		const angle = Math.acos(Math.min(Math.max(dot(a, b), -1), 1))
 		const sinTotal = Math.sin(angle)
+
+		if (sinTotal === 0) {
+			return lerp(a, b, t) as vec3
+		}
 
 		const ratioA = Math.sin((1 - t) * angle) / sinTotal
 		const ratioB = Math.sin(t * angle) / sinTotal
@@ -886,8 +890,8 @@ export namespace vec3 {
 	 */
 	export function smoothstep(edge0: vec3, edge1: vec3, x: vec3): vec3 {
 		const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
-		const t1 = scalar.clamp((x[1] - edge1[1]) / (edge1[1] - edge1[1]), 0, 1)
-		const t2 = scalar.clamp((x[2] - edge1[2]) / (edge1[2] - edge1[2]), 0, 1)
+		const t1 = scalar.clamp((x[1] - edge0[1]) / (edge1[1] - edge0[1]), 0, 1)
+		const t2 = scalar.clamp((x[2] - edge0[2]) / (edge1[2] - edge0[2]), 0, 1)
 
 		return [
 			t0 * t0 * (3 - 2 * t0),

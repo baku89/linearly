@@ -727,7 +727,7 @@ export namespace vec2 {
 	 */
 	export function smoothstep(edge0: vec2, edge1: vec2, x: vec2) {
 		const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
-		const t1 = scalar.clamp((x[1] - edge1[1]) / (edge1[1] - edge1[1]), 0, 1)
+		const t1 = scalar.clamp((x[1] - edge0[1]) / (edge1[1] - edge0[1]), 0, 1)
 
 		return [
 			t0 * t0 * (3 - 2 * t0), //
@@ -829,8 +829,8 @@ export namespace vec2 {
 	 * 	 */
 	export function acos(v: vec2): vec2 {
 		return [
-			Math.acos(v[0] * Common.RAD2DEG), //
-			Math.acos(v[1] * Common.RAD2DEG),
+			Math.acos(v[0]) * Common.RAD2DEG, //
+			Math.acos(v[1]) * Common.RAD2DEG,
 		]
 	}
 
