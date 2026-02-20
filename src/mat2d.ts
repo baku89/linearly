@@ -32,6 +32,7 @@ export type mat2d = readonly [
 /**
  * Functions for {@link mat2d}, 2D affine transformation (translation, rotation, scaling, skewing).
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
+ * @category Modules
  */
 export namespace mat2d {
 	/**

@@ -21,6 +21,10 @@ export type mat4 = readonly [
 	m30: number, m31: number, m32: number, m33: number,
 ]
 
+/**
+ * Functions for {@link mat4}, 3D affine transformation.
+ * @category Modules
+ */
 export namespace mat4 {
 	/**
 	 * Mutable version of {@link mat4}

@@ -11,6 +11,7 @@ export type vec4 = readonly [x: number, y: number, z: number, w: number]
 
 /**
  * Functions for {@link vec4}, a 4D vector.
+ * @category Modules
  */
 export namespace vec4 {
 	/**

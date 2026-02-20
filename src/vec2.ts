@@ -13,6 +13,7 @@ export type vec2 = readonly [x: number, y: number]
 
 /**
  * Functions for {@link vec2}, a 2D vector.
+ * @category Modules
  */
 export namespace vec2 {
 	/**

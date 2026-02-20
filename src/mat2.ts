@@ -15,6 +15,7 @@ export type mat2 = readonly [m00: number, m01: number, m10: number, m11: number]
 
 /**
  * Functions for {@link mat2}, 2D transformation matrix excluding translation.
+ * @category Modules
  */
 export namespace mat2 {
 	/**

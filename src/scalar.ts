@@ -1,7 +1,8 @@
 import * as Common from './common'
 
 /**
- * Functions for working with scalar values
+ * Functions for working with scalar values.
+ * @category Modules
  */
 export namespace scalar {
 	/**

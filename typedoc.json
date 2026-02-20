@@ -9,6 +9,7 @@
 	"sort": ["alphabetical"],
 	"defaultCategory": "Functions",
 	"categoryOrder": [
+		"Modules",
 		"Types",
 		"Constants",
 		"Generators",

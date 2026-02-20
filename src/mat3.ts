@@ -24,6 +24,7 @@ export type mat3 = readonly [
 
 /**
  * Functions for {@link mat3}, 2D affine transformation.
+ * @category Modules
  */
 export namespace mat3 {
 	/**

@@ -12,6 +12,7 @@ export type quat = readonly [x: number, y: number, z: number, w: number]
 
 /**
  * Functions for {@link quat}, a format for representing rotation in 3D space.
+ * @category Modules
  */
 export namespace quat {
 	/**

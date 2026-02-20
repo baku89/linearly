@@ -12,6 +12,7 @@ export type vec3 = readonly [x: number, y: number, z: number]
 
 /**
  * Functions for {@link vec3}, a 3D vector.
+ * @category Modules
  */
 export namespace vec3 {
 	/**
