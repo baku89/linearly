@@ -29,6 +29,10 @@ export default defineUserConfig({
 				link: '/',
 			},
 			{
+				text: 'Guide',
+				link: '/guide',
+			},
+			{
 				text: 'API',
 				link: '/api/',
 			},
@@ -41,7 +45,7 @@ export default defineUserConfig({
 			lang: 'English',
 			title: 'Linearly',
 			description:
-				'A collection of utility functions that relates to linear algebra and graphics programming',
+				'A collection of utility functions related to linear algebra and graphics programming',
 		},
 	},
 	bundler: viteBundler({}),
