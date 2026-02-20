@@ -483,6 +483,26 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Projects vector `a` onto vector `b`.
+	 * @param a The vector to project
+	 * @param b The vector to project onto
+	 */
+	export function project(a: vec2, b: vec2): vec2 {
+		const s = dot(a, b) / dot(b, b)
+		return [b[0] * s, b[1] * s]
+	}
+
+	/**
+	 * Computes the rejection of vector `a` from vector `b` (the component of `a` perpendicular to `b`).
+	 * @param a The vector to reject
+	 * @param b The vector to reject from
+	 */
+	export function reject(a: vec2, b: vec2): vec2 {
+		const p = project(a, b)
+		return [a[0] - p[0], a[1] - p[1]]
+	}
+
+	/**
 	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 *
