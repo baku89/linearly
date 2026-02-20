@@ -545,6 +545,20 @@ export namespace scalar {
 	}
 
 	/**
+	 * Returns a square wave with the given period. The output is 0 for the first half and 1 for the second half of each period.
+	 * @see https://www.geogebra.org/calculator/d3grfqqe
+	 *
+	 * @param x the input value
+	 * @param period the period of the wave
+	 * @category Periodic Functions
+	 */
+	export function square(x: number, period = 1): number {
+		x /= period
+		const phase = ((x % 1) + 1) % 1
+		return phase < 0.5 ? 0 : 1
+	}
+
+	/**
 	 * Returns whether or not the numbers have approximately the same.
 	 *
 	 * @shorthands

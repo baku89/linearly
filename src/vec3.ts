@@ -582,6 +582,33 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Computes the refraction vector for incident vector `I`, surface normal `N`, and ratio of indices of refraction `eta`. The normal `N` should be normalized.
+	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/refract.xhtml
+	 * @param I Incident vector
+	 * @param N Normal vector (should be normalized)
+	 * @param eta Ratio of indices of refraction
+	 * @returns The refraction vector, or zero vector for total internal reflection
+	 */
+	export function refract(I: vec3, N: vec3, eta: number): vec3 {
+		const d = dot(N, I)
+		const k = 1 - eta * eta * (1 - d * d)
+		if (k < 0) return [0, 0, 0]
+		const s = eta * d + Math.sqrt(k)
+		return [eta * I[0] - s * N[0], eta * I[1] - s * N[1], eta * I[2] - s * N[2]]
+	}
+
+	/**
+	 * Orients a normal to point away from a surface as defined by its incident vector. Returns `N` if `dot(Nref, I) < 0`, otherwise returns `-N`.
+	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/faceforward.xhtml
+	 * @param N Normal vector
+	 * @param I Incident vector
+	 * @param Nref Reference normal
+	 */
+	export function faceforward(N: vec3, I: vec3, Nref: vec3): vec3 {
+		return dot(Nref, I) < 0 ? N : [-N[0], -N[1], -N[2]]
+	}
+
+	/**
 	 * Projects vector `a` onto vector `b`.
 	 * @param a The vector to project
 	 * @param b The vector to project onto
