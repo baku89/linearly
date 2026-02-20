@@ -53,7 +53,7 @@ export namespace vec4 {
 	export const one: vec4 = Object.freeze([1, 1, 1, 1])
 
 	/**
-	 * An unit vector pointing towards positive Y. Same as `[1, 0, 0, 0]`
+	 * An unit vector pointing towards positive X. Same as `[1, 0, 0, 0]`
 	 * @category Constants
 	 */
 	export const unitX: vec4 = Object.freeze([1, 0, 0, 0])
@@ -242,12 +242,15 @@ export namespace vec4 {
 	 */
 	export const div = divide
 
+	/**
+	 * Returns the absolute value of each component of a vec4
+	 */
 	export function abs(v: vec4): vec4 {
 		return [Math.abs(v[0]), Math.abs(v[1]), Math.abs(v[2]), Math.abs(v[3])]
 	}
 
 	/**
-	 * symmetric round the components of a vec4
+	 * Symmetric round the components of a vec4
 	 */
 	export function round(a: vec4): vec4 {
 		return [
@@ -259,14 +262,14 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Math.ceil the components of a vec4
+	 * Applies Math.ceil to each component of a vec4
 	 */
 	export function ceil(a: vec4): vec4 {
 		return [Math.ceil(a[0]), Math.ceil(a[1]), Math.ceil(a[2]), Math.ceil(a[3])]
 	}
 
 	/**
-	 * Math.floor the components of a vec4
+	 * Applies Math.floor to each component of a vec4
 	 */
 	export function floor(a: vec4): vec4 {
 		return [
@@ -277,7 +280,7 @@ export namespace vec4 {
 		]
 	}
 	/**
-	 * Math.sign the components of a vec4
+	 * Applies Math.sign to each component of a vec4
 	 */
 	export function sign(v: vec4): vec4 {
 		return [Math.sign(v[0]), Math.sign(v[1]), Math.sign(v[2]), Math.sign(v[3])]
@@ -305,7 +308,7 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Compute value of one parameter module another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
+	 * Compute value of one parameter modulo another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
 	 * @see https://thebookofshaders.com/glossary/?search=mod
 	 */
 	export function mod(a: vec4, b: vec4 | number): vec4 {
@@ -343,7 +346,7 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Returns the minimum of givenvec4's
+	 * Returns the minimum of given vec4's
 	 */
 	export function min(...vs: (vec4 | number)[]): vec4 {
 		if (vs.length === 0) {
@@ -369,7 +372,7 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Returns the maximum of givenvec4's
+	 * Returns the maximum of given vec4's
 	 */
 	export function max(...vs: (vec4 | number)[]): vec4 {
 		if (vs.length === 0) {
@@ -446,14 +449,14 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Alias for {@link distance}
+	 * Alias for {@link average}
 	 */
 	export const avg = average
 
 	/**
- Adds given vec4's after scaling the second operand by a scalar value
- * @param scale the amount to scale b by before adding
- */
+	 * Adds given vec4's after scaling the second operand by a scalar value
+	 * @param scale the amount to scale b by before adding
+	 */
 	export function scaleAndAdd(a: vec4, b: vec4, scale: number): vec4 {
 		return [
 			a[0] + b[0] * scale,
@@ -482,7 +485,7 @@ export namespace vec4 {
 	/**
 	 * Calculates the squared euclidian distance between two vec4's
 	 *
-	 * @shortands
+	 * @shorthands
 	 * - {@link sqrDist}
 	 */
 	export function squaredDistance(a: vec4, b: vec4) {
@@ -521,7 +524,7 @@ export namespace vec4 {
 	export const diff = difference
 
 	/**
-	 * Calculates the length of a vec4n
+	 * Calculates the length of a vec4
 	 *
 	 * @shorthands
 	 * - {@link len}
@@ -703,7 +706,7 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+	 * Linearly interpolate between two vec4's. Same as GLSL's built-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 *
 	 * @shorthands
@@ -721,7 +724,7 @@ export namespace vec4 {
 	}
 
 	/**
-	 * Alias for {@link mix}
+	 * Alias for {@link lerp}
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 */
 	export const mix = lerp
@@ -883,8 +886,8 @@ export namespace vec4 {
 	export const deg = degrees
 
 	/**
-	 * Converts the components of a vec2 from degrees to radians
-	 * @param deg The input vec2 in degrees
+	 * Converts the components of a vec4 from degrees to radians
+	 * @param deg The input vec4 in degrees
 	 * @returns The radians equivalent of the input
 	 *
 	 * @shorthands
@@ -905,6 +908,9 @@ export namespace vec4 {
 	 */
 	export const rad = radians
 
+	/**
+	 * Returns the sine of each component, which are angles in degrees
+	 */
 	export function sin(deg: vec4): vec4 {
 		return [
 			Math.sin(deg[0] * Common.DEG2RAD),
@@ -914,6 +920,9 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the cosine of each component, which are angles in degrees
+	 */
 	export function cos(deg: vec4): vec4 {
 		return [
 			Math.cos(deg[0] * Common.DEG2RAD),
@@ -923,6 +932,9 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the tangent of each component, which are angles in degrees
+	 */
 	export function tan(deg: vec4): vec4 {
 		return [
 			Math.tan(deg[0] * Common.DEG2RAD),
@@ -932,6 +944,9 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the arcsine of each component, in degrees
+	 */
 	export function asin(v: vec4): vec4 {
 		return [
 			Math.asin(v[0]) * Common.RAD2DEG,
@@ -941,6 +956,9 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the arc cosine of each component, in degrees
+	 */
 	export function acos(v: vec4): vec4 {
 		return [
 			Math.acos(v[0]) * Common.RAD2DEG,
@@ -990,6 +1008,9 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the base to the exponent power, component-wise
+	 */
 	export function pow(a: vec4, b: vec4 | number): vec4 {
 		if (typeof b === 'number') b = [b, b, b, b]
 		return [
@@ -1000,26 +1021,38 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns e raised to the power of each component
+	 */
 	export function exp(v: vec4): vec4 {
 		return [Math.exp(v[0]), Math.exp(v[1]), Math.exp(v[2]), Math.exp(v[3])]
 	}
 
+	/**
+	 * Returns the natural logarithm of each component
+	 */
 	export function log(v: vec4): vec4 {
 		return [Math.log(v[0]), Math.log(v[1]), Math.log(v[2]), Math.log(v[3])]
 	}
 
 	/**
 	 * Returns 2 raised to the power of the parameter
-	 * @param v the value of the powe to which 2 will be raised
+	 * @param v the value of the power to which 2 will be raised
 	 */
 	export function exp2(v: vec4): vec4 {
 		return [2 ** v[0], 2 ** v[1], 2 ** v[2], 2 ** v[3]]
 	}
 
+	/**
+	 * Returns the base-2 logarithm of each component
+	 */
 	export function log2(v: vec4): vec4 {
 		return [Math.log2(v[0]), Math.log2(v[1]), Math.log2(v[2]), Math.log2(v[3])]
 	}
 
+	/**
+	 * Returns the square root of each component
+	 */
 	export function sqrt(v: vec4): vec4 {
 		return [Math.sqrt(v[0]), Math.sqrt(v[1]), Math.sqrt(v[2]), Math.sqrt(v[3])]
 	}
@@ -1038,18 +1071,30 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the hyperbolic sine of each component
+	 */
 	export function sinh(v: vec4): vec4 {
 		return [Math.sinh(v[0]), Math.sinh(v[1]), Math.sinh(v[2]), Math.sinh(v[3])]
 	}
 
+	/**
+	 * Returns the hyperbolic cosine of each component
+	 */
 	export function cosh(v: vec4): vec4 {
 		return [Math.cosh(v[0]), Math.cosh(v[1]), Math.cosh(v[2]), Math.cosh(v[3])]
 	}
 
+	/**
+	 * Returns the hyperbolic tangent of each component
+	 */
 	export function tanh(v: vec4): vec4 {
 		return [Math.tanh(v[0]), Math.tanh(v[1]), Math.tanh(v[2]), Math.tanh(v[3])]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic sine of each component
+	 */
 	export function asinh(v: vec4): vec4 {
 		return [
 			Math.asinh(v[0]),
@@ -1059,6 +1104,9 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic cosine of each component
+	 */
 	export function acosh(v: vec4): vec4 {
 		return [
 			Math.acosh(v[0]),
@@ -1068,6 +1116,9 @@ export namespace vec4 {
 		]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic tangent of each component
+	 */
 	export function atanh(v: vec4): vec4 {
 		return [
 			Math.atanh(v[0]),
