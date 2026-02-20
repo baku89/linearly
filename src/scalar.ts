@@ -4,11 +4,16 @@ import * as Common from './common'
  * Functions for working with scalar values
  */
 export namespace scalar {
+	/**
+	 * Adds the given values
+	 */
 	export function add(...vs: number[]): number {
 		return vs.reduce((a, b) => a + b, 0)
 	}
 
 	/**
+	 * Subtracts the given values. When the argument is a single value, it negates it. Otherwise, it subtracts from left to right.
+	 *
 	 * @shorthands
 	 * - {@link sub}
 	 */
@@ -28,13 +33,15 @@ export namespace scalar {
 	export const sub = subtract
 
 	/**
-	 * Subtracts b from a
+	 * Subtracts a from b
 	 */
 	export function delta(a: number, b: number): number {
 		return b - a
 	}
 
 	/**
+	 * Multiplies the given values
+	 *
 	 * @shorthands
 	 * - {@link mul}
 	 */
@@ -49,6 +56,8 @@ export namespace scalar {
 	export const mul = multiply
 
 	/**
+	 * Divides the given values. When the argument is a single value, it returns its reciprocal. Otherwise, it divides from left to right.
+	 *
 	 * @shorthands
 	 * - {@link div}
 	 */
@@ -72,12 +81,24 @@ export namespace scalar {
 	 */
 	export const round = Common.round
 
+	/**
+	 * Returns the smallest integer greater than or equal to the input
+	 */
 	export const ceil = Math.ceil
 
+	/**
+	 * Returns the largest integer less than or equal to the input
+	 */
 	export const floor = Math.floor
 
+	/**
+	 * Returns the sign of the input (-1, 0, or 1)
+	 */
 	export const sign = Math.sign
 
+	/**
+	 * Returns the absolute value of the input
+	 */
 	export const abs = Math.abs
 
 	/**
@@ -97,7 +118,7 @@ export namespace scalar {
 	}
 
 	/**
-	 * Compute value of one parameter module another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
+	 * Computes the value of one parameter modulo another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
 	 * @see https://thebookofshaders.com/glossary/?search=mod
 	 */
 	export function mod(a: number, b: number): number {
@@ -116,8 +137,14 @@ export namespace scalar {
 		return Math.round((v - offset) / step) * step + offset
 	}
 
+	/**
+	 * Returns the minimum of the given values
+	 */
 	export const min = Math.min
 
+	/**
+	 * Returns the maximum of the given values
+	 */
 	export const max = Math.max
 
 	/**
@@ -131,6 +158,9 @@ export namespace scalar {
 		return Math.max(min, Math.min(max, v))
 	}
 
+	/**
+	 * Multiplies two values
+	 */
 	export function scale(a: number, b: number): number {
 		return a * b
 	}
@@ -157,12 +187,17 @@ export namespace scalar {
 	 */
 	export const avg = average
 
+	/**
+	 * Adds two values after scaling the second operand by a scalar value
+	 */
 	export function scaleAndAdd(a: number, b: number, s: number): number {
 		return a + b * s
 	}
 
 	/**
-	 * @shortands
+	 * Calculates the distance between two values
+	 *
+	 * @shorthands
 	 * - {@link dist}
 	 */
 	export function distance(a: number, b: number): number {
@@ -222,7 +257,9 @@ export namespace scalar {
 	export const len = length
 
 	/**
-	 * @shortands
+	 * Returns the squared value of the input
+	 *
+	 * @shorthands
 	 * - {@link sqrLen}
 	 */
 	export function squaredLength(a: number): number {
@@ -235,10 +272,16 @@ export namespace scalar {
 	 */
 	export const sqrLen = squaredLength
 
+	/**
+	 * Negates a value
+	 */
 	export function negate(a: number): number {
 		return -a
 	}
 
+	/**
+	 * Returns the reciprocal of a value (1/a)
+	 */
 	export function invert(a: number): number {
 		return 1 / a
 	}
@@ -250,10 +293,13 @@ export namespace scalar {
 		return 1 - a
 	}
 
+	/**
+	 * Normalizes a value to -1, 0, or 1. Equivalent to `Math.sign`.
+	 */
 	export const normalize = Math.sign
 
 	/**
-	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+	 * Linearly interpolates between two values. Same as GLSL's built-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 *
 	 * @shorthands
@@ -264,7 +310,7 @@ export namespace scalar {
 	}
 
 	/**
-	 * Alias for {@link invert}
+	 * Alias for {@link lerp}
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 * @category Shorthands
 	 */
@@ -415,22 +461,44 @@ export namespace scalar {
 	 */
 	export const rad = radians
 
+	/**
+	 * Returns the sine of an angle in degrees
+	 * @param deg An angle in degrees
+	 */
 	export function sin(deg: number): number {
 		return Math.sin(deg * Common.DEG2RAD)
 	}
 
+	/**
+	 * Returns the cosine of an angle in degrees
+	 * @param deg An angle in degrees
+	 */
 	export function cos(deg: number): number {
 		return Math.cos(deg * Common.DEG2RAD)
 	}
 
+	/**
+	 * Returns the tangent of an angle in degrees
+	 * @param deg An angle in degrees
+	 */
 	export function tan(deg: number): number {
 		return Math.tan(deg * Common.DEG2RAD)
 	}
 
+	/**
+	 * Returns the arcsine of a value, in degrees
+	 * @param x A numeric expression
+	 * @returns The angle in degrees
+	 */
 	export function asin(x: number): number {
 		return Math.asin(x) * Common.RAD2DEG
 	}
 
+	/**
+	 * Returns the arc cosine of a value, in degrees
+	 * @param x A numeric expression
+	 * @returns The angle in degrees
+	 */
 	export function acos(x: number): number {
 		return Math.acos(x) * Common.RAD2DEG
 	}
@@ -461,22 +529,37 @@ export namespace scalar {
 		return Math.atan2(y, x) * Common.RAD2DEG
 	}
 
+	/**
+	 * Returns the base to the exponent power
+	 */
 	export const pow = Math.pow
 
+	/**
+	 * Returns e raised to the power of the input
+	 */
 	export const exp = Math.exp
 
+	/**
+	 * Returns the natural logarithm of the input
+	 */
 	export const log = Math.log
 
 	/**
 	 * Returns 2 raised to the power of the parameter
-	 * @param v the value of the powe to which 2 will be raised
+	 * @param v the value of the power to which 2 will be raised
 	 */
 	export function exp2(v: number): number {
 		return 2 ** v
 	}
 
+	/**
+	 * Returns the base-2 logarithm of the input
+	 */
 	export const log2 = Math.log2
 
+	/**
+	 * Returns the square root of the input
+	 */
 	export const sqrt = Math.sqrt
 
 	/**
@@ -494,16 +577,34 @@ export namespace scalar {
 	 */
 	export const invsqrt = inverseSqrt
 
+	/**
+	 * Returns the hyperbolic sine of the input
+	 */
 	export const sinh = Math.sinh
 
+	/**
+	 * Returns the hyperbolic cosine of the input
+	 */
 	export const cosh = Math.cosh
 
+	/**
+	 * Returns the hyperbolic tangent of the input
+	 */
 	export const tanh = Math.tanh
 
+	/**
+	 * Returns the inverse hyperbolic sine of the input
+	 */
 	export const asinh = Math.asinh
 
+	/**
+	 * Returns the inverse hyperbolic cosine of the input
+	 */
 	export const acosh = Math.acosh
 
+	/**
+	 * Returns the inverse hyperbolic tangent of the input
+	 */
 	export const atanh = Math.atanh
 
 	/**
@@ -514,7 +615,7 @@ export namespace scalar {
 	}
 
 	/**
-	 * Returns a sawtooth wave with the given period. Basically, the output will be the input value modulo `period`, but returns 1 when the phase is 1. The shape of the wave will be continous for the negative ranges, so when phase is negative integer, the output will be 0, else if phase is negative float, the output will be 1 - fractional part of phase.
+	 * Returns a sawtooth wave with the given period. Basically, the output will be the input value modulo `period`, but returns 1 when the phase is 1. The shape of the wave will be continuous for the negative ranges, so when phase is negative integer, the output will be 0, else if phase is negative float, the output will be 1 - fractional part of phase.
 	 * @see https://www.geogebra.org/calculator/d3grfqqe
 	 *
 	 * @param x the input value
@@ -594,7 +695,7 @@ export namespace scalar {
 	}
 
 	/**
-	 * Returns whether or not the numbers have approximately the same.
+	 * Returns whether or not two numbers are approximately equal.
 	 *
 	 * @shorthands
 	 * - {@link approx}
