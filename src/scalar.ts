@@ -340,6 +340,22 @@ export namespace scalar {
 	}
 
 	/**
+	 * Takes the value in the range `(0, 1)` and shifts it to the corresponding value in the new range `(nmin, nmax)`.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit01.html
+	 */
+	export function fit01(value: number, nmin: number, nmax: number) {
+		return fit(value, 0, 1, nmin, nmax)
+	}
+
+	/**
+	 * Takes the value in the range `(-1, 1)` and shifts it to the corresponding value in the new range `(nmin, nmax)`.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit11.html
+	 */
+	export function fit11(value: number, nmin: number, nmax: number) {
+		return fit(value, -1, 1, nmin, nmax)
+	}
+
+	/**
 	 * Apply a step function by comparing two values
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml
 	 * @param edge The location of the edge of the step function.

@@ -708,6 +708,28 @@ export namespace vec2 {
 		]
 	}
 
+	/**
+	 * Takes the value in the range `(0, 1)` and shifts it to the corresponding value in the new range `(nmin, nmax)`.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit01.html
+	 */
+	export function fit01(value: vec2, nmin: vec2, nmax: vec2): vec2 {
+		return [
+			scalar.fit01(value[0], nmin[0], nmax[0]),
+			scalar.fit01(value[1], nmin[1], nmax[1]),
+		]
+	}
+
+	/**
+	 * Takes the value in the range `(-1, 1)` and shifts it to the corresponding value in the new range `(nmin, nmax)`.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit11.html
+	 */
+	export function fit11(value: vec2, nmin: vec2, nmax: vec2): vec2 {
+		return [
+			scalar.fit11(value[0], nmin[0], nmax[0]),
+			scalar.fit11(value[1], nmin[1], nmax[1]),
+		]
+	}
+
 	export function transformMat2(a: vec2, m: mat2): vec2 {
 		const [x, y] = a
 		return [

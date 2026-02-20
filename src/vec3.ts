@@ -588,6 +588,30 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Takes the value in the range `(0, 1)` and shifts it to the corresponding value in the new range `(nmin, nmax)`.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit01.html
+	 */
+	export function fit01(value: vec3, nmin: vec3, nmax: vec3): vec3 {
+		return [
+			scalar.fit01(value[0], nmin[0], nmax[0]),
+			scalar.fit01(value[1], nmin[1], nmax[1]),
+			scalar.fit01(value[2], nmin[2], nmax[2]),
+		]
+	}
+
+	/**
+	 * Takes the value in the range `(-1, 1)` and shifts it to the corresponding value in the new range `(nmin, nmax)`.
+	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit11.html
+	 */
+	export function fit11(value: vec3, nmin: vec3, nmax: vec3): vec3 {
+		return [
+			scalar.fit11(value[0], nmin[0], nmax[0]),
+			scalar.fit11(value[1], nmin[1], nmax[1]),
+			scalar.fit11(value[2], nmin[2], nmax[2]),
+		]
+	}
+
+	/**
 	 * Normalize a vec3
 	 */
 	export function normalize(a: vec3): vec3 {
