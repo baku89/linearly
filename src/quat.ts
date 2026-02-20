@@ -11,7 +11,7 @@ import {vec4} from './vec4'
 export type quat = readonly [x: number, y: number, z: number, w: number]
 
 /**
- * FUnctions for {@link quat}, a format for representing rotation in 3D space.
+ * Functions for {@link quat}, a format for representing rotation in 3D space.
  */
 export namespace quat {
 	/**
@@ -93,7 +93,7 @@ export namespace quat {
 	 * Gets the rotation axis and angle for a given
 	 *  quaternion. If a quaternion is created with
 	 *  fromAxisAngle, this method will return the same
-	 *  values as providied in the original parameter list
+	 *  values as provided in the original parameter list
 	 *  OR functionally equivalent values.
 	 * Example: The quaternion formed by axis [0, 0, 1] and
 	 *  angle -90 is the same as the quaternion formed by
@@ -135,7 +135,7 @@ export namespace quat {
 	 * @param a the first operand
 	 * @param b the second operand
 	 *
-	 * @shortands
+	 * @shorthands
 	 * - {@link mul}
 	 */
 	export function multiply(...qs: quat[]): quat {

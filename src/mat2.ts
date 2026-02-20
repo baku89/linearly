@@ -3,7 +3,7 @@ import {mat2d} from './mat2d'
 import {vec2} from './vec2'
 
 /**
- * Represents 2D transformation exclude translation.
+ * Represents 2D transformation excluding translation.
  * The format is column-major as in WebGL, so the matrix looks like this:
  * ```ts
  * [xx, xy,
@@ -14,7 +14,7 @@ import {vec2} from './vec2'
 export type mat2 = readonly [m00: number, m01: number, m10: number, m11: number]
 
 /**
- * Functions for {@link mat2}, 2D transformation matrix exclude translation.
+ * Functions for {@link mat2}, 2D transformation matrix excluding translation.
  */
 export namespace mat2 {
 	/**
@@ -72,7 +72,7 @@ export namespace mat2 {
 	export const ident = identity
 
 	/**
-	 * The mat2d filled with zeros.
+	 * The mat2 filled with zeros.
 	 * @category Constants
 	 */
 	export const zero: mat2 = Object.freeze([0, 0, 0, 0])
@@ -91,7 +91,7 @@ export namespace mat2 {
 	/**
 	 * Inverts a mat2
 	 *
-	 * @category Shorthands
+	 * @shorthands
 	 * - {@link inv}
 	 */
 	export function invert(a: mat2): mat2 | null {
@@ -413,7 +413,7 @@ export namespace mat2 {
 	export const eq = exactEquals
 
 	/**
-	 * Returns whether or not the matrices have approximately the same elements in the same position.	 *
+	 * Returns whether or not the matrices have approximately the same elements in the same position.
 	 *
 	 * @shorthands
 	 * - {@link approx}

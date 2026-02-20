@@ -3,7 +3,7 @@ import {mat2} from './mat2'
 import {vec2} from './vec2'
 
 /**
- * Represents 2D affine transformation (translation, rotation, scaling, skewing), omitting reduction thrid row which is always set to `[0, 0, 1]`. The order of six elements is the same as CSS transform matrix.
+ * Represents 2D affine transformation (translation, rotation, scaling, skewing), omitting the redundant third row which is always set to `[0, 0, 1]`. The order of six elements is the same as CSS transform matrix.
  *
  * A mat2d contains six elements defined as:
  * ```ts
@@ -253,6 +253,9 @@ export namespace mat2d {
 		]
 	}
 
+	/**
+	 * Applies a transformation around a given origin point
+	 */
 	export function pivot(m: mat2d, origin: vec2): mat2d {
 		return multiply(
 			fromTranslation(origin),
@@ -262,8 +265,8 @@ export namespace mat2d {
 	}
 
 	/**
-	 * Apply skew to the mat2d by the given radians
-	 * https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
+	 * Applies skew to the mat2d by the given angles in degrees
+	 * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew
 	 */
 	export function skew(m: mat2d, deg: vec2, origin: vec2): mat2d {
 		return multiply(m, fromSkew(deg, origin))
