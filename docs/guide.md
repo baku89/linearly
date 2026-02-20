@@ -65,17 +65,15 @@ scalar.deg(Math.PI) // → 180
 
 ## Matrix Layout
 
-Linearly follows the same conventions as [glMatrix](https://glmatrix.net/docs/) and WebGL: matrices are stored in **column-major** order. When typed out as a flat array, it _looks_ like row-major, but each row in the code corresponds to a column in the mathematical notation.
+Linearly follows the same conventions as [glMatrix](https://glmatrix.net/docs/) and WebGL: matrices are stored in **column-major** order.
 
 For a `mat4`:
 
 ```
-Code (flat array) |   Math notation
-                  |
-[xx, xy, xz, 0,   |   xx  yx  zx  tx
- yx, yy, yz, 0,   |   xy  yy  zy  ty
- zx, zy, zz, 0,   |   xz  yz  zz  tz
- tx, ty, tz, 1]   |   0   0   0   1
+[xx, xy, xz, 0,
+ yx, yy, yz, 0,
+ zx, zy, zz, 0,
+ tx, ty, tz, 1]
 ```
 
 The translation components (`tx`, `ty`, `tz`) are at indices 12, 13, 14 — the same as in glMatrix and OpenGL.
@@ -83,9 +81,7 @@ The translation components (`tx`, `ty`, `tz`) are at indices 12, 13, 14 — the 
 For a `mat2d` (2D affine transform, omitting the redundant third column `[0, 0, 1]`):
 
 ```
-Code (flat array) |   Math notation
-                  |
-[a,  b,           |   a  c  tx
- c,  d,           |   b  d  ty
- tx, ty]          |   0  0  1
+[a,  b,
+ c,  d,
+ tx, ty]
 ```

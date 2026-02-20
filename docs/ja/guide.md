@@ -65,17 +65,15 @@ scalar.deg(Math.PI) // → 180
 
 ## 行列のレイアウト
 
-Linearlyは[glMatrix](https://glmatrix.net/docs/)やWebGLと同じ規約に従っていて、行列は**列優先（column-major）**で格納されます。フラットな配列として書き出すと行優先に*見える*んですが、コード上の各行は数学的な表記での各列に対応しています。
+Linearlyは[glMatrix](https://glmatrix.net/docs/)やWebGLと同じ規約に従っていて、行列は**列優先（column-major）**で格納されます。
 
 `mat4`の場合:
 
 ```
-コード（フラット配列） |  数学的な表記
-                      |
-[xx, xy, xz, 0,       |   xx  yx  zx  tx
- yx, yy, yz, 0,       |   xy  yy  zy  ty
- zx, zy, zz, 0,       |   xz  yz  zz  tz
- tx, ty, tz, 1]       |   0   0   0   1
+[xx, xy, xz, 0,
+ yx, yy, yz, 0,
+ zx, zy, zz, 0,
+ tx, ty, tz, 1]
 ```
 
 平行移動成分（`tx`, `ty`, `tz`）はインデックス12, 13, 14にあります。glMatrixやOpenGLと同じ配置ですね。
@@ -83,9 +81,7 @@ Linearlyは[glMatrix](https://glmatrix.net/docs/)やWebGLと同じ規約に従�
 `mat2d`（2Dアフィン変換。常に`[0, 0, 1]`となる冗長な第3列を省略したもの）の場合:
 
 ```
-コード（フラット配列） |  数学的な表記
-                      |
-[a,  b,                |   a  c  tx
- c,  d,                |   b  d  ty
- tx, ty]               |   0  0  1
+[a,  b,
+ c,  d,
+ tx, ty]
 ```
