@@ -785,8 +785,9 @@ export namespace vec4 {
 	 * @param x The value to be used to generate the step function.
 	 * @returns
 	 */
-	export function step(edge: vec4 | number, v: vec4): vec4 {
+	export function step(edge: vec4 | number, v: vec4 | number): vec4 {
 		if (typeof edge === 'number') edge = [edge, edge, edge, edge]
+		if (typeof v === 'number') v = [v, v, v, v]
 
 		return [
 			v[0] < edge[0] ? 0 : 1,
@@ -804,7 +805,14 @@ export namespace vec4 {
 	 * @param x  Source value for interpolation.
 	 * @returns
 	 */
-	export function smoothstep(edge0: vec4, edge1: vec4, x: vec4): vec4 {
+	export function smoothstep(
+		edge0: vec4 | number,
+		edge1: vec4 | number,
+		x: vec4
+	): vec4 {
+		if (typeof edge0 === 'number') edge0 = [edge0, edge0, edge0, edge0]
+		if (typeof edge1 === 'number') edge1 = [edge1, edge1, edge1, edge1]
+
 		const t0 = scalar.clamp((x[0] - edge0[0]) / (edge1[0] - edge0[0]), 0, 1)
 		const t1 = scalar.clamp((x[1] - edge0[1]) / (edge1[1] - edge0[1]), 0, 1)
 		const t2 = scalar.clamp((x[2] - edge0[2]) / (edge1[2] - edge0[2]), 0, 1)
