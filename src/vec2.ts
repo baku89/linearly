@@ -1095,6 +1095,56 @@ export namespace vec2 {
 	 */
 	export const invsqrt = inverseSqrt
 
+	export function sinh(v: vec2): vec2 {
+		return [Math.sinh(v[0]), Math.sinh(v[1])]
+	}
+
+	export function cosh(v: vec2): vec2 {
+		return [Math.cosh(v[0]), Math.cosh(v[1])]
+	}
+
+	export function tanh(v: vec2): vec2 {
+		return [Math.tanh(v[0]), Math.tanh(v[1])]
+	}
+
+	export function asinh(v: vec2): vec2 {
+		return [Math.asinh(v[0]), Math.asinh(v[1])]
+	}
+
+	export function acosh(v: vec2): vec2 {
+		return [Math.acosh(v[0]), Math.acosh(v[1])]
+	}
+
+	export function atanh(v: vec2): vec2 {
+		return [Math.atanh(v[0]), Math.atanh(v[1])]
+	}
+
+	/**
+	 * Clamps each component to [0, 1]. Equivalent to HLSL's `saturate`.
+	 */
+	export function saturate(v: vec2): vec2 {
+		return [
+			Math.max(0, Math.min(1, v[0])),
+			Math.max(0, Math.min(1, v[1])),
+		]
+	}
+
+	/**
+	 * Returns the sum of all components of a vector.
+	 * Equivalent to GLM's `glm::compAdd`.
+	 */
+	export function compAdd(v: vec2): number {
+		return v[0] + v[1]
+	}
+
+	/**
+	 * Returns the product of all components of a vector.
+	 * Equivalent to GLM's `glm::compMul`.
+	 */
+	export function compMul(v: vec2): number {
+		return v[0] * v[1]
+	}
+
 	/**
 	 * Returns whether or not the vectors exactly have the same elements in the same position (when compared with `===`)
 	 *

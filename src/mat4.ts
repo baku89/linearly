@@ -1,5 +1,6 @@
 import * as Common from './common'
 import {quat} from './quat'
+import type {vec4} from './vec4'
 import {vec3} from './vec3'
 
 /**
@@ -1693,6 +1694,66 @@ export namespace mat4 {
 	 * @deprecated Use {@link approxEquals} instead
 	 */
 	export const equals = approxEquals
+
+	/**
+	 * Projects a 3D point from object/world space to screen (window) coordinates.
+	 * Equivalent to GLM's `glm::project`.
+	 *
+	 * @param obj The 3D point in object/world space
+	 * @param mvp The combined model-view-projection matrix
+	 * @param viewport The viewport as [x, y, width, height]
+	 * @returns The projected point in screen coordinates [x, y, z] where z is the depth in [0, 1]
+	 */
+	export function project(obj: vec3, mvp: mat4, viewport: vec4): vec3 {
+		const [x, y, z] = obj
+
+		const cx = mvp[0] * x + mvp[4] * y + mvp[8] * z + mvp[12]
+		const cy = mvp[1] * x + mvp[5] * y + mvp[9] * z + mvp[13]
+		const cz = mvp[2] * x + mvp[6] * y + mvp[10] * z + mvp[14]
+		const cw = mvp[3] * x + mvp[7] * y + mvp[11] * z + mvp[15]
+
+		const invW = 1 / cw
+		const nx = cx * invW
+		const ny = cy * invW
+		const nz = cz * invW
+
+		return [
+			viewport[0] + viewport[2] * (nx * 0.5 + 0.5),
+			viewport[1] + viewport[3] * (ny * 0.5 + 0.5),
+			nz * 0.5 + 0.5,
+		]
+	}
+
+	/**
+	 * Unprojects a point from screen (window) coordinates back to object/world space.
+	 * Equivalent to GLM's `glm::unProject`.
+	 *
+	 * @param screen The screen-space point [x, y, z] where z is the depth in [0, 1]
+	 * @param mvpInv The inverse of the combined model-view-projection matrix
+	 * @param viewport The viewport as [x, y, width, height]
+	 * @returns The unprojected 3D point, or null if the operation fails
+	 */
+	export function unProject(
+		screen: vec3,
+		mvpInv: mat4,
+		viewport: vec4
+	): vec3 | null {
+		const nx = (screen[0] - viewport[0]) / viewport[2] * 2 - 1
+		const ny = (screen[1] - viewport[1]) / viewport[3] * 2 - 1
+		const nz = screen[2] * 2 - 1
+
+		const x = mvpInv[0] * nx + mvpInv[4] * ny + mvpInv[8] * nz + mvpInv[12]
+		const y = mvpInv[1] * nx + mvpInv[5] * ny + mvpInv[9] * nz + mvpInv[13]
+		const z = mvpInv[2] * nx + mvpInv[6] * ny + mvpInv[10] * nz + mvpInv[14]
+		const w = mvpInv[3] * nx + mvpInv[7] * ny + mvpInv[11] * nz + mvpInv[15]
+
+		if (Math.abs(w) < Common.EPSILON) {
+			return null
+		}
+
+		const invW = 1 / w
+		return [x * invW, y * invW, z * invW]
+	}
 
 	/**
 	 * Returns a string representation of a mat4

@@ -1202,6 +1202,57 @@ export namespace vec3 {
 	 */
 	export const invsqrt = inverseSqrt
 
+	export function sinh(v: vec3): vec3 {
+		return [Math.sinh(v[0]), Math.sinh(v[1]), Math.sinh(v[2])]
+	}
+
+	export function cosh(v: vec3): vec3 {
+		return [Math.cosh(v[0]), Math.cosh(v[1]), Math.cosh(v[2])]
+	}
+
+	export function tanh(v: vec3): vec3 {
+		return [Math.tanh(v[0]), Math.tanh(v[1]), Math.tanh(v[2])]
+	}
+
+	export function asinh(v: vec3): vec3 {
+		return [Math.asinh(v[0]), Math.asinh(v[1]), Math.asinh(v[2])]
+	}
+
+	export function acosh(v: vec3): vec3 {
+		return [Math.acosh(v[0]), Math.acosh(v[1]), Math.acosh(v[2])]
+	}
+
+	export function atanh(v: vec3): vec3 {
+		return [Math.atanh(v[0]), Math.atanh(v[1]), Math.atanh(v[2])]
+	}
+
+	/**
+	 * Clamps each component to [0, 1]. Equivalent to HLSL's `saturate`.
+	 */
+	export function saturate(v: vec3): vec3 {
+		return [
+			Math.max(0, Math.min(1, v[0])),
+			Math.max(0, Math.min(1, v[1])),
+			Math.max(0, Math.min(1, v[2])),
+		]
+	}
+
+	/**
+	 * Returns the sum of all components of a vector.
+	 * Equivalent to GLM's `glm::compAdd`.
+	 */
+	export function compAdd(v: vec3): number {
+		return v[0] + v[1] + v[2]
+	}
+
+	/**
+	 * Returns the product of all components of a vector.
+	 * Equivalent to GLM's `glm::compMul`.
+	 */
+	export function compMul(v: vec3): number {
+		return v[0] * v[1] * v[2]
+	}
+
 	/**
 	 * Returns whether or not the vectors have exactly the same elements in the same position (when compared with `===`)
 	 *

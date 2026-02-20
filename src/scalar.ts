@@ -494,6 +494,25 @@ export namespace scalar {
 	 */
 	export const invsqrt = inverseSqrt
 
+	export const sinh = Math.sinh
+
+	export const cosh = Math.cosh
+
+	export const tanh = Math.tanh
+
+	export const asinh = Math.asinh
+
+	export const acosh = Math.acosh
+
+	export const atanh = Math.atanh
+
+	/**
+	 * Clamps the value to [0, 1]. Equivalent to HLSL's `saturate`.
+	 */
+	export function saturate(v: number): number {
+		return Math.max(0, Math.min(1, v))
+	}
+
 	/**
 	 * Returns a sawtooth wave with the given period. Basically, the output will be the input value modulo `period`, but returns 1 when the phase is 1. The shape of the wave will be continous for the negative ranges, so when phase is negative integer, the output will be 0, else if phase is negative float, the output will be 1 - fractional part of phase.
 	 * @see https://www.geogebra.org/calculator/d3grfqqe

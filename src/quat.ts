@@ -395,6 +395,36 @@ export namespace quat {
 	export const fromMat4 = mat4.getRotation
 
 	/**
+	 * Creates a quaternion from a normalized direction vector and an up vector.
+	 * Equivalent to GLM's `glm::quatLookAt`.
+	 *
+	 * @param direction Normalized direction vector (forward)
+	 * @param up Up vector, default is vec3.unitY
+	 * @category Generators
+	 */
+	export function lookAt(
+		direction: vec3,
+		up: vec3 = vec3.unitY
+	): quat {
+		const right = vec3.normalize(vec3.cross(up, direction))
+		const correctedUp = vec3.cross(direction, right)
+
+		const m: mat3 = [
+			right[0],
+			correctedUp[0],
+			direction[0],
+			right[1],
+			correctedUp[1],
+			direction[1],
+			right[2],
+			correctedUp[2],
+			direction[2],
+		]
+
+		return normalize(fromMat3(m))
+	}
+
+	/**
 	 * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
 	 *
 	 * @param deg Angles to rotate around X, Y, Z axes in degree.
@@ -404,9 +434,10 @@ export namespace quat {
 	export function fromEuler(deg: vec3, order = Common.DEFAULT_ANGLE_ORDER) {
 		const [xDeg, yDeg, zDeg] = deg
 
-		const xRad = xDeg * Common.DEG2RAD
-		const yRad = yDeg * Common.DEG2RAD
-		const zRad = zDeg * Common.DEG2RAD
+		const halfToRad = Common.DEG2RAD * 0.5
+		const xRad = xDeg * halfToRad
+		const yRad = yDeg * halfToRad
+		const zRad = zDeg * halfToRad
 
 		const sx = Math.sin(xRad)
 		const cx = Math.cos(xRad)
@@ -464,6 +495,152 @@ export namespace quat {
 					cx * cy * cz + sx * sy * sz,
 				]
 		}
+	}
+
+	/**
+	 * Extracts Euler angles from a quaternion. This is the inverse of {@link fromEuler}.
+	 * Equivalent to GLM's `glm::eulerAngles`.
+	 *
+	 * @param q The quaternion to extract Euler angles from
+	 * @param order Intrinsic order for conversion, default is zyx
+	 * @returns Euler angles in degrees as vec3 [x, y, z]
+	 */
+	export function toEuler(
+		q: quat,
+		order = Common.DEFAULT_ANGLE_ORDER
+	): vec3 {
+		const [x, y, z, w] = q
+
+		const x2 = x * x
+		const y2 = y * y
+		const z2 = z * z
+		const w2 = w * w
+
+		// Rotation matrix elements from quaternion
+		const m00 = w2 + x2 - y2 - z2
+		const m01 = 2 * (x * y - w * z)
+		const m02 = 2 * (x * z + w * y)
+		const m10 = 2 * (x * y + w * z)
+		const m11 = w2 - x2 + y2 - z2
+		const m12 = 2 * (y * z - w * x)
+		const m20 = 2 * (x * z - w * y)
+		const m21 = 2 * (y * z + w * x)
+		const m22 = w2 - x2 - y2 + z2
+
+		const GIMBAL = 0.9999999
+
+		let ex: number, ey: number, ez: number
+
+		switch (order) {
+			case 'zyx': {
+				const sinP = -m20
+				if (Math.abs(sinP) >= GIMBAL) {
+					ex = 0
+					ey = Math.sign(sinP) * (Math.PI / 2)
+					ez = Math.atan2(-m01, m11)
+				} else {
+					ex = Math.atan2(m21, m22)
+					ey = Math.asin(sinP)
+					ez = Math.atan2(m10, m00)
+				}
+				break
+			}
+			case 'xyz': {
+				const sinP = m02
+				if (Math.abs(sinP) >= GIMBAL) {
+					ex = Math.atan2(m21, m11)
+					ey = Math.sign(sinP) * (Math.PI / 2)
+					ez = 0
+				} else {
+					ex = Math.atan2(-m12, m22)
+					ey = Math.asin(sinP)
+					ez = Math.atan2(-m01, m00)
+				}
+				break
+			}
+			case 'yxz': {
+				const sinP = -m12
+				if (Math.abs(sinP) >= GIMBAL) {
+					ex = Math.sign(sinP) * (Math.PI / 2)
+					ey = Math.atan2(-m20, m00)
+					ez = 0
+				} else {
+					ex = Math.asin(sinP)
+					ey = Math.atan2(m02, m22)
+					ez = Math.atan2(m10, m11)
+				}
+				break
+			}
+			case 'yzx': {
+				const sinP = m10
+				if (Math.abs(sinP) >= GIMBAL) {
+					ex = 0
+					ey = Math.atan2(m02, m22)
+					ez = Math.sign(sinP) * (Math.PI / 2)
+				} else {
+					ex = Math.atan2(-m12, m11)
+					ey = Math.atan2(-m20, m00)
+					ez = Math.asin(sinP)
+				}
+				break
+			}
+			case 'zxy': {
+				const sinP = m21
+				if (Math.abs(sinP) >= GIMBAL) {
+					ex = Math.sign(sinP) * (Math.PI / 2)
+					ey = 0
+					ez = Math.atan2(m10, m00)
+				} else {
+					ex = Math.asin(sinP)
+					ey = Math.atan2(-m20, m22)
+					ez = Math.atan2(-m01, m11)
+				}
+				break
+			}
+			case 'xzy': {
+				const sinP = -m01
+				if (Math.abs(sinP) >= GIMBAL) {
+					ex = Math.atan2(-m12, m22)
+					ey = 0
+					ez = Math.sign(sinP) * (Math.PI / 2)
+				} else {
+					ex = Math.atan2(m21, m11)
+					ey = Math.atan2(m02, m00)
+					ez = Math.asin(sinP)
+				}
+				break
+			}
+		}
+
+		return [
+			ex * Common.RAD2DEG,
+			ey * Common.RAD2DEG,
+			ez * Common.RAD2DEG,
+		]
+	}
+
+	/**
+	 * Performs a normalized linear interpolation (nlerp) between two quaternions.
+	 * Faster than {@link slerp} and sufficient for small rotation differences.
+	 *
+	 * @param a the first operand
+	 * @param b the second operand
+	 * @param t interpolation amount, in the range [0-1], between the two inputs
+	 */
+	export function lerp(a: quat, b: quat, t: number): quat {
+		let [bx, by, bz, bw] = b
+		if (dot(a, b) < 0) {
+			bx = -bx
+			by = -by
+			bz = -bz
+			bw = -bw
+		}
+		return normalize([
+			a[0] + (bx - a[0]) * t,
+			a[1] + (by - a[1]) * t,
+			a[2] + (bz - a[2]) * t,
+			a[3] + (bw - a[3]) * t,
+		])
 	}
 
 	/**

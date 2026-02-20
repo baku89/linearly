@@ -1038,6 +1038,73 @@ export namespace vec4 {
 		]
 	}
 
+	export function sinh(v: vec4): vec4 {
+		return [Math.sinh(v[0]), Math.sinh(v[1]), Math.sinh(v[2]), Math.sinh(v[3])]
+	}
+
+	export function cosh(v: vec4): vec4 {
+		return [Math.cosh(v[0]), Math.cosh(v[1]), Math.cosh(v[2]), Math.cosh(v[3])]
+	}
+
+	export function tanh(v: vec4): vec4 {
+		return [Math.tanh(v[0]), Math.tanh(v[1]), Math.tanh(v[2]), Math.tanh(v[3])]
+	}
+
+	export function asinh(v: vec4): vec4 {
+		return [
+			Math.asinh(v[0]),
+			Math.asinh(v[1]),
+			Math.asinh(v[2]),
+			Math.asinh(v[3]),
+		]
+	}
+
+	export function acosh(v: vec4): vec4 {
+		return [
+			Math.acosh(v[0]),
+			Math.acosh(v[1]),
+			Math.acosh(v[2]),
+			Math.acosh(v[3]),
+		]
+	}
+
+	export function atanh(v: vec4): vec4 {
+		return [
+			Math.atanh(v[0]),
+			Math.atanh(v[1]),
+			Math.atanh(v[2]),
+			Math.atanh(v[3]),
+		]
+	}
+
+	/**
+	 * Clamps each component to [0, 1]. Equivalent to HLSL's `saturate`.
+	 */
+	export function saturate(v: vec4): vec4 {
+		return [
+			Math.max(0, Math.min(1, v[0])),
+			Math.max(0, Math.min(1, v[1])),
+			Math.max(0, Math.min(1, v[2])),
+			Math.max(0, Math.min(1, v[3])),
+		]
+	}
+
+	/**
+	 * Returns the sum of all components of a vector.
+	 * Equivalent to GLM's `glm::compAdd`.
+	 */
+	export function compAdd(v: vec4): number {
+		return v[0] + v[1] + v[2] + v[3]
+	}
+
+	/**
+	 * Returns the product of all components of a vector.
+	 * Equivalent to GLM's `glm::compMul`.
+	 */
+	export function compMul(v: vec4): number {
+		return v[0] * v[1] * v[2] * v[3]
+	}
+
 	/**
 	 * Returns whether or not the vectors have exactly the same elements in the same position (when compared with `===`)
 	 *
