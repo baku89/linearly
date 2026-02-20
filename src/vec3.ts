@@ -228,21 +228,21 @@ export namespace vec3 {
 	export const div = divide
 
 	/**
-	 * Math.ceil the components of a vec3
+	 * Applies Math.ceil to each component of a vec3
 	 */
 	export function ceil(a: vec3): vec3 {
 		return [Math.ceil(a[0]), Math.ceil(a[1]), Math.ceil(a[2])]
 	}
 
 	/**
-	 * Math.floor the components of a vec3
+	 * Applies Math.floor to each component of a vec3
 	 */
 	export function floor(a: vec3): vec3 {
 		return [Math.floor(a[0]), Math.floor(a[1]), Math.floor(a[2])]
 	}
 
 	/**
-	 * Math.sign the components of a vec3
+	 * Applies Math.sign to each component of a vec3
 	 */
 	export function sign(v: vec3): vec3 {
 		return [Math.sign(v[0]), Math.sign(v[1]), Math.sign(v[2])]
@@ -269,7 +269,7 @@ export namespace vec3 {
 	}
 
 	/**
-	 * Compute value of one parameter module another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
+	 * Compute value of one parameter modulo another. This is computed as x - y * floor(x/y). Unlike JavaScript's `%` operator, the sign of result always matches to `b`.
 	 * @see https://thebookofshaders.com/glossary/?search=mod
 	 */
 	export function mod(a: vec3, b: vec3 | number): vec3 {
@@ -305,7 +305,7 @@ export namespace vec3 {
 	}
 
 	/**
-	 * Returns the minimum of givenvec3's
+	 * Returns the minimum of given vec3's
 	 */
 	export function min(...vs: (vec3 | number)[]): vec3 {
 		if (vs.length === 0) {
@@ -326,7 +326,7 @@ export namespace vec3 {
 	}
 
 	/**
-	 * Returns the maximum of givenvec3's
+	 * Returns the maximum of given vec3's
 	 */
 	export function max(...vs: (vec3 | number)[]): vec3 {
 		if (vs.length === 0) {
@@ -364,12 +364,15 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Returns the absolute value of each component of a vec3
+	 */
 	export function abs(v: vec3): vec3 {
 		return [Math.abs(v[0]), Math.abs(v[1]), Math.abs(v[2])]
 	}
 
 	/**
-	 * symmetric round the components of a vec3
+	 * Symmetric round the components of a vec3
 	 */
 	export function round(a: vec3): vec3 {
 		return [Common.round(a[0]), Common.round(a[1]), Common.round(a[2])]
@@ -408,8 +411,8 @@ export namespace vec3 {
 	export const avg = average
 
 	/**
- Adds given vec3's after scaling the second operand by a scalar value
- */
+	 * Adds given vec3's after scaling the second operand by a scalar value
+	 */
 	export function scaleAndAdd(a: vec3, b: vec3, scale: number): vec3 {
 		return [a[0] + b[0] * scale, a[1] + b[1] * scale, a[2] + b[2] * scale]
 	}
@@ -485,7 +488,7 @@ export namespace vec3 {
 	/**
 	 * Calculates the squared length of a vec3
 	 *
-	 * @shortands
+	 * @shorthands
 	 * - {@link sqrLen}
 	 */
 	export function squaredLength(a: vec3) {
@@ -697,7 +700,7 @@ export namespace vec3 {
 	}
 
 	/**
-	 * Linearly interpolate between two numbers. Same as GLSL's bulit-in `mix` function.
+	 * Linearly interpolate between two vec3's. Same as GLSL's built-in `mix` function.
 	 * @see https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml
 	 *
 	 * @shorthands
@@ -1036,7 +1039,7 @@ export namespace vec3 {
 
 	/**
 	 * Converts the components of a vec3 from radians to degrees
-	 * @param rad The input vec4 in radians
+	 * @param rad The input vec3 in radians
 	 * @returns The degrees equivalent of the input
 	 *
 	 * @shorthands
@@ -1078,6 +1081,9 @@ export namespace vec3 {
 	 */
 	export const rad = radians
 
+	/**
+	 * Returns the sine of each component, which are angles in degrees
+	 */
 	export function sin(deg: vec3): vec3 {
 		return [
 			Math.sin(deg[0] * Common.DEG2RAD),
@@ -1086,6 +1092,9 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Returns the cosine of each component, which are angles in degrees
+	 */
 	export function cos(deg: vec3): vec3 {
 		return [
 			Math.cos(deg[0] * Common.DEG2RAD),
@@ -1094,6 +1103,9 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Returns the tangent of each component, which are angles in degrees
+	 */
 	export function tan(deg: vec3): vec3 {
 		return [
 			Math.tan(deg[0] * Common.DEG2RAD),
@@ -1102,6 +1114,9 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Returns the arcsine of each component, in degrees
+	 */
 	export function asin(v: vec3): vec3 {
 		return [
 			Math.asin(v[0]) * Common.RAD2DEG,
@@ -1110,6 +1125,9 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Returns the arc cosine of each component, in degrees
+	 */
 	export function acos(v: vec3): vec3 {
 		return [
 			Math.acos(v[0]) * Common.RAD2DEG,
@@ -1155,31 +1173,46 @@ export namespace vec3 {
 		]
 	}
 
+	/**
+	 * Returns the base to the exponent power, component-wise
+	 */
 	export function pow(a: vec3, b: vec3 | number): vec3 {
 		if (typeof b === 'number') b = [b, b, b]
 		return [Math.pow(a[0], b[0]), Math.pow(a[1], b[1]), Math.pow(a[2], b[2])]
 	}
 
+	/**
+	 * Returns e raised to the power of each component
+	 */
 	export function exp(v: vec3): vec3 {
 		return [Math.exp(v[0]), Math.exp(v[1]), Math.exp(v[2])]
 	}
 
+	/**
+	 * Returns the natural logarithm of each component
+	 */
 	export function log(v: vec3): vec3 {
 		return [Math.log(v[0]), Math.log(v[1]), Math.log(v[2])]
 	}
 
 	/**
 	 * Returns 2 raised to the power of the parameter
-	 * @param v the value of the powe to which 2 will be raised
+	 * @param v the value of the power to which 2 will be raised
 	 */
 	export function exp2(v: vec3): vec3 {
 		return [2 ** v[0], 2 ** v[1], 2 ** v[2]]
 	}
 
+	/**
+	 * Returns the base-2 logarithm of each component
+	 */
 	export function log2(v: vec3): vec3 {
 		return [Math.log2(v[0]), Math.log2(v[1]), Math.log2(v[2])]
 	}
 
+	/**
+	 * Returns the square root of each component
+	 */
 	export function sqrt(v: vec3): vec3 {
 		return [Math.sqrt(v[0]), Math.sqrt(v[1]), Math.sqrt(v[2])]
 	}
@@ -1202,26 +1235,44 @@ export namespace vec3 {
 	 */
 	export const invsqrt = inverseSqrt
 
+	/**
+	 * Returns the hyperbolic sine of each component
+	 */
 	export function sinh(v: vec3): vec3 {
 		return [Math.sinh(v[0]), Math.sinh(v[1]), Math.sinh(v[2])]
 	}
 
+	/**
+	 * Returns the hyperbolic cosine of each component
+	 */
 	export function cosh(v: vec3): vec3 {
 		return [Math.cosh(v[0]), Math.cosh(v[1]), Math.cosh(v[2])]
 	}
 
+	/**
+	 * Returns the hyperbolic tangent of each component
+	 */
 	export function tanh(v: vec3): vec3 {
 		return [Math.tanh(v[0]), Math.tanh(v[1]), Math.tanh(v[2])]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic sine of each component
+	 */
 	export function asinh(v: vec3): vec3 {
 		return [Math.asinh(v[0]), Math.asinh(v[1]), Math.asinh(v[2])]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic cosine of each component
+	 */
 	export function acosh(v: vec3): vec3 {
 		return [Math.acosh(v[0]), Math.acosh(v[1]), Math.acosh(v[2])]
 	}
 
+	/**
+	 * Returns the inverse hyperbolic tangent of each component
+	 */
 	export function atanh(v: vec3): vec3 {
 		return [Math.atanh(v[0]), Math.atanh(v[1]), Math.atanh(v[2])]
 	}
