@@ -370,6 +370,33 @@ export namespace mat2 {
 	}
 
 	/**
+	 * Multiplies each element of a mat2 by a scalar
+	 */
+	export function multiplyScalar(a: mat2, s: number): mat2 {
+		// prettier-ignore
+		return [
+		a[0] * s, a[1] * s,
+		a[2] * s, a[3] * s,
+	]
+	}
+
+	/**
+	 * Adds given mat2's after multiplying each element of the second operand by a scalar value.
+	 */
+	export function multiplyScalarAndAdd(
+		a: mat2,
+		b: mat2,
+		scale: number
+	): mat2 {
+		return [
+			a[0] + b[0] * scale,
+			a[1] + b[1] * scale,
+			a[2] + b[2] * scale,
+			a[3] + b[3] * scale,
+		]
+	}
+
+	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
 	 *
 	 * @shorthands
@@ -419,4 +446,14 @@ export namespace mat2 {
 	 * @deprecated Use {@link approxEquals} instead
 	 */
 	export const equals = approxEquals
+
+	/**
+	 * Returns a string representation of a mat2
+	 * @param m matrix to represent as a string
+	 * @param fractionDigits number of digits to appear after the decimal point
+	 */
+	export const toString = Common.createMatToStringFunction(2, 2) as (
+		m: mat2,
+		fractionDigits?: number
+	) => string
 }
