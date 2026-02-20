@@ -2,7 +2,8 @@ name: Deploy static content to Github Pages
 
 on:
   push:
-    branches: ['main']
+    tags:
+      - 'v*'
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
@@ -23,6 +24,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify tag is on main branch
+        run: git branch -r --contains ${{ github.sha }} | grep -q 'origin/main'
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
