@@ -16,8 +16,8 @@
 		"Periodic Functions",
 		"Shorthands"
 	],
-	"blockTags": ["@shorthands"],
 
+	"entryFileName": "index",
 	"outputFileStrategy": "modules",
 
 	"parametersFormat": "table",
