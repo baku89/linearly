@@ -544,6 +544,63 @@ export namespace vec2 {
 	export const invlerp = inverseLerp
 
 	/**
+	 * Performs a spherical linear interpolation between two vec2's
+	 */
+	export function slerp(a: vec2, b: vec2, t: number): vec2 {
+		const angle = Math.acos(Math.min(Math.max(dot(a, b), -1), 1))
+		const sinTotal = Math.sin(angle)
+
+		if (sinTotal === 0) {
+			return lerp(a, b, t) as vec2
+		}
+
+		const ratioA = Math.sin((1 - t) * angle) / sinTotal
+		const ratioB = Math.sin(t * angle) / sinTotal
+
+		return [ratioA * a[0] + ratioB * b[0], ratioA * a[1] + ratioB * b[1]]
+	}
+
+	/**
+	 * Performs a hermite interpolation with two control points
+	 *
+	 * @param a the first operand
+	 * @param b the second operand
+	 * @param c the third operand
+	 * @param d the fourth operand
+	 * @param t interpolation amount, in the range [0-1], between the two inputs
+	 */
+	export function hermite(a: vec2, b: vec2, c: vec2, d: vec2, t: number): vec2 {
+		const factorTimes2 = t * t
+		const factor1 = factorTimes2 * (2 * t - 3) + 1
+		const factor2 = factorTimes2 * (t - 2) + t
+		const factor3 = factorTimes2 * (t - 1)
+		const factor4 = factorTimes2 * (3 - 2 * t)
+
+		return [
+			a[0] * factor1 + b[0] * factor2 + c[0] * factor3 + d[0] * factor4,
+			a[1] * factor1 + b[1] * factor2 + c[1] * factor3 + d[1] * factor4,
+		]
+	}
+
+	/**
+	 * Performs a bezier interpolation with two control points
+	 */
+	export function bezier(a: vec2, b: vec2, c: vec2, d: vec2, t: number): vec2 {
+		const inverseFactor = 1 - t
+		const inverseFactorTimesTwo = inverseFactor * inverseFactor
+		const factorTimes2 = t * t
+		const factor1 = inverseFactorTimesTwo * inverseFactor
+		const factor2 = 3 * t * inverseFactorTimesTwo
+		const factor3 = 3 * factorTimes2 * inverseFactor
+		const factor4 = factorTimes2 * t
+
+		return [
+			a[0] * factor1 + b[0] * factor2 + c[0] * factor3 + d[0] * factor4,
+			a[1] * factor1 + b[1] * factor2 + c[1] * factor3 + d[1] * factor4,
+		]
+	}
+
+	/**
 	 * Takes the value in the range `(omin, omax)` and shifts it to the corresponding value in the new range `(nmin, nmax)`. The function clamps the given value the range `(omin, omax)` before fitting, so the resulting value will be guaranteed to be in the range `(nmin, nmax)`. To avoid clamping use efit instead.
 	 * @see https://www.sidefx.com/docs/houdini/vex/functions/fit.html
 	 * @param value
