@@ -38,6 +38,33 @@ export namespace quat {
 	}
 
 	/**
+	 * Constrain each component to lie between min and max
+	 * @see https://thebookofshaders.com/glossary/?search=clamp
+	 */
+	export function clamp(q: quat, min: number, max: number): quat {
+		return [
+			Math.max(min, Math.min(max, q[0])),
+			Math.max(min, Math.min(max, q[1])),
+			Math.max(min, Math.min(max, q[2])),
+			Math.max(min, Math.min(max, q[3])),
+		]
+	}
+
+	/**
+	 * Clamps each component to [0, 1]
+	 */
+	export function clamp01(q: quat): quat {
+		return clamp(q, 0, 1)
+	}
+
+	/**
+	 * Clamps each component to [-1, 1]
+	 */
+	export function clamp11(q: quat): quat {
+		return clamp(q, -1, 1)
+	}
+
+	/**
 	 * The identity quaternion.
 	 * @category Constants
 	 *

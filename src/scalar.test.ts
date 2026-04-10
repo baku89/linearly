@@ -111,6 +111,18 @@ test('clamp', () => {
 	expect(scalar.clamp(3, 4, 5)).toEqual(4)
 })
 
+test('clamp01', () => {
+	expect(scalar.clamp01(0.5)).toEqual(0.5)
+	expect(scalar.clamp01(-1)).toEqual(0)
+	expect(scalar.clamp01(2)).toEqual(1)
+})
+
+test('clamp11', () => {
+	expect(scalar.clamp11(0)).toEqual(0)
+	expect(scalar.clamp11(-2)).toEqual(-1)
+	expect(scalar.clamp11(1.5)).toEqual(1)
+})
+
 test('multiply', () => {
 	expect(scalar.multiply()).toEqual(1)
 	expect(scalar.multiply(3)).toEqual(3)

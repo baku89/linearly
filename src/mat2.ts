@@ -398,6 +398,33 @@ export namespace mat2 {
 	}
 
 	/**
+	 * Constrain each element to lie between min and max
+	 * @see https://thebookofshaders.com/glossary/?search=clamp
+	 */
+	export function clamp(a: mat2, min: number, max: number): mat2 {
+		return [
+			Math.max(min, Math.min(max, a[0])),
+			Math.max(min, Math.min(max, a[1])),
+			Math.max(min, Math.min(max, a[2])),
+			Math.max(min, Math.min(max, a[3])),
+		]
+	}
+
+	/**
+	 * Clamps each element to [0, 1]
+	 */
+	export function clamp01(a: mat2): mat2 {
+		return clamp(a, 0, 1)
+	}
+
+	/**
+	 * Clamps each element to [-1, 1]
+	 */
+	export function clamp11(a: mat2): mat2 {
+		return clamp(a, -1, 1)
+	}
+
+	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
 	 *
 	 * @shorthands

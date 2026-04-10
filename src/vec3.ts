@@ -366,6 +366,20 @@ export namespace vec3 {
 	}
 
 	/**
+	 * Clamps each component to [0, 1]. Equivalent to {@link saturate}.
+	 */
+	export function clamp01(v: vec3): vec3 {
+		return clamp(v, 0, 1)
+	}
+
+	/**
+	 * Clamps each component to [-1, 1]
+	 */
+	export function clamp11(v: vec3): vec3 {
+		return clamp(v, -1, 1)
+	}
+
+	/**
 	 * Returns the absolute value of each component of a vec3
 	 */
 	export function abs(v: vec3): vec3 {

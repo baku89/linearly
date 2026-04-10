@@ -19,3 +19,11 @@ test('difference', () => {
 	expect(vec4.difference([2, 3, 4, 5], [-1, -2, -3, -4])).toEqual([3, 5, 7, 9])
 	expect(vec4.difference([0, 0, 0, 0], [0, 0, 0, 0])).toEqual([0, 0, 0, 0])
 })
+
+test('clamp01', () => {
+	expect(vec4.clamp01([-0.5, 0, 1, 2])).toEqual([0, 0, 1, 1])
+})
+
+test('clamp11', () => {
+	expect(vec4.clamp11([-3, -1, 0.5, 2])).toEqual([-1, -1, 0.5, 1])
+})

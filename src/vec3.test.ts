@@ -98,6 +98,14 @@ test('clamp', () => {
 	expect(vec3.clamp([3, 7, 8], [4, 4, 4], [5, 6, 7])).toEqual([4, 6, 7])
 })
 
+test('clamp01', () => {
+	expect(vec3.clamp01([-1, 0.5, 2])).toEqual([0, 0.5, 1])
+})
+
+test('clamp11', () => {
+	expect(vec3.clamp11([-2, 0, 1.5])).toEqual([-1, 0, 1])
+})
+
 test('multiply', () => {
 	expect(vec3.multiply([3, 4, 5], [6, 7, 8])).toEqual([18, 28, 40])
 })

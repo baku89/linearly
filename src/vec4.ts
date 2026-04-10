@@ -418,6 +418,20 @@ export namespace vec4 {
 	}
 
 	/**
+	 * Clamps each component to [0, 1]. Equivalent to {@link saturate}.
+	 */
+	export function clamp01(v: vec4): vec4 {
+		return clamp(v, 0, 1)
+	}
+
+	/**
+	 * Clamps each component to [-1, 1]
+	 */
+	export function clamp11(v: vec4): vec4 {
+		return clamp(v, -1, 1)
+	}
+
+	/**
 	 * Scales a vec4 by a scalar number
 	 *
 	 * @param a the vector to scale

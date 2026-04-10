@@ -160,6 +160,20 @@ export namespace scalar {
 	}
 
 	/**
+	 * Clamps the value to [0, 1]. Equivalent to {@link saturate}.
+	 */
+	export function clamp01(value: number): number {
+		return clamp(value, 0, 1)
+	}
+
+	/**
+	 * Clamps the value to [-1, 1]
+	 */
+	export function clamp11(value: number): number {
+		return clamp(value, -1, 1)
+	}
+
+	/**
 	 * Multiplies two values
 	 */
 	export function scale(a: number, b: number): number {

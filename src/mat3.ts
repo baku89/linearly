@@ -617,6 +617,38 @@ export namespace mat3 {
 	}
 
 	/**
+	 * Constrain each element to lie between min and max
+	 * @see https://thebookofshaders.com/glossary/?search=clamp
+	 */
+	export function clamp(a: mat3, min: number, max: number): mat3 {
+		return [
+			Math.max(min, Math.min(max, a[0])),
+			Math.max(min, Math.min(max, a[1])),
+			Math.max(min, Math.min(max, a[2])),
+			Math.max(min, Math.min(max, a[3])),
+			Math.max(min, Math.min(max, a[4])),
+			Math.max(min, Math.min(max, a[5])),
+			Math.max(min, Math.min(max, a[6])),
+			Math.max(min, Math.min(max, a[7])),
+			Math.max(min, Math.min(max, a[8])),
+		]
+	}
+
+	/**
+	 * Clamps each element to [0, 1]
+	 */
+	export function clamp01(a: mat3): mat3 {
+		return clamp(a, 0, 1)
+	}
+
+	/**
+	 * Clamps each element to [-1, 1]
+	 */
+	export function clamp11(a: mat3): mat3 {
+		return clamp(a, -1, 1)
+	}
+
+	/**
 	 * Returns whether or not the matrices have exactly the same elements in the same position (when compared with `===`)
 	 *
 	 * @shorthands

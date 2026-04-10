@@ -32,6 +32,16 @@ test('translate', () => {
 	expect(mat2d.translate(matA, [2, 3])).toEqual([1, 2, 3, 4, 16, 22])
 })
 
+test('clamp', () => {
+	expect(mat2d.clamp([-1, 0.5, 2, -0.5, 3, -2], 0, 1)).toEqual([
+		0, 0.5, 1, 0, 1, 0,
+	])
+	expect(mat2d.clamp01([2, -1, 0, 0.5, 1.5, -0.5])).toEqual([1, 0, 0, 0.5, 1, 0])
+	expect(mat2d.clamp11([-2, 0, 1.5, -0.5, 2, -3])).toEqual([
+		-1, 0, 1, -0.5, 1, -1,
+	])
+})
+
 test('frob', () => {
 	expect(mat2d.frob(matA)).toEqual(
 		Math.sqrt(

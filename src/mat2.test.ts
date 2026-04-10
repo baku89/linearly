@@ -34,3 +34,17 @@ describe('fromSkew', () => {
 		expect(mat2.fromSkew([0, 45])).toEqual([1, 1, 0, 1])
 	})
 })
+
+describe('clamp', () => {
+	it('should clamp elements to a range', () => {
+		expect(mat2.clamp([-1, 0.5, 2, -0.5], 0, 1)).toEqual([0, 0.5, 1, 0])
+	})
+
+	it('should clamp01', () => {
+		expect(mat2.clamp01([2, -1, 0.25, 0.75])).toEqual([1, 0, 0.25, 0.75])
+	})
+
+	it('should clamp11', () => {
+		expect(mat2.clamp11([-2, 0.5, 1, 3])).toEqual([-1, 0.5, 1, 1])
+	})
+})

@@ -515,6 +515,35 @@ export namespace mat2d {
 	}
 
 	/**
+	 * Constrain each element to lie between min and max
+	 * @see https://thebookofshaders.com/glossary/?search=clamp
+	 */
+	export function clamp(a: mat2d, min: number, max: number): mat2d {
+		return [
+			Math.max(min, Math.min(max, a[0])),
+			Math.max(min, Math.min(max, a[1])),
+			Math.max(min, Math.min(max, a[2])),
+			Math.max(min, Math.min(max, a[3])),
+			Math.max(min, Math.min(max, a[4])),
+			Math.max(min, Math.min(max, a[5])),
+		]
+	}
+
+	/**
+	 * Clamps each element to [0, 1]
+	 */
+	export function clamp01(a: mat2d): mat2d {
+		return clamp(a, 0, 1)
+	}
+
+	/**
+	 * Clamps each element to [-1, 1]
+	 */
+	export function clamp11(a: mat2d): mat2d {
+		return clamp(a, -1, 1)
+	}
+
+	/**
 	 * Creates a matrix that maps from the given points to another. If the third point is not given, the orthogonal matrix is returned.
 	 * ```text
 	 * f-s         f'-s'

@@ -118,6 +118,16 @@ test('clamp', () => {
 	expect(vec2.clamp([3, 7], [4, 4], [5, 6])).toEqual([4, 6])
 })
 
+test('clamp01', () => {
+	expect(vec2.clamp01([-0.5, 0.5])).toEqual([0, 0.5])
+	expect(vec2.clamp01([2, 0.25])).toEqual([1, 0.25])
+})
+
+test('clamp11', () => {
+	expect(vec2.clamp11([-2, 0.5])).toEqual([-1, 0.5])
+	expect(vec2.clamp11([0.5, 3])).toEqual([0.5, 1])
+})
+
 test('multiply', () => {
 	expect(vec2.multiply([3, 4], [5, 6])).toEqual([15, 24])
 })

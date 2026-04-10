@@ -262,6 +262,20 @@ export namespace vec2 {
 	}
 
 	/**
+	 * Clamps each component to [0, 1]. Equivalent to {@link saturate}.
+	 */
+	export function clamp01(v: vec2): vec2 {
+		return clamp(v, 0, 1)
+	}
+
+	/**
+	 * Clamps each component to [-1, 1]
+	 */
+	export function clamp11(v: vec2): vec2 {
+		return clamp(v, -1, 1)
+	}
+
+	/**
 	 * Returns the absolute value of each component of a vec2
 	 */
 	export function abs(v: vec2): vec2 {
