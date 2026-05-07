@@ -630,19 +630,18 @@ export namespace scalar {
 	}
 
 	/**
-	 * Returns a sawtooth wave with the given period. Basically, the output will be the input value modulo `period`, but returns 1 when the phase is 1. The shape of the wave will be continuous for the negative ranges, so when phase is negative integer, the output will be 0, else if phase is negative float, the output will be 1 - fractional part of phase.
+	 * Returns a sawtooth wave with a period of 360°. Output is the input modulo 360, normalized to [0, 1], with a jump back to 0 at each multiple of 360°. Continuous for the negative ranges: phase at negative integer multiples of 360° is 0, otherwise it is 1 minus the fractional part of the phase.
 	 * @see https://www.geogebra.org/calculator/d3grfqqe
 	 *
-	 * @param x the input value
-	 * @param period the period of the wave
+	 * @param x the input value in degrees
 	 * @category Periodic Functions
 	 *
 	 * @shorthands
 	 * - {@link ramp}
 	 *
 	 */
-	export function sawtooth(x: number, period = 1): number {
-		x /= period
+	export function sawtooth(x: number): number {
+		x /= 360
 
 		if (x === 1) return 1
 		if (x < 0) return (1 + (x % 1)) % 1
@@ -656,57 +655,16 @@ export namespace scalar {
 	export const ramp = sawtooth
 
 	/**
-	 * Returns a triangle wave with the given period. The output ranges from 0 to 1.
+	 * Returns a triangle wave with a period of 360°. The output ranges from 0 to 1.
 	 * @see https://www.geogebra.org/calculator/d3grfqqe
 	 *
-	 * @param x The input value
-	 * @param period The period of the wave
+	 * @param x The input value in degrees
 	 * @category Periodic Functions
 	 */
-	export function triangle(x: number, period = 1): number {
-		x /= period
+	export function triangle(x: number): number {
+		x /= 360
 
 		return 1 - Math.abs(1 - 2 * (Math.abs(x) % 1))
-	}
-
-	/**
-	 * Returns a cosine wave with the given period. The output ranges from 0 to 1, and y = 0 when x = 0.
-	 *
-	 * @see https://www.geogebra.org/calculator/d3grfqqe
-	 * @param v the input value
-	 * @param period the period of the wave
-	 * @category Periodic Functions
-	 */
-	export function coswave(v: number, period = 1): number {
-		v = (v * Math.PI * 2) / period
-		return (-Math.cos(v) + 1) / 2
-	}
-
-	/**
-	 * Returns a sine wave with the given period. The output ranges from 0 to 1, and y = 0 when x = 0.
-	 *
-	 * @see https://www.geogebra.org/calculator/d3grfqqe
-	 * @param v the input value
-	 * @param period the period of the wave
-	 * @category Periodic Functions
-	 */
-	export function sinwave(v: number, period = 1): number {
-		v = (v * Math.PI * 2) / period
-		return (-Math.sin(v) + 1) / 2
-	}
-
-	/**
-	 * Returns a square wave with the given period. The output is 0 for the first half and 1 for the second half of each period.
-	 * @see https://www.geogebra.org/calculator/d3grfqqe
-	 *
-	 * @param x the input value
-	 * @param period the period of the wave
-	 * @category Periodic Functions
-	 */
-	export function square(x: number, period = 1): number {
-		x /= period
-		const phase = ((x % 1) + 1) % 1
-		return phase < 0.5 ? 0 : 1
 	}
 
 	/**
