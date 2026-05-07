@@ -154,7 +154,7 @@ export namespace quat {
 	export function angle(a: quat, b: quat): number {
 		const dotproduct = dot(a, b)
 
-		return Math.acos(2 * dotproduct * dotproduct - 1)
+		return Math.acos(2 * dotproduct * dotproduct - 1) * Common.RAD2DEG
 	}
 
 	/**
@@ -789,7 +789,7 @@ export namespace quat {
 
 				temp = vec3.normalize(temp)
 
-				return fromAxisAngle(temp, Math.PI)
+				return fromAxisAngle(temp, 180)
 			} else {
 				const tmp = vec3.cross(a, b)
 

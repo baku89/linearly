@@ -189,11 +189,11 @@ export namespace scalar {
 	 */
 	export function average(...vs: number[]): number {
 		let x = 0
-		const scale = 1 / (vs.length || 1)
+		const len = vs.length || 1
 		for (const v of vs) {
 			x += v
 		}
-		return x / scale
+		return x / len
 	}
 
 	/**

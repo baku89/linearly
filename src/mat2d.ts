@@ -202,9 +202,7 @@ export namespace mat2d {
 	 */
 	export function rotate(m: mat2d, deg: number, origin?: vec2): mat2d {
 		if (origin) {
-			if (origin) {
-				return pivot(rotate(m, deg), origin)
-			}
+			return pivot(rotate(m, deg), origin)
 		}
 
 		const [a0, a1, a2, a3, tx, ty] = m
@@ -446,7 +444,8 @@ export namespace mat2d {
 		if (ms.length === 0) {
 			return zero
 		} else if (ms.length === 1) {
-			return [-ms[0], -ms[1], -ms[2], -ms[3], -ms[4], -ms[5]]
+			const m = ms[0]
+			return [-m[0], -m[1], -m[2], -m[3], -m[4], -m[5]]
 		} else if (ms.length > 2) {
 			const [a, b, ...rest] = ms
 			return subtract(subtract(a, b), ...rest)

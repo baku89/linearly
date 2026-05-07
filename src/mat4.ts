@@ -1485,23 +1485,24 @@ export namespace mat4 {
 		if (ms.length === 0) {
 			return zero
 		} else if (ms.length === 1) {
+			const m = ms[0]
 			return [
-				-ms[0],
-				-ms[1],
-				-ms[2],
-				-ms[3],
-				-ms[4],
-				-ms[5],
-				-ms[6],
-				-ms[7],
-				-ms[8],
-				-ms[9],
-				-ms[10],
-				-ms[11],
-				-ms[12],
-				-ms[13],
-				-ms[14],
-				-ms[15],
+				-m[0],
+				-m[1],
+				-m[2],
+				-m[3],
+				-m[4],
+				-m[5],
+				-m[6],
+				-m[7],
+				-m[8],
+				-m[9],
+				-m[10],
+				-m[11],
+				-m[12],
+				-m[13],
+				-m[14],
+				-m[15],
 			]
 		} else if (ms.length > 2) {
 			const [a, b, ...rest] = ms

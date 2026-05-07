@@ -285,7 +285,10 @@ export namespace mat2 {
 	 * @param s Scaling vector
 	 * @returns The matrix that represents the transformation
 	 */
-	export function fromRotScale(r: number | null = null, s: vec2 | null = null) {
+	export function fromRotScale(
+		r: number | null = null,
+		s: vec2 | null = null
+	): mat2 {
 		r ??= 0
 		s ??= vec2.one
 
@@ -336,7 +339,8 @@ export namespace mat2 {
 		if (ms.length === 0) {
 			return zero
 		} else if (ms.length === 1) {
-			return [-ms[0], -ms[1], -ms[2], -ms[3]]
+			const m = ms[0]
+			return [-m[0], -m[1], -m[2], -m[3]]
 		} else if (ms.length > 2) {
 			const [a, b, ...rest] = ms
 			return subtract(subtract(a, b), ...rest)

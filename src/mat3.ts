@@ -302,7 +302,7 @@ export namespace mat3 {
 
 		// prettier-ignore
 		return [
-			a[0] * x, a[1] * x, a[2] & x,
+			a[0] * x, a[1] * x, a[2] * x,
 			a[3] * y, a[4] * y,	a[5] * y,
 			a[6],     a[7],     a[8],
 		]
@@ -419,15 +419,15 @@ export namespace mat3 {
 
 		return [
 			1 - yy - zz,
-			yx - wz,
-			zx + wy,
-
 			yx + wz,
-			1 - xx - zz,
-			zy - wx,
-
 			zx - wy,
+
+			yx - wz,
+			1 - xx - zz,
 			zy + wx,
+
+			zx + wy,
+			zy - wx,
 			1 - xx - yy,
 		]
 	}
@@ -528,16 +528,17 @@ export namespace mat3 {
 		if (ms.length === 0) {
 			return zero
 		} else if (ms.length === 1) {
+			const m = ms[0]
 			return [
-				-ms[0],
-				-ms[1],
-				-ms[2],
-				-ms[3],
-				-ms[4],
-				-ms[5],
-				-ms[6],
-				-ms[7],
-				-ms[8],
+				-m[0],
+				-m[1],
+				-m[2],
+				-m[3],
+				-m[4],
+				-m[5],
+				-m[6],
+				-m[7],
+				-m[8],
 			]
 		} else if (ms.length > 2) {
 			const [a, b, ...rest] = ms
