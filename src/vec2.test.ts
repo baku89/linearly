@@ -51,6 +51,12 @@ test('cross', () => {
 	expect(vec2.cross([3, 4], [5, 6])).toStrictEqual([0, 0, -2])
 })
 
+test('crossScalar', () => {
+	expect(vec2.crossScalar([3, 4], [5, 6])).toBe(-2)
+	expect(vec2.crossScalar([1, 0], [0, 1])).toBe(1)
+	expect(vec2.crossScalar([2, 3], [4, 6])).toBe(0)
+})
+
 test('distance', () => {
 	expect(vec2.distance([1, 2], [4, 6])).toEqual(5)
 })

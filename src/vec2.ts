@@ -545,10 +545,17 @@ export namespace vec2 {
 
 	/**
 	 * Computes the cross product of two vec2's. Returns a vec3 with x and y components set to 0.
+	 * @see {@link crossScalar} for the z component alone
 	 */
 	export function cross(a: vec2, b: vec2): vec3 {
-		const z = a[0] * b[1] - a[1] * b[0]
-		return [0, 0, z]
+		return [0, 0, crossScalar(a, b)]
+	}
+
+	/**
+	 * Computes the scalar cross product (perp dot product) of two vec2's, which is the z component of {@link cross}. It is positive when the rotation from `a` to `b` is in the positive angle direction, zero when the vectors are parallel, and its magnitude is the area of the parallelogram spanned by them.
+	 */
+	export function crossScalar(a: vec2, b: vec2): number {
+		return a[0] * b[1] - a[1] * b[0]
 	}
 
 	/**
