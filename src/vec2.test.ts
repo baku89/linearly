@@ -22,6 +22,7 @@ test('add', () => {
 test('subtract', () => {
 	expect(vec2.subtract()).toStrictEqual([0, 0])
 	expect(vec2.subtract([0, 1])).toStrictEqual([0, -1])
+	expect(vec2.subtract(5, [1, 2], 1)).toStrictEqual([3, 2])
 	expect(vec2.subtract([0, 1], [2, 3])).toStrictEqual([-2, -2])
 	expect(vec2.subtract([0, 1], [2, 3], [4, 5])).toStrictEqual([-6, -7])
 })

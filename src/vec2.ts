@@ -97,12 +97,12 @@ export namespace vec2 {
 			return [-v[0], -v[1]]
 		}
 
-		const [first, ...rest] = vs
+		const first = vs[0]
+		let x = typeof first === 'number' ? first : first[0]
+		let y = typeof first === 'number' ? first : first[1]
 
-		let [x, y]: Mutable =
-			typeof first === 'number' ? [first, first] : [...first]
-
-		for (const v of rest) {
+		for (let i = 1; i < vs.length; i++) {
+			const v = vs[i]
 			if (typeof v === 'number') {
 				x -= v
 				y -= v
