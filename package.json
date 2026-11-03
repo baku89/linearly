@@ -1,6 +1,6 @@
 {
 	"name": "linearly",
-	"version": "0.38.0",
+	"version": "0.38.1",
 	"description": "Matrix and vector library with immutable data types",
 	"type": "module",
 	"exports": {
