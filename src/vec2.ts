@@ -798,7 +798,8 @@ export namespace vec2 {
 	 * 3rd vector component is implicitly '1'
 	 */
 	export function transformMat2d(a: vec2, m: mat2d): vec2 {
-		const [x, y] = a
+		const x = a[0]
+		const y = a[1]
 		return [
 			m[0] * x + m[2] * y + m[4], //
 			m[1] * x + m[3] * y + m[5],

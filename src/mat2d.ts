@@ -176,10 +176,20 @@ export namespace mat2d {
 			return multiply(multiply(a, b), ...rest)
 		}
 
-		const [a, b] = ms
-
-		const [a0, a1, a2, a3, a4, a5] = a
-		const [b0, b1, b2, b3, b4, b5] = b
+		const a = ms[0]
+		const b = ms[1]
+		const a0 = a[0],
+			a1 = a[1],
+			a2 = a[2],
+			a3 = a[3],
+			a4 = a[4],
+			a5 = a[5]
+		const b0 = b[0],
+			b1 = b[1],
+			b2 = b[2],
+			b3 = b[3],
+			b4 = b[4],
+			b5 = b[5]
 
 		// prettier-ignore
 		return [
@@ -625,7 +635,7 @@ export namespace mat2d {
 		const C = Math.cos(r * Common.DEG2RAD)
 		const S = Math.sin(r * Common.DEG2RAD)
 
-		return [s[0] * C, s[0] * S, s[1] * -S, s[1] * C, ...t]
+		return [s[0] * C, s[0] * S, s[1] * -S, s[1] * C, t[0], t[1]]
 	}
 
 	/**
